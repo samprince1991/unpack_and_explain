@@ -12,9 +12,9 @@ export const FailureBadge: React.FC = () => {
     <div
       style={{
         position: "absolute",
-        left: layout.content.x,
+        left: layout.column.x,
         top: layout.regions.visual.top,
-        width: layout.content.width,
+        width: layout.column.width,
         display: "flex",
         justifyContent: "center",
       }}

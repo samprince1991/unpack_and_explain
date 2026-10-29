@@ -21,7 +21,7 @@ export const Watermark: React.FC = () => {
         opacity: interpolate(
           frame,
           [durationInFrames - durations.crossfade, durationInFrames],
-          [0.5, 0],
+          [0.05, 0],
           clamp,
         ),
       }}

@@ -22,6 +22,10 @@ const content = contentBox(video.width, video.height);
 
 export const layout = {
   content,
+  // Symmetric column for anything centered (text, cards). The content box is lopsided
+  // (left 80 / right 150), so centering inside it would sit 35 px left of the frame center
+  // that diagrams use.
+  column: { x: safeZone.right, width: video.width - safeZone.right * 2 },
   // Inside the 4:5 cover crop (starts at y 285) and above the visual region.
   watermark: { x: content.x, y: 292, width: 100 },
   regions: {

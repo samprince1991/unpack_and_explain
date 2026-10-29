@@ -45,7 +45,8 @@ Carousels are out of scope for this project for now.
 
 - 1080x1920, 30 fps, H.264 MP4, AAC 48 kHz. Length 30-45 s, 90-110 spoken words.
 - **Safe zones:** top 250 px, bottom 350 px, left 80 px, right 150 px. Content box is x 80-930, y 250-1570. (Bottom 350 = organic Reels overlay: username, 2-line caption, audio label, plus margin. Meta's ~670 px figure is for ads only; revisit if we run these as ads.)
-- **Screen regions** (`layout.regions`): visual 360-1230 (hook title + scene), captions 1250-1470, source 1490-1560. Watermark (avatar mark, 50% opacity) sits top-left at y 292. Scene drawings go inside `SceneCanvas` (clipped to the visual region); text positions must stay inside `layout.regions`.
+- **Screen regions** (`layout.regions`): visual 360-1230 (hook title + scene), captions 1250-1470, source 1490-1560. Watermark (avatar mark, 25% opacity) sits top-left at y 292. Scene drawings go inside `SceneCanvas` (clipped to the visual region); text positions must stay inside `layout.regions`.
+- **Centering:** the safe area is lopsided (left 80 / right 150), so its center (x 505) is NOT the frame center (x 540). Anything centered (text, cards, badges) uses `layout.column` (x 150-930, centered on 540), never `layout.content`. Diagrams are drawn around x 540, and `SceneCanvas` clips to the same column. The `showGuides` overlay draws the frame-center line and the column; check centered items against it.
 - **Cover frame:** title + key visual inside the centered 1080x1350 area (4:5 feed crop).
 - **Audio:** -14 LUFS integrated, true peak <= -1 dBTP, music ~20 dB under VO.
 - Layout values derive from composition width/height so a 16:9 variant can be added later.
@@ -59,7 +60,7 @@ All colors come from `video/src/brand/tokens.ts`. **Never write a hex value anyw
 | bg.base / bg.raised | #0f172a / #1e293b | Radial background (raised in center), cards |
 | diagram.stroke / soft / faint / fill | #e2e8f0 / #94a3b8 / #475569 / #1e293b | **All scene diagrams**: main line art / secondary lines, rings / dashed guides, orbits / object fills |
 | amber.500 (300 / 600) | #f59e0b (#fcd34d / #d97706) | Key element: the ONE thing to notice per scene (pin, number, result), active caption word, hook highlight |
-| teal.400 | #2dd4bf | **Brand only**: logo, step badges, CTA handle, FACT stamp, "correct" marks |
+| teal.400 | #2dd4bf | **Brand only**: logo, CTA handle, FACT stamp, "correct" marks |
 | teal.100 / 300 / 600 / 700 | #99f6e4 / #5eead4 / #0d9488 / #0f766e | Reserved for brand elements (shading/glows of teal items) |
 | coral | #FF5A5F | Only failure segments, MYTH, "wrong" marks |
 | text.primary / secondary / muted | #f8fafc / #cbd5e1 / #94a3b8 | Main text / tagline, secondary / sources |
@@ -91,7 +92,7 @@ Hook -> Setup -> Mechanism -> Payoff -> CTA.
 
 1. **Frame 0:** hook text is already visible. Avatar logo sting finishes in < 1 s alongside it.
 2. **Throughout (not CTA):** avatar watermark, burned-in captions (active word amber), motion at least every 2 s.
-3. **Mechanism:** numbered `StepBadge`s, one idea per step.
+3. **Mechanism:** one idea per beat, shown visually and synced with `useCue`. **No on-screen text that repeats the voice-over**: captions already carry the words, so labels like numbered step badges are redundant (removed from post 2 after review). On-screen text is only for what the VO doesn't say: a number, a unit conversion, a source. `StepBadge` stays in `components/` for lists that are NOT spoken word-for-word.
 4. **Before / on CTA:** `SourceTag` ("Source: ...") visible for the last 3 s.
 5. **CTA card (3-4 s):** Stacked-Dark logo, tagline, handle (`brand.handle`, placeholder until confirmed).
 
@@ -132,6 +133,14 @@ Categories: `audio`, `backgrounds`, `captions`, `charts`, `effects`, `layouts`, 
 Kept but not for current reels: lower thirds (faceless channel), polaroid/notebook/paper/starburst, product/discount/peel/tear/shine, split-screen/PiP, audio visualizers, cylinder/spinning text, Element caption styles (we use our `Captions`), social safe zones (we use `SafeZoneGuide`).
 
 **Rendering notes:** `maps/spinning-globe` (and other WebGPU Elements) fail in the default headless renderer ("No WebGPU adapter available"); render with `--gl=angle --chrome-mode=chrome-for-testing`. Map Elements load remote tiles/images, so rendering needs network access.
+
+**Already adapted (reuse these, don't re-adapt):**
+
+| Branded component | From Element | Notes |
+|---|---|---|
+| `components/elements/NumberCounter.tsx` | `charts/number-counter` | Inline count-up; inherits font/color from parent. `start` + `countFrames`; sync with `useCue` |
+| `components/elements/CircleMark.tsx` | `text/circle-marker` | Hand-drawn amber circle, `box="around"`. Give the circled text its own line with room on all sides, or the ellipse clips neighbouring words |
+| `components/AmbientWaves.tsx` | `backgrounds/moving-waves` | Template-level background in every reel (navy shades, 15% opacity). Keep it barely visible |
 
 **To use an Element in a post (required steps):**
 1. Copy (don't move) the library file to `src/components/elements/<slug>.tsx`.
@@ -176,6 +185,7 @@ Kept but not for current reels: lower thirds (faceless channel), polaroid/notebo
 
 - Reuse shared components; extend them in `src/components/` when a pattern appears in a second post.
 - Keep one idea per scene and build the frame around the single thing the viewer should notice first.
+- Keep diagrams sparse: when a new beat starts, fade out the geometry from the previous beat (e.g. lines fade once arcs take over). Prefer partial arcs over full circles, keep a single amber focal point, and don't let lines radiate from under an icon (it reads as clutter). Check the busiest frame at full size.
 - Draw visuals as code (SVG / shapes / icons) in neutral `colors.diagram.*`, with amber only on the key element.
 - Keep facts exactly as scripted. Flag anything marked "verify" to the user before rendering.
 - Keep each file focused; split scenes into their own files.

@@ -1,8 +1,9 @@
 import { AbsoluteFill, useVideoConfig } from "remotion";
-import { coverCrop, safeZone } from "../brand/layout";
+import { coverCrop, layout, safeZone } from "../brand/layout";
 import { colors, withAlpha } from "../brand/tokens";
 
-// Dev overlay: coral = Instagram UI zones, dashed amber = 4:5 cover crop.
+// Dev overlay: coral = Instagram UI zones, dashed amber = 4:5 cover crop,
+// solid amber line = frame center, dotted amber = text column.
 export const SafeZoneGuide: React.FC = () => {
   const { width, height } = useVideoConfig();
   const crop = coverCrop(width, height);
@@ -15,6 +16,19 @@ export const SafeZoneGuide: React.FC = () => {
       <div style={{ position: "absolute", left: 0, bottom: 0, width, height: safeZone.bottom, background: shade }} />
       <div style={{ position: "absolute", left: 0, top: safeZone.top, width: safeZone.left, height: middle, background: shade }} />
       <div style={{ position: "absolute", right: 0, top: safeZone.top, width: safeZone.right, height: middle, background: shade }} />
+      {/* Frame center, and the symmetric column that centered text uses. */}
+      <div style={{ position: "absolute", left: width / 2 - 1, top: 0, width: 2, height, background: colors.amber[300] }} />
+      <div
+        style={{
+          position: "absolute",
+          left: layout.column.x,
+          top: safeZone.top,
+          width: layout.column.width,
+          height: middle,
+          border: `2px dotted ${colors.amber[300]}`,
+          boxSizing: "border-box",
+        }}
+      />
       <div
         style={{
           position: "absolute",

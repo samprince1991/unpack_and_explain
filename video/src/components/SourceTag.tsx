@@ -13,9 +13,9 @@ export const SourceTag: React.FC<{ source: string }> = ({ source }) => {
       name="Source"
       style={{
         position: "absolute",
-        left: layout.content.x,
+        left: layout.column.x,
         top: region.top,
-        width: layout.content.width,
+        width: layout.column.width,
         height: region.bottom - region.top,
         display: "flex",
         alignItems: "center",

@@ -3,6 +3,7 @@ import { fonts, weights } from "../../../brand/fonts";
 import { layout } from "../../../brand/layout";
 import { clamp, durations } from "../../../brand/motion";
 import { colors, typeScale } from "../../../brand/tokens";
+import { NumberCounter } from "../../../components/elements/NumberCounter";
 import { EarthIcon } from "../../../components/icons/EarthIcon";
 import { SatelliteIcon } from "../../../components/icons/SatelliteIcon";
 import { SceneCanvas } from "../../../components/SceneCanvas";
@@ -30,6 +31,9 @@ const orbitPoint = (orbit: (typeof ORBITS)[number], frame: number) => {
 export const SetupScene: React.FC = () => {
   const frame = useCurrentFrame();
   const broadcast = useCue("broadcast", 0.6);
+  // Count up after the section fade-in, landing as "thirty" is spoken.
+  const thirty = useCue("thirty", 0.15);
+  const countFrames = Math.max(18, thirty + 6 - durations.crossfade);
 
   return (
     <AbsoluteFill>
@@ -69,9 +73,9 @@ export const SetupScene: React.FC = () => {
         name="Satellite count"
         style={{
           position: "absolute",
-          left: layout.content.x,
+          left: layout.column.x,
           top: 390,
-          width: layout.content.width,
+          width: layout.column.width,
           textAlign: "center",
           fontFamily: fonts.heading,
           fontWeight: weights.heading,
@@ -80,15 +84,18 @@ export const SetupScene: React.FC = () => {
           opacity: interpolate(frame, [0, durations.enter], [0, 1], clamp),
         }}
       >
-        <span style={{ color: colors.amber[500] }}>~30</span> satellites
+        <span style={{ color: colors.amber[500] }}>
+          ~<NumberCounter to={30} start={durations.crossfade} countFrames={countFrames} />
+        </span>{" "}
+        satellites
       </Interactive.Div>
       <Interactive.Div
         name="Broadcast label"
         style={{
           position: "absolute",
-          left: layout.content.x,
+          left: layout.column.x,
           top: 1150,
-          width: layout.content.width,
+          width: layout.column.width,
           textAlign: "center",
           fontFamily: fonts.body,
           fontWeight: weights.bodyMedium,

@@ -1,46 +1,46 @@
-import { AbsoluteFill, interpolate, Sequence, useCurrentFrame } from "remotion";
-import { layout } from "../../../brand/layout";
+import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 import { clamp, ease } from "../../../brand/motion";
 import { colors } from "../../../brand/tokens";
 import { ClockIcon } from "../../../components/icons/ClockIcon";
 import { PhoneIcon } from "../../../components/icons/PhoneIcon";
-import { PinIcon } from "../../../components/icons/PinIcon";
 import { SatelliteIcon } from "../../../components/icons/SatelliteIcon";
 import { SceneCanvas } from "../../../components/SceneCanvas";
-import { StepBadge } from "../../../components/StepBadge";
-import { useCue, useSection } from "../../../templates/SectionContext";
+import { useCue } from "../../../templates/SectionContext";
 
-const PHONE = { x: 540, y: 930 };
+const PHONE = { x: 540, y: 980 };
 const SATELLITES = [
-  { x: 210, y: 510 },
-  { x: 540, y: 470 },
-  { x: 870, y: 520 },
+  { x: 210, y: 560 },
+  { x: 540, y: 520 },
+  { x: 870, y: 570 },
 ];
-// Right side, clear of the step badge row.
-const FOURTH = { x: 870, y: 770 };
+const FOURTH = { x: 870, y: 820 };
 const DRAW_FRAMES = 20;
 const PULSE_PERIOD = 30;
+// Length of each distance arc. Only the part of the circle that crosses the phone is
+// drawn, so three arcs meet at one point instead of three full circles crowding the frame.
+const ARC_LENGTH = 260;
 
 const distance = (a: { x: number; y: number }) => Math.hypot(a.x - PHONE.x, a.y - PHONE.y);
 
-const DrawCircle: React.FC<{ center: { x: number; y: number }; start: number; color: string }> = ({
+const DistanceArc: React.FC<{ center: { x: number; y: number }; start: number; color: string }> = ({
   center,
   start,
   color,
 }) => {
   const frame = useCurrentFrame();
   const r = distance(center);
-  const circumference = 2 * Math.PI * r;
+  const dir = Math.atan2(PHONE.y - center.y, PHONE.x - center.x);
+  const spread = ARC_LENGTH / 2 / r;
+  const point = (a: number) => `${center.x + r * Math.cos(a)} ${center.y + r * Math.sin(a)}`;
   return (
-    <circle
-      cx={center.x}
-      cy={center.y}
-      r={r}
+    <path
+      d={`M ${point(dir - spread)} A ${r} ${r} 0 0 1 ${point(dir + spread)}`}
       fill="none"
       stroke={color}
-      strokeWidth={5}
-      strokeDasharray={circumference}
-      strokeDashoffset={interpolate(frame, [start, start + DRAW_FRAMES], [circumference, 0], {
+      strokeWidth={3}
+      strokeLinecap="round"
+      strokeDasharray={ARC_LENGTH}
+      strokeDashoffset={interpolate(frame, [start, start + DRAW_FRAMES], [ARC_LENGTH, 0], {
         ...clamp,
         easing: ease.smooth,
       })}
@@ -50,15 +50,11 @@ const DrawCircle: React.FC<{ center: { x: number; y: number }; start: number; co
 
 export const MechanismScene: React.FC = () => {
   const frame = useCurrentFrame();
-  const { durationInFrames } = useSection();
-  const steps = [
-    { n: 1, label: "Position + send time", from: useCue("carries", 0) },
-    { n: 2, label: "Measure the delay", from: useCue("measures", 0.25) },
-    { n: 3, label: "Delay × light speed = distance", from: useCue("delay", 0.45) },
-    { n: 4, label: "3 distances = your position", from: useCue("three", 0.65) },
-    { n: 5, label: "A 4th fixes the clock", from: useCue("fourth", 0.85) },
-  ];
-  const [pulses, , distances, circles, fourth] = steps.map((s) => s.from);
+  // Visual beats, synced to the voice-over (the captions already carry the words).
+  const pulses = useCue("carries", 0);
+  const distances = useCue("delay", 0.45);
+  const circles = useCue("three", 0.65);
+  const fourth = useCue("fourth", 0.85);
 
   return (
     <AbsoluteFill>
@@ -73,7 +69,8 @@ export const MechanismScene: React.FC = () => {
             stroke={frame >= distances ? colors.diagram.stroke : colors.diagram.faint}
             strokeWidth={frame >= distances ? 6 : 3}
             strokeDasharray={frame >= distances ? undefined : "8 10"}
-            opacity={interpolate(frame, [pulses, pulses + 10], [0, 1], clamp)}
+            // Lines step back once the arcs take over the story.
+            opacity={interpolate(frame, [pulses, pulses + 10, circles, circles + 12], [0, 1, 1, 0], clamp)}
           />
         ))}
         {frame >= pulses && frame < distances
@@ -91,27 +88,38 @@ export const MechanismScene: React.FC = () => {
             })
           : null}
         {SATELLITES.map((sat) => (
-          <DrawCircle key={`circle-${sat.x}`} center={sat} start={circles} color={colors.diagram.soft} />
-        ))}
-        {frame >= fourth ? (
-          <DrawCircle center={FOURTH} start={fourth + 8} color={colors.diagram.stroke} />
-        ) : null}
-        {SATELLITES.map((sat) => (
           <SatelliteIcon key={`sat-${sat.x}`} x={sat.x} y={sat.y} size={100} />
         ))}
         {frame >= fourth ? <SatelliteIcon x={FOURTH.x} y={FOURTH.y} size={90} /> : null}
-        <PhoneIcon x={PHONE.x} y={PHONE.y} size={140} />
-        <g
-          style={{
-            scale: interpolate(frame, [circles + DRAW_FRAMES, circles + DRAW_FRAMES + 12], [0, 1], {
-              ...clamp,
-              easing: ease.pop,
-            }),
-            transformOrigin: `${PHONE.x}px ${PHONE.y - 80}px`,
-          }}
-        >
-          <PinIcon x={PHONE.x} y={PHONE.y - 80} size={80} />
+        <g opacity={interpolate(frame, [circles, circles + 12], [1, 0.3], clamp)}>
+          <PhoneIcon x={PHONE.x} y={PHONE.y} size={140} />
         </g>
+        {SATELLITES.map((sat) => (
+          <DistanceArc key={`arc-${sat.x}`} center={sat} start={circles} color={colors.diagram.soft} />
+        ))}
+        {frame >= fourth ? (
+          <DistanceArc center={FOURTH} start={fourth + 8} color={colors.diagram.faint} />
+        ) : null}
+        {frame >= circles + DRAW_FRAMES ? (
+          <circle
+            cx={PHONE.x}
+            cy={PHONE.y}
+            r={14 + ((frame - circles - DRAW_FRAMES) % 40) * 1.2}
+            fill="none"
+            stroke={colors.amber[500]}
+            strokeWidth={3}
+            opacity={1 - ((frame - circles - DRAW_FRAMES) % 40) / 40}
+          />
+        ) : null}
+        <circle
+          cx={PHONE.x}
+          cy={PHONE.y}
+          r={interpolate(frame, [circles + DRAW_FRAMES, circles + DRAW_FRAMES + 10], [0, 16], {
+            ...clamp,
+            easing: ease.pop,
+          })}
+          fill={colors.amber[500]}
+        />
         {frame >= fourth ? (
           <ClockIcon
             x={PHONE.x + 150}
@@ -124,16 +132,6 @@ export const MechanismScene: React.FC = () => {
           />
         ) : null}
       </SceneCanvas>
-      {steps.map((step, i) => {
-        const end = steps[i + 1]?.from ?? durationInFrames;
-        return end > step.from ? (
-          <Sequence key={step.n} from={step.from} durationInFrames={end - step.from} layout="none">
-            <div style={{ position: "absolute", left: layout.content.x, top: 1130 }}>
-              <StepBadge n={step.n} label={step.label} />
-            </div>
-          </Sequence>
-        ) : null;
-      })}
     </AbsoluteFill>
   );
 };

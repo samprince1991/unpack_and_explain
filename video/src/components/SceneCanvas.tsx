@@ -17,9 +17,9 @@ export const SceneCanvas: React.FC<{ children: React.ReactNode }> = ({ children 
       <defs>
         <clipPath id={CLIP_ID}>
           <rect
-            x={layout.content.x}
+            x={layout.column.x}
             y={visual.top}
-            width={layout.content.width}
+            width={layout.column.width}
             height={visual.bottom - visual.top}
           />
         </clipPath>

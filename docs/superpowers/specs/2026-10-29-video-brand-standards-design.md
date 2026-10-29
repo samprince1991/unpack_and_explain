@@ -41,7 +41,7 @@ Single source: `video/src/brand/tokens.ts`. No hex values anywhere else.
 | bg.raised | #1e293b | Gradient center, cards, panels |
 | teal.100 / teal.300 | #99f6e4 / #5eead4 | Glows, light strokes |
 | diagram.stroke / soft / faint / fill | #e2e8f0 / #94a3b8 / #475569 / #1e293b | All scene diagrams (neutral line art) |
-| teal.400 | #2dd4bf | Brand only: logo, step badges, CTA handle, FACT stamp, "correct" |
+| teal.400 | #2dd4bf | Brand only: logo, CTA handle, FACT stamp, "correct" |
 | teal.600 / teal.700 | #0d9488 / #0f766e | Fills, shadows of teal shapes |
 | amber.300 | #fcd34d | Amber highlight |
 | amber.500 | #f59e0b | The one key element per scene, active caption word, hook highlight |
@@ -71,7 +71,7 @@ Sections in order: Hook -> Setup -> Mechanism -> Payoff -> CTA.
 
 - Frame 0: hook text already on screen. Logo sting (avatar mark) completes in under 1 s alongside it. No blank or title-card intro.
 - Throughout (except CTA): small avatar watermark inside the safe zone; burned-in captions with the active word in amber; something moves at least every 2 s.
-- Mechanism: numbered steps (StepBadge), one idea per step.
+- Mechanism: one idea per beat, shown visually and synced to the VO. No on-screen text that repeats the VO (captions already carry it); revised after first review, which found step badges redundant.
 - F posts: coral "WHEN IT FAILED" badge during the failure segment.
 - Q posts: MYTH stamp (coral) on the myth, FACT stamp (teal) on the correction.
 - All posts: source line ("Source: ...") on screen during the last 3 s before the CTA card or on it.

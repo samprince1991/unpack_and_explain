@@ -3,6 +3,7 @@ import { fonts, weights } from "../../../brand/fonts";
 import { layout } from "../../../brand/layout";
 import { clamp, ease } from "../../../brand/motion";
 import { colors, typeScale } from "../../../brand/tokens";
+import { CircleMark } from "../../../components/elements/CircleMark";
 import { ClockIcon } from "../../../components/icons/ClockIcon";
 import { PhoneIcon } from "../../../components/icons/PhoneIcon";
 import { PinIcon } from "../../../components/icons/PinIcon";
@@ -16,6 +17,7 @@ const SWAP_FRAMES = 8;
 export const PayoffScene: React.FC = () => {
   const frame = useCurrentFrame();
   const beat2 = useCue("relativity", 0.5);
+  const drift = useCue("kilometers", 0.85);
   const beat1Opacity = interpolate(frame, [beat2 - SWAP_FRAMES, beat2], [1, 0], clamp);
   const beat2Opacity = interpolate(frame, [beat2, beat2 + SWAP_FRAMES], [0, 1], clamp);
 
@@ -37,8 +39,8 @@ export const PayoffScene: React.FC = () => {
         <g opacity={beat2Opacity}>
           <ClockIcon
             x={CENTER.x}
-            y={CENTER.y}
-            size={300}
+            y={CENTER.y - 40}
+            size={260}
             minuteAngle={interpolate(frame, [beat2 + 10, beat2 + 30], [35, 0], {
               ...clamp,
               easing: ease.pop,
@@ -50,9 +52,9 @@ export const PayoffScene: React.FC = () => {
         name="No internet label"
         style={{
           position: "absolute",
-          left: layout.content.x,
+          left: layout.column.x,
           top: 1110,
-          width: layout.content.width,
+          width: layout.column.width,
           textAlign: "center",
           fontFamily: fonts.body,
           fontWeight: weights.bodySemibold,
@@ -67,9 +69,13 @@ export const PayoffScene: React.FC = () => {
         name="Relativity label"
         style={{
           position: "absolute",
-          left: layout.content.x,
-          top: 1070,
-          width: layout.content.width,
+          left: layout.column.x,
+          top: 930,
+          width: layout.column.width,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 8,
           textAlign: "center",
           fontFamily: fonts.body,
           fontWeight: weights.bodySemibold,
@@ -79,9 +85,19 @@ export const PayoffScene: React.FC = () => {
           opacity: beat2Opacity,
         }}
       >
-        Corrected for relativity
-        <br />
-        <span style={{ color: colors.amber[500] }}>Without it: ~10 km (6 mi) off per day</span>
+        <div>Without the relativity fix:</div>
+        <div
+          style={{
+            margin: "34px 0 22px",
+            fontFamily: fonts.heading,
+            fontWeight: weights.heading,
+            fontSize: typeScale.title,
+            color: colors.amber[500],
+          }}
+        >
+          <CircleMark start={drift}>~10 km (6 mi)</CircleMark>
+        </div>
+        <div>off, every day</div>
       </Interactive.Div>
     </AbsoluteFill>
   );

@@ -6,6 +6,14 @@ describe("layout", () => {
     expect(contentBox(1080, 1920)).toEqual({ x: 80, y: 250, width: 850, height: 1320 });
   });
 
+  it("centers the text column on the frame, inside the content box", () => {
+    expect(layout.column.x + layout.column.width / 2).toBe(1080 / 2);
+    expect(layout.column.x).toBeGreaterThanOrEqual(layout.content.x);
+    expect(layout.column.x + layout.column.width).toBeLessThanOrEqual(
+      layout.content.x + layout.content.width,
+    );
+  });
+
   it("computes the centered 4:5 cover crop", () => {
     expect(coverCrop(1080, 1920)).toEqual({ y: 285, height: 1350 });
   });

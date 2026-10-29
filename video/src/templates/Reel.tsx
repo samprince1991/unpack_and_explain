@@ -3,6 +3,7 @@ import { linearTiming, TransitionSeries } from "@remotion/transitions";
 import { AbsoluteFill, interpolate, Sequence, staticFile, useVideoConfig } from "remotion";
 import { music, sfx, type AudioLibrary } from "../brand/audio";
 import { clamp, durations } from "../brand/motion";
+import { AmbientWaves } from "../components/AmbientWaves";
 import { Background } from "../components/Background";
 import { Captions } from "../components/Captions";
 import { CtaCard } from "../components/CtaCard";
@@ -62,6 +63,7 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap }> = ({
   return (
     <AbsoluteFill>
       <Background />
+      <AmbientWaves />
       <TransitionSeries>
         {vo.sections.flatMap((section, i) => {
           const t = timing(section.id);

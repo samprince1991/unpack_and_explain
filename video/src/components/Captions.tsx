@@ -6,8 +6,8 @@ import { layout } from "../brand/layout";
 import { clamp } from "../brand/motion";
 import { colors, typeScale, withAlpha } from "../brand/tokens";
 
-// Higher = more words per page. ~1.2 s keeps pages to 1-2 lines.
-const SWITCH_CAPTIONS_EVERY_MS = 1200;
+// Higher = more words per page. ~1 s keeps pages to ~3 words, mostly one line.
+const SWITCH_CAPTIONS_EVERY_MS = 1000;
 // How long a page may linger after its last word before a pause clears it.
 const LINGER_MS = 500;
 
@@ -21,15 +21,17 @@ const CaptionPage: React.FC<{ page: TikTokPage }> = ({ page }) => {
     <div
       style={{
         position: "absolute",
-        left: layout.content.x,
+        left: layout.column.x,
         top: captions.top,
-        width: layout.content.width,
+        width: layout.column.width,
         height: captions.bottom - captions.top,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
         whiteSpace: "pre-wrap",
+        // Even line lengths when a page wraps (no single orphan word on line 2).
+        textWrap: "balance",
         fontFamily: fonts.body,
         fontWeight: weights.bodySemibold,
         fontSize: typeScale.caption,

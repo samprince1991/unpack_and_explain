@@ -16,9 +16,9 @@ export const HookTitle: React.FC<{ text: string; highlight?: string }> = ({ text
       name="Hook title"
       style={{
         position: "absolute",
-        left: layout.content.x,
+        left: layout.column.x,
         top: layout.regions.visual.top,
-        width: layout.content.width,
+        width: layout.column.width,
         textAlign: "center",
         fontFamily: fonts.heading,
         fontWeight: weights.heading,
