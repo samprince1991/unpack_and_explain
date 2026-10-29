@@ -1,13 +1,14 @@
 # Unpack & Explain: Video Production Rules
 
 Faceless explainer reels ("How things actually work") built with Remotion. Primary platform: Instagram Reels. YouTube Shorts later.
-Full design rationale: `docs/superpowers/specs/2026-10-29-video-brand-standards-design.md`.
+Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 
 ## Repo map
 
-- `Posts/post_N/script.md`: approved scripts (source of truth for VO text, visuals, sources, caption).
+- `posts/post-NN-slug/script.md`: approved scripts (source of truth for VO text, visuals, sources, caption). `NN` = the Content Plan ID in the tracker; the same `post-NN-slug` names the code, VO and render folders. Header links to the tracker row; `posts/README.md` is the index.
 - `Unpack_and_Explain_Tracker.xlsx`: content plan, all scripts (Scripts tab rows: Question, Hook, Setup, Mechanism, Payoff, Congrats, CTA, with word/second formulas), brand tab, metrics. Read it for format and schedule context.
 - `logo/`: master logo files. **Never edit.** Copy the SVGs you need into `video/public/brand/`.
+- `docs/specs/` (design rationale), `docs/plans/` (implementation plans, historical record: old paths inside are not updated).
 - `video/`: the Remotion project. Run all npm/npx commands from here.
   - `src/brand/`: tokens, fonts, motion, layout (safe zones), voice config. No React here.
   - `src/components/`: shared branded components. Depend only on `src/brand/`.
@@ -193,7 +194,7 @@ Meme templates live in `video/public/memes/` (the user's collection). They are *
 
 ## Per-post workflow
 
-1. Read `Posts/post_N/script.md` (and the tracker row for format/source notes).
+1. Copy the approved script from the tracker into `posts/post-NN-slug/script.md` (same layout as post 2: tracker header, script table with word counts, verify list, caption) and add it to the `posts/README.md` index. Read the tracker row for format/source notes.
 2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` <= 28 chars (2 lines), CTA voiceover exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words. List "verify" facts in `verify`.
 3. Run TTS -> VO + captions (bleed is trimmed automatically; check the "trimmed" lines it prints). Or build with estimated timing first.
 4. Build scenes (`hook`, `setup`, `mechanism`, `payoff`) from the Visual column with shared components; bespoke scene components live only inside the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card automatically. Sync visuals to the VO with `useCue("word", fallbackFraction)`.

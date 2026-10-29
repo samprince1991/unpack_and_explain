@@ -18,7 +18,7 @@ export type SectionId = (typeof SECTION_ORDER)[number];
 
 export type ScriptSection = {
   id: SectionId;
-  // Copied verbatim from Posts/post_N/script.md.
+  // Copied verbatim from posts/post-NN-slug/script.md.
   voiceover: string;
   // The script's Visual / animation note, kept for reference.
   visual: string;
