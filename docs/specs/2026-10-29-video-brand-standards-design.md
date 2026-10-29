@@ -99,7 +99,7 @@ Sections in order: Question -> Hook -> Setup -> Mechanism -> Payoff -> Congrats 
 
 ```
 CLAUDE.md                         repo-wide rules
-posts/post-NN-slug/script.md      source scripts (from tracker; NN = Content Plan ID)
+posts/post-NN-slug/post.md        content tracker: plan, script, caption, metrics (NN = post ID)
 logo/                             master logo files (do not edit)
 video/
   public/brand/                   logo SVGs (copied), music/
@@ -118,7 +118,7 @@ Unit boundaries: `brand/` has no React; `components/` depend only on `brand/`; `
 
 ## 8. Per-post workflow
 
-1. Script approved in tracker -> `posts/post-NN-slug/script.md`.
+1. Script approved -> `posts/post-NN-slug/post.md` (`status: scripted`).
 2. Convert to typed `src/posts/post-NN-slug/script.ts` (sections, VO text, visual notes, format, source).
 3. Run `scripts/tts.ts` -> VO + captions.
 4. Build scenes from the Visual column using shared components.

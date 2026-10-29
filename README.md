@@ -6,8 +6,7 @@ Faceless explainer reels for Instagram (YouTube Shorts later). Tagline: "How thi
 
 | Path | What it is |
 |---|---|
-| `Unpack_and_Explain_Tracker.xlsx` | Content plan (post IDs, dates, formats, status, metrics), all scripts, brand kit |
-| `posts/` | Approved scripts, one folder per reel (`post-NN-slug`, NN = tracker ID). See `posts/README.md` |
+| `posts/` | Content tracker: one `post-NN-slug/post.md` per post with plan, status, script, caption and metrics. `posts/README.md` is the generated overview |
 | `video/` | Remotion project that turns a script into a branded reel |
 | `logo/` | Master logo files. Never edit; `npm run assets` copies what the video needs |
 | `docs/specs/` | Brand and video standards design |
@@ -16,9 +15,9 @@ Faceless explainer reels for Instagram (YouTube Shorts later). Tagline: "How thi
 
 ## How a post is made
 
-1. Plan it in the tracker (Content Plan row) and write the script (Scripts tab).
-2. Copy the approved script to `posts/post-NN-slug/script.md`.
+1. Add or edit `posts/post-NN-slug/post.md` (plan in the front matter, then the script), and run `npm run tracker` from `video/`.
+2. Set `status: scripted` once the script is approved.
 3. Build it in `video/` (`script.ts`, voice-over, scenes), check it against the QA checklist in `CLAUDE.md`.
-4. Render and master, then upload the `.master.mp4`.
+4. Render and master, upload the `.master.mp4`, set `status: posted` and fill in the metrics later.
 
 Setup: `cd video && npm install`, put `ELEVENLABS_API_KEY` in `video/.env` (see `.env.example`), then `npm run dev`.

@@ -29,10 +29,12 @@
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.539",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "26.6.6",
     "@types/react": "19.2.7",
     "@types/web": "0.0.166",
     "eslint": "10.12.0",
+    "js-yaml": "^4.1.0",
     "prettier": "3.8.1",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
@@ -48,7 +50,8 @@
     "tts": "tsx --env-file=.env scripts/tts.ts",
     "brand-audio": "tsx --env-file=.env scripts/brand-audio.ts",
     "master": "tsx scripts/master.ts",
-    "vo:clean": "tsx scripts/clean-vo.ts"
+    "vo:clean": "tsx scripts/clean-vo.ts",
+    "tracker": "tsx scripts/tracker.ts"
   },
   "allowScripts": {
     "esbuild": false

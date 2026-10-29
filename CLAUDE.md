@@ -5,8 +5,8 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 
 ## Repo map
 
-- `posts/post-NN-slug/script.md`: approved scripts (source of truth for VO text, visuals, sources, caption). `NN` = the Content Plan ID in the tracker; the same `post-NN-slug` names the code, VO and render folders. Header links to the tracker row; `posts/README.md` is the index.
-- `Unpack_and_Explain_Tracker.xlsx`: content plan, all scripts (Scripts tab rows: Question, Hook, Setup, Mechanism, Payoff, Congrats, CTA, with word/second formulas), brand tab, metrics. Read it for format and schedule context.
+- `posts/`: **the content tracker** (replaces the old spreadsheet). One `posts/post-NN-slug/post.md` per post: YAML front matter (id, date, format, status, source, verify, metrics) + `## Script` table (Section | Voice-over | Visual) + `## Caption`. `NN` = post ID (carousels `c1`...); the same `post-NN-slug` names the code, VO and render folders. `posts/README.md` (plan, performance, summary) is **generated**: never edit it by hand.
+- `Unpack_and_Explain_Tracker.xlsx`: old spreadsheet, superseded by `posts/`. Kept only until the conversion is reviewed; don't update it.
 - `logo/`: master logo files. **Never edit.** Copy the SVGs you need into `video/public/brand/`.
 - `docs/specs/` (design rationale), `docs/plans/` (implementation plans, historical record: old paths inside are not updated).
 - `video/`: the Remotion project. Run all npm/npx commands from here.
@@ -22,6 +22,7 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 
 - Preview: `npm run dev` (Remotion Studio)
 - Typecheck + lint: `npm run lint` (run before saying any work is done)
+- Content tracker: `npm run tracker` checks every `posts/*/post.md` (front matter, section order, "?" / "Congrats," / CTA / no "!", 100-130 words, and that a built post's VO text matches its `script.ts`) and regenerates `posts/README.md`. Run it after editing any post.
 - Unit tests: `npm test` (includes the brand guard: fails on any color literal or font-family string outside `src/brand/`)
 - Logos: `npm run assets` regenerates `public/brand/avatar.svg` + `stacked.svg` from `logo/` (transparent, cropped)
 - Voice-over for one section only: `npm run tts -- post-NN-slug --only=congrats` (comma-separated ids). Regenerates just those sections and keeps the rest of the VO you already approved; every generation sounds slightly different, so prefer this when fixing one line.
@@ -194,7 +195,7 @@ Meme templates live in `video/public/memes/` (the user's collection). They are *
 
 ## Per-post workflow
 
-1. Copy the approved script from the tracker into `posts/post-NN-slug/script.md` (same layout as post 2: tracker header, script table with word counts, verify list, caption) and add it to the `posts/README.md` index. Read the tracker row for format/source notes.
+1. Write the script into `posts/post-NN-slug/post.md` (`## Script` table, `## Caption`, `verify` list; layout as post 2), set `status: scripted`, and run `npm run tracker`. Move `status` along as the post progresses (built → rendered → posted) and fill in `metrics` after posting.
 2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` <= 28 chars (2 lines), CTA voiceover exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words. List "verify" facts in `verify`.
 3. Run TTS -> VO + captions (bleed is trimmed automatically; check the "trimmed" lines it prints). Or build with estimated timing first.
 4. Build scenes (`hook`, `setup`, `mechanism`, `payoff`) from the Visual column with shared components; bespoke scene components live only inside the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card automatically. Sync visuals to the VO with `useCue("word", fallbackFraction)`.
@@ -212,7 +213,7 @@ Meme templates live in `video/public/memes/` (the user's collection). They are *
 - [ ] Source line shown; units metric + imperial where relevant
 - [ ] CTA wording, tagline and handle correct
 - [ ] Loudness ~ -14 LUFS, no clipping
-- [ ] `npm run lint` passes
+- [ ] `npm run lint` passes; `npm run tracker` passes and the post's `status` is updated
 
 ## Do
 
