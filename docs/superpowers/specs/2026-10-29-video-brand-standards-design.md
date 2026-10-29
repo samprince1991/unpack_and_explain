@@ -26,7 +26,7 @@ Open items (non-blocking): Instagram handle (placeholder until availability chec
 
 - Canvas 1080x1920, 30 fps, H.264 MP4, AAC 48 kHz stereo.
 - Reel length 30-45 s (target spoken words 90-110).
-- Safe zones (Instagram UI overlays): top 250 px, bottom 450 px, left 80 px, right 150 px. All text and key visuals stay inside the resulting content box (x 80-930, y 250-1470).
+- Safe zones (Instagram UI overlays): top 250 px, bottom 350 px, left 80 px, right 150 px. All text and key visuals stay inside the resulting content box (x 80-930, y 250-1570). Bottom was reduced from 450 after checking organic-Reels guidance (central 1080x1420 box, 250-320 px bottom); Meta's 14%/35% bands apply to ads.
 - Cover frame: title and key visual inside the centered 1080x1350 area (4:5 feed crop; also survives the 3:4 grid crop).
 - Loudness: -14 LUFS integrated, true peak <= -1 dBTP. Music bed ~20 dB under voice.
 - YouTube Shorts uses the same canvas. Layout values are expressed relative to composition size so a 16:9 variant can be added later.
@@ -40,17 +40,18 @@ Single source: `video/src/brand/tokens.ts`. No hex values anywhere else.
 | bg.base | #0f172a | Background (radial gradient outer) |
 | bg.raised | #1e293b | Gradient center, cards, panels |
 | teal.100 / teal.300 | #99f6e4 / #5eead4 | Glows, light strokes |
-| teal.400 | #2dd4bf | Primary: diagrams, highlights, "correct", FACT stamp |
+| diagram.stroke / soft / faint / fill | #e2e8f0 / #94a3b8 / #475569 / #1e293b | All scene diagrams (neutral line art) |
+| teal.400 | #2dd4bf | Brand only: logo, step badges, CTA handle, FACT stamp, "correct" |
 | teal.600 / teal.700 | #0d9488 / #0f766e | Fills, shadows of teal shapes |
 | amber.300 | #fcd34d | Amber highlight |
-| amber.500 | #f59e0b | Accent: numbers, keywords, active caption word |
+| amber.500 | #f59e0b | The one key element per scene, active caption word, hook highlight |
 | amber.600 | #d97706 | Amber shade |
 | coral | #FF5A5F | Only: F-post failure segments, Q-post MYTH stamp, "wrong" marks |
 | text.primary | #f8fafc | Main text |
 | text.secondary | #cbd5e1 | Secondary text, tagline |
 | text.muted | #94a3b8 | Sources, small labels |
 
-Rules: max 2-3 brand hues per scene (neutrals excluded). Coral never used decoratively.
+Rules (revised 2026-10-29 after first review): diagrams are neutral line art; amber marks one key element per scene; teal is reserved for brand moments so it stays distinctive (teal diagrams blended with the teal logo). Coral never used decoratively.
 
 ## 3. Typography
 
@@ -82,7 +83,7 @@ Sections in order: Hook -> Setup -> Mechanism -> Payoff -> CTA.
 - All animation driven by `useCurrentFrame()` with inline `interpolate()` in the `style` prop, using `scale` / `translate` / `rotate` properties (not `transform`). No CSS transitions or keyframe animations. Wrap editable elements in `Interactive.*` so Studio edits write back to code.
 - Media: `<Audio>` from `@remotion/media`, images via `<CanvasImage>` / inline SVG, assets via `staticFile()`. Captions use the `Caption` type from `@remotion/captions`.
 - Easing presets in `video/src/brand/motion.ts`: `smooth` (`Easing.spring({damping: 200})`, default), `out` (`Easing.bezier(0.16, 1, 0.3, 1)`), `pop` (slight overshoot, logo and stamps only).
-- Element entrances 10-15 frames; scene transitions 10-15 frames (fade or slide via `@remotion/transitions`).
+- Element entrances 10-15 frames; section transitions 12 frames using the `dip` presentation (fade through background).
 - No hard cuts between sections without a transition. No effects outside the presets.
 
 ## 6. Audio pipeline
@@ -90,7 +91,8 @@ Sections in order: Hook -> Setup -> Mechanism -> Payoff -> CTA.
 - ElevenLabs TTS, one voice ID and fixed voice settings stored in `video/src/brand/voice.ts`, used for every reel.
 - VO generated per section with word/character timestamps -> `public/posts/<post>/vo/<section>.mp3` and `captions.json`.
 - Section durations derive from actual audio length plus a short tail pad. The script's "Time" column is guidance only.
-- One royalty-free music bed (licensed, stored in `public/brand/music/`), ducked under VO. Optional subtle whoosh SFX on transitions.
+- Brand sound library generated with ElevenLabs (`npm run brand-audio`): whoosh on section changes, pop on the logo sting, chime on the CTA, one instrumental music bed at ~ -20 dB with 1 s fades. Generated once and reused so every reel sounds the same.
+- Section transitions use a dip (fade out, then fade in), never a crossfade, so busy scenes never overlap.
 - API key read from `.env` (never committed).
 
 ## 7. Code layout

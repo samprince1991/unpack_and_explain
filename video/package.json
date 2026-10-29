@@ -9,24 +9,44 @@
   },
   "private": true,
   "dependencies": {
+    "@remotion/captions": "4.0.539",
     "@remotion/cli": "4.0.539",
+    "@remotion/effects": "4.0.539",
+    "@remotion/google-fonts": "4.0.539",
+    "@remotion/layout-utils": "4.0.539",
+    "@remotion/media": "4.0.539",
+    "@remotion/media-utils": "4.0.539",
+    "@remotion/rough-notation": "4.0.539",
+    "@remotion/rounded-text-box": "4.0.539",
+    "@remotion/sfx": "4.0.539",
+    "@remotion/shapes": "4.0.539",
+    "@remotion/transitions": "4.0.539",
+    "@turf/turf": "7.3.2",
+    "maplibre-gl": "6.4.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remotion": "4.0.539"
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.539",
+    "@types/node": "26.6.6",
     "@types/react": "19.2.7",
     "@types/web": "0.0.166",
     "eslint": "10.12.0",
     "prettier": "3.8.1",
-    "typescript": "5.9.3"
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "5.0.5"
   },
   "scripts": {
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "test": "vitest run",
+    "assets": "tsx scripts/prepare-brand-assets.ts",
+    "tts": "tsx --env-file=.env scripts/tts.ts",
+    "brand-audio": "tsx --env-file=.env scripts/brand-audio.ts"
   },
   "allowScripts": {
     "esbuild": false
