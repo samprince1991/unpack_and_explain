@@ -30,7 +30,8 @@ const orbitPoint = (orbit: (typeof ORBITS)[number], frame: number) => {
 
 export const SetupScene: React.FC = () => {
   const frame = useCurrentFrame();
-  const broadcast = useCue("broadcast", 0.6);
+  // Signal rings start pulsing as "broadcasting" is spoken.
+  const broadcast = useCue("broadcasting", 0.5);
   // Count up after the section fade-in, landing as "thirty" is spoken.
   const thirty = useCue("thirty", 0.15);
   const countFrames = Math.max(18, thirty + 6 - durations.crossfade);
@@ -62,7 +63,7 @@ export const SetupScene: React.FC = () => {
                 fill="none"
                 stroke={colors.diagram.soft}
                 strokeWidth={3}
-                opacity={(1 - t) * 0.7}
+                opacity={(1 - t) * 0.7 * interpolate(frame, [broadcast, broadcast + 10], [0, 1], clamp)}
               />
               <SatelliteIcon x={p.x} y={p.y} size={80} />
             </g>
@@ -88,23 +89,6 @@ export const SetupScene: React.FC = () => {
           ~<NumberCounter to={30} start={durations.crossfade} countFrames={countFrames} />
         </span>{" "}
         satellites
-      </Interactive.Div>
-      <Interactive.Div
-        name="Broadcast label"
-        style={{
-          position: "absolute",
-          left: layout.column.x,
-          top: 1150,
-          width: layout.column.width,
-          textAlign: "center",
-          fontFamily: fonts.body,
-          fontWeight: weights.bodyMedium,
-          fontSize: typeScale.label,
-          color: colors.text.secondary,
-          opacity: interpolate(frame, [broadcast, broadcast + durations.enter], [0, 1], clamp),
-        }}
-      >
-        All they send is the time
       </Interactive.Div>
     </AbsoluteFill>
   );

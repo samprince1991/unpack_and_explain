@@ -1,9 +1,10 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { voice } from "../src/brand/voice";
 import { alignmentToCaptions, type Alignment } from "../src/templates/alignment";
 import type { PostScript, VoManifest, VoSection } from "../src/templates/types";
 import { voManifestPath } from "../src/templates/vo";
+import { cleanVoSection } from "./lib/voClean";
 
 type TtsResponse = { audio_base64: string; alignment: Alignment };
 
@@ -51,8 +52,26 @@ const main = async () => {
   const voDir = join(process.cwd(), "public", "posts", postId, "vo");
   mkdirSync(voDir, { recursive: true });
 
+  // --only=congrats,cta regenerates just those sections and keeps the rest of the
+  // existing VO untouched (each generation sounds slightly different).
+  const onlyArg = process.argv.find((a) => a.startsWith("--only="));
+  const only = onlyArg ? onlyArg.slice("--only=".length).split(",") : null;
+  const manifestFile = join(process.cwd(), "public", voManifestPath(postId));
+  const existing: VoManifest | null =
+    only && existsSync(manifestFile)
+      ? (JSON.parse(readFileSync(manifestFile, "utf8")) as VoManifest)
+      : null;
+  if (only && !existing) {
+    throw new Error(`--only needs an existing ${voManifestPath(postId)}; run without --only first`);
+  }
+
   const sections: VoSection[] = [];
   for (const [i, section] of script.sections.entries()) {
+    const kept = existing?.sections.find((s) => s.id === section.id);
+    if (only && !only.includes(section.id) && kept) {
+      sections.push(kept);
+      continue;
+    }
     console.log(`Synthesizing ${section.id}...`);
     const data = await synthesize(
       apiKey,
@@ -63,13 +82,17 @@ const main = async () => {
     const file = `posts/${postId}/vo/${section.id}.mp3`;
     writeFileSync(join(process.cwd(), "public", file), Buffer.from(data.audio_base64, "base64"));
     const ends = data.alignment.character_end_times_seconds;
-    sections.push({
-      id: section.id,
-      text: section.voiceover,
-      file,
-      durationMs: Math.round((ends[ends.length - 1] ?? 0) * 1000),
-      captions: alignmentToCaptions(data.alignment),
-    });
+    // previous_text / next_text can leave the next section's first sound at the end of
+    // the file (a stutter before the next section), so trim it off every new take.
+    sections.push(
+      cleanVoSection(join(process.cwd(), "public"), {
+        id: section.id,
+        text: section.voiceover,
+        file,
+        durationMs: Math.round((ends[ends.length - 1] ?? 0) * 1000),
+        captions: alignmentToCaptions(data.alignment),
+      }),
+    );
   }
 
   const manifest: VoManifest = { postId, estimated: false, sections };

@@ -6,7 +6,7 @@ Full design rationale: `docs/superpowers/specs/2026-10-29-video-brand-standards-
 ## Repo map
 
 - `Posts/post_N/script.md`: approved scripts (source of truth for VO text, visuals, sources, caption).
-- `Unpack_and_Explain_Tracker.xlsx`: content plan, all scripts, brand tab, metrics. Read it for format and schedule context.
+- `Unpack_and_Explain_Tracker.xlsx`: content plan, all scripts (Scripts tab rows: Question, Hook, Setup, Mechanism, Payoff, Congrats, CTA, with word/second formulas), brand tab, metrics. Read it for format and schedule context.
 - `logo/`: master logo files. **Never edit.** Copy the SVGs you need into `video/public/brand/`.
 - `video/`: the Remotion project. Run all npm/npx commands from here.
   - `src/brand/`: tokens, fonts, motion, layout (safe zones), voice config. No React here.
@@ -23,12 +23,15 @@ Full design rationale: `docs/superpowers/specs/2026-10-29-video-brand-standards-
 - Typecheck + lint: `npm run lint` (run before saying any work is done)
 - Unit tests: `npm test` (includes the brand guard: fails on any color literal or font-family string outside `src/brand/`)
 - Logos: `npm run assets` regenerates `public/brand/avatar.svg` + `stacked.svg` from `logo/` (transparent, cropped)
+- Voice-over for one section only: `npm run tts -- post-NN-slug --only=congrats` (comma-separated ids). Regenerates just those sections and keeps the rest of the VO you already approved; every generation sounds slightly different, so prefer this when fixing one line.
 - Voice-over: `npm run tts -- post-NN-slug` writes `public/posts/<id>/vo/*.mp3` + `vo.json` (needs `ELEVENLABS_API_KEY` in `video/.env` and `voice.voiceId`). Without it, the reel uses estimated timing (2.5 words/s); a stale `vo.json` (script text changed) throws until TTS is re-run.
+- VO bleed cleanup: `npm run vo:clean -- post-NN-slug` trims ElevenLabs stitching bleed off existing VO files without regenerating them (see Audio and captions). `npm run tts` already does this for every new take; running it twice is safe.
+- QA audio (required before calling a reel done): `npx remotion render PostNN-Slug out/qa/mix.wav --codec=wav`, `npx remotion ffmpeg -y -i out/qa/mix.wav -ac 1 -ar 16000 -c:a pcm_s16le out/qa/mix16.wav`, then `python scripts/audio-bursts.py out/qa/mix16.wav`. It must print "No stray blips"; also listen across every section boundary.
 - Brand sounds: `npm run brand-audio` generates the SFX + music bed once (needs `ELEVENLABS_API_KEY`).
 - Safe-zone overlay: set `showGuides: true` in the Studio props panel, or pass `--props=./qa-guides.json` to `remotion still`
 - QA stills: `npx remotion bundle` once, then `npx remotion still build PostNN-Slug out/qa/frame-N.png --frame=N --props=./qa-guides.json`
 - QA motion (required before calling a reel done): `npx remotion render build PostNN-Slug out/seq --sequence --image-format=jpeg --scale=0.25`, then `python scripts/contact-sheet.py out/seq out/qa/sheet 15 32` and inspect every sheet, plus every 4th frame around each section boundary. Single stills miss overlaps that only happen in motion and transitions.
-- Render: `npx remotion render PostNN-Slug out/post-NN-slug.mp4` (only when the user asks)
+- Render: `npx remotion render PostNN-Slug out/post-NN-slug.mp4` (only when the user asks), then **always** master it: `npm run master -- out/post-NN-slug.mp4` → `out/post-NN-slug.master.mp4` (two-pass loudnorm to -14 LUFS / -1 dBTP, video copied untouched). Upload the `.master.mp4`. The raw mix sits around -21 LUFS, so an unmastered upload sounds quiet next to other reels.
 - Cover still: `npx remotion still PostNN-Slug out/post-NN-slug-cover.png --frame=<n>`
 
 ## Formats
@@ -43,7 +46,7 @@ Carousels are out of scope for this project for now.
 
 ## Platform specs
 
-- 1080x1920, 30 fps, H.264 MP4, AAC 48 kHz. Length 30-45 s, 90-110 spoken words.
+- 1080x1920, 30 fps, H.264 MP4, AAC 48 kHz. Length 35-52 s, 100-130 spoken words (including the question and congrats lines).
 - **Safe zones:** top 250 px, bottom 350 px, left 80 px, right 150 px. Content box is x 80-930, y 250-1570. (Bottom 350 = organic Reels overlay: username, 2-line caption, audio label, plus margin. Meta's ~670 px figure is for ads only; revisit if we run these as ads.)
 - **Screen regions** (`layout.regions`): visual 360-1230 (hook title + scene), captions 1250-1470, source 1490-1560. Watermark (avatar mark, 25% opacity) sits top-left at y 292. Scene drawings go inside `SceneCanvas` (clipped to the visual region); text positions must stay inside `layout.regions`.
 - **Centering:** the safe area is lopsided (left 80 / right 150), so its center (x 505) is NOT the frame center (x 540). Anything centered (text, cards, badges) uses `layout.column` (x 150-930, centered on 540), never `layout.content`. Diagrams are drawn around x 540, and `SceneCanvas` clips to the same column. The `showGuides` overlay draws the frame-center line and the column; check centered items against it.
@@ -88,13 +91,22 @@ Load fonts only through `src/brand/fonts.ts` (`@remotion/google-fonts`). Sentenc
 
 ## Reel anatomy
 
-Hook -> Setup -> Mechanism -> Payoff -> CTA.
+**Question -> Hook -> Setup -> Mechanism -> Payoff -> Congrats -> CTA.** Every reel, every format, no exceptions.
 
-1. **Frame 0:** hook text is already visible. Avatar logo sting finishes in < 1 s alongside it.
+| Section | Who makes it | Script rule |
+|---|---|---|
+| **Question** | Template (`QuestionCard`) | Ask the viewer about the topic, ending in "?". E.g. "Do you know how GPS actually finds you?" |
+| Hook, Setup, Mechanism, Payoff | Post scenes | As written in the script |
+| **Congrats** | Template (`CongratsCard`, teal check + chime) | Starts with "Congrats," (comma, **not** "!"). E.g. "Congrats, you just learned how GPS finds you." With "!" the upbeat voice over-stresses "Congrats" and sounds off. |
+| **CTA** | Template (`CtaCard`) | Exactly `brand.ctaLine`: "Follow Unpack and Explain for how things actually work." |
+
+`script.ts` sets `topic` (e.g. "GPS"), which is colored amber on the question and congrats cards. `validateScript` enforces the order, the "?" and the "Congrats". Captions are hidden over the template cards because the cards already show the words.
+
+1. **Frame 0:** the question card is already visible (no fade-in). Avatar logo sting finishes in < 1 s alongside it. The hook title appears when the hook section starts.
 2. **Throughout (not CTA):** avatar watermark, burned-in captions (active word amber), motion at least every 2 s.
 3. **Mechanism:** one idea per beat, shown visually and synced with `useCue`. **No on-screen text that repeats the voice-over**: captions already carry the words, so labels like numbered step badges are redundant (removed from post 2 after review). On-screen text is only for what the VO doesn't say: a number, a unit conversion, a source. `StepBadge` stays in `components/` for lists that are NOT spoken word-for-word.
 4. **Before / on CTA:** `SourceTag` ("Source: ...") visible for the last 3 s.
-5. **CTA card (3-4 s):** Stacked-Dark logo, tagline, handle (`brand.handle`, placeholder until confirmed).
+5. **CTA card (3-4 s):** Stacked-Dark logo, tagline, handle (`brand.handle` = `@unpack_and_explain`).
 
 ## Motion
 
@@ -150,32 +162,52 @@ Kept but not for current reels: lower thirds (faceless channel), polaroid/notebo
 
 **When the user adds a new Element in Studio:** Studio drops `src/<slug>.element.tsx` + `src/<Name>Composition.tsx` and adds imports/entries to `Root.tsx`. Move both files into the right `src/elements/<category>/`, add a `<Composition id="El-<Name>">` line to `ElementsGallery.tsx` (use the demo's `durationInFrames`), and remove what Studio added to `Root.tsx`. Root only registers posts + `<ElementsGallery />`.
 
+## Memes
+
+Meme templates live in `video/public/memes/` (the user's collection). They are **optional seasoning, not a format element**: most reels should have none. Off-limits images were deleted from the folder on 2026-10-29 (sexual, political / real politicians, war, violence and weapons, bullying, tragedy, self-harm, profanity, mocking groups / disability / religion).
+
+**Rules (enforced by `validateScript` where possible):**
+- **At most one meme per reel**, and only when it genuinely lands a joke. Zero is a perfectly good number.
+- Only memes from the approved catalog `src/brand/memes.ts` (each entry has a `useFor` note). To use a new one, look at it first, check it against the off-limits list, then add it to the catalog.
+- Only in the hook, setup or payoff (`MEME_SECTIONS`). **Never during the mechanism** (the explanation itself), never on the question / congrats / CTA cards.
+- At most 2.5 s (default 2 s), shown right after a spoken cue word, in a natural pause **after** the point has landed, and it must finish before the next visual beat.
+- Never on the cover frame or thumbnail, never as the hook.
+- Don't add our own text on top of a meme that already has text.
+- Real celebrity photos (Drake, movie stills of actors) are not approved by default; prefer drawn / cartoon templates. Likeness and copyright risk is lower for brief commentary, but if a post ever gets a claim, remove the meme and re-render.
+
+**How to add one:** set `meme: { id, section, cue, seconds? }` in `script.ts` (e.g. post 2: `{ id: "they-dont-know", section: "payoff", cue: "internet", seconds: 2 }`). The template renders it with `MemeCut` (dimmed scene, framed card, slight tilt, pop in) via `templates/MemeMoment.tsx`. Check the moment in the contact sheet: the meme must not overlap the next beat.
+
 ## Audio and captions
 
-- VO: ElevenLabs, the single voice in `src/brand/voice.ts`. Never switch voice or settings per post.
+- VO: ElevenLabs premade voice **Brian** (`nPczCjzI2devNBz1zQrb`), set in `src/brand/voice.ts`. Never switch voice or settings per post. Changing it means re-running `npm run tts` for every post you want to re-render.
+- **Tone: upbeat and warm**, never flat. `voice.ts` settings (stability 0.35, style 0.45) give an energetic read; scripts help it with punctuation: "?" on the question, short sentences, and **no "!"** (it makes the voice over-emphasize the word before it). If a generated line sounds flat, rephrase or re-run TTS for that post; don't change the settings per post.
+- The API key is restricted (no `voices_read` / `user_read`), so voices can't be listed from here; get voice IDs from the ElevenLabs website.
+- **Licensing:** the account is on the ElevenLabs free tier (the Music API returns "not available for free users"). Free-tier output is generally non-commercial and needs attribution; confirm in ElevenLabs' current terms. Before monetizing, running ads or doing brand deals, upgrade to a paid plan for a commercial license, then regenerate the VO and SFX so every published file was made under that license.
+- **Stitching bleed (known ElevenLabs glitch):** `tts.ts` sends `previous_text` / `next_text` so sections sound continuous, but sometimes the first sound of the *next* section leaks onto the end of a file, after the final silence. In the reel it plays ~0.6 s before the next section's real first word and sounds like a stutter ("E... Each", "...Follow"). Post 2 had it on the question, setup and congrats files. `scripts/lib/voClean.ts` detects a < 300 ms burst after a silent gap (only after the last word's start, so a real short last word is never cut), cuts it inside the silence and fixes `vo.json`. Never bypass this step, never hand-edit VO mp3s, and never "fix" a stutter by moving sections around: run `npm run vo:clean`, then the QA audio check.
 - Generate VO per section with timestamps via `scripts/tts.ts`. Section length = real audio length + tail pad. The script's "Time" column is guidance only.
 - Captions are JSON in the `Caption` type from `@remotion/captions`, built from TTS timestamps.
 - Use `<Audio>` from `@remotion/media`.
-- **Brand sound library** (`src/brand/audio.ts`): `whoosh` (section change), `pop` (logo sting, frame 0), `chime` (CTA card) and one instrumental music bed (volume 0.1, ~ -20 dB under VO, 1 s fade in/out). Generated once via ElevenLabs with `npm run brand-audio` into `public/brand/audio/` + `library.json`; existing files are kept so every reel sounds the same (`--force` regenerates, which changes the brand sound for all re-renders). The Reel template places all of these automatically (`templates/audioCues.ts`); posts don't add their own music. Reels render silently if the library hasn't been generated.
+- **Brand sound library** (`src/brand/audio.ts`): `pop` (logo sting, frame 0), `chime` (congrats card). **No sound on section changes**: a whoosh there landed on the end of every voice line and sounded odd, so it was removed. Plus and one instrumental music bed (volume 0.1, ~ -20 dB under VO, 1 s fade in/out). Generated once via ElevenLabs with `npm run brand-audio` into `public/brand/audio/` + `library.json`; existing files are kept so every reel sounds the same (`--force` regenerates, which changes the brand sound for all re-renders). The Reel template places all of these automatically (`templates/audioCues.ts`); posts don't add their own music. Reels render silently if the library hasn't been generated.
 - Copyright: only ElevenLabs-generated audio (commercial use requires a paid plan) or audio we synthesize. No downloaded tracks, no commercial songs.
 - API keys live in `video/.env`. Never commit `.env` or print keys.
 
 ## Per-post workflow
 
 1. Read `Posts/post_N/script.md` (and the tracker row for format/source notes).
-2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` <= 28 chars (2 lines), CTA voiceover exactly `brand.ctaLine`, F posts need `failureSection`, 90-110 spoken words. List "verify" facts in `verify`.
-3. Run TTS -> VO + captions (or build with estimated timing first).
+2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` <= 28 chars (2 lines), CTA voiceover exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words. List "verify" facts in `verify`.
+3. Run TTS -> VO + captions (bleed is trimmed automatically; check the "trimmed" lines it prints). Or build with estimated timing first.
 4. Build scenes (`hook`, `setup`, `mechanism`, `payoff`) from the Visual column with shared components; bespoke scene components live only inside the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card automatically. Sync visuals to the VO with `useCue("word", fallbackFraction)`.
 5. Export `PostNN` (wrapping `Reel` with the scene map) from `index.tsx` and register `PostNN-Slug` in `src/Root.tsx` with `calculateMetadata={calculateReelMetadata}`.
 6. Run `npm run lint`, review in Studio against the QA checklist, then render when asked.
 
 ## QA checklist (every reel)
 
-- [ ] Hook text visible at frame 0; total length 30-45 s
+- [ ] Question card visible at frame 0; congrats line before the CTA; total length 35-52 s
 - [ ] Nothing outside safe zones; cover readable in 4:5 crop
 - [ ] Readable text >= 44 px, sources >= 32 px
 - [ ] Only token colors; max 2-3 hues per scene; coral only where allowed
 - [ ] Captions in sync with VO
+- [ ] No stray blips or stutters at section boundaries (`scripts/audio-bursts.py` passes, and listened through)
 - [ ] Source line shown; units metric + imperial where relevant
 - [ ] CTA wording, tagline and handle correct
 - [ ] Loudness ~ -14 LUFS, no clipping
@@ -195,6 +227,7 @@ Kept but not for current reels: lower thirds (faceless channel), polaroid/notebo
 - Don't hardcode colors, fonts, sizes, safe-zone offsets or easing curves outside `src/brand/`.
 - Don't use CSS transitions/animations or Tailwind animation classes (they don't render).
 - Don't use stock footage, AI imagery, emoji as graphics, or light backgrounds.
+- Don't use more than one meme per reel, don't use memes outside the approved catalog, and never put one in the mechanism.
 - Don't put text or key visuals in the IG UI zones (top 250 / bottom 350 / right 150).
 - Don't add a title-card intro or any blank frames before the hook.
 - Don't rewrite, shorten or "improve" script text without asking.

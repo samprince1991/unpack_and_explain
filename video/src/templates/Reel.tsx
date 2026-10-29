@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import { Audio } from "@remotion/media";
 import { linearTiming, TransitionSeries } from "@remotion/transitions";
 import { AbsoluteFill, interpolate, Sequence, staticFile, useVideoConfig } from "remotion";
@@ -6,14 +7,17 @@ import { clamp, durations } from "../brand/motion";
 import { AmbientWaves } from "../components/AmbientWaves";
 import { Background } from "../components/Background";
 import { Captions } from "../components/Captions";
+import { CongratsCard } from "../components/CongratsCard";
 import { CtaCard } from "../components/CtaCard";
 import { dip } from "../components/dip";
 import { FailureBadge } from "../components/FailureBadge";
 import { HookTitle } from "../components/HookTitle";
+import { QuestionCard } from "../components/QuestionCard";
 import { SafeZoneGuide } from "../components/SafeZoneGuide";
 import { SourceTag } from "../components/SourceTag";
 import { Watermark } from "../components/Watermark";
 import { audioCues } from "./audioCues";
+import { MemeMoment } from "./MemeMoment";
 import { SectionContext } from "./SectionContext";
 import { computeTimeline, mergeCaptions, SOURCE_LEAD_SECONDS } from "./timing";
 import type { PostScript, SectionId, VoManifest } from "./types";
@@ -28,8 +32,11 @@ export type ReelProps = {
   showGuides: boolean;
 };
 
-// Bespoke scenes per post. The CTA is always the shared CtaCard.
-export type SceneMap = Record<Exclude<SectionId, "cta">, React.FC>;
+// Sections every reel shares, rendered by the template from the script text.
+const TEMPLATE_SECTIONS = ["question", "congrats", "cta"] as const;
+
+// Bespoke scenes per post, for the sections in between.
+export type SceneMap = Record<Exclude<SectionId, (typeof TEMPLATE_SECTIONS)[number]>, React.FC>;
 
 export const Reel: React.FC<ReelProps & { scenes: SceneMap }> = ({
   script,
@@ -44,9 +51,9 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap }> = ({
   }
 
   const { sections } = computeTimeline(vo.sections, fps, durations.crossfade);
-  // The CTA card carries the handle; no captions over it.
+  // Template cards already show their words, so no captions over them.
   const captions = mergeCaptions(
-    vo.sections.filter((s) => s.id !== "cta"),
+    vo.sections.filter((s) => !(TEMPLATE_SECTIONS as readonly SectionId[]).includes(s.id)),
     sections,
     fps,
   );
@@ -67,7 +74,16 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap }> = ({
       <TransitionSeries>
         {vo.sections.flatMap((section, i) => {
           const t = timing(section.id);
-          const Scene = section.id === "cta" ? CtaCard : scenes[section.id];
+          const scene =
+            section.id === "question" ? (
+              <QuestionCard question={section.text} topic={script.topic} />
+            ) : section.id === "congrats" ? (
+              <CongratsCard text={section.text} topic={script.topic} />
+            ) : section.id === "cta" ? (
+              <CtaCard />
+            ) : (
+              createElement(scenes[section.id])
+            );
           return [
             i > 0 ? (
               <TransitionSeries.Transition
@@ -84,11 +100,14 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap }> = ({
               <SectionContext.Provider
                 value={{ captions: section.captions, durationInFrames: t.durationInFrames }}
               >
-                <Scene />
+                {scene}
                 {section.id === "hook" ? (
                   <HookTitle text={script.hookText} highlight={script.hookHighlight} />
                 ) : null}
                 {section.id === script.failureSection ? <FailureBadge /> : null}
+                {script.meme && section.id === script.meme.section ? (
+                  <MemeMoment meme={script.meme} />
+                ) : null}
               </SectionContext.Provider>
               {section.file ? <Audio src={staticFile(section.file)} /> : null}
             </TransitionSeries.Sequence>,

@@ -1,8 +1,19 @@
 import type { Caption } from "@remotion/captions";
+import type { MEME_SECTIONS, MemeId } from "../brand/memes";
 
 export type Format = "E" | "F" | "Q";
 
-export const SECTION_ORDER = ["hook", "setup", "mechanism", "payoff", "cta"] as const;
+// question + congrats are the same in every reel (template scenes): open by asking the
+// viewer about the topic, close by telling them they learned it, then the follow CTA.
+export const SECTION_ORDER = [
+  "question",
+  "hook",
+  "setup",
+  "mechanism",
+  "payoff",
+  "congrats",
+  "cta",
+] as const;
 export type SectionId = (typeof SECTION_ORDER)[number];
 
 export type ScriptSection = {
@@ -23,8 +34,18 @@ export type PostScript = {
   hookText: string;
   // One word of hookText to color amber.
   hookHighlight?: string;
+  // Topic keyword (e.g. "GPS"), colored amber in the question and congrats cards.
+  topic: string;
   // Shown as "Source: ..." for the last 3 s.
   source: string;
+  // Optional, at most one per reel: an approved meme shown briefly right after `cue`
+  // is spoken in `section`. Leave it out when no meme genuinely fits.
+  meme?: {
+    id: MemeId;
+    section: (typeof MEME_SECTIONS)[number];
+    cue: string;
+    seconds?: number;
+  };
   // F posts only: section that gets the WHEN IT FAILED badge.
   failureSection?: SectionId;
   sections: ScriptSection[];

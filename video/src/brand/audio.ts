@@ -1,18 +1,13 @@
 // Brand sound library, generated once with `npm run brand-audio` (ElevenLabs).
 // Every reel uses the same sounds, which builds a recognizable audio identity.
 export const sfx = {
-  whoosh: {
-    prompt: "Soft, clean, airy whoosh for a scene transition in a modern explainer video, subtle, short tail",
-    seconds: 0.8,
-    volume: 0.35,
-  },
   pop: {
     prompt: "Short soft UI pop, gentle rounded click, clean, for a logo appearing on screen",
     seconds: 0.5,
     volume: 0.4,
   },
   chime: {
-    prompt: "Bright gentle two-note chime, warm and positive, clean ending, for an end card",
+    prompt: "Bright gentle two-note chime, warm and positive, clean ending, for a congratulations moment",
     seconds: 1.2,
     volume: 0.4,
   },

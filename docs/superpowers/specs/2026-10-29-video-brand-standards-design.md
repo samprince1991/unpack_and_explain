@@ -25,7 +25,7 @@ Open items (non-blocking): Instagram handle (placeholder until availability chec
 ## 1. Platform specs
 
 - Canvas 1080x1920, 30 fps, H.264 MP4, AAC 48 kHz stereo.
-- Reel length 30-45 s (target spoken words 90-110).
+- Reel length 35-52 s (target spoken words 100-130, including question and congrats). Raised from 50 s / 125 words when post 2 needed more precise wording.
 - Safe zones (Instagram UI overlays): top 250 px, bottom 350 px, left 80 px, right 150 px. All text and key visuals stay inside the resulting content box (x 80-930, y 250-1570). Bottom was reduced from 450 after checking organic-Reels guidance (central 1080x1420 box, 250-320 px bottom); Meta's 14%/35% bands apply to ads.
 - Cover frame: title and key visual inside the centered 1080x1350 area (4:5 feed crop; also survives the 3:4 grid crop).
 - Loudness: -14 LUFS integrated, true peak <= -1 dBTP. Music bed ~20 dB under voice.
@@ -67,7 +67,7 @@ Minimum text size: 44 px for anything the viewer must read; 32 px only for sourc
 
 ## 4. Reel anatomy
 
-Sections in order: Hook -> Setup -> Mechanism -> Payoff -> CTA.
+Sections in order: Question -> Hook -> Setup -> Mechanism -> Payoff -> Congrats -> CTA (revised after review). Question ("Do you know how X works?"), Congrats ("Congrats! You just learned how X works.") and CTA are template cards shared by every reel. Frame 0 shows the question card.
 
 - Frame 0: hook text already on screen. Logo sting (avatar mark) completes in under 1 s alongside it. No blank or title-card intro.
 - Throughout (except CTA): small avatar watermark inside the safe zone; burned-in captions with the active word in amber; something moves at least every 2 s.
@@ -91,7 +91,7 @@ Sections in order: Hook -> Setup -> Mechanism -> Payoff -> CTA.
 - ElevenLabs TTS, one voice ID and fixed voice settings stored in `video/src/brand/voice.ts`, used for every reel.
 - VO generated per section with word/character timestamps -> `public/posts/<post>/vo/<section>.mp3` and `captions.json`.
 - Section durations derive from actual audio length plus a short tail pad. The script's "Time" column is guidance only.
-- Brand sound library generated with ElevenLabs (`npm run brand-audio`): whoosh on section changes, pop on the logo sting, chime on the CTA, one instrumental music bed at ~ -20 dB with 1 s fades. Generated once and reused so every reel sounds the same.
+- Brand sound library generated with ElevenLabs (`npm run brand-audio`): pop on the logo sting, chime on the congrats card (no sound on section changes; the whoosh was removed after review), one instrumental music bed at ~ -20 dB with 1 s fades. Generated once and reused so every reel sounds the same.
 - Section transitions use a dip (fade out, then fade in), never a crossfade, so busy scenes never overlap.
 - API key read from `.env` (never committed).
 
@@ -126,6 +126,10 @@ Unit boundaries: `brand/` has no React; `components/` depend only on `brand/`; `
 6. Render to `out/post-NN-slug.mp4`; export cover still.
 
 QA checklist: safe zones respected; readable text >= 44 px (sources >= 32 px); only token colors; hook visible at frame 0; captions in sync; source line present; units dual where relevant; CTA wording and handle correct; loudness target met; cover readable in 4:5 crop; length 30-45 s.
+
+## 8b. Memes (added after review)
+
+Optional, at most one per reel, from an approved catalog (`src/brand/memes.ts`), only in hook/setup/payoff, max 2.5 s, right after a spoken cue word. Rendered by the template as a framed card over a dimmed scene. Off-limits templates were removed from `public/memes/`.
 
 ## 9. Out of scope
 

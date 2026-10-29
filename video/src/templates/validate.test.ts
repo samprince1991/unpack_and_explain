@@ -11,13 +11,16 @@ const base: PostScript = {
   format: "E",
   title: "Test",
   hookText: "Short hook",
+  topic: "Thing",
   source: "Somewhere.gov",
   verify: [],
   sections: [
+    { id: "question", voiceover: "Do you know how this works?", visual: "" },
     { id: "hook", voiceover: words(10), visual: "" },
     { id: "setup", voiceover: words(15), visual: "" },
     { id: "mechanism", voiceover: words(40), visual: "" },
     { id: "payoff", voiceover: words(26), visual: "" },
+    { id: "congrats", voiceover: "Congrats! You just learned how this works.", visual: "" },
     { id: "cta", voiceover: brand.ctaLine, visual: "" },
   ],
 };
@@ -57,10 +60,49 @@ describe("validateScript", () => {
     );
   });
 
-  it("warns when spoken words are outside 90-110", () => {
+  it("requires the opening question to be a question", () => {
+    const sections = base.sections.map((x) =>
+      x.id === "question" ? { ...x, voiceover: "This is a statement." } : x,
+    );
+    expect(validateScript({ ...base, sections }).errors).toContain(
+      'question voiceover must end with "?"',
+    );
+  });
+
+  it("requires the congrats line before the CTA", () => {
+    const sections = base.sections.map((x) =>
+      x.id === "congrats" ? { ...x, voiceover: "Well, that is how it works." } : x,
+    );
+    expect(validateScript({ ...base, sections }).errors).toContain(
+      'congrats voiceover must start with "Congrats"',
+    );
+  });
+
+  it("accepts one approved meme in an allowed section, on a spoken cue word", () => {
+    const sections = base.sections.map((x) =>
+      x.id === "payoff" ? { ...x, voiceover: `${words(25)} internet.` } : x,
+    );
+    const meme = { id: "they-dont-know" as const, section: "payoff" as const, cue: "internet" };
+    expect(validateScript({ ...base, sections, meme }).errors).toEqual([]);
+  });
+
+  it("rejects a meme cue that isn't spoken in its section", () => {
+    const meme = { id: "they-dont-know" as const, section: "payoff" as const, cue: "banana" };
+    expect(validateScript({ ...base, meme }).errors[0]).toMatch(/meme cue "banana"/);
+  });
+
+  it("caps meme length", () => {
+    const sections = base.sections.map((x) =>
+      x.id === "payoff" ? { ...x, voiceover: `${words(25)} internet.` } : x,
+    );
+    const meme = { id: "this-is-fine" as const, section: "payoff" as const, cue: "internet", seconds: 4 };
+    expect(validateScript({ ...base, sections, meme }).errors[0]).toMatch(/at most 2.5 s/);
+  });
+
+  it("warns when spoken words are outside 100-130", () => {
     const sections = base.sections.map((x) =>
       x.id === "mechanism" ? { ...x, voiceover: words(80) } : x,
     );
-    expect(validateScript({ ...base, sections }).warnings[0]).toMatch(/outside 90-110/);
+    expect(validateScript({ ...base, sections }).warnings[0]).toMatch(/outside 100-130/);
   });
 });

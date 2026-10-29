@@ -33,6 +33,8 @@ export const brand = {
 
 export const typeScale = {
   hook: 104,
+  // Opening question card: longer than the hook, so a step smaller to sit in ~3 lines.
+  question: 88,
   title: 72,
   caption: 64,
   label: 46,

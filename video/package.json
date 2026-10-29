@@ -46,7 +46,9 @@
     "test": "vitest run",
     "assets": "tsx scripts/prepare-brand-assets.ts",
     "tts": "tsx --env-file=.env scripts/tts.ts",
-    "brand-audio": "tsx --env-file=.env scripts/brand-audio.ts"
+    "brand-audio": "tsx --env-file=.env scripts/brand-audio.ts",
+    "master": "tsx scripts/master.ts",
+    "vo:clean": "tsx scripts/clean-vo.ts"
   },
   "allowScripts": {
     "esbuild": false
