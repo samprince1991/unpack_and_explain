@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <radialGradient id="radial-gradient-1" cx="540" cy="540" r="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient-1" x1="540" y1="350.92" x2="540" y2="405.653" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2dd4bf"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="540" y1="405.653" x2="540" y2="465.363" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#115e59"/>
+      <stop offset="1" stop-color="#042f2e"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="342.627" y1="435.508" x2="222.378" y2="407.312" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2dd4bf"/>
+      <stop offset="1" stop-color="#99f6e4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="737.373" y1="435.508" x2="857.622" y2="407.312" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2dd4bf"/>
+      <stop offset="1" stop-color="#99f6e4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="540" y1="316.089" x2="540" y2="515.121" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fcd34d"/>
+      <stop offset="0.5" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="540" y1="465.363" x2="540" y2="763.911" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2dd4bf"/>
+      <stop offset="1" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="324.382" y1="474.485" x2="755.618" y2="474.485" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5eead4"/>
+      <stop offset="0.5" stop-color="#99f6e4"/>
+      <stop offset="1" stop-color="#5eead4"/>
+    </linearGradient>
+  </defs>
+  <title>Avatar-Dark</title>
+  <g id="Background">
+    <path id="bg-avatar-dark" d="M0 0 L1080 0 L1080 1080 L0 1080 Z" fill="url(#radial-gradient-1)"/>
+  </g>
+  <g id="Avatar-Light">
+  </g>
+  <g id="Avatar-Dark">
+    <g id="avatar-dark">
+      <g id="icon">
+        <path id="flap-back" d="M360.871 405.653 L380.774 350.92 L699.226 350.92 L719.129 405.653 L540 405.653 Z" fill="url(#linear-gradient-1)"/>
+        <path id="box-inner" d="M324.382 465.363 L360.871 405.653 L540 405.653 C520.764 405.653 505.169 421.248 505.169 440.484 C505.169 450.23 509.172 459.041 515.624 465.363 Z M574.831 440.484 C574.831 421.248 559.236 405.653 540 405.653 L719.129 405.653 L755.618 465.363 L564.376 465.363 C570.828 459.041 574.831 450.23 574.831 440.484 Z" fill="url(#linear-gradient-2)"/>
+        <path id="flap-left" d="M324.382 465.363 L360.871 405.653 L244.769 375.799 L199.987 438.825 Z" fill="url(#linear-gradient-3)"/>
+        <path id="flap-right" d="M755.618 465.363 L719.129 405.653 L835.231 375.799 L880.013 438.825 Z" fill="url(#linear-gradient-4)"/>
+        <path id="gear" d="M515.95 327.699 C515.95 321.287 521.148 316.089 527.561 316.089 L552.439 316.089 C558.852 316.089 564.05 321.287 564.05 327.699 L564.05 350.746 C571.983 352.867 579.497 356.011 586.443 360.03 L602.745 343.727 C607.279 339.193 614.63 339.193 619.164 343.727 L636.757 361.32 C641.291 365.854 641.291 373.205 636.757 377.739 L620.454 394.041 C624.473 400.987 627.617 408.501 629.738 416.434 L652.785 416.434 C659.197 416.434 664.395 421.632 664.395 428.044 L664.395 452.923 C664.395 459.336 659.197 464.534 652.785 464.534 L629.738 464.534 C627.617 472.467 624.473 479.981 620.454 486.927 L636.757 503.229 C641.291 507.763 641.291 515.114 636.757 519.648 L619.164 537.241 C614.63 541.775 607.279 541.775 602.745 537.241 L586.443 520.938 C579.497 524.957 571.983 528.101 564.05 530.222 L564.05 553.269 C564.05 559.681 558.852 564.879 552.439 564.879 L527.561 564.879 C521.148 564.879 515.95 559.681 515.95 553.269 L515.95 530.222 C508.017 528.101 500.503 524.957 493.557 520.938 L477.255 537.241 C472.721 541.775 465.37 541.775 460.836 537.241 L443.243 519.648 C438.709 515.114 438.709 507.763 443.243 503.229 L459.546 486.927 C455.527 479.981 452.383 472.467 450.262 464.534 L427.215 464.534 C420.803 464.534 415.605 459.336 415.605 452.923 L415.605 428.044 C415.605 421.632 420.803 416.434 427.215 416.434 L450.262 416.434 C452.383 408.501 455.527 400.987 459.546 394.041 L443.243 377.739 C438.709 373.205 438.709 365.854 443.243 361.32 L460.836 343.727 C465.37 339.193 472.721 339.193 477.255 343.727 L493.557 360.03 C500.503 356.011 508.017 352.867 515.95 350.746 Z M540 405.653 C520.764 405.653 505.169 421.248 505.169 440.484 C505.169 459.72 520.764 475.315 540 475.315 C559.236 475.315 574.831 459.72 574.831 440.484 C574.831 421.248 559.236 405.653 540 405.653 Z" fill="url(#linear-gradient-5)"/>
+        <path id="box-front" d="M340.968 465.363 L739.032 465.363 C748.192 465.363 755.618 472.789 755.618 481.949 L755.618 747.325 C755.618 756.485 748.192 763.911 739.032 763.911 L340.968 763.911 C331.808 763.911 324.382 756.485 324.382 747.325 L324.382 481.949 C324.382 472.789 331.808 465.363 340.968 465.363 Z" fill="url(#linear-gradient-6)"/>
+        <path id="box-rim" d="M324.382 465.363 L755.618 465.363 L755.618 483.608 L324.382 483.608 Z" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+  <g id="Horizontal-Light">
+  </g>
+  <g id="Horizontal-Dark">
+  </g>
+  <g id="Stacked-Light">
+  </g>
+  <g id="Stacked-Dark">
+  </g>
+</svg>
