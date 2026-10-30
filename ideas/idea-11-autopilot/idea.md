@@ -3,7 +3,8 @@ id: 11
 slug: autopilot
 title: "How a plane's autopilot works"
 format: E
-area: "Aviation & engineering"
+category: "Aviation & engineering"
+subcategory: "Flight"
 week: 3
 date: 2026-11-19
 status: idea

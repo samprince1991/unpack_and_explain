@@ -3,7 +3,8 @@ id: 16
 slug: gps-signal-myth
 title: "Myth: 'Your phone needs a signal to use GPS'"
 format: Q
-area: "Everyday tech"
+category: "Everyday tech"
+subcategory: "Location & GPS"
 week: 4
 date: 2026-11-27
 status: idea

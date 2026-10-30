@@ -3,7 +3,8 @@ id: 6
 slug: knight-capital
 title: "How stock exchanges match orders + Knight Capital"
 format: F
-area: "Money & payments"
+category: "Money & payments"
+subcategory: "Markets"
 week: 2
 date: 2026-11-10
 status: idea

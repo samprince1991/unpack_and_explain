@@ -3,7 +3,8 @@ id: 2
 slug: gps
 title: "How GPS finds you"
 format: E
-area: "Everyday tech"
+category: "Everyday tech"
+subcategory: "Location & GPS"
 week: 1
 date: 2026-11-03
 status: posted

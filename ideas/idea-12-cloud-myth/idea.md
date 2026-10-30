@@ -3,7 +3,8 @@ id: 12
 slug: cloud-myth
 title: "Myth: 'Cloud storage is in the sky'"
 format: Q
-area: "Everyday tech"
+category: "Everyday tech"
+subcategory: "Internet"
 week: 3
 date: 2026-11-20
 status: idea

@@ -3,7 +3,8 @@ id: 1
 slug: card-payment
 title: "How a card payment works"
 format: E
-area: "Money & payments"
+category: "Money & payments"
+subcategory: "Payments"
 week: 1
 date: 2026-11-02
 status: scripted

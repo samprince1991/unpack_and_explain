@@ -3,7 +3,8 @@ id: 14
 slug: qr-code
 title: "How a QR code stores data"
 format: E
-area: "Everyday tech"
+category: "Everyday tech"
+subcategory: "Data & codes"
 week: 4
 date: 2026-11-24
 status: idea

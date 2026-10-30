@@ -3,7 +3,8 @@ id: 8
 slug: airplane-mode
 title: "Why airplane mode exists"
 format: Q
-area: "Everyday tech"
+category: "Everyday tech"
+subcategory: "Wireless"
 week: 2
 date: 2026-11-13
 status: idea

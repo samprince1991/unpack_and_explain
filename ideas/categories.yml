@@ -1,0 +1,20 @@
+# Topic taxonomy for ideas/*/idea.md (`category` + `subcategory`).
+# `npm run tracker` rejects anything not listed here. Add a sub-category here first,
+# then use it in an idea. Order here is the order in ideas/README.md.
+
+Everyday tech:
+  - Location & GPS
+  - Wireless
+  - Internet
+  - Data & codes
+
+Money & payments:
+  - Payments
+  - Markets
+  - Credit
+
+Aviation & engineering:
+  - Flight
+  - Engines
+  - Structures
+  - Space

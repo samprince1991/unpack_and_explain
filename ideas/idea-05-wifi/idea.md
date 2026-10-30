@@ -3,7 +3,8 @@ id: 5
 slug: wifi
 title: "How WiFi works"
 format: E
-area: "Everyday tech"
+category: "Everyday tech"
+subcategory: "Wireless"
 week: 2
 date: 2026-11-09
 status: idea

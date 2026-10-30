@@ -3,7 +3,8 @@ id: 7
 slug: credit-score
 title: "How credit scores work"
 format: E
-area: "Money & payments"
+category: "Money & payments"
+subcategory: "Credit"
 week: 2
 date: 2026-11-12
 status: idea

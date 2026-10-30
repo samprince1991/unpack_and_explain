@@ -3,7 +3,8 @@ id: 13
 slug: mars-orbiter
 title: "Unit conversions + Mars Climate Orbiter"
 format: F
-area: "Aviation & engineering"
+category: "Aviation & engineering"
+subcategory: "Space"
 week: 4
 date: 2026-11-23
 status: idea

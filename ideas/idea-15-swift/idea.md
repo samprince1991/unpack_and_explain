@@ -3,7 +3,8 @@ id: 15
 slug: swift
 title: "How banks move money internationally (SWIFT)"
 format: E
-area: "Money & payments"
+category: "Money & payments"
+subcategory: "Payments"
 week: 4
 date: 2026-11-26
 status: idea

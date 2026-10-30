@@ -3,7 +3,8 @@ id: 10
 slug: undersea-cables
 title: "How undersea cables carry the internet"
 format: E
-area: "Everyday tech"
+category: "Everyday tech"
+subcategory: "Internet"
 week: 3
 date: 2026-11-17
 status: idea

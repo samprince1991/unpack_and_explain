@@ -2,9 +2,10 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { voice } from "../src/brand/voice";
 import type { PostScript } from "../src/templates/types";
-import { parseIdea, postFolder, renderIndex, validateIdea, type Idea } from "./lib/tracker";
+import { renderIndex } from "./lib/readme";
+import { parseIdea, parseTaxonomy, postFolder, validateIdea, type Idea } from "./lib/tracker";
 
-// Checks every ideas/*/idea.md and regenerates ideas/README.md (ideas by area, performance, summary).
+// Checks every ideas/*/idea.md against ideas/categories.yml and regenerates ideas/README.md.
 // Usage (from video/): npm run tracker
 const ideasDir = join(process.cwd(), "..", "ideas");
 
@@ -28,6 +29,7 @@ const checkScriptTs = async (idea: Idea, errors: string[]) => {
 };
 
 const main = async () => {
+  const taxonomy = parseTaxonomy(readFileSync(join(ideasDir, "categories.yml"), "utf8"));
   const folders = readdirSync(ideasDir, { withFileTypes: true })
     .filter((d) => d.isDirectory() && existsSync(join(ideasDir, d.name, "idea.md")))
     .map((d) => d.name);
@@ -36,7 +38,7 @@ const main = async () => {
   let failed = false;
   const seen = new Map<string, string>();
   for (const idea of ideas) {
-    const { errors, warnings } = validateIdea(idea);
+    const { errors, warnings } = validateIdea(idea, taxonomy);
     const prev = seen.get(String(idea.meta.id));
     if (prev) {
       errors.push(`id ${idea.meta.id} is also used by ${prev}`);
@@ -48,7 +50,7 @@ const main = async () => {
     failed ||= errors.length > 0;
   }
 
-  writeFileSync(join(ideasDir, "README.md"), renderIndex(ideas, voice.wordsPerSecond));
+  writeFileSync(join(ideasDir, "README.md"), renderIndex(ideas, taxonomy, voice.wordsPerSecond));
   console.log(`Checked ${ideas.length} ideas, wrote ideas/README.md`);
   if (failed) {
     process.exit(1);

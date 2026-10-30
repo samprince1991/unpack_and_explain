@@ -3,7 +3,8 @@ id: 4
 slug: lift-myth
 title: "Myth: planes fly because air pushes up from below"
 format: Q
-area: "Aviation & engineering"
+category: "Aviation & engineering"
+subcategory: "Flight"
 week: 1
 date: 2026-11-06
 status: scripted

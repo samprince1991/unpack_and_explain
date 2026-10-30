@@ -3,7 +3,8 @@ id: 3
 slug: jet-engine
 title: "How a jet engine works + Gimli Glider"
 format: F
-area: "Aviation & engineering"
+category: "Aviation & engineering"
+subcategory: "Engines"
 week: 1
 date: 2026-11-05
 status: scripted

@@ -3,7 +3,8 @@ id: 9
 slug: tacoma-narrows
 title: "How bridges carry load + Tacoma Narrows"
 format: F
-area: "Aviation & engineering"
+category: "Aviation & engineering"
+subcategory: "Structures"
 week: 3
 date: 2026-11-16
 status: idea
