@@ -3,14 +3,17 @@ import { join } from "node:path";
 import { voice } from "../src/brand/voice";
 import type { PostScript } from "../src/templates/types";
 import { renderIndex } from "./lib/readme";
-import { parseIdea, parseTaxonomy, postFolder, validateIdea, type Idea } from "./lib/tracker";
+import { isCarousel, parseIdea, parseTaxonomy, postFolder, validateIdea, type Idea } from "./lib/tracker";
 
 // Checks every ideas/*/idea.md against ideas/categories.yml and regenerates ideas/README.md.
 // Usage (from video/): npm run tracker
 const ideasDir = join(process.cwd(), "..", "ideas");
 
-// A built idea's script.ts must say exactly what idea.md says.
+// A built reel's script.ts must say exactly what idea.md says.
 const checkScriptTs = async (idea: Idea, errors: string[]) => {
+  if (isCarousel(idea)) {
+    return;
+  }
   const folder = postFolder(idea);
   const file = join(process.cwd(), "src", "posts", folder, "script.ts");
   if (!existsSync(file)) {
@@ -44,6 +47,12 @@ const main = async () => {
       errors.push(`id ${idea.meta.id} is also used by ${prev}`);
     }
     seen.set(String(idea.meta.id), idea.folder);
+    if (isCarousel(idea)) {
+      const reel = ideas.find((i) => i.meta.id === idea.meta.companion_of);
+      if (idea.meta.companion_of !== undefined && (!reel || isCarousel(reel))) {
+        errors.push(`companion_of ${idea.meta.companion_of} is not a reel idea`);
+      }
+    }
     await checkScriptTs(idea, errors);
     for (const e of errors) console.log(`  ERROR ${idea.folder}: ${e}`);
     for (const w of warnings) console.log(`  warn  ${idea.folder}: ${w}`);

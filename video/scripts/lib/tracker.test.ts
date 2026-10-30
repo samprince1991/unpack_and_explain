@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { FRONT, SCRIPT, TAXONOMY, idea, posted, words } from "./tracker.fixtures";
-import { folderName, parseIdea, parseTaxonomy, postFolder, rates, summarize, validateIdea } from "./tracker";
+import { CAROUSEL, FRONT, SCRIPT, SLIDES, TAXONOMY, idea, posted, words } from "./tracker.fixtures";
+import { folderName, medianViews, parseIdea, parseTaxonomy, postFolder, rates, summarize, validateIdea } from "./tracker";
 
 describe("parseIdea", () => {
   it("reads front matter, script table and caption", () => {
@@ -91,6 +91,49 @@ describe("validateIdea", () => {
   });
 });
 
+describe("hook scores", () => {
+  it("rejects a hook or question card under 50", () => {
+    const weak = idea(FRONT.replace("question_score: 60", "question_score: 45"));
+    expect(validateIdea(weak, TAXONOMY).errors).toEqual([
+      "question_score is 45, under 50: write a stronger line (npm run ig)",
+    ]);
+  });
+
+  it("warns when a scripted reel has no scores yet", () => {
+    const unscored = idea(FRONT.replace(/hook_formula: 3\nhook_score: 81\nquestion_score: 60\n/, ""));
+    expect(validateIdea(unscored, TAXONOMY).warnings).toEqual([
+      "no hook_formula, hook_score, question_score yet (run npm run ig, then record them)",
+    ]);
+  });
+});
+
+describe("carousels", () => {
+  const carousel = (front = CAROUSEL, body = SLIDES) => idea(front, body, "idea-18-gps-steps");
+
+  it("parses slides and accepts a valid carousel without a reel script", () => {
+    const c = carousel();
+    expect(c.slides).toHaveLength(6);
+    expect(c.slides[0]).toEqual({ headline: "GPS in 4 steps", body: "Your phone only listens." });
+    expect(c.meta.companion_of).toBe(2);
+    expect(validateIdea(c, TAXONOMY)).toEqual({ errors: [], warnings: [] });
+  });
+
+  it("checks slide count and word limits", () => {
+    const body = SLIDES.replace("GPS in 4 steps", "How GPS works in four easy steps").replace(/\| 6 \|.*\n/, "");
+    expect(validateIdea(carousel(CAROUSEL, body), TAXONOMY).errors).toEqual([
+      "## Slides needs 6-10 slides, got 5",
+      "slide 1 headline needs 1-6 words, got 7",
+    ]);
+  });
+});
+
+describe("medianViews", () => {
+  it("takes the middle of the posted views", () => {
+    expect(medianViews([posted("E", 100, 1), posted("E", 300, 1), posted("E", 1000, 1)])).toBe(600);
+    expect(medianViews([idea()])).toBeNull();
+  });
+});
+
 describe("folderName", () => {
   it("pads the id", () => {
     expect(folderName(2, "gps")).toBe("idea-02-gps");
@@ -106,6 +149,7 @@ describe("metrics", () => {
     expect(rates(posted("E", 1000, 20).meta.metrics)).toEqual({
       engagement: 0.1,
       shareSave: 0.04,
+      sendsPerReach: 0.02,
       followsPer1k: 5,
     });
     expect(rates(idea().meta.metrics)).toBeNull();

@@ -7,10 +7,28 @@ import { WORD_RANGE } from "../../src/templates/validate";
 // The content tracker: one ideas/idea-NN-slug/idea.md per idea (YAML front matter +
 // script). `npm run tracker` validates them and writes ideas/README.md. Once an idea is
 // built it becomes a post: its code, VO and renders use post-NN-slug (see postFolder).
+// E/F/Q are reels with a ## Script table; C is a carousel with a ## Slides table.
 
 export const STATUSES = ["idea", "scripted", "built", "rendered", "posted"] as const;
-export const FORMATS = ["E", "F", "Q"] as const;
-export const METRIC_KEYS = ["reach", "watch_pct", "likes", "comments", "shares", "saves", "follows"] as const;
+export const FORMATS = ["E", "F", "Q", "C"] as const;
+export const METRIC_KEYS = [
+  "views",
+  "reach",
+  "nonfollower_pct",
+  "hold_3s",
+  "watch_pct",
+  "likes",
+  "comments",
+  "shares",
+  "saves",
+  "follows",
+] as const;
+
+// Minimum ig-reel hookscore.py score for the hook and the question card.
+export const MIN_HOOK_SCORE = 50;
+// ig-carousel limits.
+export const SLIDE_RANGE = { min: 6, max: 10 } as const;
+export const SLIDE_WORDS = { cover: 6, headline: 7, body: 25 } as const;
 
 export type Status = (typeof STATUSES)[number];
 export type IdeaFormat = (typeof FORMATS)[number];
@@ -28,6 +46,10 @@ export type IdeaMeta = {
   status: Status;
   link?: string; // the live post URL, once posted
   hook: string;
+  hook_formula?: number; // id from the ig-reel skill's hooks.json
+  hook_score?: number; // hookscore.py score of the hook line
+  question_score?: number; // hookscore.py score of the question card
+  companion_of?: number; // carousels: id of the reel they accompany
   source: string;
   verify: string[];
   notes?: string;
@@ -35,13 +57,17 @@ export type IdeaMeta = {
 };
 
 export type TrackerSection = { id: SectionId; voiceover: string; visual: string };
+export type Slide = { headline: string; body: string };
 
 export type Idea = {
   folder: string;
   meta: IdeaMeta;
   sections: TrackerSection[];
+  slides: Slide[];
   caption: string;
 };
+
+export const isCarousel = (idea: Idea) => idea.meta.format === "C";
 
 export type Problems = { errors: string[]; warnings: string[] };
 
@@ -74,6 +100,14 @@ const cells = (row: string) =>
     .split(/(?<!\\)\|/)
     .map((c) => c.trim().replace(/\\\|/g, "|"));
 
+// Table rows under a heading, without the header and separator.
+const tableRows = (section: string) =>
+  section
+    .split(/\r?\n/)
+    .filter((l) => l.trim().startsWith("|"))
+    .slice(2)
+    .map(cells);
+
 const sectionBody = (body: string, heading: string): string => {
   const m = body.match(new RegExp(`^## ${heading}\\s*$([\\s\\S]*?)(?=^## |(?![\\s\\S]))`, "m"));
   return m ? m[1].trim() : "";
@@ -87,19 +121,35 @@ export const parseIdea = (folder: string, md: string): Idea => {
   // JSON schema keeps dates as plain strings.
   const meta = yaml.load(m[1], { schema: yaml.JSON_SCHEMA }) as IdeaMeta;
   const body = m[2];
-  const sections = sectionBody(body, "Script")
-    .split(/\r?\n/)
-    .filter((l) => l.trim().startsWith("|"))
-    .slice(2) // header + separator
-    .map((l) => {
-      const [name, voiceover, visual] = cells(l);
-      return { id: name.toLowerCase() as SectionId, voiceover, visual: visual ?? "" };
-    });
-  return { folder, meta, sections, caption: sectionBody(body, "Caption") };
+  const sections = tableRows(sectionBody(body, "Script")).map(([name, voiceover, visual]) => ({
+    id: name.toLowerCase() as SectionId,
+    voiceover,
+    visual: visual ?? "",
+  }));
+  const slides = tableRows(sectionBody(body, "Slides")).map(([, headline, text]) => ({
+    headline: headline ?? "",
+    body: text ?? "",
+  }));
+  return { folder, meta, sections, slides, caption: sectionBody(body, "Caption") };
 };
 
 export const spokenWords = (idea: Idea) =>
   idea.sections.reduce((n, s) => n + countWords(s.voiceover), 0);
+
+const validateSlides = ({ slides }: Idea, errors: string[]) => {
+  if (slides.length < SLIDE_RANGE.min || slides.length > SLIDE_RANGE.max) {
+    errors.push(`## Slides needs ${SLIDE_RANGE.min}-${SLIDE_RANGE.max} slides, got ${slides.length}`);
+  }
+  slides.forEach((s, i) => {
+    const max = i === 0 ? SLIDE_WORDS.cover : SLIDE_WORDS.headline;
+    if (!s.headline || countWords(s.headline) > max) {
+      errors.push(`slide ${i + 1} headline needs 1-${max} words, got ${countWords(s.headline)}`);
+    }
+    if (countWords(s.body) > SLIDE_WORDS.body) {
+      errors.push(`slide ${i + 1} body has ${countWords(s.body)} words, max ${SLIDE_WORDS.body}`);
+    }
+  });
+};
 
 export const validateIdea = (idea: Idea, taxonomy: Taxonomy): Problems => {
   const errors: string[] = [];
@@ -148,7 +198,25 @@ export const validateIdea = (idea: Idea, taxonomy: Taxonomy): Problems => {
     }
   }
 
-  if (meta.status !== "idea") {
+  for (const key of ["hook_formula", "hook_score", "question_score", "companion_of"] as const) {
+    const v = meta[key];
+    if (v !== undefined && (typeof v !== "number" || v < 0)) {
+      errors.push(`${key} must be a number`);
+    }
+  }
+  for (const key of ["hook_score", "question_score"] as const) {
+    const v = meta[key];
+    if (typeof v === "number" && v < MIN_HOOK_SCORE) {
+      errors.push(`${key} is ${v}, under ${MIN_HOOK_SCORE}: write a stronger line (npm run ig)`);
+    }
+  }
+
+  if (meta.status !== "idea" && isCarousel(idea)) {
+    validateSlides(idea, errors);
+    if (!idea.caption) {
+      warnings.push("no ## Caption section");
+    }
+  } else if (meta.status !== "idea") {
     const ids = idea.sections.map((s) => s.id);
     if (ids.join(",") !== SECTION_ORDER.join(",")) {
       errors.push(`Script sections must be ${SECTION_ORDER.join(" > ")}, got ${ids.join(" > ") || "none"}`);
@@ -173,6 +241,10 @@ export const validateIdea = (idea: Idea, taxonomy: Taxonomy): Problems => {
     if (!idea.caption) {
       warnings.push("no ## Caption section");
     }
+    const missing = (["hook_formula", "hook_score", "question_score"] as const).filter((k) => meta[k] === undefined);
+    if (missing.length) {
+      warnings.push(`no ${missing.join(", ")} yet (run npm run ig, then record them)`);
+    }
   }
   if (meta.status === "posted" && !meta.link) {
     warnings.push("posted but link is empty");
@@ -183,9 +255,9 @@ export const validateIdea = (idea: Idea, taxonomy: Taxonomy): Problems => {
   return { errors, warnings };
 };
 
-export type Rates = { engagement: number; shareSave: number; followsPer1k: number };
+export type Rates = { engagement: number; shareSave: number; sendsPerReach: number; followsPer1k: number };
 
-// Same formulas as the old spreadsheet; empty counts are treated as 0.
+// Engagement rates per reach; empty counts are treated as 0.
 export const rates = (m: Metrics): Rates | null => {
   if (!m.reach) {
     return null;
@@ -194,12 +266,27 @@ export const rates = (m: Metrics): Rates | null => {
   return {
     engagement: (n(m.likes) + n(m.comments) + n(m.shares) + n(m.saves)) / m.reach,
     shareSave: (n(m.shares) + n(m.saves)) / m.reach,
+    // ig-audit's strongest single signal: a send is someone putting their name on it.
+    sendsPerReach: n(m.shares) / m.reach,
     followsPer1k: (n(m.follows) / m.reach) * 1000,
   };
 };
 
 // Formats need this many posted ideas before they are compared (small samples mislead).
 export const MIN_POSTED_TO_COMPARE = 3;
+
+// ig-audit's outlier multiple: a post's views over the median views of all posted ideas.
+export const medianViews = (ideas: Idea[]): number | null => {
+  const v = ideas
+    .map((i) => i.meta.metrics?.views)
+    .filter((x): x is number => typeof x === "number")
+    .sort((a, b) => a - b);
+  if (!v.length) {
+    return null;
+  }
+  const mid = Math.floor(v.length / 2);
+  return v.length % 2 ? v[mid] : (v[mid - 1] + v[mid]) / 2;
+};
 
 export type FormatSummary = {
   format: IdeaFormat;

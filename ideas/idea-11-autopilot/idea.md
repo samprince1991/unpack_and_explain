@@ -12,7 +12,10 @@ hook: "Autopilot isn't flying the plane. It's following instructions."
 source: "Aircraft manufacturer / FAA docs"
 verify: []
 metrics:  # fill in after posting
+  views: null
   reach: null
+  nonfollower_pct: null  # % of reach from non-followers
+  hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
   likes: null
   comments: null

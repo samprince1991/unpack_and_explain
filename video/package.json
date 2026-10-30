@@ -51,7 +51,8 @@
     "brand-audio": "tsx --env-file=.env scripts/brand-audio.ts",
     "master": "tsx scripts/master.ts",
     "vo:clean": "tsx scripts/clean-vo.ts",
-    "tracker": "tsx scripts/tracker.ts"
+    "tracker": "tsx scripts/tracker.ts",
+    "ig": "tsx scripts/ig.ts"
   },
   "allowScripts": {
     "esbuild": false

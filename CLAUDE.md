@@ -5,9 +5,10 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 
 ## Repo map
 
-- `ideas/`: **the content tracker** (replaces the old spreadsheet). One `ideas/idea-NN-slug/idea.md` per idea: YAML front matter (id, date, format, category, subcategory, status, link, hook, source, verify, metrics) + `## Script` table (Section | Voice-over | Visual) + `## Caption`. `NN` = idea ID (numbers only). Once built, an idea becomes a post: its code, VO and render folders use the matching `post-NN-slug` name. `category` / `subcategory` must come from `ideas/categories.yml` (the fixed topic list; add new sub-categories there first) and group related ideas so topics don't repeat. After posting, set `link` to the live post URL. `ideas/README.md` (topics, schedule, performance, formats, how-to) is **generated**: never edit it by hand.
+- `ideas/`: **the content tracker** (replaces the old spreadsheet). One `ideas/idea-NN-slug/idea.md` per idea: YAML front matter (id, date, format, category, subcategory, status, link, hook, hook_formula, hook_score, question_score, companion_of, source, verify, metrics) + `## Script` table (Section | Voice-over | Visual) for reels or `## Slides` table (Slide | Headline | Body) for carousels + `## Caption`. `NN` = idea ID (numbers only). Once built, an idea becomes a post: its code, VO and render folders use the matching `post-NN-slug` name. `category` / `subcategory` must come from `ideas/categories.yml` (the fixed topic list; add new sub-categories there first) and group related ideas so topics don't repeat. After posting, set `link` to the live post URL. `ideas/README.md` (topics, schedule, performance, formats, how-to) is **generated**: never edit it by hand.
 - `logo/`: master logo files. **Never edit.** Copy the SVGs you need into `video/public/brand/`.
-- `docs/specs/` (design rationale), `docs/plans/` (implementation plans, historical record: old paths inside are not updated).
+- `instagram/`: state for the instagram-agent skills (`voice.md`, `swipe.md`, `profile.md`, `engage.md`; see Instagram skills). Skills read and write here, **not** `~/.claude/instagram/`.
+- `docs/specs/` (design rationale; the skills pipeline is `2026-10-30-instagram-skills-pipeline-design.md`), `docs/plans/` (implementation plans, historical record: old paths inside are not updated).
 - `video/`: the Remotion project. Run all npm/npx commands from here.
   - `src/brand/`: tokens, fonts, motion, layout (safe zones), voice config. No React here.
   - `src/components/`: shared branded components. Depend only on `src/brand/`.
@@ -21,7 +22,8 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 
 - Preview: `npm run dev` (Remotion Studio)
 - Typecheck + lint: `npm run lint` (run before saying any work is done)
-- Content tracker: `npm run tracker` checks every `ideas/*/idea.md` (front matter, section order, "?" / "Congrats," / CTA / no "!", 100-130 words, https `link`, and that a built idea's VO text matches its `src/posts/post-NN-slug/script.ts`) and regenerates `ideas/README.md`. Run it after editing any idea.
+- Content tracker: `npm run tracker` checks every `ideas/*/idea.md` (front matter, section order, "?" / "Congrats," / CTA / no "!", 100-130 words, https `link`, hook/question scores >= 50, carousel slide limits, `companion_of`, and that a built reel's VO text matches its `src/posts/post-NN-slug/script.ts`) and regenerates `ideas/README.md`. Run it after editing any idea.
+- Instagram checks: `npm run ig -- idea-NN-slug [--keywords "gps,satellites"]` runs the instagram-agent plugin's tools on one idea: `hookscore.py` (question card + hook, or carousel cover), `beats.py` at 150 wpm (reels), `caption.py` (feed-truncation box, hashtags, one ask, search terms) and `detect.py` (AI-text panel). Read-only; record `hook_formula` / `hook_score` / `question_score` in `idea.md` yourself. Needs the plugin installed (or `IG_SKILLS_DIR`); it sets `PYTHONUTF8=1`, without which the tools crash on Windows. Run the tools directly the same way: `PYTHONUTF8=1 python <skills>/ig-reel/hookscore.py --hook "one line"`.
 - Unit tests: `npm test` (includes the brand guard: fails on any color literal or font-family string outside `src/brand/`)
 - Logos: `npm run assets` regenerates `public/brand/avatar.svg` + `stacked.svg` from `logo/` (transparent, cropped)
 - Voice-over for one section only: `npm run tts -- post-NN-slug --only=congrats` (comma-separated ids). Regenerates just those sections and keeps the rest of the VO you already approved; every generation sounds slightly different, so prefer this when fixing one line.
@@ -42,8 +44,17 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 | E | Pure explainer | Standard anatomy |
 | F | Explainer + failure story | Coral "WHEN IT FAILED" badge on the failure segment. Source on screen is mandatory |
 | Q | Quick myth / fact | MYTH stamp (coral) on the myth, FACT stamp (teal) on the correction |
+| C | Carousel | 1080x1350 slides, see Carousels. Usually a companion to a reel (`companion_of`) |
 
-Carousels are out of scope for this project for now.
+## Carousels
+
+Swipe posts for ideas with steps or a list worth re-reading (saves and sends). Written with `/ig-carousel`, usually turned from a posted reel's mechanism by `/ig-repurpose`.
+
+- **Slides table** in `idea.md`: `## Slides` with `Slide | Headline | Body`. 6-10 slides: 1 cover (6 words or fewer, the hook), 2 stake (also works as a second cover), then one idea per slide (headline 7 words or fewer, body 25 words or fewer), a recap slide (the one people screenshot), and a CTA slide with one ask. The tracker enforces the counts.
+- **Look:** same brand as reels: dark only, token colors, diagrams in neutral line art with one amber key element, Poppins headlines, Inter body (>= 44 px readable text, >= 32 px source). Slide number (3/8) and the handle on every slide, small. Keep text clear of the outer 120 px. Source on the last content or recap slide.
+- **Caption:** `/ig-caption` Job B (the caption carries the hook, since the cover used its six words). Alt text for the cover at minimum.
+- **Build (Phase 2, not built yet):** a Remotion `Carousel` composition at 1080x1350, one still per slide via `npx remotion still`, using `src/brand/` and shared components. Design it the first time a carousel reaches `scripted`. Until then a carousel stops at `scripted`.
+- **Schedule:** one per week, on Wednesday.
 
 ## Platform specs
 
@@ -192,9 +203,56 @@ Meme templates live in `video/public/memes/` (the user's collection). They are *
 - Copyright: only ElevenLabs-generated audio (commercial use requires a paid plan) or audio we synthesize. No downloaded tracks, no commercial songs.
 - API keys live in `video/.env`. Never commit `.env` or print keys.
 
+## Instagram skills
+
+The `instagram-agent` plugin (13 skills, `/ig-*`) runs the account around the Remotion build. Install it with `/plugin install instagram-agent@instagram-agent-skill`. Use the skills at every stage below; don't do these stages from memory.
+
+**Overrides: where a skill disagrees with this file, this file wins.**
+- State lives in `instagram/` (voice.md, swipe.md, profile.md, engage.md), not `~/.claude/instagram/`. The skills' `log.md` = the hook fields and metrics in each `idea.md`; their `plan.md` = the schedule in `ideas/README.md`. Read `instagram/voice.md` before writing anything.
+- Reel anatomy stays (question card first, logo sting, congrats, fixed CTA), even though `/ig-reel` says "cut the intro, no logo sting". Instead, the question card must score `hookscore.py` 50+ and aim for 7 words or fewer with something concrete.
+- Our safe zones, layout regions and 150 wpm (`voice.wordsPerSecond` 2.5) win over the skills' safe zones and 165 wpm. The beat sheet's "beat over 4 s" flag is met by visual changes (motion every 2 s), not only by splitting lines.
+- `/ig-human` and `detect.py` results on scripts are **suggestions**: show the user the proposed rewrites; never change script text or facts without approval. BURSTINESS is low on our short, even explainer sentences: treat it as advisory. Captions, comments, replies and DMs do go through `/ig-human` before the user sees them.
+- Never post, like, follow, comment or DM on the user's behalf, never log into Instagram, never ask for a password, never scrape. Every skill ends with copy-ready text the user posts by hand. `/ig-viral` reads in the user's own Chrome with the user present (claude-in-chrome), at human speed, about 10 accounts.
+- Hashtags: 5 or fewer, at the bottom, never inside the first 125 characters. No links in captions.
+- Never invent numbers, results or quotes; leave `{{number}}` and add it to `verify`.
+
+**Pipeline**
+
+| # | Stage | When | Skills | Output |
+|---|---|---|---|---|
+| 0 | Setup | once | `/ig-profile` (score out of 100, rewrites) | `instagram/voice.md` reviewed by the user, `instagram/profile.md`. Re-run `/ig-profile` monthly |
+| 1 | Research | monthly | `/ig-viral` (outlier multiple over each account's median, hook formulas) | `instagram/swipe.md` |
+| 2 | Review + plan | weekly | `/ig-audit` on posted ideas (rank by multiple and sends per reach; separate hook problems from profile problems), then `/ig-plan` | new or moved ideas and dates in `ideas/`; the 10-account engagement list in `instagram/engage.md`. The user approves the week |
+| 3 | Ideas | ongoing | `/ig-plan`, `/ig-reply` (a comment question many people share becomes an idea, formula #16), `/ig-repurpose` (a posted reel's mechanism becomes a companion carousel) | `ideas/idea-NN-slug/idea.md` under an existing sub-category |
+| 4 | Script a reel | per reel | `/ig-reel`: 3 hooks from different `hooks.json` formulas, scored; best 50+; beat sheet. Then `/ig-human` | `## Script` table, `hook_formula`, `hook_score`, `question_score`. The user approves the script |
+| 4b | Script a carousel | per carousel | `/ig-carousel`, then `/ig-human` | `## Slides` table. The user approves the copy |
+| 5 | Caption | per post | `/ig-caption` (Job A for reels: ask + context + search terms; Job B for carousels: the hook), then `/ig-human`; `npm run ig` lint shows READY | `## Caption` |
+| 6 | Build | per post | Per-post workflow below (reels); Carousels section (carousels) | MP4 / slide PNGs, rendered only when asked |
+| 7 | Post day | posting days | `/ig-story` (3-5 frames: reel frames or diagrams, since we're faceless; a quiz suits myth/fact posts) | copy-ready frames. The user posts |
+| 8 | Engage | daily, 20 min | `/ig-comment` (list in `engage.md`, two options per post), `/ig-reply` (our threads, first hour after posting), `/ig-dm` (keyword delivery, collab pitches, two follow-ups max) | copy-ready text. The user posts or sends |
+| 9 | Measure | after posting | fill `metrics` from insights (views, reach, nonfollower_pct, hold_3s, watch_pct, likes, comments, shares, saves, follows), run the tracker | feeds stage 2 |
+
+**Cadence:** reels Mon/Tue/Thu/Fri, carousel Wed, stories on posting days, engagement round daily.
+
+| Skill | Use it for |
+|---|---|
+| `/ig-reel` | Hooks, script and beat sheet for a reel (stage 4) |
+| `/ig-carousel` | Slide copy for a carousel (stage 4b) |
+| `/ig-caption` | Every caption (stage 5) |
+| `/ig-human` | Cleaning anything written before the user sees it (stages 4, 5, 7, 8) |
+| `/ig-viral` | Monthly niche research into `swipe.md` (stage 1) |
+| `/ig-plan` | The weekly plan and engagement list (stage 2) |
+| `/ig-audit` | Weekly post-mortem on posted ideas (stage 2) |
+| `/ig-repurpose` | One reel or source into companion posts (stage 3) |
+| `/ig-profile` | Profile score and rewrites (stage 0, monthly) |
+| `/ig-story` | Story frames on posting days (stage 7) |
+| `/ig-comment` | Comments on other accounts' posts (stage 8) |
+| `/ig-reply` | Replies under our posts; questions become ideas (stages 3, 8) |
+| `/ig-dm` | Keyword delivery, warm messages, collab pitches (stage 8) |
+
 ## Per-post workflow
 
-1. Write the script into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Caption`, `verify` list; layout as idea 2), set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built → rendered → posted); after posting add `link` (the live post URL) and fill in `metrics`.
+1. Script it with `/ig-reel` (pipeline stage 4) into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Caption` from `/ig-caption`, `verify` list; layout as idea 2), run `npm run ig -- idea-NN-slug`, record `hook_formula` / `hook_score` / `question_score`, set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built → rendered → posted); after posting add `link` (the live post URL) and fill in `metrics`.
 2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` <= 28 chars (2 lines), CTA voiceover exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words. List "verify" facts in `verify`.
 3. Run TTS -> VO + captions (bleed is trimmed automatically; check the "trimmed" lines it prints). Or build with estimated timing first.
 4. Build scenes (`hook`, `setup`, `mechanism`, `payoff`) from the Visual column with shared components; bespoke scene components live only inside the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card automatically. Sync visuals to the VO with `useCue("word", fallbackFraction)`.
@@ -212,6 +270,7 @@ Meme templates live in `video/public/memes/` (the user's collection). They are *
 - [ ] Source line shown; units metric + imperial where relevant
 - [ ] CTA wording, tagline and handle correct
 - [ ] Loudness ~ -14 LUFS, no clipping
+- [ ] Hook and question card score 50+ (`npm run ig`); caption lint READY (5 or fewer hashtags, none in the first 125 characters, one ask); AI-text findings shown to the user
 - [ ] `npm run lint` passes; `npm run tracker` passes and the post's `status` is updated
 
 ## Do
