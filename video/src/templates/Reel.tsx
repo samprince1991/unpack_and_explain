@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import { Audio } from "@remotion/media";
-import { linearTiming, TransitionSeries } from "@remotion/transitions";
+import { TransitionSeries } from "@remotion/transitions";
 import { AbsoluteFill, interpolate, Sequence, staticFile, useVideoConfig } from "remotion";
 import { music, sfx, type AudioLibrary } from "../brand/audio";
 import { clamp, durations } from "../brand/motion";
@@ -9,12 +9,15 @@ import { Background } from "../components/Background";
 import { Captions } from "../components/Captions";
 import { CongratsCard } from "../components/CongratsCard";
 import { CtaCard } from "../components/CtaCard";
-import { dip } from "../components/dip";
 import { FailureBadge } from "../components/FailureBadge";
 import { HookTitle } from "../components/HookTitle";
 import { QuestionCard } from "../components/QuestionCard";
 import { SafeZoneGuide } from "../components/SafeZoneGuide";
 import { SourceTag } from "../components/SourceTag";
+import {
+  sectionTransitions,
+  type SectionTransitionName,
+} from "../components/transitions/sectionTransitions";
 import { Watermark } from "../components/Watermark";
 import { audioCues } from "./audioCues";
 import { MemeMoment } from "./MemeMoment";
@@ -38,12 +41,16 @@ const TEMPLATE_SECTIONS = ["question", "congrats", "cta"] as const;
 // Bespoke scenes per post, for the sections in between.
 export type SceneMap = Record<Exclude<SectionId, (typeof TEMPLATE_SECTIONS)[number]>, React.FC>;
 
-export const Reel: React.FC<ReelProps & { scenes: SceneMap }> = ({
+// Transition into each section, keyed by the entering section. Unlisted sections use `dip`.
+export type TransitionMap = Partial<Record<SectionId, SectionTransitionName>>;
+
+export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: TransitionMap }> = ({
   script,
   vo,
   audio,
   showGuides,
   scenes,
+  transitions = {},
 }) => {
   const { fps, durationInFrames } = useVideoConfig();
   if (!vo) {
@@ -88,8 +95,7 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap }> = ({
             i > 0 ? (
               <TransitionSeries.Transition
                 key={`${section.id}-transition`}
-                presentation={dip()}
-                timing={linearTiming({ durationInFrames: durations.crossfade })}
+                {...sectionTransitions[transitions[section.id] ?? "dip"]()}
               />
             ) : null,
             <TransitionSeries.Sequence

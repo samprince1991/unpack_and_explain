@@ -136,6 +136,26 @@ Load fonts only through `src/brand/fonts.ts` (`@remotion/google-fonts`). Sentenc
 - Shared components read tokens (locked brand values). In bespoke scenes, keep layout and keyframes inline in `Interactive.*` styles so Studio can edit them, but colors, fonts and easings still come from `src/brand/`.
 - Name timing keys `crossfade`, not `transition`: the Remotion ESLint rule flags `transition` as a CSS transition.
 
+## Motion kit
+
+Reusable motion for scenes (preview every piece in Studio under **Kit**, `src/kit/`; posts never import from `src/kit`). Prefer these over hand-rolled `interpolate` maths.
+
+| Piece | Use |
+|---|---|
+| `components/motion/Reveal` | Fade + settle in (`at`), optional `exitAt`. Replaces `frame >= cue ? <X/> : null`, which snaps |
+| `components/motion/DrawPath` | Pen-stroke draw of any path (`@remotion/paths`), `eraseAt` to flow away, `dashed` |
+| `components/motion/Travel` | Dot moving along a path with a comet tail (signals, packets); `repeat`, `until` |
+| `components/motion/Ping` | Expanding amber rings on the key point |
+| `components/motion/Float` | Perlin-noise drift (`@remotion/noise`) so nothing sits still between beats |
+| `components/motion/Camera` | Wrap the drawing inside `SceneCanvas`: slow push-in plus `shots` that glide/zoom to a point on a cue. Pass `duration={useSection().durationInFrames}` in reels |
+| `components/motion/progress` | `enterProgress`, `exitProgress`, `stagger` |
+| `components/icons/LineIcon` | Any `lucide-react` icon in diagram style (`accent` = amber). Draw bespoke icons only when none fits |
+| `components/three/WireGlobe` | 3D line-art globe (`@remotion/three`). Animate only from `useCurrentFrame()`, never R3F `useFrame()`. Render with `--gl=angle` |
+
+**Section transitions:** `Reel` takes `transitions={{ mechanism: "push", payoff: "iris" }}` (keyed by the entering section; default `dip`). Options in `components/transitions/sectionTransitions.ts`: `dip`, `zoomDip` (new chapter), `push` (next step), `iris` (zoom into a detail), `wipe` (before/after, myth/fact). Scenes are transparent over one background, so every transition hands off sequentially or with complementary masks; never use stock `@remotion/transitions` presentations (slide, wipe, iris...) directly, they stack the two scenes.
+
+**Animation libraries:** only frame-driven ones. Framer Motion / motion.dev, CSS animations and react-spring run on the wall clock and flicker in renders. GSAP only via `@remotion/gsap` (`useGsapTimeline`), and only if a timeline is genuinely easier than `interpolate`.
+
 ## Remotion Elements
 
 Elements (remotion.dev/elements) are copy-in source snippets, not npm packages. They are added **only through Studio** (right inspector → Actions → **Browse Elements** → pick → confirm); there is no CLI, so an agent can't add them. All 40 catalog Elements we use are already installed (deps in `package.json`, assets in `public/elements/`).
@@ -179,7 +199,7 @@ Kept but not for current reels: lower thirds (faceless channel), polaroid/notebo
 3. Use `typeScale` sizes and motion presets (`ease.*`, `durations.*`).
 4. Use it inside a post scene within `layout.regions`; keep its `Interactive` props so Studio editing works.
 
-**When the user adds a new Element in Studio:** Studio drops `src/<slug>.element.tsx` + `src/<Name>Composition.tsx` and adds imports/entries to `Root.tsx`. Move both files into the right `src/elements/<category>/`, add a `<Composition id="El-<Name>">` line to `ElementsGallery.tsx` (use the demo's `durationInFrames`), and remove what Studio added to `Root.tsx`. Root only registers posts + `<ElementsGallery />`.
+**When the user adds a new Element in Studio:** Studio drops `src/<slug>.element.tsx` + `src/<Name>Composition.tsx` and adds imports/entries to `Root.tsx`. Move both files into the right `src/elements/<category>/`, add a `<Composition id="El-<Name>">` line to `ElementsGallery.tsx` (use the demo's `durationInFrames`), and remove what Studio added to `Root.tsx`. Root only registers posts + `<ElementsGallery />` + `<KitGallery />`.
 
 ## Memes
 

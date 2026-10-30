@@ -1,6 +1,7 @@
 import { Composition } from "remotion";
 import { carousel, video } from "./brand/tokens";
 import { ElementsGallery } from "./elements/ElementsGallery";
+import { KitGallery } from "./kit/KitGallery";
 import { Post02 } from "./posts/post-02-gps";
 import { Carousel18 } from "./posts/post-18-gps-steps";
 import { script as carousel18 } from "./posts/post-18-gps-steps/slides";
@@ -30,6 +31,7 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{ script: carousel18, showGuides: false }}
       />
       <ElementsGallery />
+      <KitGallery />
     </>
   );
 };
