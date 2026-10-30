@@ -17,6 +17,12 @@ describe("projectToScreen", () => {
     expect(p.y).toBeLessThan(center.y);
   });
 
+  it("scales 1 at the origin and larger toward the camera", () => {
+    expect(projectToScreen([0, 0, 0], still).scale).toBeCloseTo(1);
+    expect(projectToScreen([0, 0, 1], still).scale).toBeGreaterThan(1);
+    expect(projectToScreen([0, 0, 0], { ...still, zoom: 2 }).scale).toBeCloseTo(2);
+  });
+
   it("centers the pan point", () => {
     const p = projectToScreen([1, 0.5, 0], { ...still, pan: [1, 0.5], zoom: 2 });
     expect(p.x).toBeCloseTo(center.x);

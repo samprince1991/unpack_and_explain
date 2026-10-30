@@ -83,13 +83,16 @@ camera.position.set(0, 0, STAGE.distance);
 camera.updateMatrixWorld();
 
 // Frame pixels of a scene point under `view`. Mirrors Stage3D's groups:
-// rotate, then pan and zoom, then the fixed camera.
+// rotate, then pan and zoom, then the fixed camera. `scale` is the on-screen size of
+// one unit there, relative to the origin at zoom 1 (bigger when nearer the camera).
 export const projectToScreen = (point: Vec3, view: StageView) => {
   const v = new Vector3(...point).applyEuler(new Euler(...view.rotation));
   v.set((v.x - view.pan[0]) * view.zoom, (v.y - view.pan[1]) * view.zoom, v.z * view.zoom);
+  const scale = (view.zoom * STAGE.distance) / (STAGE.distance - v.z);
   v.project(camera);
   return {
     x: STAGE.left + ((v.x + 1) / 2) * STAGE.width,
     y: STAGE.top + ((1 - v.y) / 2) * STAGE.height,
+    scale,
   };
 };

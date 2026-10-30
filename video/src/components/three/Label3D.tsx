@@ -10,6 +10,9 @@ type Label3DProps = {
   offsetY?: number;
   opacity?: number;
   accent?: boolean;
+  // Shrink with distance like the 3D around it (icons on a ring), times `scale`.
+  depthScale?: boolean;
+  scale?: number;
   children: React.ReactNode;
 };
 
@@ -20,9 +23,12 @@ export const Label3D: React.FC<Label3DProps> = ({
   offsetY = 0,
   opacity = 1,
   accent = false,
+  depthScale = false,
+  scale = 1,
   children,
 }) => {
-  const { x, y } = projectToScreen(at, view);
+  const projected = projectToScreen(at, view);
+  const { x, y } = projected;
   return (
     <Interactive.Div
       name="3D label"
@@ -31,6 +37,7 @@ export const Label3D: React.FC<Label3DProps> = ({
         left: x,
         top: y + offsetY,
         translate: "-50% -50%",
+        scale: String((depthScale ? projected.scale : 1) * scale),
         whiteSpace: "nowrap",
         fontFamily: fonts.body,
         fontWeight: weights.bodyMedium,

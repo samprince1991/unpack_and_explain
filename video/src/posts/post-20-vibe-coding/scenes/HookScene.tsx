@@ -21,7 +21,7 @@ export const HookScene: React.FC = () => {
       <SceneCanvas>
         <Interactive.G name="Chat box">
           <Float seed="hook-chat">
-            <ChatBox x={540} y={720} width={780} text="make me a habit tracker" at={0} accentSend={false} />
+            <ChatBox x={540} y={720} width={740} text="make me a habit tracker" at={0} accentSend={false} />
           </Float>
         </Interactive.G>
         <Interactive.G name="Code" style={{ opacity: fade, filter: `blur(${blur}px)` }}>

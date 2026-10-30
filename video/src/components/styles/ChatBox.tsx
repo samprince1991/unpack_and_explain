@@ -10,6 +10,7 @@ type ChatBoxProps = {
   // Center of the box, frame coordinates.
   x: number;
   y: number;
+  // Keep it narrower than the column (780): the stroke and Float drift clip at its edge.
   width: number;
   // What the user types. Keep it short: one line at label size.
   text: string;

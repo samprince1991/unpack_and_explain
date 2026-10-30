@@ -9,8 +9,7 @@ export const script: PostScript = {
   hookHighlight: "zero",
   topic: "vibe coding",
   source: "Anthropic, How Claude Code works",
-  // Built before 3D hero scenes: keep the approved mechanism on re-renders.
-  hero3d: { optOut: "built before 3D heroes" },
+  hero3d: "mechanism",
   verify: [],
   sections: [
     {
@@ -36,7 +35,7 @@ export const script: PostScript = {
       voiceover:
         "Here's the trick. The agent doesn't answer once. It reads your project, plans the steps, and writes the code. Then it runs it. If it crashes, it reads the error, fixes the code, and runs again. It loops until it works.",
       visual:
-        'A circular loop builds node by node (folder, checklist, code, play). On "crashes" an amber error dot appears; it travels the loop once more and turns into a check.',
+        '3D hero: a tilted ring of four steps (folder, checklist, code, play) around the agent, slowly orbiting; a faint guide ring draws in first, then the steps build node by node. On "crashes" an amber error dot pops above "run", rides the ring once more and turns into a check.',
     },
     {
       id: "payoff",

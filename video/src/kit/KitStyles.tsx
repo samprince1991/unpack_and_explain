@@ -34,7 +34,7 @@ const Label: React.FC<{ text: string }> = ({ text }) => (
 const DEMOS: { name: string; draw: React.ReactNode }[] = [
   {
     name: "ChatBox",
-    draw: <ChatBox x={540} y={800} width={760} text="how does wifi work" at={0} />,
+    draw: <ChatBox x={540} y={800} width={700} text="how does wifi work" at={0} />,
   },
   {
     name: "CodeBlock",
