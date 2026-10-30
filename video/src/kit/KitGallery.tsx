@@ -4,6 +4,7 @@ import { Composition, Folder } from "remotion";
 import { video } from "../brand/tokens";
 import { KitIcons } from "./KitIcons";
 import { KitLooks, kitLooksFrames } from "./KitLooks";
+import { KitStyles, kitStylesFrames } from "./KitStyles";
 import { KitMotion } from "./KitMotion";
 import { KitThree } from "./KitThree";
 import { KitTransitions, kitTransitionsFrames } from "./KitTransitions";
@@ -32,6 +33,12 @@ export const KitGallery: React.FC = () => (
       id="Kit-Looks"
       component={KitLooks}
       durationInFrames={kitLooksFrames}
+      {...size}
+    />
+    <Composition
+      id="Kit-Styles"
+      component={KitStyles}
+      durationInFrames={kitStylesFrames}
       {...size}
     />
     <Composition

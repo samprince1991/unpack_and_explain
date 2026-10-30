@@ -1,0 +1,951 @@
+{
+  "postId": "post-20-vibe-coding",
+  "estimated": false,
+  "sections": [
+    {
+      "id": "question",
+      "text": "Do you know how vibe coding actually works in 2026?",
+      "file": "posts/post-20-vibe-coding/vo/question.mp3",
+      "durationMs": 3808,
+      "captions": [
+        {
+          "text": "Do",
+          "startMs": 0,
+          "endMs": 139,
+          "timestampMs": 70,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 186,
+          "endMs": 255,
+          "timestampMs": 221,
+          "confidence": null
+        },
+        {
+          "text": " know",
+          "startMs": 290,
+          "endMs": 418,
+          "timestampMs": 354,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 476,
+          "endMs": 592,
+          "timestampMs": 534,
+          "confidence": null
+        },
+        {
+          "text": " vibe",
+          "startMs": 685,
+          "endMs": 1010,
+          "timestampMs": 848,
+          "confidence": null
+        },
+        {
+          "text": " coding",
+          "startMs": 1080,
+          "endMs": 1393,
+          "timestampMs": 1237,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 1474,
+          "endMs": 1881,
+          "timestampMs": 1678,
+          "confidence": null
+        },
+        {
+          "text": " works",
+          "startMs": 1927,
+          "endMs": 2171,
+          "timestampMs": 2049,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 2206,
+          "endMs": 2264,
+          "timestampMs": 2235,
+          "confidence": null
+        },
+        {
+          "text": " 2026?",
+          "startMs": 2310,
+          "endMs": 3808,
+          "timestampMs": 3059,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "text": "In 2026, you don't need to read one line of code to build an app.",
+      "file": "posts/post-20-vibe-coding/vo/hook.mp3",
+      "durationMs": 4110,
+      "captions": [
+        {
+          "text": "In",
+          "startMs": 0,
+          "endMs": 151,
+          "timestampMs": 76,
+          "confidence": null
+        },
+        {
+          "text": " 2026,",
+          "startMs": 232,
+          "endMs": 1289,
+          "timestampMs": 761,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 1335,
+          "endMs": 1428,
+          "timestampMs": 1382,
+          "confidence": null
+        },
+        {
+          "text": " don't",
+          "startMs": 1474,
+          "endMs": 1649,
+          "timestampMs": 1562,
+          "confidence": null
+        },
+        {
+          "text": " need",
+          "startMs": 1707,
+          "endMs": 1904,
+          "timestampMs": 1805,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 1927,
+          "endMs": 1974,
+          "timestampMs": 1951,
+          "confidence": null
+        },
+        {
+          "text": " read",
+          "startMs": 2020,
+          "endMs": 2171,
+          "timestampMs": 2096,
+          "confidence": null
+        },
+        {
+          "text": " one",
+          "startMs": 2241,
+          "endMs": 2403,
+          "timestampMs": 2322,
+          "confidence": null
+        },
+        {
+          "text": " line",
+          "startMs": 2438,
+          "endMs": 2612,
+          "timestampMs": 2525,
+          "confidence": null
+        },
+        {
+          "text": " of",
+          "startMs": 2635,
+          "endMs": 2694,
+          "timestampMs": 2665,
+          "confidence": null
+        },
+        {
+          "text": " code",
+          "startMs": 2775,
+          "endMs": 3077,
+          "timestampMs": 2926,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 3100,
+          "endMs": 3158,
+          "timestampMs": 3129,
+          "confidence": null
+        },
+        {
+          "text": " build",
+          "startMs": 3204,
+          "endMs": 3367,
+          "timestampMs": 3286,
+          "confidence": null
+        },
+        {
+          "text": " an",
+          "startMs": 3413,
+          "endMs": 3460,
+          "timestampMs": 3436,
+          "confidence": null
+        },
+        {
+          "text": " app.",
+          "startMs": 3529,
+          "endMs": 4110,
+          "timestampMs": 3878,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "text": "It's called vibe coding. You type 'make me a habit tracker app', and an AI agent writes all the code.",
+      "file": "posts/post-20-vibe-coding/vo/setup.mp3",
+      "durationMs": 6966,
+      "captions": [
+        {
+          "text": "It's",
+          "startMs": 0,
+          "endMs": 232,
+          "timestampMs": 116,
+          "confidence": null
+        },
+        {
+          "text": " called",
+          "startMs": 267,
+          "endMs": 488,
+          "timestampMs": 378,
+          "confidence": null
+        },
+        {
+          "text": " vibe",
+          "startMs": 546,
+          "endMs": 859,
+          "timestampMs": 703,
+          "confidence": null
+        },
+        {
+          "text": " coding.",
+          "startMs": 906,
+          "endMs": 1428,
+          "timestampMs": 1167,
+          "confidence": null
+        },
+        {
+          "text": " You",
+          "startMs": 1753,
+          "endMs": 1904,
+          "timestampMs": 1829,
+          "confidence": null
+        },
+        {
+          "text": " type",
+          "startMs": 1974,
+          "endMs": 2276,
+          "timestampMs": 2125,
+          "confidence": null
+        },
+        {
+          "text": " 'make",
+          "startMs": 2322,
+          "endMs": 2624,
+          "timestampMs": 2473,
+          "confidence": null
+        },
+        {
+          "text": " me",
+          "startMs": 2670,
+          "endMs": 2740,
+          "timestampMs": 2705,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 2786,
+          "endMs": 2821,
+          "timestampMs": 2804,
+          "confidence": null
+        },
+        {
+          "text": " habit",
+          "startMs": 2891,
+          "endMs": 3158,
+          "timestampMs": 3024,
+          "confidence": null
+        },
+        {
+          "text": " tracker",
+          "startMs": 3181,
+          "endMs": 3529,
+          "timestampMs": 3355,
+          "confidence": null
+        },
+        {
+          "text": " app',",
+          "startMs": 3599,
+          "endMs": 3947,
+          "timestampMs": 3773,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 4272,
+          "endMs": 4470,
+          "timestampMs": 4371,
+          "confidence": null
+        },
+        {
+          "text": " an",
+          "startMs": 4540,
+          "endMs": 4609,
+          "timestampMs": 4575,
+          "confidence": null
+        },
+        {
+          "text": " AI",
+          "startMs": 4702,
+          "endMs": 5143,
+          "timestampMs": 4922,
+          "confidence": null
+        },
+        {
+          "text": " agent",
+          "startMs": 5213,
+          "endMs": 5515,
+          "timestampMs": 5364,
+          "confidence": null
+        },
+        {
+          "text": " writes",
+          "startMs": 5538,
+          "endMs": 5770,
+          "timestampMs": 5654,
+          "confidence": null
+        },
+        {
+          "text": " all",
+          "startMs": 5840,
+          "endMs": 6049,
+          "timestampMs": 5945,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 6107,
+          "endMs": 6177,
+          "timestampMs": 6142,
+          "confidence": null
+        },
+        {
+          "text": " code.",
+          "startMs": 6223,
+          "endMs": 6966,
+          "timestampMs": 6595,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "mechanism",
+      "text": "Here's the trick. The agent doesn't answer once. It reads your project, plans the steps, and writes the code. Then it runs it. If it crashes, it reads the error, fixes the code, and runs again. It loops until it works.",
+      "file": "posts/post-20-vibe-coding/vo/mechanism.mp3",
+      "durationMs": 14628,
+      "captions": [
+        {
+          "text": "Here's",
+          "startMs": 0,
+          "endMs": 302,
+          "timestampMs": 151,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 337,
+          "endMs": 406,
+          "timestampMs": 372,
+          "confidence": null
+        },
+        {
+          "text": " trick.",
+          "startMs": 453,
+          "endMs": 882,
+          "timestampMs": 668,
+          "confidence": null
+        },
+        {
+          "text": " The",
+          "startMs": 1207,
+          "endMs": 1335,
+          "timestampMs": 1271,
+          "confidence": null
+        },
+        {
+          "text": " agent",
+          "startMs": 1393,
+          "endMs": 1672,
+          "timestampMs": 1533,
+          "confidence": null
+        },
+        {
+          "text": " doesn't",
+          "startMs": 1707,
+          "endMs": 1962,
+          "timestampMs": 1835,
+          "confidence": null
+        },
+        {
+          "text": " answer",
+          "startMs": 1997,
+          "endMs": 2264,
+          "timestampMs": 2131,
+          "confidence": null
+        },
+        {
+          "text": " once.",
+          "startMs": 2345,
+          "endMs": 2752,
+          "timestampMs": 2548,
+          "confidence": null
+        },
+        {
+          "text": " It",
+          "startMs": 2961,
+          "endMs": 3100,
+          "timestampMs": 3031,
+          "confidence": null
+        },
+        {
+          "text": " reads",
+          "startMs": 3181,
+          "endMs": 3413,
+          "timestampMs": 3297,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 3448,
+          "endMs": 3576,
+          "timestampMs": 3512,
+          "confidence": null
+        },
+        {
+          "text": " project,",
+          "startMs": 3634,
+          "endMs": 4296,
+          "timestampMs": 3965,
+          "confidence": null
+        },
+        {
+          "text": " plans",
+          "startMs": 4505,
+          "endMs": 4888,
+          "timestampMs": 4697,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 4946,
+          "endMs": 5016,
+          "timestampMs": 4981,
+          "confidence": null
+        },
+        {
+          "text": " steps,",
+          "startMs": 5062,
+          "endMs": 5550,
+          "timestampMs": 5306,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 5584,
+          "endMs": 5735,
+          "timestampMs": 5659,
+          "confidence": null
+        },
+        {
+          "text": " writes",
+          "startMs": 5782,
+          "endMs": 6014,
+          "timestampMs": 5898,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 6060,
+          "endMs": 6142,
+          "timestampMs": 6101,
+          "confidence": null
+        },
+        {
+          "text": " code.",
+          "startMs": 6188,
+          "endMs": 6629,
+          "timestampMs": 6409,
+          "confidence": null
+        },
+        {
+          "text": " Then",
+          "startMs": 6954,
+          "endMs": 7117,
+          "timestampMs": 7036,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 7175,
+          "endMs": 7245,
+          "timestampMs": 7210,
+          "confidence": null
+        },
+        {
+          "text": " runs",
+          "startMs": 7303,
+          "endMs": 7570,
+          "timestampMs": 7437,
+          "confidence": null
+        },
+        {
+          "text": " it.",
+          "startMs": 7639,
+          "endMs": 7918,
+          "timestampMs": 7779,
+          "confidence": null
+        },
+        {
+          "text": " If",
+          "startMs": 8162,
+          "endMs": 8313,
+          "timestampMs": 8238,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 8382,
+          "endMs": 8452,
+          "timestampMs": 8417,
+          "confidence": null
+        },
+        {
+          "text": " crashes,",
+          "startMs": 8510,
+          "endMs": 9172,
+          "timestampMs": 8841,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 9242,
+          "endMs": 9358,
+          "timestampMs": 9300,
+          "confidence": null
+        },
+        {
+          "text": " reads",
+          "startMs": 9427,
+          "endMs": 9659,
+          "timestampMs": 9543,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 9694,
+          "endMs": 9776,
+          "timestampMs": 9735,
+          "confidence": null
+        },
+        {
+          "text": " error,",
+          "startMs": 9834,
+          "endMs": 10298,
+          "timestampMs": 10066,
+          "confidence": null
+        },
+        {
+          "text": " fixes",
+          "startMs": 10507,
+          "endMs": 10890,
+          "timestampMs": 10699,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 10948,
+          "endMs": 11018,
+          "timestampMs": 10983,
+          "confidence": null
+        },
+        {
+          "text": " code,",
+          "startMs": 11064,
+          "endMs": 11424,
+          "timestampMs": 11244,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 11447,
+          "endMs": 11552,
+          "timestampMs": 11500,
+          "confidence": null
+        },
+        {
+          "text": " runs",
+          "startMs": 11610,
+          "endMs": 11807,
+          "timestampMs": 11709,
+          "confidence": null
+        },
+        {
+          "text": " again.",
+          "startMs": 11854,
+          "endMs": 12341,
+          "timestampMs": 12098,
+          "confidence": null
+        },
+        {
+          "text": " It",
+          "startMs": 12782,
+          "endMs": 12933,
+          "timestampMs": 12858,
+          "confidence": null
+        },
+        {
+          "text": " loops",
+          "startMs": 13015,
+          "endMs": 13305,
+          "timestampMs": 13160,
+          "confidence": null
+        },
+        {
+          "text": " until",
+          "startMs": 13363,
+          "endMs": 13607,
+          "timestampMs": 13485,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 13653,
+          "endMs": 13711,
+          "timestampMs": 13682,
+          "confidence": null
+        },
+        {
+          "text": " works.",
+          "startMs": 13758,
+          "endMs": 14628,
+          "timestampMs": 14193,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "text": "But it's still predicting likely code. It doesn't know what you meant. So \"it runs\" doesn't mean \"it's right\". Always test what it builds.",
+      "file": "posts/post-20-vibe-coding/vo/payoff.mp3",
+      "durationMs": 9242,
+      "captions": [
+        {
+          "text": "But",
+          "startMs": 0,
+          "endMs": 197,
+          "timestampMs": 99,
+          "confidence": null
+        },
+        {
+          "text": " it's",
+          "startMs": 232,
+          "endMs": 337,
+          "timestampMs": 285,
+          "confidence": null
+        },
+        {
+          "text": " still",
+          "startMs": 372,
+          "endMs": 580,
+          "timestampMs": 476,
+          "confidence": null
+        },
+        {
+          "text": " predicting",
+          "startMs": 662,
+          "endMs": 1138,
+          "timestampMs": 900,
+          "confidence": null
+        },
+        {
+          "text": " likely",
+          "startMs": 1207,
+          "endMs": 1474,
+          "timestampMs": 1341,
+          "confidence": null
+        },
+        {
+          "text": " code.",
+          "startMs": 1556,
+          "endMs": 2078,
+          "timestampMs": 1817,
+          "confidence": null
+        },
+        {
+          "text": " It",
+          "startMs": 2403,
+          "endMs": 2508,
+          "timestampMs": 2456,
+          "confidence": null
+        },
+        {
+          "text": " doesn't",
+          "startMs": 2543,
+          "endMs": 2786,
+          "timestampMs": 2665,
+          "confidence": null
+        },
+        {
+          "text": " know",
+          "startMs": 2821,
+          "endMs": 2914,
+          "timestampMs": 2868,
+          "confidence": null
+        },
+        {
+          "text": " what",
+          "startMs": 2949,
+          "endMs": 3053,
+          "timestampMs": 3001,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 3088,
+          "endMs": 3158,
+          "timestampMs": 3123,
+          "confidence": null
+        },
+        {
+          "text": " meant.",
+          "startMs": 3239,
+          "endMs": 3587,
+          "timestampMs": 3413,
+          "confidence": null
+        },
+        {
+          "text": " So",
+          "startMs": 4284,
+          "endMs": 4551,
+          "timestampMs": 4418,
+          "confidence": null
+        },
+        {
+          "text": " \"it",
+          "startMs": 4725,
+          "endMs": 4969,
+          "timestampMs": 4847,
+          "confidence": null
+        },
+        {
+          "text": " runs\"",
+          "startMs": 5062,
+          "endMs": 5422,
+          "timestampMs": 5242,
+          "confidence": null
+        },
+        {
+          "text": " doesn't",
+          "startMs": 5445,
+          "endMs": 5700,
+          "timestampMs": 5573,
+          "confidence": null
+        },
+        {
+          "text": " mean",
+          "startMs": 5747,
+          "endMs": 5933,
+          "timestampMs": 5840,
+          "confidence": null
+        },
+        {
+          "text": " \"it's",
+          "startMs": 6060,
+          "endMs": 6304,
+          "timestampMs": 6182,
+          "confidence": null
+        },
+        {
+          "text": " right\".",
+          "startMs": 6385,
+          "endMs": 6838,
+          "timestampMs": 6611,
+          "confidence": null
+        },
+        {
+          "text": " Always",
+          "startMs": 7279,
+          "endMs": 7709,
+          "timestampMs": 7494,
+          "confidence": null
+        },
+        {
+          "text": " test",
+          "startMs": 7779,
+          "endMs": 8092,
+          "timestampMs": 7936,
+          "confidence": null
+        },
+        {
+          "text": " what",
+          "startMs": 8139,
+          "endMs": 8278,
+          "timestampMs": 8209,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 8313,
+          "endMs": 8359,
+          "timestampMs": 8336,
+          "confidence": null
+        },
+        {
+          "text": " builds.",
+          "startMs": 8406,
+          "endMs": 9242,
+          "timestampMs": 8824,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "congrats",
+      "text": "Congrats, you just learned how vibe coding works.",
+      "file": "posts/post-20-vibe-coding/vo/congrats.mp3",
+      "durationMs": 3050,
+      "captions": [
+        {
+          "text": "Congrats,",
+          "startMs": 0,
+          "endMs": 592,
+          "timestampMs": 296,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 615,
+          "endMs": 720,
+          "timestampMs": 668,
+          "confidence": null
+        },
+        {
+          "text": " just",
+          "startMs": 836,
+          "endMs": 1080,
+          "timestampMs": 958,
+          "confidence": null
+        },
+        {
+          "text": " learned",
+          "startMs": 1126,
+          "endMs": 1358,
+          "timestampMs": 1242,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1382,
+          "endMs": 1486,
+          "timestampMs": 1434,
+          "confidence": null
+        },
+        {
+          "text": " vibe",
+          "startMs": 1579,
+          "endMs": 1858,
+          "timestampMs": 1719,
+          "confidence": null
+        },
+        {
+          "text": " coding",
+          "startMs": 1904,
+          "endMs": 2194,
+          "timestampMs": 2049,
+          "confidence": null
+        },
+        {
+          "text": " works.",
+          "startMs": 2252,
+          "endMs": 3050,
+          "timestampMs": 2705,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "text": "Follow Unpack and Explain for how things actually work.",
+      "file": "posts/post-20-vibe-coding/vo/cta.mp3",
+      "durationMs": 3204,
+      "captions": [
+        {
+          "text": "Follow",
+          "startMs": 0,
+          "endMs": 313,
+          "timestampMs": 157,
+          "confidence": null
+        },
+        {
+          "text": " Unpack",
+          "startMs": 395,
+          "endMs": 731,
+          "timestampMs": 563,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 789,
+          "endMs": 859,
+          "timestampMs": 824,
+          "confidence": null
+        },
+        {
+          "text": " Explain",
+          "startMs": 906,
+          "endMs": 1277,
+          "timestampMs": 1092,
+          "confidence": null
+        },
+        {
+          "text": " for",
+          "startMs": 1335,
+          "endMs": 1428,
+          "timestampMs": 1382,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1474,
+          "endMs": 1591,
+          "timestampMs": 1533,
+          "confidence": null
+        },
+        {
+          "text": " things",
+          "startMs": 1672,
+          "endMs": 1927,
+          "timestampMs": 1800,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 2043,
+          "endMs": 2519,
+          "timestampMs": 2281,
+          "confidence": null
+        },
+        {
+          "text": " work.",
+          "startMs": 2577,
+          "endMs": 3204,
+          "timestampMs": 2891,
+          "confidence": null
+        }
+      ]
+    }
+  ]
+}

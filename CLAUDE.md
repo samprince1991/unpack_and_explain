@@ -172,6 +172,14 @@ Design: `docs/specs/2026-10-30-reel-variety-design.md`. **Fixed frame, varied co
 - Preview every style and motif in Studio: **Kit-Looks**.
 - **Scene style library:** reusable visual languages live in `src/components/styles/`, previewed in **Kit-Styles**. Build a new one when a post needs it (not in advance), make it reusable from the start (props, no post-specific text), and follow the diagram rules (neutral `colors.diagram.*`, one amber element, inside `SceneCanvas`). When planning a post's Visual column, check which styles the previous 3 posts used and lead with a different one.
 
+| Style piece | Use | First used |
+|---|---|---|
+| `styles/ChatBox` | UI mock: a chat input typing a message; send button can be the amber key | Post 20 hook |
+| `styles/CodeBlock` | UI mock: code as abstract lines (never readable), optional amber line, window chrome | Post 20 hook, setup |
+| `styles/CycleDiagram` | Steps on a ring with arcs drawing in; `cycleLoop()` gives a path for `Travel` | Post 20 mechanism |
+| `styles/PhoneFrame` | UI mock: phone outline + `phoneScreen()` for app content | Post 20 payoff |
+
+
 ## Remotion Elements
 
 Elements (remotion.dev/elements) are copy-in source snippets, not npm packages. They are added **only through Studio** (right inspector → Actions → **Browse Elements** → pick → confirm); there is no CLI, so an agent can't add them. All 40 catalog Elements we use are already installed (deps in `package.json`, assets in `public/elements/`).

@@ -7,14 +7,13 @@ category: "Everyday tech"
 subcategory: "AI"
 week: 5
 date: 2026-11-30
-status: scripted
+status: rendered
 hook_formula: 20
 hook_score: 70
 question_score: 62
 hook: "In 2026, you don't need to read one line of code to build an app."
 source: "Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works"
-verify:
-  - "Agent loop (read project, plan, write, run, read error, fix, repeat) matches the cited agent docs"
+verify: []
 metrics:  # fill in after posting
   views: null
   reach: null
@@ -45,7 +44,8 @@ metrics:  # fill in after posting
 ## Notes
 
 - Hook formula #20 Permission (70, STRONG). Alternatives scored: "One sentence, zero code, a working app. Here's what actually happens." (61), "Stop thinking AI writes the app once. It actually loops." (55).
-- `hookText` (on screen, 28 chars max): "No code needed in 2026".
+- `hookText` (on screen, 2 lines max): "Apps with zero code" ("No code needed in 2026" wrapped to 3 lines at hook size).
+- Agent loop checked 2026-10-30 against https://code.claude.com/docs/en/how-claude-code-works ("gather context, take action, verify results", repeating; example: run tests, read the error output, edit, run again).
 - Vibe coding was named by Andrej Karpathy in a post on X, 2 Feb 2025 (confirmed). Not spoken, can go in the caption.
 - Long beats (setup, mechanism) get a visual change every 2 s, per CLAUDE.md.
 

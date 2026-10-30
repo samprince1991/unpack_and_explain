@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**20 ideas** (by status: 14 idea, 3 scripted, 2 rendered, 1 posted) · next up: #1 [How a card payment works](idea-01-card-payment/idea.md) (Mon 2 Nov)
+**20 ideas** (by status: 14 idea, 2 scripted, 3 rendered, 1 posted) · next up: #1 [How a card payment works](idea-01-card-payment/idea.md) (Mon 2 Nov)
 
 ## Topics
 
@@ -20,7 +20,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Most intercontinental data travels under the ocean. | E | idea | TeleGeography | 1 |
 | Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | The cloud is a very real building. | Q | idea | Cloud provider data center docs | - |
 | Data & codes | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | A QR code is a tiny grid of yes/no answers. | E | idea | ISO/IEC 18004 overview | - |
-| AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | scripted | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | 1 |
+| AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | rendered | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | - |
 
 ### Money & payments (5)
 
@@ -66,7 +66,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-11-24 | 4 | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Everyday tech › Data & codes | E | idea | - | - | - |
 | 2026-11-26 | 4 | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Money & payments › Payments | E | idea | - | - | - |
 | 2026-11-27 | 4 | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | Everyday tech › Location & GPS | Q | idea | - | - | - |
-| 2026-11-30 | 5 | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | Everyday tech › AI | E | scripted | 70 | 127 | 51 |
+| 2026-11-30 | 5 | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | Everyday tech › AI | E | rendered | 70 | 127 | 51 |
 
 Est. s assumes 2.5 words/s; the real length comes from the voice-over.
 

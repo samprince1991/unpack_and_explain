@@ -8,6 +8,8 @@ import { Post02 } from "./posts/post-02-gps";
 import { Carousel18 } from "./posts/post-18-gps-steps";
 import { script as carousel18 } from "./posts/post-18-gps-steps/slides";
 import { script as post02 } from "./posts/post-02-gps/script";
+import { Post20 } from "./posts/post-20-vibe-coding";
+import { script as post20 } from "./posts/post-20-vibe-coding/script";
 import { calculateReelMetadata } from "./templates/metadata";
 
 export const RemotionRoot: React.FC = () => {
@@ -31,6 +33,16 @@ export const RemotionRoot: React.FC = () => {
         width={video.width}
         height={video.height}
         defaultProps={{ script: post02, vo: null, audio: null, showGuides: false }}
+        calculateMetadata={calculateReelMetadata}
+      />
+      <Composition
+        id="Post20-VibeCoding"
+        component={Post20}
+        durationInFrames={video.fps * 40}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post20, vo: null, audio: null, showGuides: false }}
         calculateMetadata={calculateReelMetadata}
       />
       <Composition
