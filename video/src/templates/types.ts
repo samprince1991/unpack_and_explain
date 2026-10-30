@@ -1,5 +1,6 @@
 import type { Caption } from "@remotion/captions";
 import type { MEME_SECTIONS, MemeId } from "../brand/memes";
+import type { Look } from "./look";
 
 export type Format = "E" | "F" | "Q";
 
@@ -46,6 +47,9 @@ export type PostScript = {
     cue: string;
     seconds?: number;
   };
+  // Pins question card / hook title / transition mix styles. Unset slots rotate by
+  // postNumber (see templates/look.ts).
+  look?: Partial<Look>;
   // F posts only: section that gets the WHEN IT FAILED badge.
   failureSection?: SectionId;
   sections: ScriptSection[];

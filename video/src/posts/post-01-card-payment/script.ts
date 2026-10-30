@@ -1,3 +1,4 @@
+import { classicLook } from "../../templates/look";
 import type { PostScript } from "../../templates/types";
 
 export const script: PostScript = {
@@ -8,6 +9,8 @@ export const script: PostScript = {
   hookText: "A card tap moves $0",
   hookHighlight: "$0",
   topic: "card payment",
+  // Built before per-post looks: keep the approved look on re-renders.
+  look: classicLook,
   source: "Card network / acquirer docs",
   verify: [
     "Settlement timing (varies by country and card network); cite the source on screen",

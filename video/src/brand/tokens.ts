@@ -32,6 +32,8 @@ export const brand = {
 } as const;
 
 export const typeScale = {
+  // One big word as a whole beat (question card bigTopic, kinetic type).
+  display: 128,
   hook: 104,
   // Opening question card: longer than the hook, so a step smaller to sit in ~3 lines.
   question: 88,

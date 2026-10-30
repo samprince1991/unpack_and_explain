@@ -4,7 +4,7 @@ import { TransitionSeries } from "@remotion/transitions";
 import { AbsoluteFill, interpolate, Sequence, staticFile, useVideoConfig } from "remotion";
 import { music, sfx, type AudioLibrary } from "../brand/audio";
 import { clamp, durations } from "../brand/motion";
-import { AmbientWaves } from "../components/AmbientWaves";
+import { AmbientMotif } from "../components/AmbientMotif";
 import { Background } from "../components/Background";
 import { Captions } from "../components/Captions";
 import { CongratsCard } from "../components/CongratsCard";
@@ -20,6 +20,7 @@ import {
 } from "../components/transitions/sectionTransitions";
 import { Watermark } from "../components/Watermark";
 import { audioCues } from "./audioCues";
+import { pickLook, transitionMixes } from "./look";
 import { MemeMoment } from "./MemeMoment";
 import { SectionContext } from "./SectionContext";
 import { computeTimeline, mergeCaptions, SOURCE_LEAD_SECONDS } from "./timing";
@@ -41,7 +42,7 @@ const TEMPLATE_SECTIONS = ["question", "congrats", "cta"] as const;
 // Bespoke scenes per post, for the sections in between.
 export type SceneMap = Record<Exclude<SectionId, (typeof TEMPLATE_SECTIONS)[number]>, React.FC>;
 
-// Transition into each section, keyed by the entering section. Unlisted sections use `dip`.
+// Transition into each section, keyed by the entering section. Wins over the look's mix.
 export type TransitionMap = Partial<Record<SectionId, SectionTransitionName>>;
 
 export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: TransitionMap }> = ({
@@ -73,17 +74,19 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: Transi
   };
   const cta = timing("cta");
   const sourceFrom = Math.max(0, cta.from - SOURCE_LEAD_SECONDS * fps);
+  const look = pickLook(script.postNumber, script.look);
+  const mix: TransitionMap = { ...transitionMixes[look.transitions], ...transitions };
 
   return (
     <AbsoluteFill>
       <Background />
-      <AmbientWaves />
+      <AmbientMotif format={script.format} />
       <TransitionSeries>
         {vo.sections.flatMap((section, i) => {
           const t = timing(section.id);
           const scene =
             section.id === "question" ? (
-              <QuestionCard question={section.text} topic={script.topic} />
+              <QuestionCard question={section.text} topic={script.topic} variant={look.question} />
             ) : section.id === "congrats" ? (
               <CongratsCard text={section.text} topic={script.topic} />
             ) : section.id === "cta" ? (
@@ -95,7 +98,7 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: Transi
             i > 0 ? (
               <TransitionSeries.Transition
                 key={`${section.id}-transition`}
-                {...sectionTransitions[transitions[section.id] ?? "dip"]()}
+                {...sectionTransitions[mix[section.id] ?? "dip"]()}
               />
             ) : null,
             <TransitionSeries.Sequence
@@ -108,7 +111,11 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: Transi
               >
                 {scene}
                 {section.id === "hook" ? (
-                  <HookTitle text={script.hookText} highlight={script.hookHighlight} />
+                  <HookTitle
+                    text={script.hookText}
+                    highlight={script.hookHighlight}
+                    variant={look.hook}
+                  />
                 ) : null}
                 {section.id === script.failureSection ? <FailureBadge /> : null}
                 {script.meme && section.id === script.meme.section ? (

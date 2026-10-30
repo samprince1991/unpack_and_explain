@@ -100,6 +100,7 @@ All colors come from `video/src/brand/tokens.ts`. **Never write a hex value anyw
 
 | Role | Font | Size |
 |---|---|---|
+| Display (big topic word, kinetic type) | Poppins SemiBold | 128 px (`typeScale.display`), one word or short phrase |
 | Hook / big title | Poppins SemiBold | 96-120 px, max 2 lines |
 | Scene title | Poppins SemiBold | 72 px |
 | Caption | Inter SemiBold | 64 px, 1-2 lines |
@@ -152,9 +153,24 @@ Reusable motion for scenes (preview every piece in Studio under **Kit**, `src/ki
 | `components/icons/LineIcon` | Any `lucide-react` icon in diagram style (`accent` = amber). Draw bespoke icons only when none fits |
 | `components/three/WireGlobe` | 3D line-art globe (`@remotion/three`). Animate only from `useCurrentFrame()`, never R3F `useFrame()`. Render with `--gl=angle` |
 
-**Section transitions:** `Reel` takes `transitions={{ mechanism: "push", payoff: "iris" }}` (keyed by the entering section; default `dip`). Options in `components/transitions/sectionTransitions.ts`: `dip`, `zoomDip` (new chapter), `push` (next step), `iris` (zoom into a detail), `wipe` (before/after, myth/fact). Scenes are transparent over one background, so every transition hands off sequentially or with complementary masks; never use stock `@remotion/transitions` presentations (slide, wipe, iris...) directly, they stack the two scenes.
+**Section transitions:** each post's look picks a transition mix (see Variety). `Reel` also takes `transitions={{ mechanism: "push", payoff: "iris" }}` (keyed by the entering section), which wins over the mix. Options in `components/transitions/sectionTransitions.ts`: `dip`, `zoomDip` (new chapter), `push` (next step), `iris` (zoom into a detail), `wipe` (before/after, myth/fact). Scenes are transparent over one background, so every transition hands off sequentially or with complementary masks; never use stock `@remotion/transitions` presentations (slide, wipe, iris...) directly, they stack the two scenes.
 
 **Animation libraries:** only frame-driven ones. Framer Motion / motion.dev, CSS animations and react-spring run on the wall clock and flicker in renders. GSAP only via `@remotion/gsap` (`useGsapTimeline`), and only if a timeline is genuinely easier than `interpolate`.
+
+## Variety (every reel looks different inside the same brand)
+
+Design: `docs/specs/2026-10-30-reel-variety-design.md`. **Fixed frame, varied content layer.** Colors, fonts, Brian's voice, captions, the congrats and CTA cards, logo, watermark, safe zones, section order and audio never vary. These do:
+
+| Layer | How it varies | Where |
+|---|---|---|
+| **Look** | `pickLook(postNumber)` rotates the question card style (`center`, `bigTopic`, `underline`, `spotlight`), hook title style (`settle`, `wordByWord`, `underline`, `rise`) and transition mix (`steady`, `process`, `chapter`, `focus`). Consecutive posts never share a style. Deterministic: same render every time | `src/templates/look.ts` |
+| **Format signature** | Background motif by `format`: E moving waves, F blueprint grid, Q pulsing dot grid. Never overridden, so the format is felt before it's said | `src/components/AmbientMotif.tsx` |
+| **Scene styles** | Each post draws its scenes in 2-3 visual languages that suit the topic (line-art diagram, UI mock, cycle diagram, kinetic type, map/globe, chart...). Pick different ones from the last few posts | `src/components/styles/` (see below) |
+
+- **Leave `look` unset** in `script.ts` by default; the rotation does the work. Pin a slot (`look: { hook: "rise" }`) only when a style clearly fits the topic better, and say why in a comment. Posts 1 and 2 pin `classicLook` because they were approved before looks existed; never change that.
+- Question card text is readable at frame 0 in every style; only the decoration (underline, pill outline) animates.
+- Preview every style and motif in Studio: **Kit-Looks**.
+- **Scene style library:** reusable visual languages live in `src/components/styles/`, previewed in **Kit-Styles**. Build a new one when a post needs it (not in advance), make it reusable from the start (props, no post-specific text), and follow the diagram rules (neutral `colors.diagram.*`, one amber element, inside `SceneCanvas`). When planning a post's Visual column, check which styles the previous 3 posts used and lead with a different one.
 
 ## Remotion Elements
 
@@ -191,7 +207,7 @@ Kept but not for current reels: lower thirds (faceless channel), polaroid/notebo
 |---|---|---|
 | `components/elements/NumberCounter.tsx` | `charts/number-counter` | Inline count-up; inherits font/color from parent. `start` + `countFrames`; sync with `useCue` |
 | `components/elements/CircleMark.tsx` | `text/circle-marker` | Hand-drawn amber circle, `box="around"`. Give the circled text its own line with room on all sides, or the ellipse clips neighbouring words |
-| `components/AmbientWaves.tsx` | `backgrounds/moving-waves` | Template-level background in every reel (navy shades, 15% opacity). Keep it barely visible |
+| `components/AmbientWaves.tsx` | `backgrounds/moving-waves` | E-format background motif (via `AmbientMotif`, navy shades, 15% opacity). Keep it barely visible |
 
 **To use an Element in a post (required steps):**
 1. Copy (don't move) the library file to `src/components/elements/<slug>.tsx`.
@@ -282,12 +298,13 @@ The `instagram-agent` plugin (13 skills, `/ig-*`) runs the account around the Re
 1. Script it with `/ig-reel` (pipeline stage 4) into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Caption` from `/ig-caption`, `verify` list; layout as idea 2), run `npm run ig -- idea-NN-slug`, record `hook_formula` / `hook_score` / `question_score`, set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built → rendered → posted); after posting add `link` (the live post URL) and fill in `metrics`.
 2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` <= 28 chars (2 lines), CTA voiceover exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words. List "verify" facts in `verify`.
 3. Run TTS -> VO + captions (bleed is trimmed automatically; check the "trimmed" lines it prints). Or build with estimated timing first.
-4. Build scenes (`hook`, `setup`, `mechanism`, `payoff`) from the Visual column with shared components; bespoke scene components live only inside the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card automatically. Sync visuals to the VO with `useCue("word", fallbackFraction)`.
+4. Build scenes (`hook`, `setup`, `mechanism`, `payoff`) from the Visual column with shared components and the scene styles in `src/components/styles/` (lead with a style the last 3 posts didn't use; see Variety); bespoke scene components live only inside the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card automatically. Sync visuals to the VO with `useCue("word", fallbackFraction)`.
 5. Export `PostNN` (wrapping `Reel` with the scene map) from `index.tsx` and register `PostNN-Slug` in `src/Root.tsx` with `calculateMetadata={calculateReelMetadata}`.
 6. Run `npm run lint`, review in Studio against the QA checklist, then render when asked.
 
 ## QA checklist (every reel)
 
+- [ ] Look comes from the rotation (or a pinned slot with a reason); scene styles differ from the last 3 posts
 - [ ] Question card visible at frame 0; congrats line before the CTA; total length 35-52 s
 - [ ] Nothing outside safe zones; cover readable in 4:5 crop
 - [ ] Readable text >= 44 px, sources >= 32 px

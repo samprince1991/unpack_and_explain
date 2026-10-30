@@ -1,3 +1,4 @@
+import { classicLook } from "../../templates/look";
 import type { PostScript } from "../../templates/types";
 
 export const script: PostScript = {
@@ -8,6 +9,8 @@ export const script: PostScript = {
   hookText: "GPS doesn't track you",
   hookHighlight: "track",
   topic: "GPS",
+  // Built before per-post looks: keep the approved look on re-renders.
+  look: classicLook,
   // Most people think maps need data; land it right after "...works with no internet."
   meme: { id: "they-dont-know", section: "payoff", cue: "internet", seconds: 2 },
   source: "GPS.gov",
