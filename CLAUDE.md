@@ -125,6 +125,7 @@ Load fonts only through `src/brand/fonts.ts` (`@remotion/google-fonts`). Sentenc
 1. **Frame 0:** the question card is already visible (no fade-in). Avatar logo sting finishes in < 1 s alongside it. The hook title appears when the hook section starts.
 2. **Throughout (not CTA):** avatar watermark, burned-in captions (active word amber), motion at least every 2 s.
 3. **Mechanism:** one idea per beat, shown visually and synced with `useCue`. **No on-screen text that repeats the voice-over**: captions already carry the words, so labels like numbered step badges are redundant (removed from post 2 after review). On-screen text is only for what the VO doesn't say: a number, a unit conversion, a source. `StepBadge` stays in `components/` for lists that are NOT spoken word-for-word.
+   **The mechanism is a 3D hero scene** (`hero3d: "mechanism"` in `script.ts`; design: `docs/specs/2026-10-30-3d-hero-design.md`): `Stage3D` + styles from `src/components/three/` (see Motion kit), same color roles (neutral lines, one amber element per beat), labels and numbers as `Label3D` (never text in WebGL). Hook, setup and payoff stay 2D. Posts 01, 02 and 20 opt out (`hero3d: { optOut }`); `src/brand/hero3d.test.ts` fails if a hero3d post's `MechanismScene.tsx` doesn't use `components/three`.
 4. **Before / on CTA:** `SourceTag` ("Source: ...") visible for the last 3 s.
 5. **CTA card (3-4 s):** Stacked-Dark logo, tagline, handle (`brand.handle` = `@unpack_and_explain`).
 
@@ -151,7 +152,15 @@ Reusable motion for scenes (preview every piece in Studio under **Kit**, `src/ki
 | `components/motion/Camera` | Wrap the drawing inside `SceneCanvas`: slow push-in plus `shots` that glide/zoom to a point on a cue. Pass `duration={useSection().durationInFrames}` in reels |
 | `components/motion/progress` | `enterProgress`, `exitProgress`, `stagger` |
 | `components/icons/LineIcon` | Any `lucide-react` icon in diagram style (`accent` = amber). Draw bespoke icons only when none fits |
-| `components/three/WireGlobe` | 3D line-art globe (`@remotion/three`). Animate only from `useCurrentFrame()`, never R3F `useFrame()`. Render with `--gl=angle` |
+| `components/three/Stage3D` + `useStageView` | Canvas for every 3D hero: fills the visual region on the 540 column; `orbit`, `tilt`, `angle`, `shots` (`{ at, pan, zoom }`, like `Camera`). Pass `duration={useSection().durationInFrames}` and the same `view` to every `Label3D` |
+| `components/three/Label3D` | 2D text (brand fonts) pinned to a 3D point; tracks the orbit and shots |
+| `components/three/WireObject` | Box / cylinder / slab / card / phone as line art (dark fill hides back edges); `role="amber"` for the key object, `drawAt` entrance |
+| `components/three/ExplodedView` | Layers pull apart at `explodeAt`; `keyIndex` is the amber layer; `layerPosition()` for labels. "What's inside" |
+| `components/three/NetworkGraph3D` | Nodes + links in space; amber packet travels `route` (`travelAt`, `travelFrames`), destination pings |
+| `components/three/Bars3D` | Columns rise from a floor grid; `keyIndex` amber; values via `Label3D` at `barTop()` |
+| `components/three/WireGlobe` | 3D line-art globe |
+
+**All 3D** (`@remotion/three` + `@react-three/drei` `Line` / `Edges`): animate only from `useCurrentFrame()`, never R3F `useFrame()`; colors and line widths from `components/three/materials.ts`. `remotion.config.ts` sets the ANGLE GL renderer, so CLI renders and stills need no `--gl` flag (Node-API renders must pass `chromiumOptions: { gl: "angle" }`). Preview all styles in Studio: **Kit-Three**.
 
 **Section transitions:** each post's look picks a transition mix (see Variety). `Reel` also takes `transitions={{ mechanism: "push", payoff: "iris" }}` (keyed by the entering section), which wins over the mix. Options in `components/transitions/sectionTransitions.ts`: `dip`, `zoomDip` (new chapter), `push` (next step), `iris` (zoom into a detail), `wipe` (before/after, myth/fact). Scenes are transparent over one background, so every transition hands off sequentially or with complementary masks; never use stock `@remotion/transitions` presentations (slide, wipe, iris...) directly, they stack the two scenes.
 
@@ -165,6 +174,7 @@ Design: `docs/specs/2026-10-30-reel-variety-design.md`. **Fixed frame, varied co
 |---|---|---|
 | **Look** | `pickLook(postNumber)` rotates the question card style (`center`, `bigTopic`, `underline`, `spotlight`), hook title style (`settle`, `wordByWord`, `underline`, `rise`) and transition mix (`steady`, `process`, `chapter`, `focus`). Consecutive posts never share a style. Deterministic: same render every time | `src/templates/look.ts` |
 | **Format signature** | Background motif by `format`: E moving waves, F blueprint grid, Q pulsing dot grid. Never overridden, so the format is felt before it's said | `src/components/AmbientMotif.tsx` |
+| **3D hero style** | The mechanism's 3D style (WireObject, ExplodedView, NetworkGraph3D, Bars3D, WireGlobe). Don't lead with the previous post's | `src/components/three/` |
 | **Scene styles** | Each post draws its scenes in 2-3 visual languages that suit the topic (line-art diagram, UI mock, cycle diagram, kinetic type, map/globe, chart...). Pick different ones from the last few posts | `src/components/styles/` (see below) |
 
 - **Leave `look` unset** in `script.ts` by default; the rotation does the work. Pin a slot (`look: { hook: "rise" }`) only when a style clearly fits the topic better, and say why in a comment. Posts 1 and 2 pin `classicLook` because they were approved before looks existed; never change that.
@@ -304,15 +314,16 @@ The `instagram-agent` plugin (13 skills, `/ig-*`) runs the account around the Re
 ## Per-post workflow
 
 1. Script it with `/ig-reel` (pipeline stage 4) into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Caption` from `/ig-caption`, `verify` list; layout as idea 2), run `npm run ig -- idea-NN-slug`, record `hook_formula` / `hook_score` / `question_score`, set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built → rendered → posted); after posting add `link` (the live post URL) and fill in `metrics`.
-2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` <= 28 chars (2 lines), CTA voiceover exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words. List "verify" facts in `verify`.
+2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` <= 28 chars (2 lines), CTA voiceover exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words, `hero3d: "mechanism"`. List "verify" facts in `verify`.
 3. Run TTS -> VO + captions (bleed is trimmed automatically; check the "trimmed" lines it prints). Or build with estimated timing first.
-4. Build scenes (`hook`, `setup`, `mechanism`, `payoff`) from the Visual column with shared components and the scene styles in `src/components/styles/` (lead with a style the last 3 posts didn't use; see Variety); bespoke scene components live only inside the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card automatically. Sync visuals to the VO with `useCue("word", fallbackFraction)`.
+4. Build scenes (`hook`, `setup`, `mechanism`, `payoff`) from the Visual column with shared components and the scene styles in `src/components/styles/` (lead with a style the last 3 posts didn't use; see Variety); bespoke scene components live only inside the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card automatically. Sync visuals to the VO with `useCue("word", fallbackFraction)`. The mechanism is the 3D hero (`src/components/three/`; lead with a different 3D style than the previous post).
 5. Export `PostNN` (wrapping `Reel` with the scene map) from `index.tsx` and register `PostNN-Slug` in `src/Root.tsx` with `calculateMetadata={calculateReelMetadata}`.
 6. Run `npm run lint`, review in Studio against the QA checklist, then render when asked.
 
 ## QA checklist (every reel)
 
 - [ ] Look comes from the rotation (or a pinned slot with a reason); scene styles differ from the last 3 posts
+- [ ] Mechanism is a 3D hero: lines readable at full size, back edges hidden, one amber element per beat, nothing clipped at the column edge during orbit/shots, labels inside `layout.regions`
 - [ ] Question card visible at frame 0; congrats line before the CTA; total length 35-52 s
 - [ ] Nothing outside safe zones; cover readable in 4:5 crop
 - [ ] Readable text >= 44 px, sources >= 32 px

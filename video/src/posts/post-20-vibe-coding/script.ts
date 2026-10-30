@@ -9,6 +9,8 @@ export const script: PostScript = {
   hookHighlight: "zero",
   topic: "vibe coding",
   source: "Anthropic, How Claude Code works",
+  // Built before 3D hero scenes: keep the approved mechanism on re-renders.
+  hero3d: { optOut: "built before 3D heroes" },
   verify: [],
   sections: [
     {

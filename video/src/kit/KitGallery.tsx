@@ -6,7 +6,7 @@ import { KitIcons } from "./KitIcons";
 import { KitLooks, kitLooksFrames } from "./KitLooks";
 import { KitStyles, kitStylesFrames } from "./KitStyles";
 import { KitMotion } from "./KitMotion";
-import { KitThree } from "./KitThree";
+import { KitThree, kitThreeFrames } from "./KitThree";
 import { KitTransitions, kitTransitionsFrames } from "./KitTransitions";
 
 const size = {
@@ -50,7 +50,7 @@ export const KitGallery: React.FC = () => (
     <Composition
       id="Kit-Three"
       component={KitThree}
-      durationInFrames={150}
+      durationInFrames={kitThreeFrames}
       {...size}
     />
   </Folder>

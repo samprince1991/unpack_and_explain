@@ -14,6 +14,7 @@ const base: PostScript = {
   topic: "Thing",
   source: "Somewhere.gov",
   verify: [],
+  hero3d: "mechanism",
   sections: [
     { id: "question", voiceover: "Do you know how this works?", visual: "" },
     { id: "hook", voiceover: words(10), visual: "" },
@@ -26,6 +27,16 @@ const base: PostScript = {
 };
 
 describe("validateScript", () => {
+  it("accepts an explicit 3D opt-out with a reason", () => {
+    const script = { ...base, hero3d: { optOut: "built before 3D heroes" } };
+    expect(validateScript(script).errors).toEqual([]);
+  });
+
+  it("rejects a 3D opt-out without a reason", () => {
+    const script = { ...base, hero3d: { optOut: "  " } };
+    expect(validateScript(script).errors).toContain("hero3d.optOut needs a reason");
+  });
+
   it("accepts a valid E script", () => {
     expect(validateScript(base)).toEqual({ errors: [], warnings: [] });
   });

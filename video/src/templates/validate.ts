@@ -43,6 +43,9 @@ export const validateScript = (script: PostScript) => {
   if (cta && cta.voiceover !== brand.ctaLine) {
     errors.push(`CTA voiceover must be exactly "${brand.ctaLine}"`);
   }
+  if (typeof script.hero3d === "object" && !script.hero3d.optOut.trim()) {
+    errors.push("hero3d.optOut needs a reason");
+  }
 
   if (script.meme) {
     const { section, cue, seconds = MEME_DEFAULT_SECONDS } = script.meme;

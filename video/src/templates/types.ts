@@ -50,6 +50,9 @@ export type PostScript = {
   // Pins question card / hook title / transition mix styles. Unset slots rotate by
   // postNumber (see templates/look.ts).
   look?: Partial<Look>;
+  // The mechanism is a 3D hero scene (three.js, src/components/three). Posts built
+  // before 3D heroes opt out with a reason. See docs/specs/2026-10-30-3d-hero-design.md.
+  hero3d: "mechanism" | { optOut: string };
   // F posts only: section that gets the WHEN IT FAILED badge.
   failureSection?: SectionId;
   sections: ScriptSection[];

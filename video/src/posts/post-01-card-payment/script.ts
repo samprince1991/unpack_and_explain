@@ -12,6 +12,8 @@ export const script: PostScript = {
   // Built before per-post looks: keep the approved look on re-renders.
   look: classicLook,
   source: "Card network / acquirer docs",
+  // Built before 3D hero scenes: keep the approved mechanism on re-renders.
+  hero3d: { optOut: "built before 3D heroes" },
   verify: [
     "Settlement timing (varies by country and card network); cite the source on screen",
     "Up to five companies in the chain (terminal provider/processor, shop's bank, card network, your bank)",

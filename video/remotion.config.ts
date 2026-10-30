@@ -11,3 +11,7 @@ Config.setRspack(true);
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
 Config.setDefaultPremountInSeconds(2);
+
+// WebGL (three.js hero scenes) needs ANGLE in headless Chrome. CLI only: Node-API
+// renders must pass chromiumOptions: { gl: "angle" } themselves.
+Config.setChromiumOpenGlRenderer("angle");
