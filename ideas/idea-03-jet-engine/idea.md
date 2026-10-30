@@ -23,7 +23,7 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 3: How a jet engine works + Gimli Glider
+# Idea 3: How a jet engine works + Gimli Glider
 
 ## Script
 

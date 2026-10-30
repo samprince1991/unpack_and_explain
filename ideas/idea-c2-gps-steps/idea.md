@@ -8,7 +8,7 @@ week: 2
 date: 2026-11-11
 status: idea
 hook: "Saveable cheat sheet"
-source: "Reuse facts from post 2"
+source: "Reuse facts from idea 2"
 verify: []
 metrics:  # fill in after posting
   reach: null
@@ -22,4 +22,4 @@ metrics:  # fill in after posting
 
 # Carousel C2: How GPS works in 4 steps
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

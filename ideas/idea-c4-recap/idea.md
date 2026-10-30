@@ -22,4 +22,4 @@ metrics:  # fill in after posting
 
 # Carousel C4: Best-performing topic as a recap
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

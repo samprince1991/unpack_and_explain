@@ -20,6 +20,6 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 6: How stock exchanges match orders + Knight Capital
+# Idea 6: How stock exchanges match orders + Knight Capital
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

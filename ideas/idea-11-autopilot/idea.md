@@ -20,6 +20,6 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 11: How a plane's autopilot works
+# Idea 11: How a plane's autopilot works
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

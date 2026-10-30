@@ -21,6 +21,6 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 7: How credit scores work
+# Idea 7: How credit scores work
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

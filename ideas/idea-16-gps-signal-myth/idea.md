@@ -10,7 +10,7 @@ status: idea
 hook: "GPS works with no signal at all."
 source: "GPS.gov"
 verify: []
-notes: "Pairs with post 2"
+notes: "Pairs with idea 2"
 metrics:  # fill in after posting
   reach: null
   watch_pct: null  # average watch time, % of video length
@@ -21,6 +21,6 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 16: Myth: 'Your phone needs a signal to use GPS'
+# Idea 16: Myth: 'Your phone needs a signal to use GPS'
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

@@ -21,6 +21,6 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 15: How banks move money internationally (SWIFT)
+# Idea 15: How banks move money internationally (SWIFT)
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

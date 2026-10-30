@@ -21,7 +21,7 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 1: How a card payment works
+# Idea 1: How a card payment works
 
 ## Script
 

@@ -20,6 +20,6 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 14: How a QR code stores data
+# Idea 14: How a QR code stores data
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

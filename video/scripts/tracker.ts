@@ -2,23 +2,24 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { voice } from "../src/brand/voice";
 import type { PostScript } from "../src/templates/types";
-import { parsePost, renderIndex, validatePost, type Post } from "./lib/tracker";
+import { parseIdea, postFolder, renderIndex, validateIdea, type Idea } from "./lib/tracker";
 
-// Checks every posts/*/post.md and regenerates posts/README.md (plan, performance, summary).
+// Checks every ideas/*/idea.md and regenerates ideas/README.md (ideas by area, performance, summary).
 // Usage (from video/): npm run tracker
-const postsDir = join(process.cwd(), "..", "posts");
+const ideasDir = join(process.cwd(), "..", "ideas");
 
-// A built post's script.ts must say exactly what post.md says.
-const checkScriptTs = async (post: Post, errors: string[]) => {
-  const file = join(process.cwd(), "src", "posts", post.folder, "script.ts");
+// A built idea's script.ts must say exactly what idea.md says.
+const checkScriptTs = async (idea: Idea, errors: string[]) => {
+  const folder = postFolder(idea);
+  const file = join(process.cwd(), "src", "posts", folder, "script.ts");
   if (!existsSync(file)) {
-    if (["built", "rendered", "posted"].includes(post.meta.status)) {
-      errors.push(`status is ${post.meta.status} but video/src/posts/${post.folder}/script.ts is missing`);
+    if (["built", "rendered", "posted"].includes(idea.meta.status)) {
+      errors.push(`status is ${idea.meta.status} but video/src/posts/${folder}/script.ts is missing`);
     }
     return;
   }
-  const { script } = (await import(`../src/posts/${post.folder}/script`)) as { script: PostScript };
-  for (const s of post.sections) {
+  const { script } = (await import(`../src/posts/${folder}/script`)) as { script: PostScript };
+  for (const s of idea.sections) {
     const code = script.sections.find((c) => c.id === s.id)?.voiceover;
     if (code !== s.voiceover) {
       errors.push(`${s.id} voice-over differs from script.ts (update both, then re-run TTS for it)`);
@@ -27,28 +28,28 @@ const checkScriptTs = async (post: Post, errors: string[]) => {
 };
 
 const main = async () => {
-  const folders = readdirSync(postsDir, { withFileTypes: true })
-    .filter((d) => d.isDirectory() && existsSync(join(postsDir, d.name, "post.md")))
+  const folders = readdirSync(ideasDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && existsSync(join(ideasDir, d.name, "idea.md")))
     .map((d) => d.name);
-  const posts = folders.map((f) => parsePost(f, readFileSync(join(postsDir, f, "post.md"), "utf8")));
+  const ideas = folders.map((f) => parseIdea(f, readFileSync(join(ideasDir, f, "idea.md"), "utf8")));
 
   let failed = false;
   const seen = new Map<string, string>();
-  for (const post of posts) {
-    const { errors, warnings } = validatePost(post);
-    const prev = seen.get(String(post.meta.id));
+  for (const idea of ideas) {
+    const { errors, warnings } = validateIdea(idea);
+    const prev = seen.get(String(idea.meta.id));
     if (prev) {
-      errors.push(`id ${post.meta.id} is also used by ${prev}`);
+      errors.push(`id ${idea.meta.id} is also used by ${prev}`);
     }
-    seen.set(String(post.meta.id), post.folder);
-    await checkScriptTs(post, errors);
-    for (const e of errors) console.log(`  ERROR ${post.folder}: ${e}`);
-    for (const w of warnings) console.log(`  warn  ${post.folder}: ${w}`);
+    seen.set(String(idea.meta.id), idea.folder);
+    await checkScriptTs(idea, errors);
+    for (const e of errors) console.log(`  ERROR ${idea.folder}: ${e}`);
+    for (const w of warnings) console.log(`  warn  ${idea.folder}: ${w}`);
     failed ||= errors.length > 0;
   }
 
-  writeFileSync(join(postsDir, "README.md"), renderIndex(posts, voice.wordsPerSecond));
-  console.log(`Checked ${posts.length} posts, wrote posts/README.md`);
+  writeFileSync(join(ideasDir, "README.md"), renderIndex(ideas, voice.wordsPerSecond));
+  console.log(`Checked ${ideas.length} ideas, wrote ideas/README.md`);
   if (failed) {
     process.exit(1);
   }

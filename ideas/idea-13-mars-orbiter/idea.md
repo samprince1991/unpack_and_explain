@@ -10,7 +10,7 @@ status: idea
 hook: "A $125M spacecraft was lost over a unit mix-up."
 source: "NASA/JPL Mishap Investigation Board report"
 verify: []
-notes: "Same theme as post 3 (unit mix-up). Consider swapping to avoid repeating."
+notes: "Same theme as idea 3 (unit mix-up). Consider swapping to avoid repeating."
 metrics:  # fill in after posting
   reach: null
   watch_pct: null  # average watch time, % of video length
@@ -21,6 +21,6 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 13: Unit conversions + Mars Climate Orbiter
+# Idea 13: Unit conversions + Mars Climate Orbiter
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

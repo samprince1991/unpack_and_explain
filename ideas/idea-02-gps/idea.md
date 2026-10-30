@@ -6,7 +6,8 @@ format: E
 area: "Everyday tech"
 week: 1
 date: 2026-11-03
-status: built
+status: posted
+link: "https://www.instagram.com/reel/DfE-k9so_ys"
 hook: "GPS doesn't track you. Your phone just listens."
 source: "GPS.gov"
 verify:
@@ -23,7 +24,7 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 2: How GPS finds you
+# Idea 2: How GPS finds you
 
 ## Script
 

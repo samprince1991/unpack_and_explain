@@ -20,6 +20,6 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 5: How WiFi works
+# Idea 5: How WiFi works
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

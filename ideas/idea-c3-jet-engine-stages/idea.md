@@ -8,7 +8,7 @@ week: 3
 date: 2026-11-18
 status: idea
 hook: "Suck, squeeze, bang, blow"
-source: "Reuse facts from post 3"
+source: "Reuse facts from idea 3"
 verify: []
 metrics:  # fill in after posting
   reach: null
@@ -22,4 +22,4 @@ metrics:  # fill in after posting
 
 # Carousel C3: Jet engine in 4 stages
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.

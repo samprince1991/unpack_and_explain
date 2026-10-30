@@ -21,7 +21,7 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 4: Myth: planes fly because air pushes up from below
+# Idea 4: Myth: planes fly because air pushes up from below
 
 ## Script
 

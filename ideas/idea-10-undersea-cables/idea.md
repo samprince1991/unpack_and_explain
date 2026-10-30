@@ -22,6 +22,6 @@ metrics:  # fill in after posting
   follows: null
 ---
 
-# Post 10: How undersea cables carry the internet
+# Idea 10: How undersea cables carry the internet
 
-Not scripted yet. Add `## Script` and `## Caption` sections (see post-02-gps) when it is.
+Not scripted yet. Add `## Script` and `## Caption` sections (see idea-02-gps) when it is.
