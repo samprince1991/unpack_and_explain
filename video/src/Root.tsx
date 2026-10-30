@@ -1,7 +1,9 @@
 import { Composition } from "remotion";
-import { video } from "./brand/tokens";
+import { carousel, video } from "./brand/tokens";
 import { ElementsGallery } from "./elements/ElementsGallery";
 import { Post02 } from "./posts/post-02-gps";
+import { Carousel18 } from "./posts/post-18-gps-steps";
+import { script as carousel18 } from "./posts/post-18-gps-steps/slides";
 import { script as post02 } from "./posts/post-02-gps/script";
 import { calculateReelMetadata } from "./templates/metadata";
 
@@ -17,6 +19,15 @@ export const RemotionRoot: React.FC = () => {
         height={video.height}
         defaultProps={{ script: post02, vo: null, audio: null, showGuides: false }}
         calculateMetadata={calculateReelMetadata}
+      />
+      <Composition
+        id="Carousel18-GpsSteps"
+        component={Carousel18}
+        durationInFrames={carousel18.slides.length}
+        fps={video.fps}
+        width={carousel.width}
+        height={carousel.height}
+        defaultProps={{ script: carousel18, showGuides: false }}
       />
       <ElementsGallery />
     </>

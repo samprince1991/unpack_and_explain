@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { voice } from "../src/brand/voice";
-import type { PostScript } from "../src/templates/types";
+import type { CarouselScript, PostScript } from "../src/templates/types";
 import { renderIndex } from "./lib/readme";
 import { isCarousel, parseIdea, parseTaxonomy, postFolder, validateIdea, type Idea } from "./lib/tracker";
 
@@ -11,9 +11,6 @@ const ideasDir = join(process.cwd(), "..", "ideas");
 
 // A built reel's script.ts must say exactly what idea.md says.
 const checkScriptTs = async (idea: Idea, errors: string[]) => {
-  if (isCarousel(idea)) {
-    return;
-  }
   const folder = postFolder(idea);
   const file = join(process.cwd(), "src", "posts", folder, "script.ts");
   if (!existsSync(file)) {
@@ -29,6 +26,28 @@ const checkScriptTs = async (idea: Idea, errors: string[]) => {
       errors.push(`${s.id} voice-over differs from script.ts (update both, then re-run TTS for it)`);
     }
   }
+};
+
+// A built carousel's slides.ts must say exactly what idea.md says.
+const checkSlidesTs = async (idea: Idea, errors: string[]) => {
+  const folder = postFolder(idea);
+  const file = join(process.cwd(), "src", "posts", folder, "slides.ts");
+  if (!existsSync(file)) {
+    if (["built", "rendered", "posted"].includes(idea.meta.status)) {
+      errors.push(`status is ${idea.meta.status} but video/src/posts/${folder}/slides.ts is missing`);
+    }
+    return;
+  }
+  const { script } = (await import(`../src/posts/${folder}/slides`)) as { script: CarouselScript };
+  if (script.slides.length !== idea.slides.length) {
+    errors.push(`slides.ts has ${script.slides.length} slides, idea.md has ${idea.slides.length}`);
+  }
+  idea.slides.forEach((s, i) => {
+    const code = script.slides[i];
+    if (code && (code.headline !== s.headline || code.body !== s.body)) {
+      errors.push(`slide ${i + 1} differs from slides.ts (update both)`);
+    }
+  });
 };
 
 const main = async () => {
@@ -53,7 +72,7 @@ const main = async () => {
         errors.push(`companion_of ${idea.meta.companion_of} is not a reel idea`);
       }
     }
-    await checkScriptTs(idea, errors);
+    await (isCarousel(idea) ? checkSlidesTs(idea, errors) : checkScriptTs(idea, errors));
     for (const e of errors) console.log(`  ERROR ${idea.folder}: ${e}`);
     for (const w of warnings) console.log(`  warn  ${idea.folder}: ${w}`);
     failed ||= errors.length > 0;

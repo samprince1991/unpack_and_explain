@@ -14,7 +14,8 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
   - `src/components/`: shared branded components. Depend only on `src/brand/`.
   - `src/elements/`: original Remotion Elements library by category (reference only, see Remotion Elements).
   - `src/templates/Reel.tsx`: section sequencing, format rules, audio, captions.
-  - `src/posts/post-NN-slug/`: `script.ts` (typed data) + `scenes/*.tsx` for that post only.
+  - `src/posts/post-NN-slug/`: `script.ts` (typed data) + `scenes/*.tsx` for that post only. Carousels use `slides.ts` instead of `script.ts`.
+  - `src/templates/Carousel.tsx`: carousel slides (frame N = slide N+1), layouts per slide kind, footer.
   - `public/posts/post-NN/`: generated VO mp3s and `captions.json`.
   - `scripts/tts.ts`: generates VO + timestamps from `script.ts`.
 
@@ -22,7 +23,7 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 
 - Preview: `npm run dev` (Remotion Studio)
 - Typecheck + lint: `npm run lint` (run before saying any work is done)
-- Content tracker: `npm run tracker` checks every `ideas/*/idea.md` (front matter, section order, "?" / "Congrats," / CTA / no "!", 100-130 words, https `link`, hook/question scores >= 50, carousel slide limits, `companion_of`, and that a built reel's VO text matches its `src/posts/post-NN-slug/script.ts`) and regenerates `ideas/README.md`. Run it after editing any idea.
+- Content tracker: `npm run tracker` checks every `ideas/*/idea.md` (front matter, section order, "?" / "Congrats," / CTA / no "!", 100-130 words, https `link`, hook/question scores >= 50, carousel slide limits, `companion_of`, that a built reel's VO text matches its `src/posts/post-NN-slug/script.ts`, and that a built carousel's slides match its `slides.ts`) and regenerates `ideas/README.md`. Run it after editing any idea.
 - Instagram checks: `npm run ig -- idea-NN-slug [--keywords "gps,satellites"]` runs the instagram-agent plugin's tools on one idea: `hookscore.py` (question card + hook, or carousel cover), `beats.py` at 150 wpm (reels), `caption.py` (feed-truncation box, hashtags, one ask, search terms) and `detect.py` (AI-text panel). Read-only; record `hook_formula` / `hook_score` / `question_score` in `idea.md` yourself. Needs the plugin installed (or `IG_SKILLS_DIR`); it sets `PYTHONUTF8=1`, without which the tools crash on Windows. Run the tools directly the same way: `PYTHONUTF8=1 python <skills>/ig-reel/hookscore.py --hook "one line"`.
 - Unit tests: `npm test` (includes the brand guard: fails on any color literal or font-family string outside `src/brand/`)
 - Logos: `npm run assets` regenerates `public/brand/avatar.svg` + `stacked.svg` from `logo/` (transparent, cropped)
@@ -36,6 +37,8 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 - QA motion (required before calling a reel done): `npx remotion render build PostNN-Slug out/seq --sequence --image-format=jpeg --scale=0.25`, then `python scripts/contact-sheet.py out/seq out/qa/sheet 15 32` and inspect every sheet, plus every 4th frame around each section boundary. Single stills miss overlaps that only happen in motion and transitions.
 - Render: `npx remotion render PostNN-Slug out/post-NN-slug.mp4` (only when the user asks), then **always** master it: `npm run master -- out/post-NN-slug.mp4` → `out/post-NN-slug.master.mp4` (two-pass loudnorm to -14 LUFS / -1 dBTP, video copied untouched). Upload the `.master.mp4`. The raw mix sits around -21 LUFS, so an unmastered upload sounds quiet next to other reels.
 - Cover still: `npx remotion still PostNN-Slug out/post-NN-slug-cover.png --frame=<n>`
+- Carousel QA: `npx remotion render CarouselNN-Slug out/qa/carousel --sequence --image-format=png --props=./qa-guides.json` (guides: 120 px margin, slide center, the slide's regions) and inspect every PNG.
+- Carousel render (only when the user asks): `npx remotion render CarouselNN-Slug out/post-NN-slug --sequence --image-format=png`; one slide: `npx remotion still CarouselNN-Slug out/post-NN-slug/slide-N.png --frame=<N-1>`.
 
 ## Formats
 
@@ -53,7 +56,11 @@ Swipe posts for ideas with steps or a list worth re-reading (saves and sends). W
 - **Slides table** in `idea.md`: `## Slides` with `Slide | Headline | Body`. 6-10 slides: 1 cover (6 words or fewer, the hook), 2 stake (also works as a second cover), then one idea per slide (headline 7 words or fewer, body 25 words or fewer), a recap slide (the one people screenshot), and a CTA slide with one ask. The tracker enforces the counts.
 - **Look:** same brand as reels: dark only, token colors, diagrams in neutral line art with one amber key element, Poppins headlines, Inter body (>= 44 px readable text, >= 32 px source). Slide number (3/8) and the handle on every slide, small. Keep text clear of the outer 120 px. Source on the last content or recap slide.
 - **Caption:** `/ig-caption` Job B (the caption carries the hook, since the cover used its six words). Alt text for the cover at minimum.
-- **Build (Phase 2, not built yet):** a Remotion `Carousel` composition at 1080x1350, one still per slide via `npx remotion still`, using `src/brand/` and shared components. Design it the first time a carousel reaches `scripted`. Until then a carousel stops at `scripted`.
+- **Build:** `src/templates/Carousel.tsx` renders a `CarouselNN-Slug` composition at 1080x1350, one frame per slide (design: `docs/specs/2026-10-30-carousel-renderer-design.md`). Per post:
+  1. `src/posts/post-NN-slug/slides.ts`: `CarouselScript` with each slide's `kind` (`cover`, `content`..., `recap`, `cta`) and headline/body copied **verbatim** from `idea.md` (the tracker checks it), `coverHighlight` (one amber word on the cover), `source`, `verify`. Plus `slides.test.ts` asserting `validateCarousel` returns no errors or warnings.
+  2. `scenes/*.tsx`: one visual per slide that needs one, drawn into `SlideCanvas` (neutral line art, one amber element). The recap and CTA slides have none (the template draws the numbered list + source, and the logo + teal handle).
+  3. `index.tsx` exports `CarouselNN` (wraps `Carousel` with `visuals={{ 1: CoverVisual, ... }}`, keyed by slide number); register `CarouselNN-Slug` in `Root.tsx` with `durationInFrames={script.slides.length}`.
+  4. Run the carousel QA render, `npm run lint`, `npm test`, `npm run tracker`; set `status: built`. Render the PNGs only when asked (`rendered`), upload them in order (`posted`).
 - **Schedule:** one per week, on Wednesday.
 
 ## Platform specs

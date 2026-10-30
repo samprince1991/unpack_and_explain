@@ -1,4 +1,4 @@
-import { video } from "./tokens";
+import { carousel, video } from "./tokens";
 
 // Instagram Reels UI overlays. Nothing important may sit in these margins.
 // Bottom 350 covers the organic Reels overlay (username, 2-line caption, audio label) with margin;
@@ -35,3 +35,25 @@ export const layout = {
     source: { top: 1490, bottom: 1560 },
   },
 } as const;
+
+// Carousel slides: keep everything clear of the outer 120 px (grid crop and the app's
+// rounded corners), centered on the slide. Regions are y ranges; text uses the column.
+export const carouselLayout = (width: number, height: number) => {
+  const margin = 120;
+  const at = (top: number, bottom: number) => ({ top, bottom });
+  return {
+    margin,
+    column: { x: margin, width: width - margin * 2 },
+    regions: {
+      headline: at(150, 390),
+      visual: at(420, 800),
+      body: at(830, height - 220),
+      footer: at(height - 180, height - margin),
+      coverHook: at(190, 560),
+      coverVisual: at(590, 930),
+      coverBody: at(960, height - 250),
+    },
+  };
+};
+
+export const slideLayout = carouselLayout(carousel.width, carousel.height);

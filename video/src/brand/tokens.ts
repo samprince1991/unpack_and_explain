@@ -43,3 +43,14 @@ export const typeScale = {
 
 export const video = { width: 1080, height: 1920, fps: 30 } as const;
 
+
+// Carousels (format C): 4:5 feed slides, read on a phone at about a third of real size,
+// so body text stays >= 44 px and the footer/source >= 32 px.
+export const carousel = { width: 1080, height: 1350 } as const;
+
+export const carouselType = {
+  cover: 100,
+  headline: 76,
+  body: 46,
+  footer: 32,
+} as const;

@@ -2,7 +2,7 @@ import yaml from "js-yaml";
 import { brand } from "../../src/brand/tokens";
 import { countWords } from "../../src/templates/timing";
 import { SECTION_ORDER, type SectionId } from "../../src/templates/types";
-import { WORD_RANGE } from "../../src/templates/validate";
+import { SLIDE_RANGE, SLIDE_WORDS, WORD_RANGE } from "../../src/templates/validate";
 
 // The content tracker: one ideas/idea-NN-slug/idea.md per idea (YAML front matter +
 // script). `npm run tracker` validates them and writes ideas/README.md. Once an idea is
@@ -26,9 +26,8 @@ export const METRIC_KEYS = [
 
 // Minimum ig-reel hookscore.py score for the hook and the question card.
 export const MIN_HOOK_SCORE = 50;
-// ig-carousel limits.
-export const SLIDE_RANGE = { min: 6, max: 10 } as const;
-export const SLIDE_WORDS = { cover: 6, headline: 7, body: 25 } as const;
+// ig-carousel limits live in src/templates/validate.ts so the renderer agrees.
+export { SLIDE_RANGE, SLIDE_WORDS };
 
 export type Status = (typeof STATUSES)[number];
 export type IdeaFormat = (typeof FORMATS)[number];

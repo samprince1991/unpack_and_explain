@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**19 ideas** (by status: 15 idea, 3 scripted, 1 posted) · next up: #1 [How a card payment works](idea-01-card-payment/idea.md) (Mon 2 Nov)
+**19 ideas** (by status: 14 idea, 3 scripted, 1 rendered, 1 posted) · next up: #1 [How a card payment works](idea-01-card-payment/idea.md) (Mon 2 Nov)
 
 ## Topics
 
@@ -13,7 +13,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
 |---|---|---|---|---|---|---|---|
 | Location & GPS | 2 | [How GPS finds you](idea-02-gps/idea.md) | GPS doesn't track you. Your phone just listens. | E | [posted](https://www.instagram.com/reel/DfE-k9so_ys) | GPS.gov | 3 |
-| Location & GPS | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | Saveable cheat sheet | C | idea | Reuse facts from idea 2 | - |
+| Location & GPS | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | No internet. Still a pin. Why? | C | rendered | GPS.gov | 3 |
 | Location & GPS | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | GPS works with no signal at all. | Q | idea | GPS.gov | - |
 | Wireless | 5 | [How WiFi works](idea-05-wifi/idea.md) | WiFi is just radio, and your router is a tiny radio station. | E | idea | IEEE / Wi-Fi Alliance basics | - |
 | Wireless | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | What actually happens if you don't switch it on? | Q | idea | Aviation authority guidance | - |
@@ -53,7 +53,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-11-06 | 1 | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | - | 118 | 47 |
 | 2026-11-09 | 2 | 5 | [How WiFi works](idea-05-wifi/idea.md) | Everyday tech › Wireless | E | idea | - | - | - |
 | 2026-11-10 | 2 | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | Money & payments › Markets | F | idea | - | - | - |
-| 2026-11-11 | 2 | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | Everyday tech › Location & GPS | C | idea | - | - | - |
+| 2026-11-11 | 2 | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | Everyday tech › Location & GPS | C | rendered | 66.2 | 9 slides | - |
 | 2026-11-12 | 2 | 7 | [How credit scores work](idea-07-credit-score/idea.md) | Money & payments › Credit | E | idea | - | - | - |
 | 2026-11-13 | 2 | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | Everyday tech › Wireless | Q | idea | - | - | - |
 | 2026-11-16 | 3 | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | Aviation & engineering › Structures | F | idea | - | - | - |

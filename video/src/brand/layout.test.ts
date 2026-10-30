@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { contentBox, coverCrop, layout } from "./layout";
+import { contentBox, coverCrop, layout, slideLayout } from "./layout";
+import { carousel } from "./tokens";
 
 describe("layout", () => {
   it("computes the IG-safe content box for 1080x1920", () => {
@@ -38,5 +39,33 @@ describe("layout", () => {
     const crop = coverCrop(1080, 1920);
     expect(layout.regions.visual.top).toBeGreaterThanOrEqual(crop.y);
     expect(layout.regions.visual.bottom).toBeLessThanOrEqual(crop.y + crop.height);
+  });
+});
+
+describe("slideLayout", () => {
+  it("centers the column on the slide", () => {
+    expect(slideLayout.column.x + slideLayout.column.width / 2).toBe(carousel.width / 2);
+  });
+
+  it("keeps every region inside the 120 px margin", () => {
+    for (const r of Object.values(slideLayout.regions)) {
+      expect(r.top).toBeGreaterThanOrEqual(slideLayout.margin);
+      expect(r.bottom).toBeLessThanOrEqual(carousel.height - slideLayout.margin);
+      expect(r.bottom).toBeGreaterThan(r.top);
+    }
+  });
+
+  it("stacks headline, visual, body and footer without overlap", () => {
+    const { headline, visual, body, footer, coverHook, coverVisual, coverBody } = slideLayout.regions;
+    for (const [a, b] of [
+      [headline, visual],
+      [visual, body],
+      [body, footer],
+      [coverHook, coverVisual],
+      [coverVisual, coverBody],
+      [coverBody, footer],
+    ]) {
+      expect(a.bottom).toBeLessThanOrEqual(b.top);
+    }
   });
 });

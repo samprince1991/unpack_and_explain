@@ -69,3 +69,29 @@ export type VoManifest = {
   estimated: boolean;
   sections: VoSection[];
 };
+
+// Carousels (format C): 1080x1350 stills, one per slide.
+export type SlideKind = "cover" | "content" | "recap" | "cta";
+
+export type CarouselSlide = {
+  kind: SlideKind;
+  // Copied verbatim from the ## Slides table in idea.md (npm run tracker checks it).
+  headline: string;
+  body: string;
+};
+
+export type CarouselScript = {
+  // Folder name under src/posts, e.g. "post-18-gps-steps".
+  id: string;
+  postNumber: number;
+  title: string;
+  // One word of the cover headline to color amber.
+  coverHighlight?: string;
+  // Shown as "Source: ..." on the recap slide.
+  source: string;
+  // Reel idea this carousel accompanies.
+  companionOf?: number;
+  slides: CarouselSlide[];
+  // Facts flagged "verify". Must be checked before posting.
+  verify: string[];
+};
