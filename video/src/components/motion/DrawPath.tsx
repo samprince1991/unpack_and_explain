@@ -26,7 +26,8 @@ export const DrawPath: React.FC<DrawPathProps> = ({
   dashed = false,
 }) => {
   const frame = useCurrentFrame();
-  const maskId = useId();
+  // useId contains characters (":" or "«»") that break url(#...), so keep it alphanumeric.
+  const maskId = `draw${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   const draw = interpolate(frame, [at, at + frames], [0, 1], {
     ...clamp,
     easing: ease.smooth,
@@ -59,7 +60,9 @@ export const DrawPath: React.FC<DrawPathProps> = ({
   // solid drawn mask instead.
   return (
     <g>
-      <mask id={maskId}>
+      {/* userSpaceOnUse: the default box is the path's bounding box, which is zero-wide
+          for a straight line and would hide it entirely. */}
+      <mask id={maskId} maskUnits="userSpaceOnUse">
         <path
           d={d}
           fill="none"

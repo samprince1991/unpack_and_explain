@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**19 ideas** (by status: 14 idea, 3 scripted, 1 rendered, 1 posted) · next up: #1 [How a card payment works](idea-01-card-payment/idea.md) (Mon 2 Nov)
+**19 ideas** (by status: 14 idea, 2 scripted, 2 rendered, 1 posted) · next up: #1 [How a card payment works](idea-01-card-payment/idea.md) (Mon 2 Nov)
 
 ## Topics
 
@@ -25,7 +25,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 
 | Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
 |---|---|---|---|---|---|---|---|
-| Payments | 1 | [How a card payment works](idea-01-card-payment/idea.md) | You tap your card. Up to 5 companies get involved in 2 seconds. | E | scripted | Card network / acquirer docs | 1 |
+| Payments | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Nobody tells you a card tap moves zero money. | E | rendered | Card network / acquirer docs | 2 |
 | Payments | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Saveable cheat sheet | C | idea | Reuse facts from idea 1 | - |
 | Payments | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Sending $100 abroad can take 3 banks. | E | idea | SWIFT public docs | 1 |
 | Markets | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | A software glitch lost $440M in 45 minutes. | F | idea | SEC order on Knight Capital (2013) | - |
@@ -46,7 +46,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 
 | Date | Wk | # | Idea | Topic | Fmt | Status | Hook score | Words | Est. s |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-11-02 | 1 | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Money & payments › Payments | E | scripted | - | 126 | 50 |
+| 2026-11-02 | 1 | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Money & payments › Payments | E | rendered | 81.4 | 121 | 48 |
 | 2026-11-03 | 1 | 2 | [How GPS finds you](idea-02-gps/idea.md) | Everyday tech › Location & GPS | E | [posted](https://www.instagram.com/reel/DfE-k9so_ys) | - | 126 | 50 |
 | 2026-11-04 | 1 | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Money & payments › Payments | C | idea | - | - | - |
 | 2026-11-05 | 1 | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | Aviation & engineering › Engines | F | scripted | - | 123 | 49 |

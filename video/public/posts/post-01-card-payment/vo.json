@@ -1,0 +1,909 @@
+{
+  "postId": "post-01-card-payment",
+  "estimated": false,
+  "sections": [
+    {
+      "id": "question",
+      "text": "Who approves your card in 2 seconds?",
+      "file": "posts/post-01-card-payment/vo/question.mp3",
+      "durationMs": 2090,
+      "captions": [
+        {
+          "text": "Who",
+          "startMs": 0,
+          "endMs": 186,
+          "timestampMs": 93,
+          "confidence": null
+        },
+        {
+          "text": " approves",
+          "startMs": 244,
+          "endMs": 615,
+          "timestampMs": 430,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 662,
+          "endMs": 813,
+          "timestampMs": 738,
+          "confidence": null
+        },
+        {
+          "text": " card",
+          "startMs": 882,
+          "endMs": 1219,
+          "timestampMs": 1051,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 1265,
+          "endMs": 1324,
+          "timestampMs": 1295,
+          "confidence": null
+        },
+        {
+          "text": " 2",
+          "startMs": 1393,
+          "endMs": 1509,
+          "timestampMs": 1451,
+          "confidence": null
+        },
+        {
+          "text": " seconds?",
+          "startMs": 1579,
+          "endMs": 2090,
+          "timestampMs": 1834,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "text": "Nobody tells you a card tap moves zero money.",
+      "file": "posts/post-01-card-payment/vo/hook.mp3",
+      "durationMs": 2786,
+      "captions": [
+        {
+          "text": "Nobody",
+          "startMs": 0,
+          "endMs": 302,
+          "timestampMs": 151,
+          "confidence": null
+        },
+        {
+          "text": " tells",
+          "startMs": 337,
+          "endMs": 522,
+          "timestampMs": 430,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 557,
+          "endMs": 627,
+          "timestampMs": 592,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 685,
+          "endMs": 708,
+          "timestampMs": 697,
+          "confidence": null
+        },
+        {
+          "text": " card",
+          "startMs": 766,
+          "endMs": 1022,
+          "timestampMs": 894,
+          "confidence": null
+        },
+        {
+          "text": " tap",
+          "startMs": 1045,
+          "endMs": 1277,
+          "timestampMs": 1161,
+          "confidence": null
+        },
+        {
+          "text": " moves",
+          "startMs": 1347,
+          "endMs": 1521,
+          "timestampMs": 1434,
+          "confidence": null
+        },
+        {
+          "text": " zero",
+          "startMs": 1637,
+          "endMs": 1916,
+          "timestampMs": 1777,
+          "confidence": null
+        },
+        {
+          "text": " money.",
+          "startMs": 1985,
+          "endMs": 2786,
+          "timestampMs": 2386,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "text": "Your card doesn't hold your money. It holds a number that points to your bank. Up to five companies pass that number along.",
+      "file": "posts/post-01-card-payment/vo/setup.mp3",
+      "durationMs": 7198,
+      "captions": [
+        {
+          "text": "Your",
+          "startMs": 0,
+          "endMs": 197,
+          "timestampMs": 99,
+          "confidence": null
+        },
+        {
+          "text": " card",
+          "startMs": 255,
+          "endMs": 499,
+          "timestampMs": 377,
+          "confidence": null
+        },
+        {
+          "text": " doesn't",
+          "startMs": 534,
+          "endMs": 801,
+          "timestampMs": 668,
+          "confidence": null
+        },
+        {
+          "text": " hold",
+          "startMs": 859,
+          "endMs": 1045,
+          "timestampMs": 952,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 1091,
+          "endMs": 1196,
+          "timestampMs": 1144,
+          "confidence": null
+        },
+        {
+          "text": " money.",
+          "startMs": 1242,
+          "endMs": 1614,
+          "timestampMs": 1428,
+          "confidence": null
+        },
+        {
+          "text": " It",
+          "startMs": 1892,
+          "endMs": 2032,
+          "timestampMs": 1962,
+          "confidence": null
+        },
+        {
+          "text": " holds",
+          "startMs": 2078,
+          "endMs": 2334,
+          "timestampMs": 2206,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 2380,
+          "endMs": 2415,
+          "timestampMs": 2398,
+          "confidence": null
+        },
+        {
+          "text": " number",
+          "startMs": 2531,
+          "endMs": 2775,
+          "timestampMs": 2653,
+          "confidence": null
+        },
+        {
+          "text": " that",
+          "startMs": 2821,
+          "endMs": 2937,
+          "timestampMs": 2879,
+          "confidence": null
+        },
+        {
+          "text": " points",
+          "startMs": 2984,
+          "endMs": 3228,
+          "timestampMs": 3106,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 3262,
+          "endMs": 3320,
+          "timestampMs": 3291,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 3379,
+          "endMs": 3483,
+          "timestampMs": 3431,
+          "confidence": null
+        },
+        {
+          "text": " bank.",
+          "startMs": 3541,
+          "endMs": 3924,
+          "timestampMs": 3733,
+          "confidence": null
+        },
+        {
+          "text": " Up",
+          "startMs": 4435,
+          "endMs": 4574,
+          "timestampMs": 4505,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 4632,
+          "endMs": 4690,
+          "timestampMs": 4661,
+          "confidence": null
+        },
+        {
+          "text": " five",
+          "startMs": 4783,
+          "endMs": 5097,
+          "timestampMs": 4940,
+          "confidence": null
+        },
+        {
+          "text": " companies",
+          "startMs": 5143,
+          "endMs": 5584,
+          "timestampMs": 5364,
+          "confidence": null
+        },
+        {
+          "text": " pass",
+          "startMs": 5642,
+          "endMs": 5875,
+          "timestampMs": 5759,
+          "confidence": null
+        },
+        {
+          "text": " that",
+          "startMs": 5909,
+          "endMs": 6014,
+          "timestampMs": 5962,
+          "confidence": null
+        },
+        {
+          "text": " number",
+          "startMs": 6072,
+          "endMs": 6281,
+          "timestampMs": 6177,
+          "confidence": null
+        },
+        {
+          "text": " along.",
+          "startMs": 6339,
+          "endMs": 7198,
+          "timestampMs": 6769,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "mechanism",
+      "text": "The terminal sends it to the shop's bank. That bank hands it to the card network. That's Visa or Mastercard. The network finds your bank. Your bank checks your balance and fraud signals. It says yes or no, and the answer races back.",
+      "file": "posts/post-01-card-payment/vo/mechanism.mp3",
+      "durationMs": 14080,
+      "captions": [
+        {
+          "text": "The",
+          "startMs": 0,
+          "endMs": 128,
+          "timestampMs": 64,
+          "confidence": null
+        },
+        {
+          "text": " terminal",
+          "startMs": 186,
+          "endMs": 580,
+          "timestampMs": 383,
+          "confidence": null
+        },
+        {
+          "text": " sends",
+          "startMs": 639,
+          "endMs": 871,
+          "timestampMs": 755,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 906,
+          "endMs": 975,
+          "timestampMs": 941,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 1010,
+          "endMs": 1068,
+          "timestampMs": 1039,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 1126,
+          "endMs": 1196,
+          "timestampMs": 1161,
+          "confidence": null
+        },
+        {
+          "text": " shop's",
+          "startMs": 1219,
+          "endMs": 1509,
+          "timestampMs": 1364,
+          "confidence": null
+        },
+        {
+          "text": " bank.",
+          "startMs": 1567,
+          "endMs": 1962,
+          "timestampMs": 1765,
+          "confidence": null
+        },
+        {
+          "text": " That",
+          "startMs": 2345,
+          "endMs": 2554,
+          "timestampMs": 2450,
+          "confidence": null
+        },
+        {
+          "text": " bank",
+          "startMs": 2624,
+          "endMs": 2821,
+          "timestampMs": 2723,
+          "confidence": null
+        },
+        {
+          "text": " hands",
+          "startMs": 2879,
+          "endMs": 3088,
+          "timestampMs": 2984,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 3123,
+          "endMs": 3193,
+          "timestampMs": 3158,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 3216,
+          "endMs": 3274,
+          "timestampMs": 3245,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 3320,
+          "endMs": 3390,
+          "timestampMs": 3355,
+          "confidence": null
+        },
+        {
+          "text": " card",
+          "startMs": 3425,
+          "endMs": 3646,
+          "timestampMs": 3536,
+          "confidence": null
+        },
+        {
+          "text": " network.",
+          "startMs": 3704,
+          "endMs": 4180,
+          "timestampMs": 3942,
+          "confidence": null
+        },
+        {
+          "text": " That's",
+          "startMs": 4505,
+          "endMs": 4748,
+          "timestampMs": 4627,
+          "confidence": null
+        },
+        {
+          "text": " Visa",
+          "startMs": 4807,
+          "endMs": 5201,
+          "timestampMs": 5004,
+          "confidence": null
+        },
+        {
+          "text": " or",
+          "startMs": 5283,
+          "endMs": 5399,
+          "timestampMs": 5341,
+          "confidence": null
+        },
+        {
+          "text": " Mastercard.",
+          "startMs": 5468,
+          "endMs": 6165,
+          "timestampMs": 5817,
+          "confidence": null
+        },
+        {
+          "text": " The",
+          "startMs": 6490,
+          "endMs": 6629,
+          "timestampMs": 6560,
+          "confidence": null
+        },
+        {
+          "text": " network",
+          "startMs": 6711,
+          "endMs": 7082,
+          "timestampMs": 6897,
+          "confidence": null
+        },
+        {
+          "text": " finds",
+          "startMs": 7140,
+          "endMs": 7372,
+          "timestampMs": 7256,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 7396,
+          "endMs": 7500,
+          "timestampMs": 7448,
+          "confidence": null
+        },
+        {
+          "text": " bank.",
+          "startMs": 7558,
+          "endMs": 7930,
+          "timestampMs": 7744,
+          "confidence": null
+        },
+        {
+          "text": " Your",
+          "startMs": 8255,
+          "endMs": 8440,
+          "timestampMs": 8348,
+          "confidence": null
+        },
+        {
+          "text": " bank",
+          "startMs": 8510,
+          "endMs": 8754,
+          "timestampMs": 8632,
+          "confidence": null
+        },
+        {
+          "text": " checks",
+          "startMs": 8824,
+          "endMs": 9102,
+          "timestampMs": 8963,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 9137,
+          "endMs": 9265,
+          "timestampMs": 9201,
+          "confidence": null
+        },
+        {
+          "text": " balance",
+          "startMs": 9323,
+          "endMs": 9718,
+          "timestampMs": 9521,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 9752,
+          "endMs": 9845,
+          "timestampMs": 9799,
+          "confidence": null
+        },
+        {
+          "text": " fraud",
+          "startMs": 9927,
+          "endMs": 10217,
+          "timestampMs": 10072,
+          "confidence": null
+        },
+        {
+          "text": " signals.",
+          "startMs": 10287,
+          "endMs": 10867,
+          "timestampMs": 10577,
+          "confidence": null
+        },
+        {
+          "text": " It",
+          "startMs": 11308,
+          "endMs": 11448,
+          "timestampMs": 11378,
+          "confidence": null
+        },
+        {
+          "text": " says",
+          "startMs": 11506,
+          "endMs": 11726,
+          "timestampMs": 11616,
+          "confidence": null
+        },
+        {
+          "text": " yes",
+          "startMs": 11796,
+          "endMs": 11993,
+          "timestampMs": 11895,
+          "confidence": null
+        },
+        {
+          "text": " or",
+          "startMs": 12051,
+          "endMs": 12144,
+          "timestampMs": 12098,
+          "confidence": null
+        },
+        {
+          "text": " no,",
+          "startMs": 12214,
+          "endMs": 12493,
+          "timestampMs": 12354,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 12516,
+          "endMs": 12609,
+          "timestampMs": 12563,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 12643,
+          "endMs": 12713,
+          "timestampMs": 12678,
+          "confidence": null
+        },
+        {
+          "text": " answer",
+          "startMs": 12760,
+          "endMs": 13038,
+          "timestampMs": 12899,
+          "confidence": null
+        },
+        {
+          "text": " races",
+          "startMs": 13096,
+          "endMs": 13410,
+          "timestampMs": 13253,
+          "confidence": null
+        },
+        {
+          "text": " back.",
+          "startMs": 13479,
+          "endMs": 14080,
+          "timestampMs": 13892,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "text": "That yes is only a promise. The real money moves later, in settlement. That's a day or two after your tap.",
+      "file": "posts/post-01-card-payment/vo/payoff.mp3",
+      "durationMs": 7198,
+      "captions": [
+        {
+          "text": "That",
+          "startMs": 0,
+          "endMs": 267,
+          "timestampMs": 134,
+          "confidence": null
+        },
+        {
+          "text": " yes",
+          "startMs": 348,
+          "endMs": 743,
+          "timestampMs": 546,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 917,
+          "endMs": 1103,
+          "timestampMs": 1010,
+          "confidence": null
+        },
+        {
+          "text": " only",
+          "startMs": 1196,
+          "endMs": 1498,
+          "timestampMs": 1347,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1556,
+          "endMs": 1591,
+          "timestampMs": 1574,
+          "confidence": null
+        },
+        {
+          "text": " promise.",
+          "startMs": 1649,
+          "endMs": 2264,
+          "timestampMs": 1957,
+          "confidence": null
+        },
+        {
+          "text": " The",
+          "startMs": 2647,
+          "endMs": 2775,
+          "timestampMs": 2711,
+          "confidence": null
+        },
+        {
+          "text": " real",
+          "startMs": 2868,
+          "endMs": 3077,
+          "timestampMs": 2973,
+          "confidence": null
+        },
+        {
+          "text": " money",
+          "startMs": 3146,
+          "endMs": 3332,
+          "timestampMs": 3239,
+          "confidence": null
+        },
+        {
+          "text": " moves",
+          "startMs": 3390,
+          "endMs": 3611,
+          "timestampMs": 3501,
+          "confidence": null
+        },
+        {
+          "text": " later,",
+          "startMs": 3669,
+          "endMs": 4087,
+          "timestampMs": 3878,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 4133,
+          "endMs": 4249,
+          "timestampMs": 4191,
+          "confidence": null
+        },
+        {
+          "text": " settlement.",
+          "startMs": 4319,
+          "endMs": 4841,
+          "timestampMs": 4580,
+          "confidence": null
+        },
+        {
+          "text": " That's",
+          "startMs": 5166,
+          "endMs": 5399,
+          "timestampMs": 5283,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 5433,
+          "endMs": 5468,
+          "timestampMs": 5451,
+          "confidence": null
+        },
+        {
+          "text": " day",
+          "startMs": 5515,
+          "endMs": 5642,
+          "timestampMs": 5579,
+          "confidence": null
+        },
+        {
+          "text": " or",
+          "startMs": 5689,
+          "endMs": 5759,
+          "timestampMs": 5724,
+          "confidence": null
+        },
+        {
+          "text": " two",
+          "startMs": 5793,
+          "endMs": 5909,
+          "timestampMs": 5851,
+          "confidence": null
+        },
+        {
+          "text": " after",
+          "startMs": 5991,
+          "endMs": 6223,
+          "timestampMs": 6107,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 6281,
+          "endMs": 6409,
+          "timestampMs": 6345,
+          "confidence": null
+        },
+        {
+          "text": " tap.",
+          "startMs": 6455,
+          "endMs": 7198,
+          "timestampMs": 6827,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "congrats",
+      "text": "Congrats, you just learned how a card payment works.",
+      "file": "posts/post-01-card-payment/vo/congrats.mp3",
+      "durationMs": 2940,
+      "captions": [
+        {
+          "text": "Congrats,",
+          "startMs": 0,
+          "endMs": 662,
+          "timestampMs": 331,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 743,
+          "endMs": 848,
+          "timestampMs": 796,
+          "confidence": null
+        },
+        {
+          "text": " just",
+          "startMs": 964,
+          "endMs": 1161,
+          "timestampMs": 1063,
+          "confidence": null
+        },
+        {
+          "text": " learned",
+          "startMs": 1207,
+          "endMs": 1428,
+          "timestampMs": 1318,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1451,
+          "endMs": 1544,
+          "timestampMs": 1498,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1591,
+          "endMs": 1625,
+          "timestampMs": 1608,
+          "confidence": null
+        },
+        {
+          "text": " card",
+          "startMs": 1683,
+          "endMs": 1916,
+          "timestampMs": 1800,
+          "confidence": null
+        },
+        {
+          "text": " payment",
+          "startMs": 1962,
+          "endMs": 2252,
+          "timestampMs": 2107,
+          "confidence": null
+        },
+        {
+          "text": " works.",
+          "startMs": 2299,
+          "endMs": 2940,
+          "timestampMs": 2729,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "text": "Follow Unpack and Explain for how things actually work.",
+      "file": "posts/post-01-card-payment/vo/cta.mp3",
+      "durationMs": 3390,
+      "captions": [
+        {
+          "text": "Follow",
+          "startMs": 0,
+          "endMs": 383,
+          "timestampMs": 192,
+          "confidence": null
+        },
+        {
+          "text": " Unpack",
+          "startMs": 476,
+          "endMs": 975,
+          "timestampMs": 726,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 1045,
+          "endMs": 1115,
+          "timestampMs": 1080,
+          "confidence": null
+        },
+        {
+          "text": " Explain",
+          "startMs": 1161,
+          "endMs": 1649,
+          "timestampMs": 1405,
+          "confidence": null
+        },
+        {
+          "text": " for",
+          "startMs": 1765,
+          "endMs": 1916,
+          "timestampMs": 1841,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1974,
+          "endMs": 2078,
+          "timestampMs": 2026,
+          "confidence": null
+        },
+        {
+          "text": " things",
+          "startMs": 2148,
+          "endMs": 2357,
+          "timestampMs": 2253,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 2403,
+          "endMs": 2728,
+          "timestampMs": 2566,
+          "confidence": null
+        },
+        {
+          "text": " work.",
+          "startMs": 2775,
+          "endMs": 3390,
+          "timestampMs": 3083,
+          "confidence": null
+        }
+      ]
+    }
+  ]
+}

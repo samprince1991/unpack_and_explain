@@ -30,6 +30,8 @@ const measure = (file: string): Measured => {
     "-hide_banner",
     "-i",
     file,
+    // Audio only: Remotion's ffmpeg has no encoder for sending video to the null muxer.
+    "-vn",
     "-af",
     `loudnorm=I=${TARGET.I}:TP=${TARGET.TP}:LRA=${TARGET.LRA}:print_format=json`,
     "-f",

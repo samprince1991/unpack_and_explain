@@ -7,11 +7,15 @@ category: "Money & payments"
 subcategory: "Payments"
 week: 1
 date: 2026-11-02
-status: scripted
-hook: "You tap your card. Up to 5 companies get involved in 2 seconds."
+status: rendered
+hook: "Nobody tells you a card tap moves zero money."
+hook_formula: 3
+hook_score: 81.4
+question_score: 51.8
 source: "Card network / acquirer docs"
 verify:
   - "Settlement timing (varies by country and card network); cite the source on screen"
+  - "Up to five companies in the chain (terminal provider/processor, shop's bank, card network, your bank)"
 metrics:  # fill in after posting
   views: null
   reach: null
@@ -31,16 +35,20 @@ metrics:  # fill in after posting
 
 | Section | Voice-over | Visual |
 |---|---|---|
-| Question | Do you know what really happens when you tap your card? | Question card (template). |
-| Hook | You tap your card, and it's approved in two seconds. In that time, up to five companies talk about you. | Card taps a terminal; five dots light up one by one. |
-| Setup | Your card doesn't hold your money. It holds a number that points to your bank. | Card morphs into a number, then an arrow to a bank icon. |
-| Mechanism | The terminal sends your request to the shop's bank. That bank passes it to the card network. The network finds your bank. Your bank checks your balance and fraud signals, then says yes or no. The answer races back. | Left-to-right chain: Terminal > Shop's bank > Card network > Your bank. A glowing packet travels forward, then returns with a green tick. Step numbers 1-4 pop in. |
-| Payoff | But no money has moved yet. Those two seconds only bought a promise. Settlement, the real transfer, comes a day or two later. | Chain greys out; a calendar flips forward. |
+| Question | Who approves your card in 2 seconds? | Question card (template). |
+| Hook | Nobody tells you a card tap moves zero money. | Card taps a terminal; amber ping on contact. Hook title "A card tap moves $0". |
+| Setup | Your card doesn't hold your money. It holds a number that points to your bank. Up to five companies pass that number along. | Card outline turns into a number; a line draws to a bank icon; five dots appear one by one. |
+| Mechanism | The terminal sends it to the shop's bank. That bank hands it to the card network. That's Visa or Mastercard. The network finds your bank. Your bank checks your balance and fraud signals. It says yes or no, and the answer races back. | Chain terminal > shop's bank > network > your bank. Amber packet travels along it, camera follows; teal check at your bank; packet races back. Enters with `push`. |
+| Payoff | That yes is only a promise. The real money moves later, in settlement. That's a day or two after your tap. | Chain fades to a dashed "promise" line; calendar flips forward 1-2 days; line turns solid as the money moves. Enters with `zoomDip`. |
 | Congrats | Congrats, you just learned how a card payment works. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
 
 ## Caption
 
-Tapping your card feels instant, but there's a whole relay behind it. Save this for the next time someone asks how card payments work.
+Save this for the next time someone says a contactless card payment is done in 2 seconds.
 
-#howitworks #payments #fintech #explained
+Those 2 seconds only get you a yes from your bank, passed along a chain of up to five companies. Tap-to-pay feels like money leaving your account, but nothing has moved yet.
+
+The real transfer, called settlement, comes a day or two later.
+
+#howitworks #payments #contactless #explained
