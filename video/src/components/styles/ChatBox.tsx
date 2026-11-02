@@ -16,6 +16,8 @@ type ChatBoxProps = {
   text: string;
   // Local frame the box appears; typing starts once it has settled.
   at: number;
+  // Local frame typing starts (sync it to the spoken words). Default: once the box has settled.
+  typeAt?: number;
   framesPerChar?: number;
   // Send button turns amber once typing ends (the "go" moment).
   accentSend?: boolean;
@@ -32,6 +34,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
   width,
   text,
   at,
+  typeAt,
   framesPerChar = 1.2,
   accentSend = true,
 }) => {
@@ -40,7 +43,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
   if (t <= 0) {
     return null;
   }
-  const typeFrom = at + durations.enter;
+  const typeFrom = typeAt ?? at + durations.enter;
   const chars = Math.max(0, Math.min(text.length, Math.floor((frame - typeFrom) / framesPerChar)));
   const done = chars >= text.length;
   const left = x - width / 2;

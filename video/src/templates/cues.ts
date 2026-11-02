@@ -1,6 +1,11 @@
 import type { Caption } from "@remotion/captions";
 
-export const normalizeWord = (text: string) => text.toLowerCase().replace(/[^a-z0-9']/g, "");
+// Keeps inner apostrophes ("don't") but drops quote marks around a word ("'make", "app',").
+export const normalizeWord = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9']/g, "")
+    .replace(/^'+|'+$/g, "");
 
 // Section-local time (ms) at which `word` is first spoken, or null.
 export const findCueMs = (captions: Caption[], word: string): number | null => {

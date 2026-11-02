@@ -2,15 +2,15 @@ import { AbsoluteFill, Interactive, interpolate, useCurrentFrame } from "remotio
 import { clamp, ease } from "../../../brand/motion";
 import { Float } from "../../../components/motion/Float";
 import { SceneCanvas } from "../../../components/SceneCanvas";
-import { ChatBox } from "../../../components/styles/ChatBox";
 import { CodeBlock } from "../../../components/styles/CodeBlock";
 import { useCue } from "../../../templates/SectionContext";
 
-// A one-line request types itself in; the code it produces streams out below and blurs
-// away on "read ... code": you never read it.
+const LINES = 11;
+
+// A window full of code streams in, then blurs away on "read ... code": you never read it.
+// The chat box is saved for the setup, where the VO says what you type.
 export const HookScene: React.FC = () => {
   const frame = useCurrentFrame();
-  const code = useCue("you", 0.3);
   const read = useCue("read", 0.5);
   const blurEnd = useCue("build", 0.8);
   const blur = interpolate(frame, [read, blurEnd], [0, 10], { ...clamp, easing: ease.smooth });
@@ -19,13 +19,10 @@ export const HookScene: React.FC = () => {
   return (
     <AbsoluteFill>
       <SceneCanvas>
-        <Interactive.G name="Chat box">
-          <Float seed="hook-chat">
-            <ChatBox x={540} y={720} width={740} text="make me a habit tracker" at={0} accentSend={false} />
-          </Float>
-        </Interactive.G>
         <Interactive.G name="Code" style={{ opacity: fade, filter: `blur(${blur}px)` }}>
-          <CodeBlock x={190} y={830} width={700} lines={9} at={code} seed="hook" />
+          <Float seed="hook-code">
+            <CodeBlock x={190} y={680} width={700} lines={LINES} at={0} seed="hook" />
+          </Float>
         </Interactive.G>
       </SceneCanvas>
     </AbsoluteFill>
