@@ -19,12 +19,15 @@ import {
   type SectionTransitionName,
 } from "../components/transitions/sectionTransitions";
 import { Watermark } from "../components/Watermark";
+import { BlenderClip } from "../components/BlenderClip";
 import { audioCues } from "./audioCues";
+import { BlenderContext } from "./blender";
+import { isBlenderPlan } from "./blenderJob";
 import { pickLook, transitionMixes } from "./look";
 import { MemeMoment } from "./MemeMoment";
 import { SectionContext } from "./SectionContext";
 import { computeTimeline, mergeCaptions, SOURCE_LEAD_SECONDS } from "./timing";
-import type { PostScript, SectionId, VoManifest } from "./types";
+import type { BlenderManifest, PostScript, SectionId, VoManifest } from "./types";
 
 export type ReelProps = {
   script: PostScript;
@@ -32,6 +35,10 @@ export type ReelProps = {
   vo: VoManifest | null;
   // Brand SFX + music bed. Filled in by calculateReelMetadata.
   audio: AudioLibrary | null;
+  // Blender renders (manifest). Filled in by calculateReelMetadata for posts with a plan.
+  blender3d?: BlenderManifest | null;
+  // QA only: accept --preview Blender clips in a CLI render (low-res contact sheets).
+  allowBlenderPreview?: boolean;
   // Studio-only overlay of Instagram UI zones and the 4:5 cover crop.
   showGuides: boolean;
 };
@@ -49,6 +56,7 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: Transi
   script,
   vo,
   audio,
+  blender3d = null,
   showGuides,
   scenes,
   transitions = {},
@@ -76,8 +84,10 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: Transi
   const sourceFrom = Math.max(0, cta.from - SOURCE_LEAD_SECONDS * fps);
   const look = pickLook(script.postNumber, script.look);
   const mix: TransitionMap = { ...transitionMixes[look.transitions], ...transitions };
+  const has3d = isBlenderPlan(script.blender);
 
   return (
+    <BlenderContext.Provider value={{ postId: script.id, manifest: blender3d }}>
     <AbsoluteFill>
       <Background />
       <AmbientMotif format={script.format} />
@@ -86,7 +96,12 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: Transi
           const t = timing(section.id);
           const scene =
             section.id === "question" ? (
-              <QuestionCard question={section.text} topic={script.topic} variant={look.question} />
+              <QuestionCard
+                question={section.text}
+                topic={script.topic}
+                variant={look.question}
+                backdrop={has3d ? <BlenderClip clip="opener" /> : undefined}
+              />
             ) : section.id === "congrats" ? (
               <CongratsCard text={section.text} topic={script.topic} />
             ) : section.id === "cta" ? (
@@ -161,5 +176,6 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: Transi
       ) : null}
       {showGuides ? <SafeZoneGuide /> : null}
     </AbsoluteFill>
+    </BlenderContext.Provider>
   );
 };

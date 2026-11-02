@@ -18,6 +18,12 @@ export const coverCrop = (width: number, height: number) => {
   return { y: Math.round((height - cropHeight) / 2), height: cropHeight };
 };
 
+// Centered 3:4 area: Instagram's profile grid crop of a reel cover (contains the 4:5 crop).
+export const gridCrop = (width = video.width, height = video.height) => {
+  const cropHeight = Math.round((width * 4) / 3);
+  return { y: Math.round((height - cropHeight) / 2), height: cropHeight };
+};
+
 const content = contentBox(video.width, video.height);
 
 export const layout = {
@@ -33,6 +39,16 @@ export const layout = {
     visual: { top: 360, bottom: 1230 },
     captions: { top: 1250, bottom: 1470 },
     source: { top: 1490, bottom: 1560 },
+  },
+  // Blender clips (PNG sequences), full width, model framed inside the 540 column.
+  // opener: under the question card text, down to the bottom safe edge (captions are
+  // hidden on the card). hook: under the 2-line hook title. mechanism: whole visual
+  // region. cover: the 3:4 profile-grid crop (contains the 4:5 feed crop).
+  blender: {
+    opener: { x: 0, y: 960, width: video.width, height: 610 },
+    hook: { x: 0, y: 620, width: video.width, height: 610 },
+    mechanism: { x: 0, y: 360, width: video.width, height: 870 },
+    cover: { x: 0, y: 240, width: video.width, height: 1440 },
   },
 } as const;
 

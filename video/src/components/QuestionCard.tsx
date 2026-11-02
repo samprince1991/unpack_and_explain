@@ -1,8 +1,8 @@
-import { AbsoluteFill, Interactive, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Interactive, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { fonts, weights } from "../brand/fonts";
 import { layout } from "../brand/layout";
-import { clamp, durations, ease } from "../brand/motion";
-import { colors, typeScale } from "../brand/tokens";
+import { clamp, durations, ease, idle } from "../brand/motion";
+import { colors, typeScale, withAlpha } from "../brand/tokens";
 import type { QuestionStyle } from "../templates/look";
 import { HighlightedText, splitHighlight } from "./HighlightedText";
 import { Spotlight, Underline } from "./TopicMarks";
@@ -36,14 +36,41 @@ export const QuestionCard: React.FC<{
   question: string;
   topic: string;
   variant?: QuestionStyle;
-}> = ({ question, topic, variant = "center" }) => {
+  // Blender opener clip behind the words (frame 0 = thumbnail-grade 3D). Dimmed and
+  // under a scrim so the question stays readable from the first frame.
+  backdrop?: React.ReactNode;
+}> = ({ question, topic, variant = "center", backdrop }) => {
   const frame = useCurrentFrame();
+  const { durationInFrames } = useVideoConfig();
   const { visual } = layout.regions;
   // Marks start once the card has settled.
   const markAt = durations.enter;
 
   return (
     <AbsoluteFill>
+      {backdrop ? (
+        <Interactive.Div
+          name="Question backdrop"
+          style={{
+            position: "absolute",
+            inset: 0,
+            opacity: 0.9,
+            scale: interpolate(frame, [0, durationInFrames], [1, idle.pushIn], clamp),
+          }}
+        >
+          {backdrop}
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: visual.top,
+              height: visual.bottom - visual.top,
+              background: `radial-gradient(ellipse 55% 30% at 50% 50%, ${withAlpha(colors.bg.base, 0.7)}, ${withAlpha(colors.bg.base, 0)})`,
+            }}
+          />
+        </Interactive.Div>
+      ) : null}
       <Interactive.Div
         name="Question"
         style={{
