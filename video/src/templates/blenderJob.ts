@@ -38,6 +38,14 @@ export type BlenderJob = {
   hash: string;
 };
 
+// Screen area of each clip. Without a hook title the hook gets the whole visual region.
+export const blenderAreas = (script: Pick<PostScript, "hookTitle">) => ({
+  ...layout.blender,
+  hook: script.hookTitle === false ? layout.blender.mechanism : layout.blender.hook,
+});
+
+export type BlenderAreas = ReturnType<typeof blenderAreas>;
+
 export const isBlenderPlan = (b: PostScript["blender"]): b is BlenderPlan =>
   typeof b === "object" && !("optOut" in b);
 
@@ -119,7 +127,7 @@ export const buildBlenderJob = (script: PostScript, vo: VoManifest, fps: number)
     beats?: Beat[],
   ) => {
     const frames = length(section);
-    const area = layout.blender[id];
+    const area = blenderAreas(script)[id];
     return withHash({
       id,
       frames,

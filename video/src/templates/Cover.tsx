@@ -1,4 +1,11 @@
-import { AbsoluteFill, getRemotionEnvironment, Img, Interactive, staticFile, type CalculateMetadataFunction } from "remotion";
+import {
+  AbsoluteFill,
+  getRemotionEnvironment,
+  Img,
+  Interactive,
+  staticFile,
+  type CalculateMetadataFunction,
+} from "remotion";
 import { fonts, weights } from "../brand/fonts";
 import { coverCrop, gridCrop, layout } from "../brand/layout";
 import { colors, typeScale, video, withAlpha } from "../brand/tokens";
@@ -6,8 +13,13 @@ import { voice } from "../brand/voice";
 import { Background } from "../components/Background";
 import { BlenderClip } from "../components/BlenderClip";
 import { HighlightedText } from "../components/HighlightedText";
-import { BlenderContext, blenderProblems, clipStatuses, loadBlenderManifest } from "./blender";
-import { buildBlenderJob, isBlenderPlan } from "./blenderJob";
+import {
+  BlenderContext,
+  blenderProblems,
+  clipStatuses,
+  loadBlenderManifest,
+} from "./blender";
+import { blenderAreas, buildBlenderJob, isBlenderPlan } from "./blenderJob";
 import type { BlenderManifest, PostScript } from "./types";
 import { loadVo } from "./vo";
 
@@ -17,13 +29,16 @@ export type CoverProps = {
   showGuides: boolean;
 };
 
-
 // Title + model must sit inside both crops: the 4:5 feed crop is the tighter one.
 const TITLE_TOP = coverCrop(video.width, video.height).y + 70;
 
 // Upload as the reel's custom cover ("Edit cover"): the Blender hero still, the cover
 // title with one amber word and the avatar mark. Render: npm run cover -- post-NN-slug.
-export const Cover: React.FC<CoverProps> = ({ script, blender3d, showGuides }) => {
+export const Cover: React.FC<CoverProps> = ({
+  script,
+  blender3d,
+  showGuides,
+}) => {
   if (!isBlenderPlan(script.blender)) {
     throw new Error(`${script.id} has no blender plan, so no 3D cover`);
   }
@@ -34,7 +49,13 @@ export const Cover: React.FC<CoverProps> = ({ script, blender3d, showGuides }) =
   const grid = gridCrop();
 
   return (
-    <BlenderContext.Provider value={{ postId: script.id, manifest: blender3d }}>
+    <BlenderContext.Provider
+      value={{
+        postId: script.id,
+        manifest: blender3d,
+        areas: blenderAreas(script),
+      }}
+    >
       <AbsoluteFill>
         <Background />
         <BlenderClip clip="cover" area={layout.blender.cover} frame={0} />
@@ -99,14 +120,19 @@ export const Cover: React.FC<CoverProps> = ({ script, blender3d, showGuides }) =
   );
 };
 
-export const calculateCoverMetadata: CalculateMetadataFunction<CoverProps> = async ({ props }) => {
+export const calculateCoverMetadata: CalculateMetadataFunction<
+  CoverProps
+> = async ({ props }) => {
   const blender3d = await loadBlenderManifest(props.script.id);
   if (isBlenderPlan(props.script.blender)) {
     const vo = await loadVo(props.script, voice.wordsPerSecond);
     const job = buildBlenderJob(props.script, vo, video.fps);
     const { cover } = clipStatuses(job, blender3d);
     if (cover !== "ok" && getRemotionEnvironment().isRendering) {
-      throw new Error(blenderProblems(props.script.id, { ...clipStatuses(job, blender3d) }) ?? "");
+      throw new Error(
+        blenderProblems(props.script.id, { ...clipStatuses(job, blender3d) }) ??
+          "",
+      );
     }
   }
   return { props: { ...props, blender3d } };

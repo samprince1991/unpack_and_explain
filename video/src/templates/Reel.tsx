@@ -1,7 +1,13 @@
 import { createElement } from "react";
 import { Audio } from "@remotion/media";
 import { TransitionSeries } from "@remotion/transitions";
-import { AbsoluteFill, interpolate, Sequence, staticFile, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  interpolate,
+  Sequence,
+  staticFile,
+  useVideoConfig,
+} from "remotion";
 import { music, sfx, type AudioLibrary } from "../brand/audio";
 import { clamp, durations } from "../brand/motion";
 import { AmbientMotif } from "../components/AmbientMotif";
@@ -22,12 +28,17 @@ import { Watermark } from "../components/Watermark";
 import { BlenderClip } from "../components/BlenderClip";
 import { audioCues } from "./audioCues";
 import { BlenderContext } from "./blender";
-import { isBlenderPlan } from "./blenderJob";
+import { blenderAreas, isBlenderPlan } from "./blenderJob";
 import { pickLook, transitionMixes } from "./look";
 import { MemeMoment } from "./MemeMoment";
 import { SectionContext } from "./SectionContext";
 import { computeTimeline, mergeCaptions, SOURCE_LEAD_SECONDS } from "./timing";
-import type { BlenderManifest, PostScript, SectionId, VoManifest } from "./types";
+import type {
+  BlenderManifest,
+  PostScript,
+  SectionId,
+  VoManifest,
+} from "./types";
 
 export type ReelProps = {
   script: PostScript;
@@ -47,12 +58,17 @@ export type ReelProps = {
 const TEMPLATE_SECTIONS = ["question", "congrats", "cta"] as const;
 
 // Bespoke scenes per post, for the sections in between.
-export type SceneMap = Record<Exclude<SectionId, (typeof TEMPLATE_SECTIONS)[number]>, React.FC>;
+export type SceneMap = Record<
+  Exclude<SectionId, (typeof TEMPLATE_SECTIONS)[number]>,
+  React.FC
+>;
 
 // Transition into each section, keyed by the entering section. Wins over the look's mix.
 export type TransitionMap = Partial<Record<SectionId, SectionTransitionName>>;
 
-export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: TransitionMap }> = ({
+export const Reel: React.FC<
+  ReelProps & { scenes: SceneMap; transitions?: TransitionMap }
+> = ({
   script,
   vo,
   audio,
@@ -63,13 +79,17 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: Transi
 }) => {
   const { fps, durationInFrames } = useVideoConfig();
   if (!vo) {
-    throw new Error("VO manifest missing: calculateReelMetadata should have provided it");
+    throw new Error(
+      "VO manifest missing: calculateReelMetadata should have provided it",
+    );
   }
 
   const { sections } = computeTimeline(vo.sections, fps, durations.crossfade);
   // Template cards already show their words, so no captions over them.
   const captions = mergeCaptions(
-    vo.sections.filter((s) => !(TEMPLATE_SECTIONS as readonly SectionId[]).includes(s.id)),
+    vo.sections.filter(
+      (s) => !(TEMPLATE_SECTIONS as readonly SectionId[]).includes(s.id),
+    ),
     sections,
     fps,
   );
@@ -83,99 +103,126 @@ export const Reel: React.FC<ReelProps & { scenes: SceneMap; transitions?: Transi
   const cta = timing("cta");
   const sourceFrom = Math.max(0, cta.from - SOURCE_LEAD_SECONDS * fps);
   const look = pickLook(script.postNumber, script.look);
-  const mix: TransitionMap = { ...transitionMixes[look.transitions], ...transitions };
+  const mix: TransitionMap = {
+    ...transitionMixes[look.transitions],
+    ...transitions,
+  };
   const has3d = isBlenderPlan(script.blender);
 
   return (
-    <BlenderContext.Provider value={{ postId: script.id, manifest: blender3d }}>
-    <AbsoluteFill>
-      <Background />
-      <AmbientMotif format={script.format} />
-      <TransitionSeries>
-        {vo.sections.flatMap((section, i) => {
-          const t = timing(section.id);
-          const scene =
-            section.id === "question" ? (
-              <QuestionCard
-                question={section.text}
-                topic={script.topic}
-                variant={look.question}
-                backdrop={has3d ? <BlenderClip clip="opener" /> : undefined}
-              />
-            ) : section.id === "congrats" ? (
-              <CongratsCard text={section.text} topic={script.topic} />
-            ) : section.id === "cta" ? (
-              <CtaCard />
-            ) : (
-              createElement(scenes[section.id])
-            );
-          return [
-            i > 0 ? (
-              <TransitionSeries.Transition
-                key={`${section.id}-transition`}
-                {...sectionTransitions[mix[section.id] ?? "dip"]()}
-              />
-            ) : null,
-            <TransitionSeries.Sequence
-              key={section.id}
-              name={section.id}
-              durationInFrames={t.durationInFrames}
-            >
-              <SectionContext.Provider
-                value={{ captions: section.captions, durationInFrames: t.durationInFrames }}
+    <BlenderContext.Provider
+      value={{
+        postId: script.id,
+        manifest: blender3d,
+        areas: blenderAreas(script),
+      }}
+    >
+      <AbsoluteFill>
+        <Background />
+        <AmbientMotif format={script.format} />
+        <TransitionSeries>
+          {vo.sections.flatMap((section, i) => {
+            const t = timing(section.id);
+            const scene =
+              section.id === "question" ? (
+                <QuestionCard
+                  question={section.text}
+                  topic={script.topic}
+                  variant={look.question}
+                  backdrop={has3d ? <BlenderClip clip="opener" /> : undefined}
+                />
+              ) : section.id === "congrats" ? (
+                <CongratsCard text={section.text} topic={script.topic} />
+              ) : section.id === "cta" ? (
+                <CtaCard />
+              ) : (
+                createElement(scenes[section.id])
+              );
+            return [
+              i > 0 ? (
+                <TransitionSeries.Transition
+                  key={`${section.id}-transition`}
+                  {...sectionTransitions[mix[section.id] ?? "dip"]()}
+                />
+              ) : null,
+              <TransitionSeries.Sequence
+                key={section.id}
+                name={section.id}
+                durationInFrames={t.durationInFrames}
               >
-                {scene}
-                {section.id === "hook" ? (
-                  <HookTitle
-                    text={script.hookText}
-                    highlight={script.hookHighlight}
-                    variant={look.hook}
-                  />
-                ) : null}
-                {section.id === script.failureSection ? <FailureBadge /> : null}
-                {script.meme && section.id === script.meme.section ? (
-                  <MemeMoment meme={script.meme} />
-                ) : null}
-              </SectionContext.Provider>
-              {section.file ? <Audio src={staticFile(section.file)} /> : null}
-            </TransitionSeries.Sequence>,
-          ];
+                <SectionContext.Provider
+                  value={{
+                    captions: section.captions,
+                    durationInFrames: t.durationInFrames,
+                  }}
+                >
+                  {scene}
+                  {section.id === "hook" && script.hookTitle !== false ? (
+                    <HookTitle
+                      text={script.hookText}
+                      highlight={script.hookHighlight}
+                      variant={look.hook}
+                    />
+                  ) : null}
+                  {section.id === script.failureSection ? (
+                    <FailureBadge />
+                  ) : null}
+                  {script.meme && section.id === script.meme.section ? (
+                    <MemeMoment meme={script.meme} />
+                  ) : null}
+                </SectionContext.Provider>
+                {section.file ? <Audio src={staticFile(section.file)} /> : null}
+              </TransitionSeries.Sequence>,
+            ];
+          })}
+        </TransitionSeries>
+        <Sequence
+          name="Watermark"
+          durationInFrames={cta.from + durations.crossfade}
+        >
+          <Watermark />
+        </Sequence>
+        <Sequence name="Captions" durationInFrames={cta.from}>
+          <Captions captions={captions} />
+        </Sequence>
+        <Sequence name="Source" from={sourceFrom}>
+          <SourceTag source={script.source} />
+        </Sequence>
+        {audioCues(sections, durations.crossfade).map((cue) => {
+          const file = audio?.sfx[cue.name];
+          return file ? (
+            <Sequence
+              key={`${cue.name}-${cue.from}`}
+              name={`SFX ${cue.name}`}
+              from={cue.from}
+              layout="none"
+            >
+              <Audio src={staticFile(file)} volume={sfx[cue.name].volume} />
+            </Sequence>
+          ) : null;
         })}
-      </TransitionSeries>
-      <Sequence name="Watermark" durationInFrames={cta.from + durations.crossfade}>
-        <Watermark />
-      </Sequence>
-      <Sequence name="Captions" durationInFrames={cta.from}>
-        <Captions captions={captions} />
-      </Sequence>
-      <Sequence name="Source" from={sourceFrom}>
-        <SourceTag source={script.source} />
-      </Sequence>
-      {audioCues(sections, durations.crossfade).map((cue) => {
-        const file = audio?.sfx[cue.name];
-        return file ? (
-          <Sequence key={`${cue.name}-${cue.from}`} name={`SFX ${cue.name}`} from={cue.from} layout="none">
-            <Audio src={staticFile(file)} volume={sfx[cue.name].volume} />
-          </Sequence>
-        ) : null;
-      })}
-      {audio?.music ? (
-        <Audio
-          src={staticFile(audio.music)}
-          loop
-          volume={(f) =>
-            music.volume *
-            interpolate(
-              f,
-              [0, music.fadeFrames, durationInFrames - music.fadeFrames, durationInFrames],
-              [0, 1, 1, 0],
-              clamp,
-            )
-          }
-        />
-      ) : null}
-      {showGuides ? <SafeZoneGuide /> : null}
-    </AbsoluteFill>
+        {audio?.music ? (
+          <Audio
+            src={staticFile(audio.music)}
+            loop
+            volume={(f) =>
+              music.volume *
+              interpolate(
+                f,
+                [
+                  0,
+                  music.fadeFrames,
+                  durationInFrames - music.fadeFrames,
+                  durationInFrames,
+                ],
+                [0, 1, 1, 0],
+                clamp,
+              )
+            }
+          />
+        ) : null}
+        {showGuides ? <SafeZoneGuide /> : null}
+      </AbsoluteFill>
     </BlenderContext.Provider>
   );
 };

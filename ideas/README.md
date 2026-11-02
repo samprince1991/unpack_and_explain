@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**20 ideas** (by status: 14 idea, 2 scripted, 3 rendered, 1 posted) · next up: #1 [How a card payment works](idea-01-card-payment/idea.md) (Mon 2 Nov)
+**20 ideas** (by status: 14 idea, 1 scripted, 4 rendered, 1 posted) · next up: #1 [How a card payment works](idea-01-card-payment/idea.md) (Mon 2 Nov)
 
 ## Topics
 
@@ -38,7 +38,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 |---|---|---|---|---|---|---|---|
 | Flight | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Most people explain lift wrong. | Q | scripted | NASA Glenn 'lift' explainer pages | 1 |
 | Flight | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Autopilot isn't flying the plane. It's following instructions. | E | idea | Aircraft manufacturer / FAA docs | - |
-| Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | scripted | Canadian investigation report on Air Canada Flight 143 (1983) | 3 |
+| Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | rendered | Canadian investigation report on Air Canada Flight 143 (1983) | - |
 | Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | Suck, squeeze, bang, blow | C | idea | Reuse facts from idea 3 | - |
 | Structures | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | A bridge tore itself apart in a light wind. | F | idea | Washington State archives / FHWA | - |
 | Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | NASA/JPL Mishap Investigation Board report | - |
@@ -50,7 +50,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-11-02 | 1 | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Money & payments › Payments | E | rendered | 81.4 | 121 | 48 |
 | 2026-11-03 | 1 | 2 | [How GPS finds you](idea-02-gps/idea.md) | Everyday tech › Location & GPS | E | [posted](https://www.instagram.com/reel/DfE-k9so_ys) | - | 126 | 50 |
 | 2026-11-04 | 1 | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Money & payments › Payments | C | idea | - | - | - |
-| 2026-11-05 | 1 | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | Aviation & engineering › Engines | F | scripted | - | 123 | 49 |
+| 2026-11-05 | 1 | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | Aviation & engineering › Engines | F | rendered | 57.2 | 127 | 51 |
 | 2026-11-06 | 1 | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | - | 118 | 47 |
 | 2026-11-09 | 2 | 5 | [How WiFi works](idea-05-wifi/idea.md) | Everyday tech › Wireless | E | idea | - | - | - |
 | 2026-11-10 | 2 | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | Money & payments › Markets | F | idea | - | - | - |

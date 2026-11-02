@@ -1,6 +1,11 @@
-import { AbsoluteFill, Img, Interactive, staticFile, useCurrentFrame } from "remotion";
+import {
+  AbsoluteFill,
+  Img,
+  Interactive,
+  staticFile,
+  useCurrentFrame,
+} from "remotion";
 import { fonts, weights } from "../brand/fonts";
-import { layout } from "../brand/layout";
 import { colors, typeScale } from "../brand/tokens";
 import { useBlender } from "../templates/blender";
 import { blenderFramePath } from "../templates/blenderJob";
@@ -18,9 +23,9 @@ export const BlenderClip: React.FC<{
   frame?: number;
   style?: React.CSSProperties;
 }> = ({ clip, area: areaProp, frame: fixed, style }) => {
-  const area = areaProp ?? layout.blender[clip];
   const current = useCurrentFrame();
-  const { postId, manifest } = useBlender();
+  const { postId, manifest, areas } = useBlender();
+  const area = areaProp ?? areas[clip];
   const rendered = manifest?.clips[clip];
   const box: React.CSSProperties = {
     position: "absolute",

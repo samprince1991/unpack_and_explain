@@ -18,7 +18,7 @@ export const COVER_MAX_WORDS = 4;
 
 const spokenIn = (script: PostScript, section: SectionId, cue: string) =>
   (script.sections.find((s) => s.id === section)?.voiceover ?? "")
-    .split(/\s+/)
+    .split(/[\s-]+/)
     .some((w) => normalizeWord(w) === normalizeWord(cue));
 
 // Rules for the Blender plan (docs/specs/2026-11-02-blender-3d-design.md).

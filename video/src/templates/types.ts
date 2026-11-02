@@ -32,8 +32,11 @@ export type PostScript = {
   postNumber: number;
   format: Format;
   title: string;
-  // Short on-screen hook (max 2 lines), shown from frame 0.
+  // Short on-screen hook (max 2 lines), shown as the hook title when the hook starts.
   hookText: string;
+  // false hides the hook title (e.g. when it would repeat the VO over a 3D hook); the
+  // Blender hook clip then gets the whole visual region. Default true.
+  hookTitle?: boolean;
   // One word of hookText to color amber.
   hookHighlight?: string;
   // Topic keyword (e.g. "GPS"), colored amber in the question and congrats cards.
@@ -129,6 +132,8 @@ export const BEAT_ACTIONS = [
   "flow",
   "label",
   "shot",
+  // Amber off and spinning parts spin down (an engine dying, a machine switching off).
+  "stop",
 ] as const;
 export type BeatAction = (typeof BEAT_ACTIONS)[number];
 

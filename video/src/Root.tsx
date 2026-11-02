@@ -8,8 +8,11 @@ import { Post02 } from "./posts/post-02-gps";
 import { Carousel18 } from "./posts/post-18-gps-steps";
 import { script as carousel18 } from "./posts/post-18-gps-steps/slides";
 import { script as post02 } from "./posts/post-02-gps/script";
+import { Post03 } from "./posts/post-03-jet-engine";
+import { script as post03 } from "./posts/post-03-jet-engine/script";
 import { Post20 } from "./posts/post-20-vibe-coding";
 import { script as post20 } from "./posts/post-20-vibe-coding/script";
+import { calculateCoverMetadata, Cover } from "./templates/Cover";
 import { calculateReelMetadata } from "./templates/metadata";
 
 export const RemotionRoot: React.FC = () => {
@@ -34,6 +37,26 @@ export const RemotionRoot: React.FC = () => {
         height={video.height}
         defaultProps={{ script: post02, vo: null, audio: null, showGuides: false }}
         calculateMetadata={calculateReelMetadata}
+      />
+      <Composition
+        id="Post03-JetEngine"
+        component={Post03}
+        durationInFrames={video.fps * 40}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post03, vo: null, audio: null, showGuides: false }}
+        calculateMetadata={calculateReelMetadata}
+      />
+      <Composition
+        id="Cover03-JetEngine"
+        component={Cover}
+        durationInFrames={1}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post03, blender3d: null, showGuides: false }}
+        calculateMetadata={calculateCoverMetadata}
       />
       <Composition
         id="Post20-VibeCoding"

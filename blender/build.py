@@ -19,9 +19,10 @@ ENTER = 12  # frames for one part to appear
 FLOW_FRAMES = 24
 ORBIT_DEG_PER_S = 4  # slow constant drift so nothing sits still
 SPIN_TURNS_PER_S = 0.35
+SPIN_DOWN = 36  # frames for a spinning part to coast to a stop
 FOCUS_ZOOM = 1.2
 FOCUS_PULL = 0.5  # camera target moves this far from the model center toward the part
-AWAY = 1.2  # how far "away" parts (e.g. a casing) lift out when exploded
+AWAY = 0.6  # how far "away" parts (e.g. a casing) drop while they shrink out of view
 LENS = 50
 SENSOR = 36
 COLUMN_FRACTION = 780 / 1080  # keep the model inside the 540-centered column
@@ -200,8 +201,10 @@ class Clip:
         self.amber = None
         self.labels = []
         self.cuts = []  # frames where the camera or the key part changes (labels end there)
+        self.spins = []  # {"part", "start", "end"}; keyed in finish() once ends are known
         start = clip["start"]
         self.cam = {"yaw": start["yaw"], "pitch": start["pitch"], "zoom": start["zoom"], "target": Vector()}
+        self.start_zoom = start["zoom"]
 
     # explode offsets
     def _offset(self, part, exploded):
@@ -224,8 +227,16 @@ class Clip:
         return self.parts[part]["base"] + self._offset(part, exploded)
 
     def set_explode(self, exploded, frame, glide=True):
+        away = self.model["explode"].get("away", [])
         for part, info in self.parts.items():
             pivot = info["pivot"]
+            if part in away:
+                # Away parts (a casing) drop and shrink out of view, so the inside reads.
+                gone = HIDDEN if exploded else 1.0
+                if glide:
+                    pivot.keyframe_insert("scale", frame=frame)
+                pivot.scale = (gone, gone, gone)
+                pivot.keyframe_insert("scale", frame=frame + (GLIDE if glide else 0))
             if glide:
                 pivot.location = self.center(part)
                 pivot.keyframe_insert("location", frame=frame)
@@ -297,15 +308,33 @@ class Clip:
                     obj.keyframe_insert("hide_render", frame=at)
 
     def spin(self, part, frame):
-        pivot = self.parts[part]["pivot"]
+        self.spins.append({"part": part, "start": frame, "end": None})
+
+    def stop(self, frame):
+        self.set_amber(None, frame)
+        for spin in self.spins:
+            if spin["end"] is None and spin["start"] <= frame:
+                spin["end"] = frame
+
+    def finish(self):
+        """Spin keys: constant speed from start, then a coast-down if stopped."""
         axis = "xyz".index(self.model["spinAxis"])
-        seconds = (self.frames - frame) / self.scene.render.fps
-        with interpolation("LINEAR"):
-            pivot.keyframe_insert("rotation_euler", index=axis, frame=frame)
+        rate = 2 * math.pi * SPIN_TURNS_PER_S / self.scene.render.fps  # radians per frame
+        for spin in self.spins:
+            pivot = self.parts[spin["part"]]["pivot"]
+            start, end = spin["start"], spin["end"] or self.frames
+            base = pivot.rotation_euler[axis]
             rot = list(pivot.rotation_euler)
-            rot[axis] += 2 * math.pi * SPIN_TURNS_PER_S * seconds
+            with interpolation("LINEAR"):
+                pivot.keyframe_insert("rotation_euler", index=axis, frame=start)
+            rot[axis] = base + rate * (end - start)
             pivot.rotation_euler = rot
-            pivot.keyframe_insert("rotation_euler", index=axis, frame=self.frames)
+            with interpolation("BEZIER" if spin["end"] else "LINEAR"):
+                pivot.keyframe_insert("rotation_euler", index=axis, frame=end)
+            if spin["end"]:
+                rot[axis] += rate * SPIN_DOWN / 2  # decelerating: half the distance
+                pivot.rotation_euler = rot
+                pivot.keyframe_insert("rotation_euler", index=axis, frame=end + SPIN_DOWN)
 
     def flow(self, src, dst, frame):
         coll = bpy.data.collections.new("flow")  # no lineset: the dot has no outline
@@ -337,14 +366,14 @@ class Clip:
         f = beat["frame"]
         shot = beat.get("shot") or {}
         kind = beat["do"]
-        if kind in ("focus", "explode", "collapse", "shot", "flow"):
+        if kind in ("focus", "explode", "collapse", "shot", "flow", "stop"):
             self.cuts.append(f)
         if kind == "reveal":
             self.reveal(f)
         elif kind == "focus":
             part = beat["part"]
             self.set_amber(part, f)
-            base = self.explode_zoom() if self.exploded else 1.0
+            base = (self.explode_zoom() if self.exploded else 1.0) * self.start_zoom
             self.move_camera(
                 {
                     "target": self.center(part) * FOCUS_PULL,
@@ -360,7 +389,7 @@ class Clip:
             self.move_camera(
                 {
                     "target": Vector(),
-                    "zoom": shot.get("zoom", self.explode_zoom() if exploding else 1.0),
+                    "zoom": shot.get("zoom", (self.explode_zoom() if exploding else 1.0) * self.start_zoom),
                     "yaw": shot.get("yaw"),
                     "pitch": shot.get("pitch"),
                 },
@@ -368,6 +397,8 @@ class Clip:
             )
         elif kind == "spin":
             self.spin(beat["part"], f)
+        elif kind == "stop":
+            self.stop(f)
         elif kind == "flow":
             self.flow(beat["part"], beat["to"], f)
         elif kind == "label":
@@ -416,4 +447,5 @@ def build_clip(scene, job, clip, tokens, preview, repo_root):
     c.start()
     for beat in clip["beats"]:
         c.apply(beat)
+    c.finish()
     return c.label_tracks()

@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { staticFile } from "remotion";
-import { blenderManifestPath, type BlenderJob } from "./blenderJob";
+import { blenderManifestPath, type BlenderAreas, type BlenderJob } from "./blenderJob";
 import type { BlenderClipId, BlenderManifest } from "./types";
 
 export type ClipStatus = "ok" | "missing" | "stale" | "preview";
@@ -48,7 +48,11 @@ export const loadBlenderManifest = async (postId: string): Promise<BlenderManife
   }
 };
 
-export type BlenderContextValue = { postId: string; manifest: BlenderManifest | null };
+export type BlenderContextValue = {
+  postId: string;
+  manifest: BlenderManifest | null;
+  areas: BlenderAreas;
+};
 
 export const BlenderContext = createContext<BlenderContextValue | null>(null);
 
