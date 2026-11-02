@@ -5,9 +5,9 @@ title: "How a card payment works"
 format: E
 category: "Money & payments"
 subcategory: "Payments"
-week: 1
-date: 2026-11-02
-status: rendered
+week: 0
+date: 2026-10-30
+status: posted
 hook: "Nobody tells you a card tap moves zero money."
 hook_formula: 3
 hook_score: 81.4
@@ -17,7 +17,7 @@ verify:
   - "Settlement timing (varies by country and card network); cite the source on screen"
   - "Up to five companies in the chain (terminal provider/processor, shop's bank, card network, your bank)"
 metrics:  # fill in after posting
-  views: null
+  views: 2  # as of 2026-11-02
   reach: null
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

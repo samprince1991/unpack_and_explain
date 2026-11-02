@@ -29,3 +29,20 @@ describe("brand guard", () => {
     expect(offenders(/fontFamily:\s*["'`]/)).toEqual([]);
   });
 });
+
+// Blender scripts read colors from tokens.json (exported from tokens.ts), never literals.
+const BLENDER = join(process.cwd(), "..", "blender");
+const pythonFiles = walk(BLENDER).filter((f) => f.endsWith(".py"));
+
+describe("brand guard: blender", () => {
+  it("finds the blender scripts", () => {
+    expect(pythonFiles.length).toBeGreaterThan(0);
+  });
+
+  it("has no color literals or font names in blender/*.py", () => {
+    const bad = pythonFiles.filter((f) =>
+      /["']#?[0-9a-fA-F]{6}["']|Poppins|\bInter\b/.test(readFileSync(f, "utf8")),
+    );
+    expect(bad.map((f) => relative(BLENDER, f))).toEqual([]);
+  });
+});

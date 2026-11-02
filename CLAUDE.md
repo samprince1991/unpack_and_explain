@@ -8,6 +8,7 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 - `ideas/`: **the content tracker** (replaces the old spreadsheet). One `ideas/idea-NN-slug/idea.md` per idea: YAML front matter (id, date, format, category, subcategory, status, link, hook, hook_formula, hook_score, question_score, companion_of, source, verify, metrics) + `## Script` table (Section | Voice-over | Visual) for reels or `## Slides` table (Slide | Headline | Body) for carousels + `## Caption`. `NN` = idea ID (numbers only). Once built, an idea becomes a post: its code, VO and render folders use the matching `post-NN-slug` name. `category` / `subcategory` must come from `ideas/categories.yml` (the fixed topic list; add new sub-categories there first) and group related ideas so topics don't repeat. After posting, set `link` to the live post URL. `ideas/README.md` (topics, schedule, performance, formats, how-to) is **generated**: never edit it by hand.
 - `logo/`: master logo files. **Never edit.** Copy the SVGs you need into `video/public/brand/`.
 - `instagram/`: state for the instagram-agent skills (`voice.md`, `swipe.md`, `profile.md`, `engage.md`; see Instagram skills). Skills read and write here, **not** `~/.claude/instagram/`.
+- `blender/`: headless Blender scripts for the 3D (look A, scene builder, renderer, model previews, procedural models in `blender/models/`). Colors only from the generated `blender/tokens.json`; never write color values here (the brand guard scans it).
 - `docs/specs/` (design rationale; the skills pipeline is `2026-10-30-instagram-skills-pipeline-design.md`), `docs/plans/` (implementation plans, historical record: old paths inside are not updated).
 - `video/`: the Remotion project. Run all npm/npx commands from here.
   - `src/brand/`: tokens, fonts, motion, layout (safe zones), voice config. No React here.
@@ -16,7 +17,8 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
   - `src/templates/Reel.tsx`: section sequencing, format rules, audio, captions.
   - `src/posts/post-NN-slug/`: `script.ts` (typed data) + `scenes/*.tsx` for that post only. Carousels use `slides.ts` instead of `script.ts`.
   - `src/templates/Carousel.tsx`: carousel slides (frame N = slide N+1), layouts per slide kind, footer.
-  - `public/posts/post-NN/`: generated VO mp3s and `captions.json`.
+  - `public/posts/post-NN/`: generated VO mp3s and `captions.json`; `3d/` holds the Blender renders (gitignored, regenerate with `npm run blender`).
+  - `src/brand/models.ts` + `public/models/*.glb`: the approved 3D model catalog.
   - `scripts/tts.ts`: generates VO + timestamps from `script.ts`.
 
 ## Commands (from `video/`)
@@ -31,6 +33,9 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 - Voice-over: `npm run tts -- post-NN-slug` writes `public/posts/<id>/vo/*.mp3` + `vo.json` (needs `ELEVENLABS_API_KEY` in `video/.env` and `voice.voiceId`). Without it, the reel uses estimated timing (2.5 words/s); a stale `vo.json` (script text changed) throws until TTS is re-run.
 - VO bleed cleanup: `npm run vo:clean -- post-NN-slug` trims ElevenLabs stitching bleed off existing VO files without regenerating them (see Audio and captions). `npm run tts` already does this for every new take; running it twice is safe.
 - QA audio (required before calling a reel done): `npx remotion render PostNN-Slug out/qa/mix.wav --codec=wav`, `npx remotion ffmpeg -y -i out/qa/mix.wav -ac 1 -ar 16000 -c:a pcm_s16le out/qa/mix16.wav`, then `python scripts/audio-bursts.py out/qa/mix16.wav`. It must print "No stray blips"; also listen across every section boundary.
+- Blender 3D: `npm run blender -- post-NN-slug [--preview] [--only=cover,opener,hook,mechanism]` renders the post's 3D clips (needs Blender 4.5: `BLENDER_PATH` in `video/.env`). `--preview` = 25% size for fast checks; `npm run blender -- --selftest` checks the install; `npm run blender -- kit-blender` renders the Kit sample.
+- Add a 3D model: `npm run model:add -- <raw.glb> --id <id>` (cleans it, writes `public/models/<id>.glb`, adds a TODO stub to `models.ts`, renders previews to `out/models/<id>/`). Fill in the stub; `npm test` fails until you do.
+- 3D cover: `npm run cover -- post-NN-slug` → `out/post-NN-slug-cover.png` (upload with "Edit cover").
 - Brand sounds: `npm run brand-audio` generates the SFX + music bed once (needs `ELEVENLABS_API_KEY`).
 - Safe-zone overlay: set `showGuides: true` in the Studio props panel, or pass `--props=./qa-guides.json` to `remotion still`
 - QA stills: `npx remotion bundle` once, then `npx remotion still build PostNN-Slug out/qa/frame-N.png --frame=N --props=./qa-guides.json`
@@ -125,6 +130,7 @@ Load fonts only through `src/brand/fonts.ts` (`@remotion/google-fonts`). Sentenc
 1. **Frame 0:** the question card is already visible (no fade-in). Avatar logo sting finishes in < 1 s alongside it. The hook title appears when the hook section starts.
 2. **Throughout (not CTA):** avatar watermark, burned-in captions (active word amber), motion at least every 2 s.
 3. **Mechanism:** one idea per beat, shown visually and synced with `useCue`. **No on-screen text that repeats the voice-over**: captions already carry the words, so labels like numbered step badges are redundant (removed from post 2 after review). On-screen text is only for what the VO doesn't say: a number, a unit conversion, a source. `StepBadge` stays in `components/` for lists that are NOT spoken word-for-word.
+   **New posts (from 21): the 3D is rendered in Blender** (see Blender 3D): frame-0 backdrop, hook and mechanism clips, plus the cover still. The live three.js rule below applies to posts built before it.
    **The mechanism is a 3D hero scene** (`hero3d: "mechanism"` in `script.ts`; design: `docs/specs/2026-10-30-3d-hero-design.md`): `Stage3D` + styles from `src/components/three/` (see Motion kit), same color roles (neutral lines, one amber element per beat), labels and numbers as `Label3D` (never text in WebGL). Hook, setup and payoff stay 2D. Posts 01, 02 and 20 opt out (`hero3d: { optOut }`); `src/brand/hero3d.test.ts` fails if a hero3d post's `MechanismScene.tsx` doesn't use `components/three`.
 4. **Before / on CTA:** `SourceTag` ("Source: ...") visible for the last 3 s.
 5. **CTA card (3-4 s):** Stacked-Dark logo, tagline, handle (`brand.handle` = `@unpack_and_explain`).
@@ -159,12 +165,28 @@ Reusable motion for scenes (preview every piece in Studio under **Kit**, `src/ki
 | `components/three/NetworkGraph3D` | Nodes + links in space; amber packet travels `route` (`travelAt`, `travelFrames`), destination pings |
 | `components/three/Bars3D` | Columns rise from a floor grid; `keyIndex` amber; values via `Label3D` at `barTop()` |
 | `components/three/WireGlobe` | 3D line-art globe |
+| `components/BlenderClip` / `BlenderLabels` | Plays a Blender clip (PNG sequence) by frame; 2D labels pinned to Blender parts. See Blender 3D |
+| `components/motion/Parallax` | Depth layer: near layers drift and push in more than far ones |
+| `components/motion/LightSweep` | One soft glint crossing an area (`at`, `area`) |
+| `components/motion/DustField` | Sparse specks drifting at different depths in the visual region |
 
 **All 3D** (`@remotion/three` + `@react-three/drei` `Line` / `Edges`): animate only from `useCurrentFrame()`, never R3F `useFrame()`; colors and line widths from `components/three/materials.ts`. `remotion.config.ts` sets the ANGLE GL renderer, so CLI renders and stills need no `--gl` flag (Node-API renders must pass `chromiumOptions: { gl: "angle" }`). Preview all styles in Studio: **Kit-Three**.
 
 **Section transitions:** each post's look picks a transition mix (see Variety). `Reel` also takes `transitions={{ mechanism: "push", payoff: "iris" }}` (keyed by the entering section), which wins over the mix. Options in `components/transitions/sectionTransitions.ts`: `dip`, `zoomDip` (new chapter), `push` (next step), `iris` (zoom into a detail), `wipe` (before/after, myth/fact). Scenes are transparent over one background, so every transition hands off sequentially or with complementary masks; never use stock `@remotion/transitions` presentations (slide, wipe, iris...) directly, they stack the two scenes.
 
 **Animation libraries:** only frame-driven ones. Framer Motion / motion.dev, CSS animations and react-spring run on the wall clock and flicker in renders. GSAP only via `@remotion/gsap` (`useGsapTimeline`), and only if a timeline is genuinely easier than `interpolate`.
+
+## Blender 3D
+
+Design: `docs/specs/2026-11-02-blender-3d-design.md`. Every new reel has `blender` in `script.ts` (old posts: `blender: { optOut: "built before Blender" }`).
+
+- **Look A, "lit line art":** dark navy shaded surfaces, soft key + rim light (neutral white), Freestyle lines in `diagram.stroke`, the one key part amber with a slight glow, light depth of field, transparent background. Same color roles as 2D: one amber part per beat, no teal, no text in 3D (labels are 2D via `BlenderLabels`, numbers/units only).
+- **Models:** only from `src/brand/models.ts` (license CC0 / CC-BY with `credit` in the caption / NASA / own). Sources: NASA 3D Resources, Poly Haven, Kenney, Smithsonian 3D, Sketchfab (license filter). Never AI-generated models. Hand-prepared `blender/models/<id>.blend` wins over the GLB; procedural models (`blender/models/*.py`) are license "own". Don't lead with the previous post's model.
+- **Plan** (`blender` in `script.ts`): `model`, `cover` / `opener` shots (`yaw`, `pitch`, `zoom`, `keyPart`, `exploded`), `hook` and `mechanism` shots with `beats`: `{ cue, fallback, do, part?, to?, label?, shot? }`. Actions: `reveal`, `focus` (camera to a part, it turns amber), `explode` / `collapse`, `spin`, `flow` (amber dot part to part; the destination becomes the key), `label`, `shot`, `stop` (amber off, spinning parts coast to a stop). Cues resolve with the same maths as `useCue`. `coverText` <= 4 words (defaults to `hookText`).
+- **Where it shows:** the Reel template puts the opener clip behind the question card (dimmed, scrim) automatically. Hook and mechanism scenes draw `<BlenderClip clip="hook" />` / `<BlenderClip clip="mechanism" />` + `<BlenderLabels clip="mechanism" />`. The cover is a `CoverNN-Slug` still (`templates/Cover.tsx`, register it in `Root.tsx` with `calculateCoverMetadata`), laid out for both crops (4:5 feed, 3:4 grid).
+- **Stale renders:** each clip has a hash of its plan + VO timing. Studio shows a placeholder for missing clips; a final render throws if any clip is missing, stale or a preview. After any TTS re-take of the question, hook or mechanism, re-run `npm run blender`.
+- **2D sections** get depth from `components/motion/Parallax`, `LightSweep`, `DustField` (frame-driven, token colors). Preview everything in Studio: **Kit-Blender** and **Kit-BlenderCover**.
+- Render time: Eevee + Freestyle, roughly 1-3 s a frame at full size. Iterate with `--preview` and `--only`.
 
 ## Variety (every reel looks different inside the same brand)
 
@@ -317,6 +339,7 @@ The `instagram-agent` plugin (13 skills, `/ig-*`) runs the account around the Re
 1. Script it with `/ig-reel` (pipeline stage 4) into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Caption` from `/ig-caption`, `verify` list; layout as idea 2), run `npm run ig -- idea-NN-slug`, record `hook_formula` / `hook_score` / `question_score`, set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built → rendered → posted); after posting add `link` (the live post URL) and fill in `metrics`.
 2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` <= 28 chars (2 lines), CTA voiceover exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words, `hero3d: "mechanism"`. List "verify" facts in `verify`.
 3. Run TTS -> VO + captions (bleed is trimmed automatically; check the "trimmed" lines it prints). Or build with estimated timing first.
+3b. Pick the model (catalog, or `npm run model:add`), write the `blender` plan in `script.ts` from the Visual column (model + part per beat), then `npm run blender -- post-NN-slug --preview`, review, and the full `npm run blender -- post-NN-slug`. Register `CoverNN-Slug` and render the cover with `npm run cover`.
 4. Build scenes (`hook`, `setup`, `mechanism`, `payoff`) from the Visual column with shared components and the scene styles in `src/components/styles/` (lead with a style the last 3 posts didn't use; see Variety); bespoke scene components live only inside the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card automatically. Sync visuals to the VO with `useCue("word", fallbackFraction)`. The mechanism is the 3D hero (`src/components/three/`; lead with a different 3D style than the previous post).
 5. Export `PostNN` (wrapping `Reel` with the scene map) from `index.tsx` and register `PostNN-Slug` in `src/Root.tsx` with `calculateMetadata={calculateReelMetadata}`.
 6. Run `npm run lint`, review in Studio against the QA checklist, then render when asked.
@@ -324,6 +347,7 @@ The `instagram-agent` plugin (13 skills, `/ig-*`) runs the account around the Re
 ## QA checklist (every reel)
 
 - [ ] Look comes from the rotation (or a pinned slot with a reason); scene styles differ from the last 3 posts
+- [ ] Blender (new posts): question readable over the 3D backdrop at frame 0; one amber part per beat in every clip; labels inside `layout.regions`; cover readable in the 4:5 and 3:4 crops; CC-BY model credit in the caption; `npm run blender` up to date (no stale warning)
 - [ ] Mechanism is a 3D hero: lines readable at full size, back edges hidden, one amber element per beat, nothing clipped at the column edge during orbit/shots, labels inside `layout.regions`
 - [ ] Question card visible at frame 0; congrats line before the CTA; total length 35-52 s
 - [ ] Nothing outside safe zones; cover readable in 4:5 crop

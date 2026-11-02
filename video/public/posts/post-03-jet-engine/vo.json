@@ -1,0 +1,951 @@
+{
+  "postId": "post-03-jet-engine",
+  "estimated": false,
+  "sections": [
+    {
+      "id": "question",
+      "text": "Do you know the 4 steps that never stop in a jet engine?",
+      "file": "posts/post-03-jet-engine/vo/question.mp3",
+      "durationMs": 3204,
+      "captions": [
+        {
+          "text": "Do",
+          "startMs": 0,
+          "endMs": 151,
+          "timestampMs": 76,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 209,
+          "endMs": 279,
+          "timestampMs": 244,
+          "confidence": null
+        },
+        {
+          "text": " know",
+          "startMs": 313,
+          "endMs": 430,
+          "timestampMs": 372,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 476,
+          "endMs": 546,
+          "timestampMs": 511,
+          "confidence": null
+        },
+        {
+          "text": " 4",
+          "startMs": 615,
+          "endMs": 824,
+          "timestampMs": 720,
+          "confidence": null
+        },
+        {
+          "text": " steps",
+          "startMs": 882,
+          "endMs": 1161,
+          "timestampMs": 1022,
+          "confidence": null
+        },
+        {
+          "text": " that",
+          "startMs": 1184,
+          "endMs": 1300,
+          "timestampMs": 1242,
+          "confidence": null
+        },
+        {
+          "text": " never",
+          "startMs": 1370,
+          "endMs": 1567,
+          "timestampMs": 1469,
+          "confidence": null
+        },
+        {
+          "text": " stop",
+          "startMs": 1625,
+          "endMs": 1869,
+          "timestampMs": 1747,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 1927,
+          "endMs": 1985,
+          "timestampMs": 1956,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 2032,
+          "endMs": 2067,
+          "timestampMs": 2050,
+          "confidence": null
+        },
+        {
+          "text": " jet",
+          "startMs": 2125,
+          "endMs": 2299,
+          "timestampMs": 2212,
+          "confidence": null
+        },
+        {
+          "text": " engine?",
+          "startMs": 2357,
+          "endMs": 3204,
+          "timestampMs": 2781,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "text": "In 1983, a passenger jet lost both engines at 41,000 feet. Everyone survived. Here's why.",
+      "file": "posts/post-03-jet-engine/vo/hook.mp3",
+      "durationMs": 7150,
+      "captions": [
+        {
+          "text": "In",
+          "startMs": 0,
+          "endMs": 197,
+          "timestampMs": 99,
+          "confidence": null
+        },
+        {
+          "text": " 1983,",
+          "startMs": 267,
+          "endMs": 1265,
+          "timestampMs": 766,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1289,
+          "endMs": 1324,
+          "timestampMs": 1307,
+          "confidence": null
+        },
+        {
+          "text": " passenger",
+          "startMs": 1393,
+          "endMs": 1939,
+          "timestampMs": 1666,
+          "confidence": null
+        },
+        {
+          "text": " jet",
+          "startMs": 2032,
+          "endMs": 2299,
+          "timestampMs": 2165,
+          "confidence": null
+        },
+        {
+          "text": " lost",
+          "startMs": 2380,
+          "endMs": 2659,
+          "timestampMs": 2520,
+          "confidence": null
+        },
+        {
+          "text": " both",
+          "startMs": 2740,
+          "endMs": 2984,
+          "timestampMs": 2862,
+          "confidence": null
+        },
+        {
+          "text": " engines",
+          "startMs": 3065,
+          "endMs": 3379,
+          "timestampMs": 3222,
+          "confidence": null
+        },
+        {
+          "text": " at",
+          "startMs": 3413,
+          "endMs": 3471,
+          "timestampMs": 3442,
+          "confidence": null
+        },
+        {
+          "text": " 41,000",
+          "startMs": 3518,
+          "endMs": 4261,
+          "timestampMs": 3890,
+          "confidence": null
+        },
+        {
+          "text": " feet.",
+          "startMs": 4319,
+          "endMs": 4690,
+          "timestampMs": 4505,
+          "confidence": null
+        },
+        {
+          "text": " Everyone",
+          "startMs": 5132,
+          "endMs": 5584,
+          "timestampMs": 5358,
+          "confidence": null
+        },
+        {
+          "text": " survived.",
+          "startMs": 5608,
+          "endMs": 6165,
+          "timestampMs": 5887,
+          "confidence": null
+        },
+        {
+          "text": " Here's",
+          "startMs": 6490,
+          "endMs": 6722,
+          "timestampMs": 6606,
+          "confidence": null
+        },
+        {
+          "text": " why.",
+          "startMs": 6769,
+          "endMs": 7150,
+          "timestampMs": 7146,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "text": "A jet engine is a machine that burns fuel without stopping.",
+      "file": "posts/post-03-jet-engine/vo/setup.mp3",
+      "durationMs": 3820,
+      "captions": [
+        {
+          "text": "A",
+          "startMs": 0,
+          "endMs": 139,
+          "timestampMs": 70,
+          "confidence": null
+        },
+        {
+          "text": " jet",
+          "startMs": 255,
+          "endMs": 499,
+          "timestampMs": 377,
+          "confidence": null
+        },
+        {
+          "text": " engine",
+          "startMs": 580,
+          "endMs": 952,
+          "timestampMs": 766,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 987,
+          "endMs": 1080,
+          "timestampMs": 1034,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1126,
+          "endMs": 1161,
+          "timestampMs": 1144,
+          "confidence": null
+        },
+        {
+          "text": " machine",
+          "startMs": 1207,
+          "endMs": 1556,
+          "timestampMs": 1382,
+          "confidence": null
+        },
+        {
+          "text": " that",
+          "startMs": 1591,
+          "endMs": 1718,
+          "timestampMs": 1655,
+          "confidence": null
+        },
+        {
+          "text": " burns",
+          "startMs": 1765,
+          "endMs": 2067,
+          "timestampMs": 1916,
+          "confidence": null
+        },
+        {
+          "text": " fuel",
+          "startMs": 2148,
+          "endMs": 2508,
+          "timestampMs": 2328,
+          "confidence": null
+        },
+        {
+          "text": " without",
+          "startMs": 2577,
+          "endMs": 2902,
+          "timestampMs": 2740,
+          "confidence": null
+        },
+        {
+          "text": " stopping.",
+          "startMs": 2961,
+          "endMs": 3820,
+          "timestampMs": 3454,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "mechanism",
+      "text": "Suck: a fan pulls in air. Squeeze: a compressor packs it tight. Bang: fuel burns in the middle. Blow: hot gas spins a turbine, then blasts out the back and pushes the plane forward.",
+      "file": "posts/post-03-jet-engine/vo/mechanism.mp3",
+      "durationMs": 14675,
+      "captions": [
+        {
+          "text": "Suck:",
+          "startMs": 0,
+          "endMs": 546,
+          "timestampMs": 273,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 592,
+          "endMs": 673,
+          "timestampMs": 633,
+          "confidence": null
+        },
+        {
+          "text": " fan",
+          "startMs": 789,
+          "endMs": 1057,
+          "timestampMs": 923,
+          "confidence": null
+        },
+        {
+          "text": " pulls",
+          "startMs": 1126,
+          "endMs": 1370,
+          "timestampMs": 1248,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 1416,
+          "endMs": 1474,
+          "timestampMs": 1445,
+          "confidence": null
+        },
+        {
+          "text": " air.",
+          "startMs": 1533,
+          "endMs": 1939,
+          "timestampMs": 1736,
+          "confidence": null
+        },
+        {
+          "text": " Squeeze:",
+          "startMs": 2322,
+          "endMs": 2995,
+          "timestampMs": 2659,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 3320,
+          "endMs": 3390,
+          "timestampMs": 3355,
+          "confidence": null
+        },
+        {
+          "text": " compressor",
+          "startMs": 3471,
+          "endMs": 4017,
+          "timestampMs": 3744,
+          "confidence": null
+        },
+        {
+          "text": " packs",
+          "startMs": 4098,
+          "endMs": 4377,
+          "timestampMs": 4238,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 4423,
+          "endMs": 4493,
+          "timestampMs": 4458,
+          "confidence": null
+        },
+        {
+          "text": " tight.",
+          "startMs": 4540,
+          "endMs": 5039,
+          "timestampMs": 4790,
+          "confidence": null
+        },
+        {
+          "text": " Bang:",
+          "startMs": 5735,
+          "endMs": 6397,
+          "timestampMs": 6066,
+          "confidence": null
+        },
+        {
+          "text": " fuel",
+          "startMs": 6722,
+          "endMs": 7012,
+          "timestampMs": 6867,
+          "confidence": null
+        },
+        {
+          "text": " burns",
+          "startMs": 7070,
+          "endMs": 7338,
+          "timestampMs": 7204,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 7384,
+          "endMs": 7442,
+          "timestampMs": 7413,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 7465,
+          "endMs": 7535,
+          "timestampMs": 7500,
+          "confidence": null
+        },
+        {
+          "text": " middle.",
+          "startMs": 7570,
+          "endMs": 7988,
+          "timestampMs": 7779,
+          "confidence": null
+        },
+        {
+          "text": " Blow:",
+          "startMs": 8429,
+          "endMs": 9160,
+          "timestampMs": 8795,
+          "confidence": null
+        },
+        {
+          "text": " hot",
+          "startMs": 9311,
+          "endMs": 9567,
+          "timestampMs": 9439,
+          "confidence": null
+        },
+        {
+          "text": " gas",
+          "startMs": 9636,
+          "endMs": 9985,
+          "timestampMs": 9811,
+          "confidence": null
+        },
+        {
+          "text": " spins",
+          "startMs": 10043,
+          "endMs": 10379,
+          "timestampMs": 10211,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 10426,
+          "endMs": 10461,
+          "timestampMs": 10444,
+          "confidence": null
+        },
+        {
+          "text": " turbine,",
+          "startMs": 10507,
+          "endMs": 11204,
+          "timestampMs": 10856,
+          "confidence": null
+        },
+        {
+          "text": " then",
+          "startMs": 11413,
+          "endMs": 11598,
+          "timestampMs": 11506,
+          "confidence": null
+        },
+        {
+          "text": " blasts",
+          "startMs": 11668,
+          "endMs": 12051,
+          "timestampMs": 11860,
+          "confidence": null
+        },
+        {
+          "text": " out",
+          "startMs": 12098,
+          "endMs": 12237,
+          "timestampMs": 12168,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 12283,
+          "endMs": 12353,
+          "timestampMs": 12318,
+          "confidence": null
+        },
+        {
+          "text": " back",
+          "startMs": 12411,
+          "endMs": 12632,
+          "timestampMs": 12522,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 12678,
+          "endMs": 12748,
+          "timestampMs": 12713,
+          "confidence": null
+        },
+        {
+          "text": " pushes",
+          "startMs": 12806,
+          "endMs": 13108,
+          "timestampMs": 12957,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 13154,
+          "endMs": 13224,
+          "timestampMs": 13189,
+          "confidence": null
+        },
+        {
+          "text": " plane",
+          "startMs": 13259,
+          "endMs": 13491,
+          "timestampMs": 13375,
+          "confidence": null
+        },
+        {
+          "text": " forward.",
+          "startMs": 13549,
+          "endMs": 14675,
+          "timestampMs": 14112,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "text": "Air Canada Flight 143 ran dry after a pounds-versus-kilograms mix-up in the fuel calculation. The plane got less than half the fuel it needed. The pilots glided to an airfield in Gimli, Canada, and landed safely.",
+      "file": "posts/post-03-jet-engine/vo/payoff.mp3",
+      "durationMs": 13932,
+      "captions": [
+        {
+          "text": "Air",
+          "startMs": 0,
+          "endMs": 255,
+          "timestampMs": 128,
+          "confidence": null
+        },
+        {
+          "text": " Canada",
+          "startMs": 313,
+          "endMs": 615,
+          "timestampMs": 464,
+          "confidence": null
+        },
+        {
+          "text": " Flight",
+          "startMs": 685,
+          "endMs": 964,
+          "timestampMs": 825,
+          "confidence": null
+        },
+        {
+          "text": " 143",
+          "startMs": 1080,
+          "endMs": 1753,
+          "timestampMs": 1417,
+          "confidence": null
+        },
+        {
+          "text": " ran",
+          "startMs": 1869,
+          "endMs": 2043,
+          "timestampMs": 1956,
+          "confidence": null
+        },
+        {
+          "text": " dry",
+          "startMs": 2113,
+          "endMs": 2508,
+          "timestampMs": 2311,
+          "confidence": null
+        },
+        {
+          "text": " after",
+          "startMs": 2682,
+          "endMs": 2984,
+          "timestampMs": 2833,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 3053,
+          "endMs": 3077,
+          "timestampMs": 3065,
+          "confidence": null
+        },
+        {
+          "text": " pounds-versus-kilograms",
+          "startMs": 3158,
+          "endMs": 4656,
+          "timestampMs": 3907,
+          "confidence": null
+        },
+        {
+          "text": " mix-up",
+          "startMs": 4830,
+          "endMs": 5248,
+          "timestampMs": 5039,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 5294,
+          "endMs": 5352,
+          "timestampMs": 5323,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 5375,
+          "endMs": 5445,
+          "timestampMs": 5410,
+          "confidence": null
+        },
+        {
+          "text": " fuel",
+          "startMs": 5480,
+          "endMs": 5654,
+          "timestampMs": 5567,
+          "confidence": null
+        },
+        {
+          "text": " calculation.",
+          "startMs": 5712,
+          "endMs": 6513,
+          "timestampMs": 6113,
+          "confidence": null
+        },
+        {
+          "text": " The",
+          "startMs": 6896,
+          "endMs": 7012,
+          "timestampMs": 6954,
+          "confidence": null
+        },
+        {
+          "text": " plane",
+          "startMs": 7059,
+          "endMs": 7303,
+          "timestampMs": 7181,
+          "confidence": null
+        },
+        {
+          "text": " got",
+          "startMs": 7326,
+          "endMs": 7465,
+          "timestampMs": 7396,
+          "confidence": null
+        },
+        {
+          "text": " less",
+          "startMs": 7535,
+          "endMs": 7732,
+          "timestampMs": 7634,
+          "confidence": null
+        },
+        {
+          "text": " than",
+          "startMs": 7755,
+          "endMs": 7895,
+          "timestampMs": 7825,
+          "confidence": null
+        },
+        {
+          "text": " half",
+          "startMs": 7976,
+          "endMs": 8185,
+          "timestampMs": 8081,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 8231,
+          "endMs": 8301,
+          "timestampMs": 8266,
+          "confidence": null
+        },
+        {
+          "text": " fuel",
+          "startMs": 8359,
+          "endMs": 8568,
+          "timestampMs": 8464,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 8626,
+          "endMs": 8684,
+          "timestampMs": 8655,
+          "confidence": null
+        },
+        {
+          "text": " needed.",
+          "startMs": 8731,
+          "endMs": 9172,
+          "timestampMs": 8952,
+          "confidence": null
+        },
+        {
+          "text": " The",
+          "startMs": 9555,
+          "endMs": 9671,
+          "timestampMs": 9613,
+          "confidence": null
+        },
+        {
+          "text": " pilots",
+          "startMs": 9729,
+          "endMs": 10066,
+          "timestampMs": 9898,
+          "confidence": null
+        },
+        {
+          "text": " glided",
+          "startMs": 10101,
+          "endMs": 10403,
+          "timestampMs": 10252,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 10437,
+          "endMs": 10507,
+          "timestampMs": 10472,
+          "confidence": null
+        },
+        {
+          "text": " an",
+          "startMs": 10577,
+          "endMs": 10635,
+          "timestampMs": 10606,
+          "confidence": null
+        },
+        {
+          "text": " airfield",
+          "startMs": 10670,
+          "endMs": 11088,
+          "timestampMs": 10879,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 11134,
+          "endMs": 11204,
+          "timestampMs": 11169,
+          "confidence": null
+        },
+        {
+          "text": " Gimli,",
+          "startMs": 11262,
+          "endMs": 11610,
+          "timestampMs": 11436,
+          "confidence": null
+        },
+        {
+          "text": " Canada,",
+          "startMs": 11645,
+          "endMs": 12202,
+          "timestampMs": 11924,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 12376,
+          "endMs": 12539,
+          "timestampMs": 12458,
+          "confidence": null
+        },
+        {
+          "text": " landed",
+          "startMs": 12608,
+          "endMs": 12899,
+          "timestampMs": 12753,
+          "confidence": null
+        },
+        {
+          "text": " safely.",
+          "startMs": 12957,
+          "endMs": 13932,
+          "timestampMs": 13445,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "congrats",
+      "text": "Congrats, you just learned how a jet engine works.",
+      "file": "posts/post-03-jet-engine/vo/congrats.mp3",
+      "durationMs": 2850,
+      "captions": [
+        {
+          "text": "Congrats,",
+          "startMs": 0,
+          "endMs": 824,
+          "timestampMs": 412,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 940,
+          "endMs": 1045,
+          "timestampMs": 992,
+          "confidence": null
+        },
+        {
+          "text": " just",
+          "startMs": 1138,
+          "endMs": 1370,
+          "timestampMs": 1254,
+          "confidence": null
+        },
+        {
+          "text": " learned",
+          "startMs": 1428,
+          "endMs": 1660,
+          "timestampMs": 1544,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1683,
+          "endMs": 1776,
+          "timestampMs": 1730,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1823,
+          "endMs": 1858,
+          "timestampMs": 1841,
+          "confidence": null
+        },
+        {
+          "text": " jet",
+          "startMs": 1916,
+          "endMs": 2113,
+          "timestampMs": 2015,
+          "confidence": null
+        },
+        {
+          "text": " engine",
+          "startMs": 2171,
+          "endMs": 2415,
+          "timestampMs": 2293,
+          "confidence": null
+        },
+        {
+          "text": " works.",
+          "startMs": 2438,
+          "endMs": 2850,
+          "timestampMs": 2868,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "text": "Follow Unpack and Explain for how things actually work.",
+      "file": "posts/post-03-jet-engine/vo/cta.mp3",
+      "durationMs": 3251,
+      "captions": [
+        {
+          "text": "Follow",
+          "startMs": 0,
+          "endMs": 360,
+          "timestampMs": 180,
+          "confidence": null
+        },
+        {
+          "text": " Unpack",
+          "startMs": 430,
+          "endMs": 801,
+          "timestampMs": 616,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 859,
+          "endMs": 929,
+          "timestampMs": 894,
+          "confidence": null
+        },
+        {
+          "text": " Explain",
+          "startMs": 975,
+          "endMs": 1382,
+          "timestampMs": 1178,
+          "confidence": null
+        },
+        {
+          "text": " for",
+          "startMs": 1451,
+          "endMs": 1544,
+          "timestampMs": 1498,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1602,
+          "endMs": 1718,
+          "timestampMs": 1660,
+          "confidence": null
+        },
+        {
+          "text": " things",
+          "startMs": 1800,
+          "endMs": 2032,
+          "timestampMs": 1916,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 2125,
+          "endMs": 2566,
+          "timestampMs": 2346,
+          "confidence": null
+        },
+        {
+          "text": " work.",
+          "startMs": 2624,
+          "endMs": 3251,
+          "timestampMs": 2938,
+          "confidence": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,2 +1,5 @@
 # Office lock files
 ~$*
+blender/tokens.json
+blender/raw/
+blender/__pycache__/

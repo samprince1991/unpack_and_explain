@@ -1,5 +1,6 @@
 import type { Caption } from "@remotion/captions";
 import type { MEME_SECTIONS, MemeId } from "../brand/memes";
+import type { ModelId } from "../brand/models";
 import type { Look } from "./look";
 
 export type Format = "E" | "F" | "Q";
@@ -31,8 +32,11 @@ export type PostScript = {
   postNumber: number;
   format: Format;
   title: string;
-  // Short on-screen hook (max 2 lines), shown from frame 0.
+  // Short on-screen hook (max 2 lines), shown as the hook title when the hook starts.
   hookText: string;
+  // false hides the hook title (e.g. when it would repeat the VO over a 3D hook); the
+  // Blender hook clip then gets the whole visual region. Default true.
+  hookTitle?: boolean;
   // One word of hookText to color amber.
   hookHighlight?: string;
   // Topic keyword (e.g. "GPS"), colored amber in the question and congrats cards.
@@ -53,6 +57,9 @@ export type PostScript = {
   // The mechanism is a 3D hero scene (three.js, src/components/three). Posts built
   // before 3D heroes opt out with a reason. See docs/specs/2026-10-30-3d-hero-design.md.
   hero3d: "mechanism" | { optOut: string };
+  // Blender-rendered 3D (frame-0 backdrop, hook, mechanism, cover). Posts built before
+  // Blender opt out with a reason. See docs/specs/2026-11-02-blender-3d-design.md.
+  blender: BlenderPlan | { optOut: string };
   // F posts only: section that gets the WHEN IT FAILED badge.
   failureSection?: SectionId;
   sections: ScriptSection[];
@@ -101,4 +108,87 @@ export type CarouselScript = {
   slides: CarouselSlide[];
   // Facts flagged "verify". Must be checked before posting.
   verify: string[];
+};
+
+// ---- Blender 3D (docs/specs/2026-11-02-blender-3d-design.md) ----
+
+// Camera framing. yaw/pitch in degrees around the model, zoom 1 = whole model fits.
+export type Shot = {
+  yaw: number;
+  pitch: number;
+  zoom: number;
+  // Catalog part drawn amber (the one key element). Omit for no amber.
+  keyPart?: string;
+  // Parts pulled apart along the model's explode axis.
+  exploded?: boolean;
+};
+
+export const BEAT_ACTIONS = [
+  "reveal",
+  "focus",
+  "explode",
+  "collapse",
+  "spin",
+  "flow",
+  "label",
+  "shot",
+  // Amber off and spinning parts spin down (an engine dying, a machine switching off).
+  "stop",
+] as const;
+export type BeatAction = (typeof BEAT_ACTIONS)[number];
+
+// One visual beat, started when `cue` is spoken in its section.
+export type Beat = {
+  cue: string;
+  // Fraction of the section used if the cue word isn't found in the VO timing.
+  fallback: number;
+  do: BeatAction;
+  // focus / spin / flow (from) / label: a catalog part.
+  part?: string;
+  // flow: destination part.
+  to?: string;
+  // label: 2D text (a number or unit, never words the VO already says).
+  label?: string;
+  // shot / focus: camera change.
+  shot?: Partial<Shot>;
+};
+
+export type BlenderPlan = {
+  model: ModelId;
+  // Cover title, at most 4 words. Defaults to hookText.
+  coverText?: string;
+  // Word of the cover title colored amber. Defaults to hookHighlight.
+  coverHighlight?: string;
+  cover: Shot;
+  // Frame-0 backdrop behind the question card (whole question section).
+  opener: Shot;
+  hook: Shot & { beats?: Beat[] };
+  mechanism: Shot & { beats: Beat[] };
+};
+
+export const BLENDER_CLIPS = ["cover", "opener", "hook", "mechanism"] as const;
+export type BlenderClipId = (typeof BLENDER_CLIPS)[number];
+
+// Written by Blender next to the PNG sequences.
+export type BlenderLabelTrack = {
+  text: string;
+  // Per frame: position as a 0-1 fraction of the clip (x right, y down), null when hidden.
+  points: ([number, number] | null)[];
+};
+
+export type BlenderManifestClip = {
+  hash: string;
+  frames: number;
+  width: number;
+  height: number;
+  // Rendered at reduced size with `--preview`: fine in Studio, refused for final renders.
+  preview: boolean;
+  blenderVersion: string;
+  labels: BlenderLabelTrack[];
+};
+
+// Written by blender/render.py next to the PNG sequences; one entry per rendered clip.
+export type BlenderManifest = {
+  postId: string;
+  clips: Partial<Record<BlenderClipId, BlenderManifestClip>>;
 };

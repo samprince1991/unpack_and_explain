@@ -10,6 +10,7 @@ export const script: PostScript = {
   topic: "vibe coding",
   source: "Anthropic, How Claude Code works",
   hero3d: "mechanism",
+  blender: { optOut: "built before Blender" },
   verify: [],
   sections: [
     {

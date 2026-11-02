@@ -15,6 +15,7 @@ const base: PostScript = {
   source: "Somewhere.gov",
   verify: [],
   hero3d: "mechanism",
+  blender: { optOut: "unit test base" },
   sections: [
     { id: "question", voiceover: "Do you know how this works?", visual: "" },
     { id: "hook", voiceover: words(10), visual: "" },
@@ -115,5 +116,72 @@ describe("validateScript", () => {
       x.id === "mechanism" ? { ...x, voiceover: words(80) } : x,
     );
     expect(validateScript({ ...base, sections }).warnings[0]).toMatch(/outside 100-130/);
+  });
+});
+
+describe("validateScript: blender plan", () => {
+  const sections = base.sections.map((s) =>
+    s.id === "mechanism"
+      ? { ...s, voiceover: `${words(38)} compressor squeezes air` }
+      : s.id === "hook"
+        ? { ...s, voiceover: `${words(9)} engines` }
+        : s,
+  );
+  const plan = {
+    model: "jet-engine" as const,
+    cover: { yaw: 30, pitch: 15, zoom: 1 },
+    opener: { yaw: 20, pitch: 10, zoom: 1 },
+    hook: { yaw: 20, pitch: 10, zoom: 1, beats: [{ cue: "engines", fallback: 0.5, do: "reveal" as const }] },
+    mechanism: {
+      yaw: 60,
+      pitch: 20,
+      zoom: 1,
+      beats: [{ cue: "squeezes", fallback: 0.5, do: "focus" as const, part: "compressor" }],
+    },
+  };
+  const withPlan = (p: typeof plan | Record<string, unknown>) =>
+    ({ ...base, sections, blender: p }) as PostScript;
+
+  it("accepts a valid plan", () => {
+    expect(validateScript(withPlan(plan)).errors).toEqual([]);
+  });
+
+  it("rejects an opt-out without a reason", () => {
+    expect(validateScript({ ...base, blender: { optOut: " " } }).errors).toContain(
+      "blender.optOut needs a reason",
+    );
+  });
+
+  it("rejects unknown models, parts and unspoken cues", () => {
+    expect(validateScript(withPlan({ ...plan, model: "toaster" })).errors[0]).toMatch(/not in src\/brand\/models/);
+    const badPart = {
+      ...plan,
+      mechanism: { ...plan.mechanism, beats: [{ cue: "squeezes", fallback: 0.5, do: "focus", part: "wing" }] },
+    };
+    expect(validateScript(withPlan(badPart)).errors[0]).toMatch(/part "wing"/);
+    const badCue = {
+      ...plan,
+      mechanism: { ...plan.mechanism, beats: [{ cue: "banana", fallback: 0.5, do: "explode" }] },
+    };
+    expect(validateScript(withPlan(badCue)).errors[0]).toMatch(/cue "banana"/);
+  });
+
+  it("rejects labels that repeat the VO, but allows numbers", () => {
+    const label = (text: string) => ({
+      ...plan,
+      mechanism: {
+        ...plan.mechanism,
+        beats: [{ cue: "squeezes", fallback: 0.5, do: "label", part: "compressor", label: text }],
+      },
+    });
+    expect(validateScript(withPlan(label("compressor"))).errors[0]).toMatch(/repeats the voice-over/);
+    expect(validateScript(withPlan(label("40:1"))).errors).toEqual([]);
+  });
+
+  it("caps the cover text and needs hero3d", () => {
+    const long = { ...plan, coverText: "one two three four five" };
+    expect(validateScript(withPlan(long)).errors[0]).toMatch(/at most 4 words/);
+    const noHero = { ...withPlan(plan), hero3d: { optOut: "x" } };
+    expect(validateScript(noHero).errors).toContain('a blender plan needs hero3d: "mechanism"');
   });
 });

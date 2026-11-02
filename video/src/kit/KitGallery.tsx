@@ -2,6 +2,10 @@
 // Demos only: posts never import from src/kit.
 import { Composition, Folder } from "remotion";
 import { video } from "../brand/tokens";
+import { calculateCoverMetadata, Cover } from "../templates/Cover";
+import { calculateReelMetadata } from "../templates/metadata";
+import { blenderSample } from "./blenderSample";
+import { KitBlender } from "./KitBlender";
 import { KitIcons } from "./KitIcons";
 import { KitLooks, kitLooksFrames } from "./KitLooks";
 import { KitStyles, kitStylesFrames } from "./KitStyles";
@@ -52,6 +56,22 @@ export const KitGallery: React.FC = () => (
       component={KitThree}
       durationInFrames={kitThreeFrames}
       {...size}
+    />
+    <Composition
+      id="Kit-Blender"
+      component={KitBlender}
+      durationInFrames={video.fps * 30}
+      {...size}
+      defaultProps={{ script: blenderSample, vo: null, audio: null, showGuides: false }}
+      calculateMetadata={calculateReelMetadata}
+    />
+    <Composition
+      id="Kit-BlenderCover"
+      component={Cover}
+      durationInFrames={1}
+      {...size}
+      defaultProps={{ script: blenderSample, blender3d: null, showGuides: false }}
+      calculateMetadata={calculateCoverMetadata}
     />
   </Folder>
 );

@@ -10,11 +10,23 @@ const heroPosts = readdirSync(POSTS).filter((name) => {
   return existsSync(script) && /hero3d:\s*"mechanism"/.test(readFileSync(script, "utf8"));
 });
 
+// Posts with a Blender plan draw the mechanism from the Blender render.
+const blenderPosts = readdirSync(POSTS).filter((name) => {
+  const script = join(POSTS, name, "script.ts");
+  return existsSync(script) && /blender:\s*\{\s*model:/.test(readFileSync(script, "utf8"));
+});
+
 describe("3D hero guard", () => {
   it("draws the mechanism of every hero3d post with src/components/three", () => {
     const missing = heroPosts.filter((name) => {
       const scene = join(POSTS, name, "scenes", "MechanismScene.tsx");
-      return !existsSync(scene) || !/components\/three\//.test(readFileSync(scene, "utf8"));
+      if (!existsSync(scene)) {
+        return true;
+      }
+      const code = readFileSync(scene, "utf8");
+      return blenderPosts.includes(name)
+        ? !/<BlenderClip[^>]*clip="mechanism"/.test(code)
+        : !/components\/three\//.test(code);
     });
     expect(missing).toEqual([]);
   });

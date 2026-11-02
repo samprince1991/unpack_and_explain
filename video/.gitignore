@@ -8,3 +8,6 @@ out
 
 # Remotion bundle used for QA stills
 build
+
+# Blender renders (regenerate with npm run blender) and intake leftovers
+public/posts/*/3d/
