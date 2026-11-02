@@ -6,8 +6,8 @@ format: F
 category: "Aviation & engineering"
 subcategory: "Engines"
 week: 1
-date: 2026-11-05
-status: rendered
+date: 2026-11-02
+status: posted
 hook_formula: 25
 hook_score: 57.2
 question_score: 64.5
@@ -15,7 +15,7 @@ hook: "A passenger jet ran out of fuel at 41,000 ft. Both engines died."
 source: "Canadian investigation report on Air Canada Flight 143 (1983)"
 verify: []
 metrics:  # fill in after posting
-  views: null
+  views: 0  # as of 2026-11-02
   reach: null
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

@@ -5,8 +5,8 @@ title: "How GPS finds you"
 format: E
 category: "Everyday tech"
 subcategory: "Location & GPS"
-week: 1
-date: 2026-11-03
+week: 0
+date: 2026-10-29
 status: posted
 link: "https://www.instagram.com/reel/DfE-k9so_ys"
 hook: "GPS doesn't track you. Your phone just listens."
@@ -16,7 +16,7 @@ verify:
   - "Altitude"
   - "Relativity drift figure (commonly cited ~10 km / 6 mi per day)"
 metrics:  # fill in after posting
-  views: null
+  views: 130  # as of 2026-11-02
   reach: null
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

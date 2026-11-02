@@ -5,9 +5,9 @@ title: "How vibe coding actually works in 2026"
 format: E
 category: "Everyday tech"
 subcategory: "AI"
-week: 5
-date: 2026-11-30
-status: rendered
+week: 1
+date: 2026-11-02
+status: posted
 hook_formula: 20
 hook_score: 70
 question_score: 62
@@ -15,7 +15,7 @@ hook: "In 2026, you don't need to read one line of code to build an app."
 source: "Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works"
 verify: []
 metrics:  # fill in after posting
-  views: null
+  views: 120  # as of 2026-11-02
   reach: null
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
