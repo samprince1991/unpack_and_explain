@@ -8,6 +8,7 @@ import type { BlenderClipId } from "../templates/types";
 import type { ClipArea } from "./BlenderClip";
 
 const LIFT = 110; // px between the part and its label
+const CLEAR = 28; // px between the top of the part and the label (close-ups)
 const HALF_WIDTH = 220; // keeps a label's box inside the column
 
 // 2D labels pinned to Blender parts (positions projected by Blender per frame).
@@ -47,8 +48,10 @@ export const BlenderLabels: React.FC<{
           Math.max(px, column.x + HALF_WIDTH),
           column.x + column.width - HALF_WIDTH,
         );
+        // Above the part's top edge, so a big close-up part never sits under its label.
+        const top = point[2] === undefined ? py : area.y + point[2] * area.height;
         const y = Math.min(
-          Math.max(py - LIFT, visual.top + typeScale.label),
+          Math.max(Math.min(py - LIFT, top - CLEAR), visual.top + typeScale.label),
           visual.bottom - typeScale.label,
         );
         return (
@@ -75,6 +78,8 @@ export const BlenderLabels: React.FC<{
                 fontWeight: weights.bodyMedium,
                 fontSize: typeScale.label,
                 color: colors.text.primary,
+                // Background-colored halo: stays readable over a close-up part's lines.
+                textShadow: `0 0 12px ${colors.bg.base}, 0 0 4px ${colors.bg.base}`,
               }}
             >
               {track.text}

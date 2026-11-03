@@ -178,7 +178,9 @@ export type BlenderClipId = (typeof BLENDER_CLIPS)[number];
 export type BlenderLabelTrack = {
   text: string;
   // Per frame: position as a 0-1 fraction of the clip (x right, y down), null when hidden.
-  points: ([number, number] | null)[];
+  // Per frame: part center [x, y] and the part's screen top (0-1 in the clip), or null
+  // when the label is hidden. Older renders have no top.
+  points: ([number, number] | [number, number, number] | null)[];
 };
 
 export type BlenderManifestClip = {

@@ -471,7 +471,14 @@ class Clip:
                 if t["from"] <= f < t["until"]:
                     pos = self.parts[t["part"]]["pivot"].matrix_world.translation
                     co = world_to_camera_view(self.scene, self.rig.cam, pos)
-                    t["points"].append([round(co.x, 4), round(1 - co.y, 4)] if co.z > 0 else None)
+                    if co.z <= 0:
+                        t["points"].append(None)
+                        continue
+                    # Screen top of the part (highest projected box corner), so the 2D label
+                    # sits above the part however big a close-up makes it.
+                    corners = [o.matrix_world @ Vector(c) for o in self.parts[t["part"]]["objects"] for c in o.bound_box]
+                    top = min(1 - world_to_camera_view(self.scene, self.rig.cam, c).y for c in corners)
+                    t["points"].append([round(co.x, 4), round(1 - co.y, 4), round(top, 4)])
                 else:
                     t["points"].append(None)
         return [{"text": t["text"], "points": t["points"]} for t in tracks]

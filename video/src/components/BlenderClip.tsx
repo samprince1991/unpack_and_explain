@@ -11,6 +11,11 @@ import { useBlender } from "../templates/blender";
 import { blenderFramePath } from "../templates/blenderJob";
 import type { BlenderClipId } from "../templates/types";
 
+// Soft top and bottom edges: a close-up can run past the clip area, and a hard cut
+// across the part reads as a glitch.
+const EDGE_FADE = 10; // % of the clip height
+const edgeMask = `linear-gradient(to bottom, transparent 0%, black ${EDGE_FADE}%, black ${100 - EDGE_FADE}%, transparent 100%)`;
+
 export type ClipArea = { x: number; y: number; width: number; height: number };
 
 // Plays one Blender clip (RGBA PNG sequence) frame by frame. Inside a reel section the
@@ -64,7 +69,7 @@ export const BlenderClip: React.FC<{
       <Interactive.Div name={`Blender ${clip}`} style={{ ...box, ...style }}>
         <Img
           src={staticFile(blenderFramePath(postId, clip, frame))}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", maskImage: edgeMask, WebkitMaskImage: edgeMask }}
         />
       </Interactive.Div>
     </AbsoluteFill>

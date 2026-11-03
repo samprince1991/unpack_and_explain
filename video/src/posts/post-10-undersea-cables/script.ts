@@ -24,7 +24,7 @@ export const script: PostScript = {
         // The cable builds up layer by layer, then the camera swings round to the
         // fibers on "cable": the one thing nobody sees.
         { cue: "Nobody", fallback: 0, do: "reveal" },
-        { cue: "cable", fallback: 0.6, do: "focus", part: "fibers", shot: { yaw: 45, pitch: 16, zoom: 1.5 } },
+        { cue: "cable", fallback: 0.6, do: "focus", part: "fibers", shot: { yaw: 45, pitch: 16 } },
       ],
     },
     mechanism: {
@@ -36,7 +36,7 @@ export const script: PostScript = {
         // Garden hose = the whole jacket; then the layers slide apart to the fibers.
         { cue: "glass", fallback: 0.12, do: "explode" },
         // Swing round to the stepped end (positive yaw = camera on the fibers side).
-        { cue: "fibers", fallback: 0.16, do: "focus", part: "fibers", shot: { yaw: 55, pitch: 20, zoom: 1.5 } },
+        { cue: "fibers", fallback: 0.16, do: "focus", part: "fibers", shot: { yaw: 55, pitch: 20 } },
         // The fibers stay amber (the light) through the laser line; on "Every" the light
         // runs down the cable and arrives as "repeater" is said.
         { cue: "laser", fallback: 0.3, do: "collapse", shot: { yaw: -28, pitch: 18 } },
