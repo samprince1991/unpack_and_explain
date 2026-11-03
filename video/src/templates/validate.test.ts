@@ -184,4 +184,34 @@ describe("validateScript: blender plan", () => {
     const noHero = { ...withPlan(plan), hero3d: { optOut: "x" } };
     expect(validateScript(noHero).errors).toContain('a blender plan needs hero3d: "mechanism"');
   });
+
+  describe("camera rhythm (close-up, then wide)", () => {
+    const rhythm = (beats: Record<string, unknown>[]) =>
+      validateScript(withPlan({ ...plan, mechanism: { ...plan.mechanism, beats } })).warnings;
+    const close = { cue: "squeezes", fallback: 0.3, do: "focus", part: "compressor" };
+    const wide = { cue: "air", fallback: 0.9, do: "wide" };
+
+    it("passes a close-up followed by a wide", () => {
+      expect(rhythm([close, wide])).toEqual([]);
+      expect(rhythm([close, { ...wide, do: "collapse" }])).toEqual([]);
+    });
+
+    it("warns without a close-up", () => {
+      expect(rhythm([{ ...wide, do: "explode" }])[0]).toMatch(/no close-up/);
+      const unfollowed = { cue: "air", fallback: 0.3, do: "flow", part: "fan", to: "nozzle", follow: false };
+      expect(rhythm([unfollowed])[0]).toMatch(/no close-up/);
+    });
+
+    it("warns when the mechanism ends on a close-up (a followed flow counts)", () => {
+      expect(rhythm([close])[0]).toMatch(/ends on a close-up/);
+      const flow = { cue: "air", fallback: 0.95, do: "flow", part: "fan", to: "nozzle" };
+      expect(rhythm([close, wide, flow])[0]).toMatch(/ends on a close-up/);
+    });
+
+    it("rejects follow on anything but flow", () => {
+      expect(validateScript(withPlan({ ...plan, mechanism: { ...plan.mechanism, beats: [{ ...close, follow: true }] } })).errors[0]).toMatch(
+        /"follow" only applies to flow/,
+      );
+    });
+  });
 });

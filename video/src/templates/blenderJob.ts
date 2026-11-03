@@ -14,7 +14,7 @@ import type {
 } from "./types";
 
 // Bump when blender/*.py changes the look, so every render is marked stale.
-export const BLENDER_LOOK_VERSION = 1;
+export const BLENDER_LOOK_VERSION = 2;
 
 export type JobBeat = Omit<Beat, "cue" | "fallback"> & { frame: number };
 

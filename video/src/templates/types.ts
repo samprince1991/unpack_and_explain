@@ -132,6 +132,8 @@ export const BEAT_ACTIONS = [
   "flow",
   "label",
   "shot",
+  // Camera pulls back to the whole model (amber unchanged): the wide after close-ups.
+  "wide",
   // Amber off and spinning parts spin down (an engine dying, a machine switching off).
   "stop",
 ] as const;
@@ -147,9 +149,12 @@ export type Beat = {
   part?: string;
   // flow: destination part.
   to?: string;
+  // flow: the camera follows the dot into a close-up of the destination. Default true.
+  follow?: boolean;
   // label: 2D text (a number or unit, never words the VO already says).
   label?: string;
-  // shot / focus: camera change.
+  // shot / focus / wide: camera change. On focus, omit zoom: the close-up is sized
+  // from the part's bounding box.
   shot?: Partial<Shot>;
 };
 

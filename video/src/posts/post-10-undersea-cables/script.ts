@@ -44,6 +44,8 @@ export const script: PostScript = {
         { cue: "repeater", fallback: 0.6, do: "focus", part: "repeater", shot: { yaw: -10 } },
         { cue: "boosts", fallback: 0.66, do: "label", part: "repeater", label: "30-50 mi" },
         { cue: "shore", fallback: 0.8, do: "flow", part: "repeater", to: "shore" },
+        // Pull back so the whole route (cable, repeater, shore) reads after the close-ups.
+        { cue: "data", fallback: 0.95, do: "wide" },
       ],
     },
   },

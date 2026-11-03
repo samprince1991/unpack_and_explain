@@ -61,6 +61,9 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       if (["focus", "spin", "flow", "label"].includes(beat.do) && !beat.part) {
         errors.push(`${where}: "${beat.do}" needs a part`);
       }
+      if (beat.follow !== undefined && beat.do !== "flow") {
+        errors.push(`${where}: "follow" only applies to flow`);
+      }
       if (beat.do === "flow" && !beat.to) {
         errors.push(`${where}: "flow" needs a destination part (to)`);
       }
@@ -86,6 +89,27 @@ const validateBlender = (script: PostScript, errors: string[]) => {
   const coverText = plan.coverText ?? script.hookText;
   if (countWords(coverText) > COVER_MAX_WORDS) {
     errors.push(`cover text "${coverText}" must be at most ${COVER_MAX_WORDS} words (set blender.coverText)`);
+  }
+};
+
+// Close / wide rhythm (docs/specs/2026-11-03-blender-camera-rhythm-design.md): the
+// mechanism moves in to the part that matters, then pulls back so the whole thing reads.
+const isCloseUp = (b: Beat) => b.do === "focus" || (b.do === "flow" && b.follow !== false);
+const isWide = (b: Beat) => b.do === "wide" || b.do === "collapse" || b.do === "explode";
+
+const checkCameraRhythm = (script: PostScript, warnings: string[]) => {
+  if (!isBlenderPlan(script.blender)) {
+    return;
+  }
+  // Beats run in cue order; fallbacks give that order without the VO timing.
+  const beats = [...script.blender.mechanism.beats].sort((a, b) => a.fallback - b.fallback);
+  const lastClose = beats.map(isCloseUp).lastIndexOf(true);
+  if (lastClose === -1) {
+    warnings.push("blender.mechanism has no close-up: add a focus (or a followed flow) on the part that matters");
+  } else if (!beats.slice(lastClose + 1).some(isWide)) {
+    warnings.push(
+      'blender.mechanism ends on a close-up: add a "wide" (or collapse) after the last close-up so the whole model reads',
+    );
   }
 };
 
@@ -133,6 +157,7 @@ export const validateScript = (script: PostScript) => {
   }
 
   validateBlender(script, errors);
+  checkCameraRhythm(script, warnings);
 
   if (script.meme) {
     const { section, cue, seconds = MEME_DEFAULT_SECONDS } = script.meme;

@@ -21,8 +21,14 @@ FLOW_FRAMES = 24
 ORBIT_DEG_PER_S = 4  # slow constant drift so nothing sits still
 SPIN_TURNS_PER_S = 0.35
 SPIN_DOWN = 36  # frames for a spinning part to coast to a stop
-FOCUS_ZOOM = 1.2
-FOCUS_PULL = 0.5  # camera target moves this far from the model center toward the part
+# Close / wide rhythm (docs/specs/2026-11-03-blender-camera-rhythm-design.md): a focus beat
+# frames the part so it fills CLOSE_FILL of the frame, centered on it, between CLOSE_MIN and
+# CLOSE_MAX times the clip's wide framing. `wide` (and explode / collapse) pull back.
+CLOSE_FILL = 0.6
+CLOSE_MIN = 1.6
+CLOSE_MAX = 3.5
+PUSH = 1.1  # slow push-in over every clip (lens), so the camera never sits still
+FSTOP = 5.6  # at zoom 1; scaled with zoom so close-ups keep the same light depth of field
 AWAY = 0.6  # how far "away" parts (e.g. a casing) drop while they shrink out of view
 LENS = 50
 SENSOR = 36
@@ -137,7 +143,10 @@ def group_parts(meshes, model, tokens):
             obj.matrix_world = world
             obj.data.materials.clear()
             obj.data.materials.append(mat)
-        parts[part] = {"pivot": pivot, "coll": coll, "mat": mat, "base": center.copy(), "objects": objs}
+        lo = Vector((min(c[i] for c in corners) for i in range(3)))
+        hi = Vector((max(c[i] for c in corners) for i in range(3)))
+        size = (hi - lo).length / 2  # half the box diagonal: sizes the close-up
+        parts[part] = {"pivot": pivot, "coll": coll, "mat": mat, "base": center.copy(), "size": size, "objects": objs}
     return parts
 
 
@@ -168,6 +177,10 @@ class Rig:
         self.cam.parent = self.rig
         self.cam.rotation_euler = (math.radians(90), 0, 0)
         scene.camera = self.cam
+        with interpolation("LINEAR"):
+            data.keyframe_insert("lens", frame=0)
+            data.lens = LENS * (PUSH if frames > 1 else 1)
+            data.keyframe_insert("lens", frame=max(frames, 1))
         self.base = _fit_distance(radius, width, height)
         self.radius = radius
         look.setup_dof(self.cam, self.focus)
@@ -181,6 +194,8 @@ class Rig:
         self.rig.rotation_euler = (math.radians(-state["pitch"]), 0, math.radians(state["yaw"]))
         self.cam.location = (0, -self.base / state["zoom"], 0)
         self.focus.location = state["target"]
+        self.cam.data.dof.aperture_fstop = FSTOP * max(state["zoom"], 1.0)
+        self.cam.data.dof.keyframe_insert("aperture_fstop", frame=frame)
         self.rig.keyframe_insert("rotation_euler", frame=frame)
         self.cam.keyframe_insert("location", frame=frame)
         self.focus.keyframe_insert("location", frame=frame)
@@ -197,6 +212,7 @@ class Clip:
         self.parts = parts
         self.frames = clip["frames"]
         self.rig = Rig(scene, radius, clip["width"], clip["height"], self.frames, job["fps"])
+        self.radius = radius
         self.styles = look.setup_freestyle(scene, {p: v["coll"] for p, v in parts.items()}, tokens)
         self.exploded = False
         self.amber = None
@@ -216,6 +232,25 @@ class Clip:
             return Vector()
         axis = Vector({"x": (1, 0, 0), "y": (0, 1, 0), "z": (0, 0, 1)}[self.model["explode"]["axis"]])
         return axis * (order.index(part) - (len(order) - 1) / 2) * self.model["explode"]["spacing"]
+
+    def wide_zoom(self, exploded=None):
+        """The clip's whole-model framing (fits the spread-out parts when exploded)."""
+        exploded = self.exploded if exploded is None else exploded
+        return (self.explode_zoom() if exploded else 1.0) * self.start_zoom
+
+    def close_zoom(self, part):
+        """Zoom where the part fills CLOSE_FILL of the frame, within CLOSE_MIN-CLOSE_MAX x wide."""
+        wide = self.wide_zoom()
+        fit = CLOSE_FILL * self.radius / max(self.parts[part]["size"], 1e-6)
+        return min(max(fit, CLOSE_MIN * wide), CLOSE_MAX * wide)
+
+    def close_up(self, part, shot):
+        return {
+            "target": self.center(part),
+            "zoom": shot.get("zoom", self.close_zoom(part)),
+            "yaw": shot.get("yaw"),
+            "pitch": shot.get("pitch"),
+        }
 
     def explode_zoom(self):
         """Zoom that keeps the spread-out parts inside the column."""
@@ -277,10 +312,10 @@ class Clip:
             self._paint(p, p == part, frame + (AMBER_FADE if fade else 0))
         self.amber = part
 
-    def move_camera(self, change, frame):
+    def move_camera(self, change, frame, glide=GLIDE):
         self.rig.set(self.cam, frame)
         self.cam.update({k: v for k, v in change.items() if v is not None})
-        self.rig.set(self.cam, frame + GLIDE)
+        self.rig.set(self.cam, frame + glide)
 
     def start(self):
         start = self.clip["start"]
@@ -343,7 +378,7 @@ class Clip:
                 pivot.rotation_euler = rot
                 pivot.keyframe_insert("rotation_euler", index=axis, frame=end + SPIN_DOWN)
 
-    def flow(self, src, dst, frame):
+    def flow(self, src, dst, frame, follow=True, shot=None):
         coll = bpy.data.collections.new("flow")  # no lineset: the dot has no outline
         self.scene.collection.children.link(coll)
         bpy.ops.mesh.primitive_uv_sphere_add(radius=0.05, segments=16, ring_count=8)
@@ -368,35 +403,29 @@ class Clip:
             dot.keyframe_insert("scale", frame=f)
         self.set_amber(None, frame)
         self.set_amber(dst, end)
+        if follow:
+            # The camera travels with the dot and lands on a close-up of the destination.
+            self.move_camera(self.close_up(dst, shot or {}), frame, glide=FLOW_FRAMES)
 
     def apply(self, beat):
         f = beat["frame"]
         shot = beat.get("shot") or {}
         kind = beat["do"]
-        if kind in ("focus", "explode", "collapse", "shot", "flow", "stop"):
+        if kind in ("focus", "explode", "collapse", "shot", "flow", "stop", "wide"):
             self.cuts.append(f)
         if kind == "reveal":
             self.reveal(f)
         elif kind == "focus":
             part = beat["part"]
             self.set_amber(part, f)
-            base = (self.explode_zoom() if self.exploded else 1.0) * self.start_zoom
-            self.move_camera(
-                {
-                    "target": self.center(part) * FOCUS_PULL,
-                    "zoom": shot.get("zoom", FOCUS_ZOOM * base),
-                    "yaw": shot.get("yaw"),
-                    "pitch": shot.get("pitch"),
-                },
-                f,
-            )
+            self.move_camera(self.close_up(part, shot), f)
         elif kind in ("explode", "collapse"):
             exploding = kind == "explode"
             self.set_explode(exploding, f)
             self.move_camera(
                 {
                     "target": Vector(),
-                    "zoom": shot.get("zoom", (self.explode_zoom() if exploding else 1.0) * self.start_zoom),
+                    "zoom": shot.get("zoom", self.wide_zoom(exploding)),
                     "yaw": shot.get("yaw"),
                     "pitch": shot.get("pitch"),
                 },
@@ -407,7 +436,12 @@ class Clip:
         elif kind == "stop":
             self.stop(f)
         elif kind == "flow":
-            self.flow(beat["part"], beat["to"], f)
+            self.flow(beat["part"], beat["to"], f, follow=beat.get("follow", True), shot=shot)
+        elif kind == "wide":
+            self.move_camera(
+                {"target": Vector(), "zoom": shot.get("zoom", self.wide_zoom()), "yaw": shot.get("yaw"), "pitch": shot.get("pitch")},
+                f,
+            )
         elif kind == "label":
             self.labels.append({"text": beat["label"], "part": beat["part"], "from": f})
         elif kind == "shot":
@@ -417,7 +451,7 @@ class Clip:
             if "exploded" in shot:
                 self.set_explode(bool(shot["exploded"]), f)
                 if "zoom" not in shot:
-                    self.move_camera({"zoom": self.explode_zoom() if shot["exploded"] else 1.0}, f)
+                    self.move_camera({"zoom": self.wide_zoom()}, f)
 
     def label_tracks(self):
         """Each label shows until the next label or the next camera / key-part change
