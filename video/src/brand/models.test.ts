@@ -25,4 +25,10 @@ describe("model catalog", () => {
     expect(parts).toContain(entry.keyPart);
     entry.explode.order.forEach((p) => expect(parts).toContain(p));
   });
+
+  it.each(entries)("%s QC exceptions (contacts, hardEdges) use known parts", (_id, entry) => {
+    const parts = Object.keys(entry.parts);
+    (entry.contacts ?? []).flat().forEach((p) => expect(parts).toContain(p));
+    (entry.hardEdges ?? []).forEach((p) => expect(parts).toContain(p));
+  });
 });

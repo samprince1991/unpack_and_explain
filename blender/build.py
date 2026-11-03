@@ -11,6 +11,7 @@ from bpy_extras.object_utils import world_to_camera_view
 from mathutils import Matrix, Vector
 
 import look
+import qc
 
 GLIDE = 18  # frames for camera moves and explode / collapse
 AMBER_FADE = 6  # frames for the amber hand-off between parts
@@ -237,6 +238,12 @@ class Clip:
                     pivot.keyframe_insert("scale", frame=frame)
                 pivot.scale = (gone, gone, gone)
                 pivot.keyframe_insert("scale", frame=frame + (GLIDE if glide else 0))
+                # Shrunk to HIDDEN, Freestyle still draws a speck: hide it outright while away
+                # (hidden once it has shrunk, shown again as soon as it starts growing back).
+                for obj in info["objects"]:
+                    with interpolation("CONSTANT"):
+                        obj.hide_render = exploded
+                        obj.keyframe_insert("hide_render", frame=frame + (GLIDE if exploded and glide else 0))
             if glide:
                 pivot.location = self.center(part)
                 pivot.keyframe_insert("location", frame=frame)
@@ -440,6 +447,12 @@ def build_clip(scene, job, clip, tokens, preview, repo_root):
     look.setup_render(scene, clip["width"], clip["height"], job["fps"], clip["frames"], preview)
     look.setup_world(scene, tokens)
     meshes, radius = import_model(job["model"], repo_root)
+    if not job["model"].get("selftest"):
+        # Geometry QC before any frame renders: broken / faceted lines, unlined contacts.
+        errors, warnings = qc.check(meshes, job["model"])
+        qc.report(errors, warnings, job["model"]["id"])
+        if errors:
+            raise SystemExit(f"[qc] {job['model']['id']} failed geometry QC: fix the model (see blender/qc.py)")
     parts = group_parts(meshes, job["model"], tokens)
     look.setup_lights(radius)
     look.setup_glow(scene)

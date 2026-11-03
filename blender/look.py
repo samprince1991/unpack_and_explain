@@ -82,11 +82,16 @@ def emission_socket(mat):
     return mat.node_tree.nodes.get("Principled BSDF").inputs["Emission Strength"]
 
 
+# Freestyle draws a crease line where the dihedral angle is below this (i.e. the two
+# face normals differ by more than 180 - CREASE_DEG degrees). qc.py checks models against it.
+CREASE_DEG = 140
+
+
 def setup_freestyle(scene, collections, tokens):
     """One lineset per part collection, so each part's line color can be keyed amber.
     Returns {part: linestyle}."""
     settings = scene.view_layers[0].freestyle_settings
-    settings.crease_angle = math.radians(140)
+    settings.crease_angle = math.radians(CREASE_DEG)
     for ls in list(settings.linesets):
         settings.linesets.remove(ls)
     styles = {}

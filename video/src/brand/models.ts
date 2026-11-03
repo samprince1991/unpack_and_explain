@@ -23,6 +23,13 @@ export type ModelEntry = {
   explode: { axis: "x" | "y" | "z"; order: string[]; spacing: number; away?: string[] };
   // Axis a `spin` beat rotates parts around.
   spinAxis: "x" | "y" | "z";
+  // Geometry QC (blender/qc.py, runs before every render). Part pairs that touch or cross
+  // on purpose: Freestyle draws no line where surfaces meet, so only list a pair when its
+  // junction draws its own line (an open rim, a collar, a flange).
+  contacts?: readonly (readonly [string, string])[];
+  // Parts whose 52-80 degree edges really are sharp (flat blades, boxes), so QC lets them
+  // draw as lines. Round parts never go here: give them more segments instead.
+  hardEdges?: readonly string[];
   useFor: string;
 };
 
@@ -50,6 +57,32 @@ export const models = {
     },
     spinAxis: "x",
     useFor: "Jet engines, turbines, airflow: suck, squeeze, bang, blow (ideas 3, 19)",
+  },
+  "subsea-cable": {
+    title: "Deep-sea fiber cable (stepped cutaway) with repeater and shore ramp",
+    file: "models/subsea-cable.glb",
+    source: "Procedural, blender/models/subsea_cable.py",
+    license: "own",
+    parts: {
+      jacket: ["jacket"],
+      armour: ["armour"],
+      copper: ["copper"],
+      tube: ["tube"],
+      fibers: ["fibers"],
+      repeater: ["repeater"],
+      shore: ["shore"],
+    },
+    keyPart: "fibers",
+    // Layers slide apart along the cable (fibers out furthest); the repeater and the
+    // shore ramp get out of the way so the cross-section reads.
+    explode: {
+      axis: "x",
+      order: ["jacket", "armour", "copper", "tube", "fibers"],
+      spacing: 0.14,
+      away: ["repeater", "shore"],
+    },
+    spinAxis: "x",
+    useFor: "Undersea / fiber-optic cables, internet backbone, repeaters (idea 10)",
   },
 } as const satisfies Record<string, ModelEntry>;
 

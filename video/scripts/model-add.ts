@@ -13,7 +13,9 @@ import { NodeIO, type Document } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
 import { center, dedup, prune, simplify, weld } from "@gltf-transform/functions";
 import { MeshoptSimplifier } from "meshoptimizer";
+import { models, type ModelEntry } from "../src/brand/models";
 import { findBlender } from "./lib/blender";
+import { runModelQc } from "./lib/modelQc";
 
 const VIDEO = resolve(__dirname, "..");
 const REPO = resolve(VIDEO, "..");
@@ -94,8 +96,14 @@ const main = async () => {
 
   const exe = findBlender();
   if (!exe) {
-    console.warn("[model:add] Blender not found: skipped preview stills");
+    console.warn("[model:add] Blender not found: skipped geometry QC and preview stills");
     return;
+  }
+  // Geometry QC (blender/qc.py): blocks models that would draw broken or faceted lines.
+  const entry = (models as Record<string, ModelEntry>)[id];
+  const filled = entry && !JSON.stringify(entry).includes("TODO") ? entry : undefined;
+  if (!runModelQc(file, filled)) {
+    throw new Error("[model:add] geometry QC failed (see [qc] ERROR lines): fix the model and run it again");
   }
   const out = join(VIDEO, "out", "models", id);
   const res = spawnSync(

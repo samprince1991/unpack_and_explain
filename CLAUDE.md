@@ -35,6 +35,7 @@ Full design rationale: `docs/specs/2026-10-29-video-brand-standards-design.md`.
 - QA audio (required before calling a reel done): `npx remotion render PostNN-Slug out/qa/mix.wav --codec=wav`, `npx remotion ffmpeg -y -i out/qa/mix.wav -ac 1 -ar 16000 -c:a pcm_s16le out/qa/mix16.wav`, then `python scripts/audio-bursts.py out/qa/mix16.wav`. It must print "No stray blips"; also listen across every section boundary.
 - Blender 3D: `npm run blender -- post-NN-slug [--preview] [--only=cover,opener,hook,mechanism]` renders the post's 3D clips (needs Blender 4.5: `BLENDER_PATH` in `video/.env`). `--preview` = 25% size for fast checks; `npm run blender -- --selftest` checks the install; `npm run blender -- kit-blender` renders the Kit sample.
 - Add a 3D model: `npm run model:add -- <raw.glb> --id <id>` (cleans it, writes `public/models/<id>.glb`, adds a TODO stub to `models.ts`, renders previews to `out/models/<id>/`). Fill in the stub; `npm test` fails until you do.
+- 3D geometry QC: `npm run model:qc [-- <id>]` runs `blender/qc.py` on catalog models (all by default). It also runs inside `model:add` and before every clip in `npm run blender`, and blocks on errors: crease-band edges (28-52 deg: broken, dashed lines; 52-80 deg: faceted lines on round parts) and parts that touch or cross without a line at the junction. Exceptions only in the model's `hardEdges` / `contacts` (see Blender 3D).
 - 3D cover: `npm run cover -- post-NN-slug` → `out/post-NN-slug-cover.png` (upload with "Edit cover").
 - Brand sounds: `npm run brand-audio` generates the SFX + music bed once (needs `ELEVENLABS_API_KEY`).
 - Safe-zone overlay: set `showGuides: true` in the Studio props panel, or pass `--props=./qa-guides.json` to `remotion still`
@@ -186,6 +187,7 @@ Design: `docs/specs/2026-11-02-blender-3d-design.md`. Every new reel has `blende
 - **Where it shows:** the Reel template puts the opener clip behind the question card (dimmed, scrim) automatically. Hook and mechanism scenes draw `<BlenderClip clip="hook" />` / `<BlenderClip clip="mechanism" />` + `<BlenderLabels clip="mechanism" />`. The cover is a `CoverNN-Slug` still (`templates/Cover.tsx`, register it in `Root.tsx` with `calculateCoverMetadata`), laid out for both crops (4:5 feed, 3:4 grid).
 - **Stale renders:** each clip has a hash of its plan + VO timing. Studio shows a placeholder for missing clips; a final render throws if any clip is missing, stale or a preview. After any TTS re-take of the question, hook or mechanism, re-run `npm run blender`.
 - **2D sections** get depth from `components/motion/Parallax`, `LightSweep`, `DustField` (frame-driven, token colors). Preview everything in Studio: **Kit-Blender** and **Kit-BlenderCover**.
+- **Geometry QC (no sharp or broken lines):** Freestyle draws a crease wherever face normals differ by more than 40 deg (`look.CREASE_DEG`), and no line at all where two surfaces cross. So in every model (procedural or downloaded): curves in steps under ~25 deg (lathes 48+ segments, round wires/fibers 16 sides), real rounding instead of single 45-deg chamfers, cross-sections built with true rotations (square corners), no repeated end point on a closed profile (it leaves a seam line), nested parts with small gaps instead of crossing, and a collar / flange / visible gap wherever one part meets another. `blender/qc.py` enforces it; `hardEdges` (parts whose 52-80 deg edges really are sharp, e.g. flat blades) and `contacts` (part pairs whose junction draws its own line) in `models.ts` are the only exceptions, and neither model needs any today. The clip hash covers the catalog entry, not the GLB: after changing a model's geometry, re-run `npm run blender` for every post that uses it.
 - Render time: Eevee + Freestyle, roughly 1-3 s a frame at full size. Iterate with `--preview` and `--only`.
 
 ## Variety (every reel looks different inside the same brand)
@@ -210,6 +212,7 @@ Design: `docs/specs/2026-10-30-reel-variety-design.md`. **Fixed frame, varied co
 | `styles/CodeBlock` | UI mock: code as abstract lines (never readable), optional amber line, window chrome | Post 20 hook, setup |
 | `styles/CycleDiagram` | Steps on a ring with arcs drawing in; `cycleLoop()` gives a path for `Travel` | Post 20 mechanism |
 | `styles/PhoneFrame` | UI mock: phone outline + `phoneScreen()` for app content | Post 20 payoff |
+| `styles/SeaSection` | Side view of an ocean between two coasts (ground, moving water line); `seaCable()` route along the seabed, `seaCableSplit()` for a break, `seaCoasts()` to place things | Post 10 setup, payoff |
 
 
 ## Remotion Elements
@@ -349,6 +352,7 @@ The `instagram-agent` plugin (13 skills, `/ig-*`) runs the account around the Re
 - [ ] Look comes from the rotation (or a pinned slot with a reason); scene styles differ from the last 3 posts
 - [ ] Blender (new posts): question readable over the 3D backdrop at frame 0; one amber part per beat in every clip; labels inside `layout.regions`; cover readable in the 4:5 and 3:4 crops; CC-BY model credit in the caption; `npm run blender` up to date (no stale warning)
 - [ ] Mechanism is a 3D hero: lines readable at full size, back edges hidden, one amber element per beat, nothing clipped at the column edge during orbit/shots, labels inside `layout.regions`
+- [ ] 3D edges: `npm run model:qc` passes, and full-size Blender frames (not the 25% contact sheet) cropped 2-3x at every junction (part meets part, cut ends, curves) show single clean lines: no broken/dashed lines, no faceted curves, no outline that stops inside another part
 - [ ] Question card visible at frame 0; congrats line before the CTA; total length 35-52 s
 - [ ] Nothing outside safe zones; cover readable in 4:5 crop
 - [ ] Readable text >= 44 px, sources >= 32 px

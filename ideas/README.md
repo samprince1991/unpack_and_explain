@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**20 ideas** (by status: 14 idea, 1 scripted, 1 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**20 ideas** (by status: 13 idea, 1 scripted, 2 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -17,7 +17,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Location & GPS | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | GPS works with no signal at all. | Q | idea | GPS.gov | - |
 | Wireless | 5 | [How WiFi works](idea-05-wifi/idea.md) | WiFi is just radio, and your router is a tiny radio station. | E | idea | IEEE / Wi-Fi Alliance basics | - |
 | Wireless | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | What actually happens if you don't switch it on? | Q | idea | Aviation authority guidance | - |
-| Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Most intercontinental data travels under the ocean. | E | idea | TeleGeography | 1 |
+| Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Nobody sees the 1.5 million kilometers of cable your internet runs on. | E | rendered | TeleGeography Submarine Cable FAQ (2026); International Cable Protection Committee | 2 |
 | Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | The cloud is a very real building. | Q | idea | Cloud provider data center docs | - |
 | Data & codes | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | A QR code is a tiny grid of yes/no answers. | E | idea | ISO/IEC 18004 overview | - |
 | AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | posted | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | - |
@@ -59,7 +59,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-11-12 | 2 | 7 | [How credit scores work](idea-07-credit-score/idea.md) | Money & payments › Credit | E | idea | - | - | - |
 | 2026-11-13 | 2 | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | Everyday tech › Wireless | Q | idea | - | - | - |
 | 2026-11-16 | 3 | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | Aviation & engineering › Structures | F | idea | - | - | - |
-| 2026-11-17 | 3 | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Everyday tech › Internet | E | idea | - | - | - |
+| 2026-11-17 | 3 | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Everyday tech › Internet | E | rendered | 81.6 | 126 | 50 |
 | 2026-11-18 | 3 | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | Aviation & engineering › Engines | C | idea | - | - | - |
 | 2026-11-19 | 3 | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Aviation & engineering › Flight | E | idea | - | - | - |
 | 2026-11-20 | 3 | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Everyday tech › Internet | Q | idea | - | - | - |

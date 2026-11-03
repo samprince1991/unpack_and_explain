@@ -67,7 +67,8 @@
     "ig": "tsx scripts/ig.ts",
     "blender": "tsx --env-file-if-exists=.env scripts/blender.ts",
     "cover": "tsx scripts/cover.ts",
-    "model:add": "tsx --env-file-if-exists=.env scripts/model-add.ts"
+    "model:add": "tsx --env-file-if-exists=.env scripts/model-add.ts",
+    "model:qc": "tsx --env-file-if-exists=.env scripts/model-qc.ts"
   },
   "allowScripts": {
     "esbuild": false

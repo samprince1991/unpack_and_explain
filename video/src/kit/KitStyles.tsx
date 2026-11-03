@@ -10,6 +10,9 @@ import { ChatBox } from "../components/styles/ChatBox";
 import { CodeBlock } from "../components/styles/CodeBlock";
 import { CycleDiagram, cycleLoop } from "../components/styles/CycleDiagram";
 import { PhoneFrame } from "../components/styles/PhoneFrame";
+import { SeaSection, seaCable } from "../components/styles/SeaSection";
+
+const SEA_DEMO = { left: 150, right: 930, land: 620, surface: 680, seabed: 1060, bottom: 1200 };
 
 const FRAMES = 90;
 
@@ -57,6 +60,16 @@ const DEMOS: { name: string; draw: React.ReactNode }[] = [
           ]}
         />
         <Travel d={cycleLoop(540, 800, 280, 0, 4)} at={50} frames={36} color={colors.amber[500]} />
+      </>
+    ),
+  },
+  {
+    name: "SeaSection",
+    draw: (
+      <>
+        <SeaSection box={SEA_DEMO} at={0} />
+        <path d={seaCable(SEA_DEMO)} fill="none" stroke={colors.diagram.stroke} strokeWidth={6} />
+        <Travel d={seaCable(SEA_DEMO)} at={20} frames={40} repeat={Infinity} color={colors.amber[500]} />
       </>
     ),
   },

@@ -10,6 +10,8 @@ import { script as carousel18 } from "./posts/post-18-gps-steps/slides";
 import { script as post02 } from "./posts/post-02-gps/script";
 import { Post03 } from "./posts/post-03-jet-engine";
 import { script as post03 } from "./posts/post-03-jet-engine/script";
+import { Post10 } from "./posts/post-10-undersea-cables";
+import { script as post10 } from "./posts/post-10-undersea-cables/script";
 import { Post20 } from "./posts/post-20-vibe-coding";
 import { script as post20 } from "./posts/post-20-vibe-coding/script";
 import { calculateCoverMetadata, Cover } from "./templates/Cover";
@@ -56,6 +58,26 @@ export const RemotionRoot: React.FC = () => {
         width={video.width}
         height={video.height}
         defaultProps={{ script: post03, blender3d: null, showGuides: false }}
+        calculateMetadata={calculateCoverMetadata}
+      />
+      <Composition
+        id="Post10-UnderseaCables"
+        component={Post10}
+        durationInFrames={video.fps * 40}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post10, vo: null, audio: null, showGuides: false }}
+        calculateMetadata={calculateReelMetadata}
+      />
+      <Composition
+        id="Cover10-UnderseaCables"
+        component={Cover}
+        durationInFrames={1}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post10, blender3d: null, showGuides: false }}
         calculateMetadata={calculateCoverMetadata}
       />
       <Composition
