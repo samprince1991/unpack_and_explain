@@ -1,4 +1,4 @@
-import { Code, FolderOpen, ListChecks, Play } from "lucide-react";
+import { Cloud, Code, FolderOpen, ListChecks, Play, Warehouse } from "lucide-react";
 import { AbsoluteFill, Series } from "remotion";
 import { fonts, weights } from "../brand/fonts";
 import { layout } from "../brand/layout";
@@ -9,8 +9,11 @@ import { SceneCanvas } from "../components/SceneCanvas";
 import { ChatBox } from "../components/styles/ChatBox";
 import { CodeBlock } from "../components/styles/CodeBlock";
 import { CycleDiagram, cycleLoop } from "../components/styles/CycleDiagram";
+import { LineIcon } from "../components/icons/LineIcon";
+import { MythSwap } from "../components/styles/MythSwap";
 import { PhoneFrame } from "../components/styles/PhoneFrame";
 import { SeaSection, seaCable } from "../components/styles/SeaSection";
+import { ShareGrid } from "../components/styles/ShareGrid";
 
 const SEA_DEMO = { left: 150, right: 930, land: 620, surface: 680, seabed: 1060, bottom: 1200 };
 
@@ -74,6 +77,20 @@ const DEMOS: { name: string; draw: React.ReactNode }[] = [
     ),
   },
   { name: "PhoneFrame", draw: <PhoneFrame x={540} y={800} width={440} height={760} /> },
+  {
+    name: "MythSwap",
+    draw: (
+      <MythSwap
+        x={540}
+        y={620}
+        drop={280}
+        swapAt={40}
+        myth={<LineIcon icon={Cloud} x={0} y={0} size={300} />}
+        fact={<LineIcon icon={Warehouse} x={0} y={0} size={300} accent />}
+      />
+    ),
+  },
+  { name: "ShareGrid", draw: <ShareGrid cx={540} cy={800} cell={46} share={1.5} highlightAt={40} /> },
 ];
 
 // Scene style library (src/components/styles): one demo per piece.

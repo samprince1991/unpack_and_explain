@@ -6,6 +6,7 @@ import {
   interpolate,
   Sequence,
   staticFile,
+  useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { music, sfx, type AudioLibrary } from "../brand/audio";
@@ -56,6 +57,21 @@ export type ReelProps = {
 
 // Sections every reel shares, rendered by the template from the script text.
 const TEMPLATE_SECTIONS = ["question", "congrats", "cta"] as const;
+
+// The hook's first words are spoken while the question card (and its 3D backdrop) is
+// still fading out, so its first caption would sit on top of the card. Captions stay
+// hidden for the dip's first half (until the card is gone), then fade in quickly.
+const CAPTION_FADE_FRAMES = 3;
+const CaptionGate: React.FC<{ hideFrom: number; showAt: number; children: React.ReactNode }> = ({
+  hideFrom,
+  showAt,
+  children,
+}) => {
+  const frame = useCurrentFrame();
+  const opacity =
+    frame < hideFrom ? 1 : interpolate(frame, [showAt, showAt + CAPTION_FADE_FRAMES], [0, 1], clamp);
+  return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
+};
 
 // Bespoke scenes per post, for the sections in between.
 export type SceneMap = Record<
@@ -183,7 +199,12 @@ export const Reel: React.FC<
           <Watermark />
         </Sequence>
         <Sequence name="Captions" durationInFrames={cta.from}>
-          <Captions captions={captions} />
+          <CaptionGate
+            hideFrom={timing("hook").from}
+            showAt={timing("hook").from + Math.ceil(durations.crossfade / 2)}
+          >
+            <Captions captions={captions} />
+          </CaptionGate>
         </Sequence>
         <Sequence name="Source" from={sourceFrom}>
           <SourceTag source={script.source} />

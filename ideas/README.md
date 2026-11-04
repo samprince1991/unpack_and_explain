@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**20 ideas** (by status: 13 idea, 1 scripted, 2 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**20 ideas** (by status: 12 idea, 1 scripted, 3 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -18,7 +18,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Wireless | 5 | [How WiFi works](idea-05-wifi/idea.md) | WiFi is just radio, and your router is a tiny radio station. | E | idea | IEEE / Wi-Fi Alliance basics | - |
 | Wireless | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | What actually happens if you don't switch it on? | Q | idea | Aviation authority guidance | - |
 | Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Nobody sees the 1.5 million kilometers of cable your internet runs on. | E | rendered | TeleGeography Submarine Cable FAQ (2026); International Cable Protection Committee | 2 |
-| Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | The cloud is a very real building. | Q | idea | Cloud provider data center docs | - |
+| Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Nobody tells you Amazon's cloud copies your files into 3 buildings. | Q | rendered | AWS Amazon S3 docs (data protection); IEA Energy and AI (2025) | - |
 | Data & codes | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | A QR code is a tiny grid of yes/no answers. | E | idea | ISO/IEC 18004 overview | - |
 | AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | posted | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | - |
 
@@ -62,7 +62,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-11-17 | 3 | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Everyday tech › Internet | E | rendered | 81.6 | 126 | 50 |
 | 2026-11-18 | 3 | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | Aviation & engineering › Engines | C | idea | - | - | - |
 | 2026-11-19 | 3 | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Aviation & engineering › Flight | E | idea | - | - | - |
-| 2026-11-20 | 3 | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Everyday tech › Internet | Q | idea | - | - | - |
+| 2026-11-20 | 3 | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Everyday tech › Internet | Q | rendered | 83 | 122 | 49 |
 | 2026-11-23 | 4 | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
 | 2026-11-24 | 4 | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Everyday tech › Data & codes | E | idea | - | - | - |
 | 2026-11-26 | 4 | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Money & payments › Payments | E | idea | - | - | - |

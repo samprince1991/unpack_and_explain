@@ -84,6 +84,33 @@ export const models = {
     spinAxis: "x",
     useFor: "Undersea / fiber-optic cables, internet backbone, repeaters (idea 10)",
   },
+  "data-center": {
+    title: "Data-center campus: open hall with server racks, two more sites, feed and link cables",
+    file: "models/data-center.glb",
+    source: "Procedural, blender/models/data_center.py",
+    license: "own",
+    parts: {
+      hall: ["hall"],
+      racks: ["racks"],
+      rack: ["rack"],
+      drive: ["drive"],
+      site2: ["site2"],
+      site3: ["site3"],
+      feed: ["feed"],
+      links: ["links"],
+    },
+    keyPart: "rack",
+    // The hall's racks lift out of the open roof (the key rack and its drive highest);
+    // the other sites and the cables drop out of the way.
+    explode: {
+      axis: "z",
+      order: ["hall", "racks", "rack", "drive"],
+      spacing: 0.18,
+      away: ["site2", "site3", "feed", "links"],
+    },
+    spinAxis: "z",
+    useFor: "Cloud storage, data centers, servers, backups, redundancy (idea 12)",
+  },
 } as const satisfies Record<string, ModelEntry>;
 
 export type ModelId = keyof typeof models;

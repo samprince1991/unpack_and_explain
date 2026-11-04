@@ -12,6 +12,8 @@ import { Post03 } from "./posts/post-03-jet-engine";
 import { script as post03 } from "./posts/post-03-jet-engine/script";
 import { Post10 } from "./posts/post-10-undersea-cables";
 import { script as post10 } from "./posts/post-10-undersea-cables/script";
+import { Post12 } from "./posts/post-12-cloud-myth";
+import { script as post12 } from "./posts/post-12-cloud-myth/script";
 import { Post20 } from "./posts/post-20-vibe-coding";
 import { script as post20 } from "./posts/post-20-vibe-coding/script";
 import { calculateCoverMetadata, Cover } from "./templates/Cover";
@@ -78,6 +80,26 @@ export const RemotionRoot: React.FC = () => {
         width={video.width}
         height={video.height}
         defaultProps={{ script: post10, blender3d: null, showGuides: false }}
+        calculateMetadata={calculateCoverMetadata}
+      />
+      <Composition
+        id="Post12-CloudMyth"
+        component={Post12}
+        durationInFrames={video.fps * 40}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post12, vo: null, audio: null, showGuides: false }}
+        calculateMetadata={calculateReelMetadata}
+      />
+      <Composition
+        id="Cover12-CloudMyth"
+        component={Cover}
+        durationInFrames={1}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post12, blender3d: null, showGuides: false }}
         calculateMetadata={calculateCoverMetadata}
       />
       <Composition

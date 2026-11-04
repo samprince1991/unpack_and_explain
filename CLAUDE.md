@@ -214,6 +214,8 @@ Design: `docs/specs/2026-10-30-reel-variety-design.md`. **Fixed frame, varied co
 | `styles/CycleDiagram` | Steps on a ring with arcs drawing in; `cycleLoop()` gives a path for `Travel` | Post 20 mechanism |
 | `styles/PhoneFrame` | UI mock: phone outline + `phoneScreen()` for app content | Post 20 payoff |
 | `styles/SeaSection` | Side view of an ocean between two coasts (ground, moving water line); `seaCable()` route along the seabed, `seaCableSplit()` for a break, `seaCoasts()` to place things | Post 10 setup, payoff |
+| `styles/MythSwap` | Q posts: the myth drawing falls away and the fact drawing settles in its place (cloud in the sky > warehouse on the ground); pair with `Stamp` MYTH / FACT | Post 12 setup |
+| `styles/ShareGrid` | "X out of 100" grid: neutral cells, the share (fractions allowed) fills amber; for small percentages a pie would hide | Post 12 payoff |
 
 
 ## Remotion Elements
