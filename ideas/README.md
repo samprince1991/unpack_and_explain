@@ -4,11 +4,11 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**20 ideas** (by status: 11 idea, 1 scripted, 4 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**26 ideas** (by status: 17 idea, 1 scripted, 4 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
-### Everyday tech (9)
+### Everyday tech (11)
 
 | Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
 |---|---|---|---|---|---|---|---|
@@ -19,10 +19,12 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Wireless | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | What actually happens if you don't switch it on? | Q | idea | Aviation authority guidance | - |
 | Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Nobody sees the 1.5 million kilometers of cable your internet runs on. | E | rendered | TeleGeography Submarine Cable FAQ (2026); International Cable Protection Committee | 2 |
 | Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Nobody tells you Amazon's cloud copies your files into 3 buildings. | Q | rendered | AWS Amazon S3 docs (data protection); IEA Energy and AI (2025) | - |
+| Internet | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | In 2012, one extra second broke Reddit for you. | F | idea | The Register, 2 July 2012; Google leap smear docs; CGPM 2026 (Scientific American, Euronews) | 1 |
 | Data & codes | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | A QR code is a tiny grid of yes/no answers. | E | idea | ISO/IEC 18004 overview | - |
 | AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | posted | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | - |
+| Devices | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Nobody tells you your phone hides a tiny weight on springs. | E | idea | STMicroelectronics accelerometer product pages; capacitive MEMS accelerometer patents | 1 |
 
-### Money & payments (5)
+### Money & payments (6)
 
 | Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
 |---|---|---|---|---|---|---|---|
@@ -30,9 +32,10 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Payments | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Saveable cheat sheet | C | idea | Reuse facts from idea 1 | - |
 | Payments | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Sending $100 abroad can take 3 banks. | E | idea | SWIFT public docs | 1 |
 | Markets | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | A software glitch lost $440M in 45 minutes. | F | idea | SEC order on Knight Capital (2013) | - |
+| Markets | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | You never see the hidden queue behind every stock price. | E | idea | Nasdaq Rule 4757 (Book Processing), via SEC filings | - |
 | Credit | 7 | [How credit scores work](idea-07-credit-score/idea.md) | Your score is a guess about your future. | E | idea | Bureau / FICO public documentation | - |
 
-### Aviation & engineering (6)
+### Aviation & engineering (9)
 
 | Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
 |---|---|---|---|---|---|---|---|
@@ -42,6 +45,9 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | rendered | NASA Glenn Research Center, Beginner's Guide to Propulsion | - |
 | Structures | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | A bridge tore itself apart in a light wind. | F | idea | Washington State archives / FHWA | - |
 | Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | NASA/JPL Mishap Investigation Board report | - |
+| Space | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Hubble's $1.5B mirror was wrong by 2 microns. | F | idea | NASA 'Hubble's Mirror Flaw'; Allen Report (1990) | - |
+| Machines | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Your elevator cable snaps. You still don't fall. | Q | idea | ASME A17.1 (rope count and safety factors, as adopted in state codes); Otis safety systems; Otis 1854 demonstration | 1 |
+| Ships | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | You've never noticed the bump that saves ships up to 14% fuel. | E | idea | FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log) | - |
 
 ## Schedule
 
@@ -67,6 +73,12 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-11-24 | 4 | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Everyday tech › Data & codes | E | idea | - | - | - |
 | 2026-11-26 | 4 | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Money & payments › Payments | E | idea | - | - | - |
 | 2026-11-27 | 4 | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | Everyday tech › Location & GPS | Q | idea | - | - | - |
+| 2026-11-30 | 5 | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Everyday tech › Devices | E | idea | - | - | - |
+| 2026-12-01 | 5 | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | Money & payments › Markets | E | idea | - | - | - |
+| 2026-12-03 | 5 | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | Everyday tech › Internet | F | idea | - | - | - |
+| 2026-12-04 | 5 | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Aviation & engineering › Machines | Q | idea | - | - | - |
+| 2026-12-07 | 6 | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
+| 2026-12-08 | 6 | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | Aviation & engineering › Ships | E | idea | - | - | - |
 
 Est. s assumes 2.5 words/s; the real length comes from the voice-over.
 
@@ -83,13 +95,13 @@ Rank by × median and sends / reach, not raw views. High non-follower reach with
 
 ## Formats
 
-Posted 4 of 20 ideas (20%).
+Posted 4 of 26 ideas (15%).
 
 | Format | Ideas | Posted | Avg reach | Avg watch % | Avg share + save | Avg follows / 1k |
 |---|---|---|---|---|---|---|
-| E | 9 | 3 | - | - | - | - |
-| F | 4 | 1 | - | - | - | - |
-| Q | 4 | 0 | - | - | - | - |
+| E | 12 | 3 | - | - | - | - |
+| F | 6 | 1 | - | - | - | - |
+| Q | 5 | 0 | - | - | - | - |
 | C | 3 | 0 | - | - | - | - |
 
 **Best format so far:** by watch time - (needs 3 posted per format); by share + save rate - (needs 3 posted per format); by follows per 1k reach - (needs 3 posted per format).
