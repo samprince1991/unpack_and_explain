@@ -36,7 +36,7 @@ Studio edits) and a generic config-driven `<Chart spec>` (heavy, hard to keep on
 | `stroke`, `strokeSoft` | Line widths for main shapes / axes and guides |
 | `labelSize` | `typeScale.label` (46 px); value labels never smaller than 44 px |
 | `radius`, `barGap` | Corner radius, gap between bars as a fraction of the band |
-| `limits` | bars / slices / funnel stages <= 6; treemap leaves <= 8; tree nodes <= 7 per level and depth <= 3; sankey nodes <= 6 per column, columns <= 3 |
+| `limits` | bars / slices / funnel stages <= 6; line points 2-8; treemap leaves <= 8; tree nodes <= 5 per level and depth <= 3; sankey nodes <= 4 per column, columns 2-3 |
 | `stagger` | Frames between items entering |
 
 ### `src/components/charts/<chart>/`
@@ -50,7 +50,9 @@ One folder per chart, two files each:
 
 Shared helpers in `src/components/charts/common.ts`: `Box` type (`{ x, y, width, height }`),
 `chartProgress(frame, { at, keyAt, exitAt, still, index })` → `{ enter, key, exit }`, and
-`ValueLabel` (Inter Medium, `labelSize`, optional `NumberCounter` count-up, `format` / `unit`).
+`ChartText` (Inter Medium, `labelSize`; bar values count up with the bar's growth).
+Names (`name` on a datum) are always drawn when given and fit-checked; a name that can't
+fit throws. Value labels follow `values`.
 
 ### Pieces
 
@@ -76,7 +78,7 @@ type ChartProps<D> = {
   exitAt?: number;       // fade out
   format?: (v: number) => string;
   unit?: string;         // shown on value labels (metric + imperial where relevant)
-  labels?: "none" | "key" | "all"; // default "key"
+  values?: "none" | "key" | "all"; // value labels, default "key"
   still?: boolean;       // carousel: final pose, key already amber, no animation
 };
 ```

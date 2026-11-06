@@ -1,11 +1,17 @@
 // Studio previews of our own motion kit (src/components/motion, transitions, LineIcon, three).
 // Demos only: posts never import from src/kit.
 import { Composition, Folder } from "remotion";
-import { video } from "../brand/tokens";
+import { carousel, video } from "../brand/tokens";
 import { calculateCoverMetadata, Cover } from "../templates/Cover";
 import { calculateReelMetadata } from "../templates/metadata";
 import { blenderSample } from "./blenderSample";
 import { KitBlender } from "./KitBlender";
+import {
+  KitCharts,
+  kitChartsFrames,
+  KitChartsSlides,
+  kitChartsSlideCount,
+} from "./KitCharts";
 import { KitIcons } from "./KitIcons";
 import { KitLooks, kitLooksFrames } from "./KitLooks";
 import { KitStyles, kitStylesFrames } from "./KitStyles";
@@ -46,6 +52,20 @@ export const KitGallery: React.FC = () => (
       {...size}
     />
     <Composition
+      id="Kit-Charts"
+      component={KitCharts}
+      durationInFrames={kitChartsFrames}
+      {...size}
+    />
+    <Composition
+      id="Kit-ChartsSlides"
+      component={KitChartsSlides}
+      durationInFrames={kitChartsSlideCount}
+      fps={video.fps}
+      width={carousel.width}
+      height={carousel.height}
+    />
+    <Composition
       id="Kit-Icons"
       component={KitIcons}
       durationInFrames={120}
@@ -62,7 +82,12 @@ export const KitGallery: React.FC = () => (
       component={KitBlender}
       durationInFrames={video.fps * 30}
       {...size}
-      defaultProps={{ script: blenderSample, vo: null, audio: null, showGuides: false }}
+      defaultProps={{
+        script: blenderSample,
+        vo: null,
+        audio: null,
+        showGuides: false,
+      }}
       calculateMetadata={calculateReelMetadata}
     />
     <Composition
@@ -70,7 +95,11 @@ export const KitGallery: React.FC = () => (
       component={Cover}
       durationInFrames={1}
       {...size}
-      defaultProps={{ script: blenderSample, blender3d: null, showGuides: false }}
+      defaultProps={{
+        script: blenderSample,
+        blender3d: null,
+        showGuides: false,
+      }}
       calculateMetadata={calculateCoverMetadata}
     />
   </Folder>

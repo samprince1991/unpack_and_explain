@@ -217,6 +217,18 @@ Design: `docs/specs/2026-10-30-reel-variety-design.md`. **Fixed frame, varied co
 | `styles/MythSwap` | Q posts: the myth drawing falls away and the fact drawing settles in its place (cloud in the sky > warehouse on the ground); pair with `Stamp` MYTH / FACT | Post 12 setup |
 | `styles/ShareGrid` | "X out of 100" grid: neutral cells, the share (fractions allowed) fills amber; for small percentages a pie would hide | Post 12 payoff |
 
+- **Charts** (`src/components/charts/`, design: `docs/specs/2026-11-06-d3-charts-design.md`): D3 for layout maths only (`d3-scale`, `d3-shape`, `d3-array`, `d3-hierarchy`, `d3-sankey`); never `d3-selection` / `d3-transition` / `d3-timer` / `d3-ease` (a test bans them). Each chart = pure `layout.ts` + component. Shared props: `box`, `keyId` (the one amber item), `at`, `keyAt` (sync with `useCue`), `exitAt`, `values` (`"none"` / `"key"` / `"all"`, default `"key"`), `format`, `unit`, `still` (carousel final pose). Names on data are always drawn and fit-checked. Limits in `src/brand/charts.ts`; over them (or a name that doesn't fit) the chart throws: group the tail into "Other" or shorten the name. Use in hook / setup / payoff and on carousel slides, never in the mechanism. Labels are numbers, units and short names only. Preview: **Kit-Charts**, **Kit-ChartsSlides**.
+
+| Chart | Use |
+|---|---|
+| `charts/bar/BarChart` | Comparisons (vertical with short names, horizontal for longer names) |
+| `charts/line/LineChart` | Trends over time (negative values allowed) |
+| `charts/pie/PieChart` | Shares; `donut` puts the key value in the hole. Slices too narrow for their label get none |
+| `charts/treemap/Treemap` | What's inside (price, storage, parts); labels only where they fit |
+| `charts/tree/TreeDiagram` | Hierarchies (DNS, file systems); the path to the key turns amber |
+| `charts/sankey/Sankey` | Where something goes (money, energy, traffic); `keyId` = `"source->target"` |
+| `charts/funnel/Funnel` | Filtering steps (visits > signups > buys) |
+
 
 ## Remotion Elements
 
@@ -236,7 +248,7 @@ Categories: `audio`, `backgrounds`, `captions`, `charts`, `effects`, `layouts`, 
 | Element (library path) | Use it for |
 |---|---|
 | `charts/number-counter` | Big stats ("~30 satellites", "$440M in 45 minutes") |
-| `charts/horizontal-bar-chart`, `vertical-bar-chart`, `line-chart`, `pie-chart` | Data comparisons in E posts |
+| `charts/horizontal-bar-chart`, `vertical-bar-chart`, `line-chart`, `pie-chart` | Reference only: use `components/charts/` (D3) for charts |
 | `text/circle-marker`, `text-marker`, `strike-through`, `crossed-off` | Emphasis; Q posts (strike the myth, mark the fact) |
 | `storytelling/news-article-highlight` | F posts: citing the real incident / investigation |
 | `maps/spinning-globe`, `maps/map-flyover` | Geography (cables, GPS, SWIFT, flights) |
