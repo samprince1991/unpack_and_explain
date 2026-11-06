@@ -7,15 +7,13 @@ category: "Aviation & engineering"
 subcategory: "Engines"
 week: 3
 date: 2026-11-18
-status: idea
+status: rendered
 companion_of: 3
 hook: "4 steps your plane never stops"
 hook_formula: 11
 hook_score: 81.4
 source: "NASA Glenn Research Center, Beginner's Guide to Propulsion"
-verify:
-  - "Shafts link the turbine to the fan and compressor, so the turbine keeps them turning (NASA Glenn, turbofan page)"
-  - "Compressing the air also heats it (NASA Glenn, compressor page)"
+verify: []
 metrics:  # fill in after posting
   views: null
   reach: null
@@ -33,6 +31,11 @@ metrics:  # fill in after posting
 
 Carousel companion to idea 3. Gimli Glider facts reused from idea 3 (checked 2026-11-02); engine mechanism from NASA Glenn, source on the recap slide.
 
+Facts checked 2026-11-06 against NASA Glenn's Beginner's Guide to Propulsion:
+- Shafts: "the fan and fan turbine ... are connected to an additional shaft", which "passes through the core shaft" (two-spool engine), so the turbines turn the fan and compressor (https://www.grc.nasa.gov/www/k-12/airplane/aturbf.html).
+- Heat: "Air heats up as it passes through the compressor" (https://www.grc.nasa.gov/www/k-12/airplane/compth.html).
+- Simplification on slide 7: a turbofan gets thrust from both the core exhaust and the fan (same turbofan page); the slide only names the exhaust.
+
 ## Slides
 
 | Slide | Headline | Body |
@@ -43,7 +46,7 @@ Carousel companion to idea 3. Gimli Glider facts reused from idea 3 (checked 202
 | 4 | Squeeze: the compressor packs it | Rows of small spinning blades squeeze the air into less and less space, until it's tightly packed and hot. |
 | 5 | Bang: fuel burns in the middle | Fuel sprays into the packed air and burns in one steady flame. It stays lit as long as the engine's running. |
 | 6 | Blow: hot gas spins the turbine | The hot gas rushes out through the turbine, a wheel of blades at the back, and spins it like wind spins a pinwheel. |
-| 7 | The trick: it keeps itself spinning | Shafts link the turbine to the fan and compressor, so the loop keeps going. Leftover gas blasts out the back and pushes the plane forward. |
+| 7 | The trick: it keeps itself spinning | Shafts link the turbine to the fan and compressor, so the loop keeps going. Leftover gas blasts out the back and pushes you forward. |
 | 8 | A jet engine in 4 steps | 1 Suck: fan pulls air in. 2 Squeeze: compressor packs it. 3 Bang: fuel burns. 4 Blow: hot gas spins the turbine and shoots out. |
 | 9 | Save this for your next flight | Look out at the engine and name the 4 steps. Slide 8 has them all. |
 

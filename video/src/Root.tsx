@@ -7,6 +7,8 @@ import { script as post01 } from "./posts/post-01-card-payment/script";
 import { Post02 } from "./posts/post-02-gps";
 import { Carousel18 } from "./posts/post-18-gps-steps";
 import { script as carousel18 } from "./posts/post-18-gps-steps/slides";
+import { Carousel19 } from "./posts/post-19-jet-engine-stages";
+import { script as carousel19 } from "./posts/post-19-jet-engine-stages/slides";
 import { script as post02 } from "./posts/post-02-gps/script";
 import { Post03 } from "./posts/post-03-jet-engine";
 import { script as post03 } from "./posts/post-03-jet-engine/script";
@@ -120,6 +122,15 @@ export const RemotionRoot: React.FC = () => {
         width={carousel.width}
         height={carousel.height}
         defaultProps={{ script: carousel18, showGuides: false }}
+      />
+      <Composition
+        id="Carousel19-JetEngineStages"
+        component={Carousel19}
+        durationInFrames={carousel19.slides.length}
+        fps={video.fps}
+        width={carousel.width}
+        height={carousel.height}
+        defaultProps={{ script: carousel19, showGuides: false }}
       />
       <ElementsGallery />
       <KitGallery />

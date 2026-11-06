@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**20 ideas** (by status: 12 idea, 1 scripted, 3 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**20 ideas** (by status: 11 idea, 1 scripted, 4 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -39,7 +39,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Flight | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Most people explain lift wrong. | Q | scripted | NASA Glenn 'lift' explainer pages | 1 |
 | Flight | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Autopilot isn't flying the plane. It's following instructions. | E | idea | Aircraft manufacturer / FAA docs | - |
 | Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | posted | Canadian investigation report on Air Canada Flight 143 (1983) | - |
-| Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | idea | NASA Glenn Research Center, Beginner's Guide to Propulsion | 2 |
+| Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | rendered | NASA Glenn Research Center, Beginner's Guide to Propulsion | - |
 | Structures | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | A bridge tore itself apart in a light wind. | F | idea | Washington State archives / FHWA | - |
 | Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | NASA/JPL Mishap Investigation Board report | - |
 
@@ -60,7 +60,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-11-13 | 2 | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | Everyday tech › Wireless | Q | idea | - | - | - |
 | 2026-11-16 | 3 | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | Aviation & engineering › Structures | F | idea | - | - | - |
 | 2026-11-17 | 3 | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Everyday tech › Internet | E | rendered | 81.6 | 126 | 50 |
-| 2026-11-18 | 3 | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | Aviation & engineering › Engines | C | idea | 81.4 | 9 slides | - |
+| 2026-11-18 | 3 | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | Aviation & engineering › Engines | C | rendered | 81.4 | 9 slides | - |
 | 2026-11-19 | 3 | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Aviation & engineering › Flight | E | idea | - | - | - |
 | 2026-11-20 | 3 | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Everyday tech › Internet | Q | rendered | 83 | 122 | 49 |
 | 2026-11-23 | 4 | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
