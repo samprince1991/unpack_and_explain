@@ -11,9 +11,26 @@ export const sfx = {
     seconds: 1.2,
     volume: 0.4,
   },
+  tick: { prompt: "Short soft mechanical tick, clean and dry, no reverb", seconds: 0.5, volume: 0.25 },
+  thud: { prompt: "Soft low thud, short and rounded, no reverb tail", seconds: 0.6, volume: 0.3 },
+  swell: { prompt: "Short airy rising swell, gentle, builds and stops with no impact", seconds: 1.5, volume: 0.25 },
+  sweep: { prompt: "Soft airy sweep passing by, light and short", seconds: 0.8, volume: 0.2 },
+  snap: { prompt: "Crisp soft mechanical snap, something clicking into place, clean", seconds: 0.5, volume: 0.3 },
+  stamp: { prompt: "Soft rubber stamp pressed on paper, muted and short", seconds: 0.5, volume: 0.3 },
+  buzz: { prompt: "Short low error buzz, muted, not harsh", seconds: 0.7, volume: 0.25 },
 } as const;
 
 export type SfxName = keyof typeof sfx;
+
+// Placed by the template (audioCues.ts), never by a post's sfx plan.
+export const TEMPLATE_SFX: readonly SfxName[] = ["pop", "chime"];
+
+// Pinned so every sound comes from one model. v3 is limited access (other accounts get
+// "Unknown model"); moving to it is a deliberate change that regenerates the library.
+export const SFX_MODEL = "eleven_text_to_sound_v2";
+export const SFX_PROMPT_INFLUENCE = 0.6;
+// Topic sounds without their own volume.
+export const SFX_CUSTOM_VOLUME = 0.3;
 
 export const music = {
   prompt:

@@ -12,6 +12,7 @@ export const script: PostScript = {
   hookTitle: false,
   topic: "jet engine",
   source: "Board of Inquiry, Air Canada Flight 143 (1983)",
+  sfx: { optOut: "posted before SFX" },
   hero3d: "mechanism",
   failureSection: "payoff",
   blender: {

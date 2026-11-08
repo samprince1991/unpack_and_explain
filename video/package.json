@@ -71,6 +71,8 @@
     "assets": "tsx scripts/prepare-brand-assets.ts",
     "tts": "tsx --env-file=.env scripts/tts.ts",
     "brand-audio": "tsx --env-file=.env scripts/brand-audio.ts",
+    "sfx": "tsx --env-file=.env scripts/sfx.ts",
+    "qa:audio": "tsx scripts/qa-audio.ts",
     "master": "tsx scripts/master.ts",
     "vo:clean": "tsx scripts/clean-vo.ts",
     "tracker": "tsx scripts/tracker.ts",

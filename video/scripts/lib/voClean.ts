@@ -8,7 +8,7 @@ import { findTailBleed, rmsEnvelope } from "./voEdges";
 const ANALYSIS_RATE = 16000;
 
 // Remotion's bundled ffmpeg (no afade there, so we only ever cut inside silence).
-const ffmpeg = (args: string[]) => {
+export const ffmpeg = (args: string[]) => {
   const res = spawnSync("npx", ["remotion", "ffmpeg", ...args.map((a) => `"${a}"`)], {
     encoding: "utf8",
     shell: true,

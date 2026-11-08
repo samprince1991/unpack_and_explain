@@ -6,6 +6,8 @@ import type { ReelProps } from "./Reel";
 import { loadAudioLibrary } from "./audioLibrary";
 import { blenderProblems, clipStatuses, loadBlenderManifest } from "./blender";
 import { buildBlenderJob, isBlenderPlan } from "./blenderJob";
+import { isSfxPlan, resolveSfxCues, sfxGapProblems, sfxProblems } from "./sfxCues";
+import { loadSfxManifest } from "./sfxManifest";
 import { computeTimeline } from "./timing";
 import { validateScript } from "./validate";
 import { loadVo } from "./vo";
@@ -21,7 +23,7 @@ export const calculateReelMetadata: CalculateMetadataFunction<ReelProps> = async
   if (vo.estimated) {
     console.warn(`[${props.script.id}] Using estimated timing. Run: npm run tts -- ${props.script.id}`);
   }
-  const { totalFrames } = computeTimeline(vo.sections, video.fps, durations.crossfade);
+  const { sections, totalFrames } = computeTimeline(vo.sections, video.fps, durations.crossfade);
   const audio = await loadAudioLibrary();
 
   let blender3d = null;
@@ -40,5 +42,20 @@ export const calculateReelMetadata: CalculateMetadataFunction<ReelProps> = async
       console.warn(`[${props.script.id}] ${problem}`);
     }
   }
-  return { durationInFrames: totalFrames, props: { ...props, vo, audio, blender3d } };
+
+  let sfxManifest = null;
+  if (isSfxPlan(props.script.sfx)) {
+    sfxManifest = await loadSfxManifest(props.script.id);
+    const cues = resolveSfxCues(props.script.sfx, vo.sections, sections, video.fps, durations.crossfade);
+    const problems = [
+      ...sfxProblems(props.script.id, props.script.sfx, sfxManifest, audio),
+      ...sfxGapProblems(cues, video.fps),
+    ];
+    if (problems.length > 0 && getRemotionEnvironment().isRendering) {
+      // One line: the Remotion CLI prints only the first line of a thrown message.
+      throw new Error(`[${props.script.id}] ${problems.join(" | ")}`);
+    }
+    problems.forEach((p) => console.warn(`[${props.script.id}] ${p}`));
+  }
+  return { durationInFrames: totalFrames, props: { ...props, vo, audio, blender3d, sfxManifest } };
 };

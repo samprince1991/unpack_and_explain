@@ -17,6 +17,7 @@ export const script: PostScript = {
   // Built before 3D hero scenes: keep the approved mechanism on re-renders.
   hero3d: { optOut: "built before 3D heroes" },
   blender: { optOut: "built before Blender" },
+  sfx: { optOut: "posted before SFX" },
   verify: [
     "Satellite count (about 30 operational)",
     "Relativity drift figure (commonly cited ~10 km / 6 mi per day)",

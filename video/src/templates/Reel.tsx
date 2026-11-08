@@ -33,11 +33,13 @@ import { blenderAreas, isBlenderPlan } from "./blenderJob";
 import { pickLook, transitionMixes } from "./look";
 import { MemeMoment } from "./MemeMoment";
 import { SectionContext } from "./SectionContext";
+import { isSfxPlan, resolveSfxCues, SFX_FADE_FRAMES, sfxFile } from "./sfxCues";
 import { computeTimeline, mergeCaptions, SOURCE_LEAD_SECONDS } from "./timing";
 import type {
   BlenderManifest,
   PostScript,
   SectionId,
+  SfxManifest,
   VoManifest,
 } from "./types";
 
@@ -49,6 +51,10 @@ export type ReelProps = {
   audio: AudioLibrary | null;
   // Blender renders (manifest). Filled in by calculateReelMetadata for posts with a plan.
   blender3d?: BlenderManifest | null;
+  // Topic sounds (sfx.json). Filled in by calculateReelMetadata for posts with a plan.
+  sfxManifest?: SfxManifest | null;
+  // QA only: render one stem. "vo" is voice only, "sfx" effects only. Default "full".
+  audioMix?: "full" | "vo" | "sfx";
   // QA only: accept --preview Blender clips in a CLI render (low-res contact sheets).
   allowBlenderPreview?: boolean;
   // Studio-only overlay of Instagram UI zones and the 4:5 cover crop.
@@ -89,6 +95,8 @@ export const Reel: React.FC<
   vo,
   audio,
   blender3d = null,
+  sfxManifest = null,
+  audioMix = "full",
   showGuides,
   scenes,
   transitions = {},
@@ -124,6 +132,9 @@ export const Reel: React.FC<
     ...transitions,
   };
   const has3d = isBlenderPlan(script.blender);
+  const sfxCues = isSfxPlan(script.sfx)
+    ? resolveSfxCues(script.sfx, vo.sections, sections, fps, durations.crossfade)
+    : [];
 
   return (
     <BlenderContext.Provider
@@ -187,7 +198,7 @@ export const Reel: React.FC<
                     <MemeMoment meme={script.meme} />
                   ) : null}
                 </SectionContext.Provider>
-                {section.file ? <Audio src={staticFile(section.file)} /> : null}
+                {section.file && audioMix !== "sfx" ? <Audio src={staticFile(section.file)} /> : null}
               </TransitionSeries.Sequence>,
             ];
           })}
@@ -209,20 +220,49 @@ export const Reel: React.FC<
         <Sequence name="Source" from={sourceFrom}>
           <SourceTag source={script.source} />
         </Sequence>
-        {audioCues(sections, durations.crossfade).map((cue) => {
-          const file = audio?.sfx[cue.name];
-          return file ? (
-            <Sequence
-              key={`${cue.name}-${cue.from}`}
-              name={`SFX ${cue.name}`}
-              from={cue.from}
-              layout="none"
-            >
-              <Audio src={staticFile(file)} volume={sfx[cue.name].volume} />
-            </Sequence>
-          ) : null;
-        })}
-        {audio?.music ? (
+        {audioMix !== "vo"
+          ? audioCues(sections, durations.crossfade).map((cue) => {
+              const file = audio?.sfx[cue.name];
+              return file ? (
+                <Sequence
+                  key={`${cue.name}-${cue.from}`}
+                  name={`SFX ${cue.name}`}
+                  from={cue.from}
+                  layout="none"
+                >
+                  <Audio src={staticFile(file)} volume={sfx[cue.name].volume} />
+                </Sequence>
+              ) : null;
+            })
+          : null}
+        {audioMix !== "vo"
+          ? sfxCues.map((cue) => {
+              const file = sfxFile(cue.sound, audio, sfxManifest);
+              return file ? (
+                <Sequence
+                  key={`${cue.sound}-${cue.from}`}
+                  name={`SFX ${cue.sound}`}
+                  from={cue.from}
+                  durationInFrames={cue.durationInFrames}
+                  layout="none"
+                >
+                  <Audio
+                    src={staticFile(file)}
+                    volume={(f) =>
+                      cue.volume *
+                      interpolate(
+                        f,
+                        [cue.durationInFrames - SFX_FADE_FRAMES, cue.durationInFrames],
+                        [1, 0],
+                        clamp,
+                      )
+                    }
+                  />
+                </Sequence>
+              ) : null;
+            })
+          : null}
+        {audio?.music && audioMix === "full" ? (
           <Audio
             src={staticFile(audio.music)}
             loop

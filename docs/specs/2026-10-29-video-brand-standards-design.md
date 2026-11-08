@@ -91,7 +91,7 @@ Sections in order: Question -> Hook -> Setup -> Mechanism -> Payoff -> Congrats 
 - ElevenLabs TTS, one voice ID and fixed voice settings stored in `video/src/brand/voice.ts`, used for every reel.
 - VO generated per section with word/character timestamps -> `public/posts/<post>/vo/<section>.mp3` and `captions.json`.
 - Section durations derive from actual audio length plus a short tail pad. The script's "Time" column is guidance only.
-- Brand sound library generated with ElevenLabs (`npm run brand-audio`): pop on the logo sting, chime on the congrats card (no sound on section changes; the whoosh was removed after review), one instrumental music bed at ~ -20 dB with 1 s fades. Generated once and reused so every reel sounds the same.
+- Brand sound library generated with ElevenLabs (`npm run brand-audio`): pop on the logo sting, chime on the congrats card (no sound on section changes; the whoosh was removed after review), one instrumental music bed at ~ -20 dB with 1 s fades. Generated once and reused so every reel sounds the same. Per-reel sound effects: see `2026-11-08-sfx-pipeline-design.md`.
 - Section transitions use a dip (fade out, then fade in), never a crossfade, so busy scenes never overlap.
 - API key read from `.env` (never committed).
 
