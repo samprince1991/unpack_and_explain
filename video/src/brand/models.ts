@@ -111,6 +111,32 @@ export const models = {
     spinAxis: "z",
     useFor: "Cloud storage, data centers, servers, backups, redundancy (idea 12)",
   },
+  "bulbous-bow": {
+    title: "Ship's bow with a bulbous bow, calm waterline, bow wave and the bulb's own wave",
+    file: "models/bulbous-bow.glb",
+    source: "Procedural, blender/models/bulbous_bow.py",
+    license: "own",
+    parts: {
+      hull: ["hull"],
+      bulb: ["bulb"],
+      waterline: ["waterline"],
+      bowwave: ["bowwave"],
+      bulbwave: ["bulbwave"],
+    },
+    keyPart: "bulb",
+    // Nothing spreads out (spacing 0): "explode" means the waves cancel. The two wave
+    // lines are `away` parts, so explode sinks them out of view and leaves the calm
+    // waterline; collapse brings them back up. Clips that start without waves start
+    // exploded.
+    explode: {
+      axis: "z",
+      order: ["hull", "bulb", "waterline"],
+      spacing: 0,
+      away: ["bowwave", "bulbwave"],
+    },
+    spinAxis: "x",
+    useFor: "Ships, hulls, bow waves, wave cancelling, fuel use at sea (idea 26)",
+  },
 } as const satisfies Record<string, ModelEntry>;
 
 export type ModelId = keyof typeof models;

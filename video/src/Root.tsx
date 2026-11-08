@@ -18,6 +18,8 @@ import { Post12 } from "./posts/post-12-cloud-myth";
 import { script as post12 } from "./posts/post-12-cloud-myth/script";
 import { Post20 } from "./posts/post-20-vibe-coding";
 import { script as post20 } from "./posts/post-20-vibe-coding/script";
+import { Post26 } from "./posts/post-26-bulbous-bow";
+import { script as post26 } from "./posts/post-26-bulbous-bow/script";
 import { calculateCoverMetadata, Cover } from "./templates/Cover";
 import { calculateReelMetadata } from "./templates/metadata";
 
@@ -131,6 +133,26 @@ export const RemotionRoot: React.FC = () => {
         width={carousel.width}
         height={carousel.height}
         defaultProps={{ script: carousel19, showGuides: false }}
+      />
+      <Composition
+        id="Post26-BulbousBow"
+        component={Post26}
+        durationInFrames={video.fps * 40}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post26, vo: null, audio: null, showGuides: false }}
+        calculateMetadata={calculateReelMetadata}
+      />
+      <Composition
+        id="Cover26-BulbousBow"
+        component={Cover}
+        durationInFrames={1}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post26, blender3d: null, showGuides: false }}
+        calculateMetadata={calculateCoverMetadata}
       />
       <ElementsGallery />
       <KitGallery />

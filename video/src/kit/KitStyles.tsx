@@ -14,8 +14,11 @@ import { MythSwap } from "../components/styles/MythSwap";
 import { PhoneFrame } from "../components/styles/PhoneFrame";
 import { SeaSection, seaCable } from "../components/styles/SeaSection";
 import { ShareGrid } from "../components/styles/ShareGrid";
+import { WaveProfile } from "../components/styles/WaveProfile";
 
 const SEA_DEMO = { left: 150, right: 930, land: 620, surface: 680, seabed: 1060, bottom: 1200 };
+
+const WAVE_DEMO = { left: 150, right: 930, stem: 700, surface: 860, deck: 700, keel: 1080 };
 
 const FRAMES = 90;
 
@@ -91,6 +94,10 @@ const DEMOS: { name: string; draw: React.ReactNode }[] = [
     ),
   },
   { name: "ShareGrid", draw: <ShareGrid cx={540} cy={800} cell={46} share={1.5} highlightAt={40} /> },
+  {
+    name: "WaveProfile",
+    draw: <WaveProfile box={WAVE_DEMO} crest={1} crestAccent bulbs={[{ length: 150, radius: 48 }]} />,
+  },
 ];
 
 // Scene style library (src/components/styles): one demo per piece.

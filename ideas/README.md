@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**26 ideas** (by status: 17 idea, 1 scripted, 4 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**26 ideas** (by status: 16 idea, 1 scripted, 5 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -47,7 +47,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | NASA/JPL Mishap Investigation Board report | - |
 | Space | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Hubble's $1.5B mirror was wrong by 2 microns. | F | idea | NASA 'Hubble's Mirror Flaw'; Allen Report (1990) | - |
 | Machines | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Your elevator cable snaps. You still don't fall. | Q | idea | ASME A17.1 (rope count and safety factors, as adopted in state codes); Otis safety systems; Otis 1854 demonstration | 1 |
-| Ships | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | You've never noticed the bump that saves ships up to 14% fuel. | E | idea | FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log) | - |
+| Ships | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | You've never noticed the bump that saves ships up to 14% fuel. | E | rendered | FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log) | 1 |
 
 ## Schedule
 
@@ -78,7 +78,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-12-03 | 5 | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | Everyday tech › Internet | F | idea | - | - | - |
 | 2026-12-04 | 5 | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Aviation & engineering › Machines | Q | idea | - | - | - |
 | 2026-12-07 | 6 | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
-| 2026-12-08 | 6 | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | Aviation & engineering › Ships | E | idea | - | - | - |
+| 2026-12-08 | 6 | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | Aviation & engineering › Ships | E | rendered | 76.4 | 124 | 50 |
 
 Est. s assumes 2.5 words/s; the real length comes from the voice-over.
 
