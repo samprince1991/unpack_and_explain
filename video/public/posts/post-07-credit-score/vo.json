@@ -1,0 +1,909 @@
+{
+  "postId": "post-07-credit-score",
+  "estimated": false,
+  "sections": [
+    {
+      "id": "question",
+      "text": "Does your credit score know your salary?",
+      "file": "posts/post-07-credit-score/vo/question.mp3",
+      "durationMs": 2420,
+      "captions": [
+        {
+          "text": "Does",
+          "startMs": 0,
+          "endMs": 221,
+          "timestampMs": 111,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 244,
+          "endMs": 360,
+          "timestampMs": 302,
+          "confidence": null
+        },
+        {
+          "text": " credit",
+          "startMs": 418,
+          "endMs": 697,
+          "timestampMs": 558,
+          "confidence": null
+        },
+        {
+          "text": " score",
+          "startMs": 743,
+          "endMs": 1103,
+          "timestampMs": 923,
+          "confidence": null
+        },
+        {
+          "text": " know",
+          "startMs": 1149,
+          "endMs": 1277,
+          "timestampMs": 1213,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 1335,
+          "endMs": 1451,
+          "timestampMs": 1393,
+          "confidence": null
+        },
+        {
+          "text": " salary?",
+          "startMs": 1486,
+          "endMs": 2420,
+          "timestampMs": 1997,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "text": "You don't need a big salary for a high credit score.",
+      "file": "posts/post-07-credit-score/vo/hook.mp3",
+      "durationMs": 2740,
+      "captions": [
+        {
+          "text": "You",
+          "startMs": 0,
+          "endMs": 128,
+          "timestampMs": 64,
+          "confidence": null
+        },
+        {
+          "text": " don't",
+          "startMs": 186,
+          "endMs": 372,
+          "timestampMs": 279,
+          "confidence": null
+        },
+        {
+          "text": " need",
+          "startMs": 441,
+          "endMs": 639,
+          "timestampMs": 540,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 673,
+          "endMs": 697,
+          "timestampMs": 685,
+          "confidence": null
+        },
+        {
+          "text": " big",
+          "startMs": 766,
+          "endMs": 917,
+          "timestampMs": 842,
+          "confidence": null
+        },
+        {
+          "text": " salary",
+          "startMs": 975,
+          "endMs": 1335,
+          "timestampMs": 1155,
+          "confidence": null
+        },
+        {
+          "text": " for",
+          "startMs": 1382,
+          "endMs": 1486,
+          "timestampMs": 1434,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1509,
+          "endMs": 1533,
+          "timestampMs": 1521,
+          "confidence": null
+        },
+        {
+          "text": " high",
+          "startMs": 1567,
+          "endMs": 1707,
+          "timestampMs": 1637,
+          "confidence": null
+        },
+        {
+          "text": " credit",
+          "startMs": 1753,
+          "endMs": 1974,
+          "timestampMs": 1864,
+          "confidence": null
+        },
+        {
+          "text": " score.",
+          "startMs": 1997,
+          "endMs": 2740,
+          "timestampMs": 2369,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "text": "It isn't a grade on your wealth. It's a prediction: how likely are you to repay what you borrow? Most scores run from 300 to 850.",
+      "file": "posts/post-07-credit-score/vo/setup.mp3",
+      "durationMs": 9427,
+      "captions": [
+        {
+          "text": "It",
+          "startMs": 0,
+          "endMs": 163,
+          "timestampMs": 82,
+          "confidence": null
+        },
+        {
+          "text": " isn't",
+          "startMs": 209,
+          "endMs": 430,
+          "timestampMs": 320,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 464,
+          "endMs": 488,
+          "timestampMs": 476,
+          "confidence": null
+        },
+        {
+          "text": " grade",
+          "startMs": 546,
+          "endMs": 778,
+          "timestampMs": 662,
+          "confidence": null
+        },
+        {
+          "text": " on",
+          "startMs": 813,
+          "endMs": 871,
+          "timestampMs": 842,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 917,
+          "endMs": 1022,
+          "timestampMs": 970,
+          "confidence": null
+        },
+        {
+          "text": " wealth.",
+          "startMs": 1080,
+          "endMs": 1498,
+          "timestampMs": 1289,
+          "confidence": null
+        },
+        {
+          "text": " It's",
+          "startMs": 1544,
+          "endMs": 1730,
+          "timestampMs": 1637,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1776,
+          "endMs": 1800,
+          "timestampMs": 1788,
+          "confidence": null
+        },
+        {
+          "text": " prediction:",
+          "startMs": 1869,
+          "endMs": 2647,
+          "timestampMs": 2258,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 2926,
+          "endMs": 3100,
+          "timestampMs": 3013,
+          "confidence": null
+        },
+        {
+          "text": " likely",
+          "startMs": 3193,
+          "endMs": 3529,
+          "timestampMs": 3361,
+          "confidence": null
+        },
+        {
+          "text": " are",
+          "startMs": 3599,
+          "endMs": 3762,
+          "timestampMs": 3681,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 3808,
+          "endMs": 3889,
+          "timestampMs": 3848,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 3947,
+          "endMs": 3994,
+          "timestampMs": 3971,
+          "confidence": null
+        },
+        {
+          "text": " repay",
+          "startMs": 4063,
+          "endMs": 4365,
+          "timestampMs": 4214,
+          "confidence": null
+        },
+        {
+          "text": " what",
+          "startMs": 4412,
+          "endMs": 4540,
+          "timestampMs": 4476,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 4574,
+          "endMs": 4644,
+          "timestampMs": 4609,
+          "confidence": null
+        },
+        {
+          "text": " borrow?",
+          "startMs": 4714,
+          "endMs": 5201,
+          "timestampMs": 4958,
+          "confidence": null
+        },
+        {
+          "text": " Most",
+          "startMs": 6014,
+          "endMs": 6293,
+          "timestampMs": 6154,
+          "confidence": null
+        },
+        {
+          "text": " scores",
+          "startMs": 6327,
+          "endMs": 6711,
+          "timestampMs": 6519,
+          "confidence": null
+        },
+        {
+          "text": " run",
+          "startMs": 6792,
+          "endMs": 6954,
+          "timestampMs": 6873,
+          "confidence": null
+        },
+        {
+          "text": " from",
+          "startMs": 7012,
+          "endMs": 7152,
+          "timestampMs": 7082,
+          "confidence": null
+        },
+        {
+          "text": " 300",
+          "startMs": 7233,
+          "endMs": 7732,
+          "timestampMs": 7483,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 7779,
+          "endMs": 7860,
+          "timestampMs": 7820,
+          "confidence": null
+        },
+        {
+          "text": " 850.",
+          "startMs": 8011,
+          "endMs": 9427,
+          "timestampMs": 8719,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "mechanism",
+      "text": "A FICO score weighs five things from your credit report. Paying on time counts most, at 35 percent. How much you owe is 30. How long you've had credit is 15. New applications and your mix of credit are 10 each.",
+      "file": "posts/post-07-credit-score/vo/mechanism.mp3",
+      "durationMs": 15320,
+      "captions": [
+        {
+          "text": "A",
+          "startMs": 0,
+          "endMs": 128,
+          "timestampMs": 64,
+          "confidence": null
+        },
+        {
+          "text": " FICO",
+          "startMs": 197,
+          "endMs": 615,
+          "timestampMs": 406,
+          "confidence": null
+        },
+        {
+          "text": " score",
+          "startMs": 685,
+          "endMs": 1126,
+          "timestampMs": 906,
+          "confidence": null
+        },
+        {
+          "text": " weighs",
+          "startMs": 1196,
+          "endMs": 1474,
+          "timestampMs": 1335,
+          "confidence": null
+        },
+        {
+          "text": " five",
+          "startMs": 1591,
+          "endMs": 1950,
+          "timestampMs": 1771,
+          "confidence": null
+        },
+        {
+          "text": " things",
+          "startMs": 2009,
+          "endMs": 2345,
+          "timestampMs": 2177,
+          "confidence": null
+        },
+        {
+          "text": " from",
+          "startMs": 2392,
+          "endMs": 2519,
+          "timestampMs": 2456,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 2566,
+          "endMs": 2659,
+          "timestampMs": 2613,
+          "confidence": null
+        },
+        {
+          "text": " credit",
+          "startMs": 2717,
+          "endMs": 2937,
+          "timestampMs": 2827,
+          "confidence": null
+        },
+        {
+          "text": " report.",
+          "startMs": 2972,
+          "endMs": 3471,
+          "timestampMs": 3222,
+          "confidence": null
+        },
+        {
+          "text": " Paying",
+          "startMs": 4586,
+          "endMs": 4911,
+          "timestampMs": 4749,
+          "confidence": null
+        },
+        {
+          "text": " on",
+          "startMs": 4981,
+          "endMs": 5085,
+          "timestampMs": 5033,
+          "confidence": null
+        },
+        {
+          "text": " time",
+          "startMs": 5143,
+          "endMs": 5468,
+          "timestampMs": 5306,
+          "confidence": null
+        },
+        {
+          "text": " counts",
+          "startMs": 5515,
+          "endMs": 5770,
+          "timestampMs": 5643,
+          "confidence": null
+        },
+        {
+          "text": " most,",
+          "startMs": 5863,
+          "endMs": 6339,
+          "timestampMs": 6101,
+          "confidence": null
+        },
+        {
+          "text": " at",
+          "startMs": 6374,
+          "endMs": 6513,
+          "timestampMs": 6444,
+          "confidence": null
+        },
+        {
+          "text": " 35",
+          "startMs": 6571,
+          "endMs": 7001,
+          "timestampMs": 6786,
+          "confidence": null
+        },
+        {
+          "text": " percent.",
+          "startMs": 7070,
+          "endMs": 7639,
+          "timestampMs": 7355,
+          "confidence": null
+        },
+        {
+          "text": " How",
+          "startMs": 7964,
+          "endMs": 8139,
+          "timestampMs": 8052,
+          "confidence": null
+        },
+        {
+          "text": " much",
+          "startMs": 8208,
+          "endMs": 8394,
+          "timestampMs": 8301,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 8429,
+          "endMs": 8522,
+          "timestampMs": 8476,
+          "confidence": null
+        },
+        {
+          "text": " owe",
+          "startMs": 8603,
+          "endMs": 8766,
+          "timestampMs": 8685,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 8800,
+          "endMs": 8882,
+          "timestampMs": 8841,
+          "confidence": null
+        },
+        {
+          "text": " 30.",
+          "startMs": 8963,
+          "endMs": 9509,
+          "timestampMs": 9236,
+          "confidence": null
+        },
+        {
+          "text": " How",
+          "startMs": 9718,
+          "endMs": 9880,
+          "timestampMs": 9799,
+          "confidence": null
+        },
+        {
+          "text": " long",
+          "startMs": 9938,
+          "endMs": 10112,
+          "timestampMs": 10025,
+          "confidence": null
+        },
+        {
+          "text": " you've",
+          "startMs": 10147,
+          "endMs": 10321,
+          "timestampMs": 10234,
+          "confidence": null
+        },
+        {
+          "text": " had",
+          "startMs": 10356,
+          "endMs": 10472,
+          "timestampMs": 10414,
+          "confidence": null
+        },
+        {
+          "text": " credit",
+          "startMs": 10542,
+          "endMs": 10809,
+          "timestampMs": 10676,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 10855,
+          "endMs": 10948,
+          "timestampMs": 10902,
+          "confidence": null
+        },
+        {
+          "text": " 15.",
+          "startMs": 11006,
+          "endMs": 11645,
+          "timestampMs": 11326,
+          "confidence": null
+        },
+        {
+          "text": " New",
+          "startMs": 12028,
+          "endMs": 12214,
+          "timestampMs": 12121,
+          "confidence": null
+        },
+        {
+          "text": " applications",
+          "startMs": 12272,
+          "endMs": 12968,
+          "timestampMs": 12620,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 13015,
+          "endMs": 13096,
+          "timestampMs": 13056,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 13142,
+          "endMs": 13270,
+          "timestampMs": 13206,
+          "confidence": null
+        },
+        {
+          "text": " mix",
+          "startMs": 13363,
+          "endMs": 13584,
+          "timestampMs": 13474,
+          "confidence": null
+        },
+        {
+          "text": " of",
+          "startMs": 13653,
+          "endMs": 13723,
+          "timestampMs": 13688,
+          "confidence": null
+        },
+        {
+          "text": " credit",
+          "startMs": 13793,
+          "endMs": 14106,
+          "timestampMs": 13950,
+          "confidence": null
+        },
+        {
+          "text": " are",
+          "startMs": 14153,
+          "endMs": 14292,
+          "timestampMs": 14223,
+          "confidence": null
+        },
+        {
+          "text": " 10",
+          "startMs": 14327,
+          "endMs": 14512,
+          "timestampMs": 14420,
+          "confidence": null
+        },
+        {
+          "text": " each.",
+          "startMs": 14559,
+          "endMs": 15320,
+          "timestampMs": 14988,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "text": "Lenders may still ask about your salary. But the score itself never sees it. It only sees your habits.",
+      "file": "posts/post-07-credit-score/vo/payoff.mp3",
+      "durationMs": 6687,
+      "captions": [
+        {
+          "text": "Lenders",
+          "startMs": 0,
+          "endMs": 430,
+          "timestampMs": 215,
+          "confidence": null
+        },
+        {
+          "text": " may",
+          "startMs": 511,
+          "endMs": 697,
+          "timestampMs": 604,
+          "confidence": null
+        },
+        {
+          "text": " still",
+          "startMs": 755,
+          "endMs": 998,
+          "timestampMs": 877,
+          "confidence": null
+        },
+        {
+          "text": " ask",
+          "startMs": 1068,
+          "endMs": 1312,
+          "timestampMs": 1190,
+          "confidence": null
+        },
+        {
+          "text": " about",
+          "startMs": 1358,
+          "endMs": 1556,
+          "timestampMs": 1457,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 1591,
+          "endMs": 1707,
+          "timestampMs": 1649,
+          "confidence": null
+        },
+        {
+          "text": " salary.",
+          "startMs": 1753,
+          "endMs": 2276,
+          "timestampMs": 2015,
+          "confidence": null
+        },
+        {
+          "text": " But",
+          "startMs": 2601,
+          "endMs": 2775,
+          "timestampMs": 2688,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 2798,
+          "endMs": 2879,
+          "timestampMs": 2839,
+          "confidence": null
+        },
+        {
+          "text": " score",
+          "startMs": 2937,
+          "endMs": 3251,
+          "timestampMs": 3094,
+          "confidence": null
+        },
+        {
+          "text": " itself",
+          "startMs": 3286,
+          "endMs": 3669,
+          "timestampMs": 3478,
+          "confidence": null
+        },
+        {
+          "text": " never",
+          "startMs": 3738,
+          "endMs": 3936,
+          "timestampMs": 3837,
+          "confidence": null
+        },
+        {
+          "text": " sees",
+          "startMs": 3994,
+          "endMs": 4249,
+          "timestampMs": 4122,
+          "confidence": null
+        },
+        {
+          "text": " it.",
+          "startMs": 4307,
+          "endMs": 4516,
+          "timestampMs": 4412,
+          "confidence": null
+        },
+        {
+          "text": " It",
+          "startMs": 4957,
+          "endMs": 5085,
+          "timestampMs": 5021,
+          "confidence": null
+        },
+        {
+          "text": " only",
+          "startMs": 5143,
+          "endMs": 5329,
+          "timestampMs": 5236,
+          "confidence": null
+        },
+        {
+          "text": " sees",
+          "startMs": 5387,
+          "endMs": 5573,
+          "timestampMs": 5480,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 5608,
+          "endMs": 5724,
+          "timestampMs": 5666,
+          "confidence": null
+        },
+        {
+          "text": " habits.",
+          "startMs": 5782,
+          "endMs": 6687,
+          "timestampMs": 6235,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "congrats",
+      "text": "Congrats, you just learned how credit scores work.",
+      "file": "posts/post-07-credit-score/vo/congrats.mp3",
+      "durationMs": 2770,
+      "captions": [
+        {
+          "text": "Congrats,",
+          "startMs": 0,
+          "endMs": 546,
+          "timestampMs": 273,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 580,
+          "endMs": 685,
+          "timestampMs": 633,
+          "confidence": null
+        },
+        {
+          "text": " just",
+          "startMs": 801,
+          "endMs": 1045,
+          "timestampMs": 923,
+          "confidence": null
+        },
+        {
+          "text": " learned",
+          "startMs": 1103,
+          "endMs": 1335,
+          "timestampMs": 1219,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1358,
+          "endMs": 1451,
+          "timestampMs": 1405,
+          "confidence": null
+        },
+        {
+          "text": " credit",
+          "startMs": 1521,
+          "endMs": 1788,
+          "timestampMs": 1655,
+          "confidence": null
+        },
+        {
+          "text": " scores",
+          "startMs": 1823,
+          "endMs": 2136,
+          "timestampMs": 1980,
+          "confidence": null
+        },
+        {
+          "text": " work.",
+          "startMs": 2206,
+          "endMs": 2770,
+          "timestampMs": 2613,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "text": "Follow Unpack and Explain for how things actually work.",
+      "file": "posts/post-07-credit-score/vo/cta.mp3",
+      "durationMs": 3390,
+      "captions": [
+        {
+          "text": "Follow",
+          "startMs": 0,
+          "endMs": 348,
+          "timestampMs": 174,
+          "confidence": null
+        },
+        {
+          "text": " Unpack",
+          "startMs": 464,
+          "endMs": 940,
+          "timestampMs": 702,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 987,
+          "endMs": 1057,
+          "timestampMs": 1022,
+          "confidence": null
+        },
+        {
+          "text": " Explain",
+          "startMs": 1103,
+          "endMs": 1602,
+          "timestampMs": 1353,
+          "confidence": null
+        },
+        {
+          "text": " for",
+          "startMs": 1683,
+          "endMs": 1800,
+          "timestampMs": 1742,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1846,
+          "endMs": 1950,
+          "timestampMs": 1898,
+          "confidence": null
+        },
+        {
+          "text": " things",
+          "startMs": 2009,
+          "endMs": 2241,
+          "timestampMs": 2125,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 2334,
+          "endMs": 2763,
+          "timestampMs": 2548,
+          "confidence": null
+        },
+        {
+          "text": " work.",
+          "startMs": 2810,
+          "endMs": 3390,
+          "timestampMs": 3100,
+          "confidence": null
+        }
+      ]
+    }
+  ]
+}

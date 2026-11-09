@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**26 ideas** (by status: 15 idea, 1 scripted, 6 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**26 ideas** (by status: 14 idea, 1 scripted, 7 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -33,7 +33,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Payments | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Sending $100 abroad can take 3 banks. | E | idea | SWIFT public docs | 1 |
 | Markets | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | A software glitch lost $440M in 45 minutes. | F | idea | SEC order on Knight Capital (2013) | - |
 | Markets | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | You never see the hidden queue behind every stock price. | E | idea | Nasdaq Rule 4757 (Book Processing), via SEC filings | - |
-| Credit | 7 | [How credit scores work](idea-07-credit-score/idea.md) | Your score is a guess about your future. | E | idea | Bureau / FICO public documentation | - |
+| Credit | 7 | [How credit scores work](idea-07-credit-score/idea.md) | You don't need a big salary for a high credit score. | E | rendered | myFICO, What's in your credit score; CFPB, What is a credit score | 1 |
 
 ### Aviation & engineering (9)
 
@@ -62,7 +62,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-11-09 | 2 | 5 | [How WiFi works](idea-05-wifi/idea.md) | Everyday tech › Wireless | E | idea | - | - | - |
 | 2026-11-10 | 2 | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | Money & payments › Markets | F | idea | - | - | - |
 | 2026-11-11 | 2 | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | Everyday tech › Location & GPS | C | rendered | 66.2 | 9 slides | - |
-| 2026-11-12 | 2 | 7 | [How credit scores work](idea-07-credit-score/idea.md) | Money & payments › Credit | E | idea | - | - | - |
+| 2026-11-12 | 2 | 7 | [How credit scores work](idea-07-credit-score/idea.md) | Money & payments › Credit | E | rendered | 77.8 | 121 | 48 |
 | 2026-11-13 | 2 | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | Everyday tech › Wireless | Q | idea | - | - | - |
 | 2026-11-16 | 3 | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | Aviation & engineering › Structures | F | idea | - | - | - |
 | 2026-11-17 | 3 | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Everyday tech › Internet | E | rendered | 81.6 | 126 | 50 |

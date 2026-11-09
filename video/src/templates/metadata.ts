@@ -4,7 +4,7 @@ import { video } from "../brand/tokens";
 import { voice } from "../brand/voice";
 import type { ReelProps } from "./Reel";
 import { loadAudioLibrary } from "./audioLibrary";
-import { blenderProblems, clipStatuses, loadBlenderManifest } from "./blender";
+import { blenderProblems, clipStatuses, loadBlenderManifest, loadModelHash } from "./blender";
 import { buildBlenderJob, isBlenderPlan } from "./blenderJob";
 import { isSfxPlan, resolveSfxCues, sfxGapProblems, sfxProblems } from "./sfxCues";
 import { loadSfxManifest } from "./sfxManifest";
@@ -30,9 +30,10 @@ export const calculateReelMetadata: CalculateMetadataFunction<ReelProps> = async
   if (isBlenderPlan(props.script.blender)) {
     blender3d = await loadBlenderManifest(props.script.id);
     const job = buildBlenderJob(props.script, vo, video.fps);
+    const modelHash = await loadModelHash(job.model.file);
     const problem = blenderProblems(
       props.script.id,
-      clipStatuses(job, blender3d),
+      clipStatuses(job, blender3d, modelHash),
       props.allowBlenderPreview,
     );
     if (problem && getRemotionEnvironment().isRendering) {

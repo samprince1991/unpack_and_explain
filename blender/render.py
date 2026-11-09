@@ -1,10 +1,11 @@
-"""Entry point, run by `npm run blender` (video/scripts/blender.ts):
+"""Run by `npm run blender` (video/scripts/blender.ts), which decides what to render:
 
-  blender -b --factory-startup --python blender/render.py -- <job.json> <out_dir> [--preview] [--only=a,b]
-  blender -b --factory-startup --python blender/render.py -- --selftest <out_dir>
+  blender -b --factory-startup --python-exit-code 1 --python blender/render.py -- \
+    --worker <job.json> <clip_id> <out_dir> <frame,frame,...> <meta.json or -> [--preview]
+  blender -b --factory-startup --python-exit-code 1 --python blender/render.py -- --selftest <out_dir>
 
-Renders each clip of the job as an RGBA PNG sequence into <out_dir>/<clip>/0000.png...
-and merges its entry (hash, size, labels) into <out_dir>/manifest.json."""
+A worker renders the given frames of one clip as RGBA PNGs named NNNN.png into <out_dir>.
+With a meta path it also writes that clip's label tracks and the Blender version."""
 
 import json
 import os
@@ -41,23 +42,20 @@ def render_clip(job, clip, out_dir, tokens, preview):
     }
 
 
-def write_manifest(path, manifest):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(manifest, f, indent=2)
-
-
-def run_job(job_path, out_dir, preview, only):
+def run_worker(job_path, clip_id, out_dir, frames, meta_path, preview):
     tokens = load_tokens()
     job = load_json(job_path)
+    clip = next(c for c in job["clips"] if c["id"] == clip_id)
+    scene = reset_scene()
+    labels = build.build_clip(scene, job, clip, tokens, preview, REPO_ROOT)
     os.makedirs(out_dir, exist_ok=True)
-    manifest_path = os.path.join(out_dir, "manifest.json")
-    manifest = load_json(manifest_path) if os.path.exists(manifest_path) else {}
-    manifest = {"postId": job["postId"], "clips": manifest.get("clips", {})}
-    for clip in job["clips"]:
-        if only and clip["id"] not in only:
-            continue
-        manifest["clips"][clip["id"]] = render_clip(job, clip, out_dir, tokens, preview)
-        write_manifest(manifest_path, manifest)  # keep progress if a later clip fails
+    if meta_path != "-":
+        with open(meta_path, "w", encoding="utf-8") as f:
+            json.dump({"labels": labels, "blenderVersion": bpy.app.version_string}, f)
+    for frame in frames:
+        scene.frame_set(frame)
+        scene.render.filepath = os.path.join(out_dir, f"{frame:04d}.png")
+        bpy.ops.render.render(write_still=True)
 
 
 def selftest(out_dir):
@@ -96,8 +94,10 @@ def main():
     if "--selftest" in flags:
         selftest(rest[0])
         return
-    only = next((f.split("=", 1)[1].split(",") for f in flags if f.startswith("--only=")), None)
-    run_job(rest[0], rest[1], "--preview" in flags, only)
+    if "--worker" not in flags:
+        raise SystemExit("render.py is run by `npm run blender`")
+    job_path, clip_id, out_dir, frames, meta_path = rest
+    run_worker(job_path, clip_id, out_dir, [int(f) for f in frames.split(",")], meta_path, "--preview" in flags)
 
 
 try:

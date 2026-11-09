@@ -36,6 +36,25 @@ describe("clipStatuses", () => {
     });
   });
 
+  it("marks a clip stale when its model file changed", () => {
+    const manifest: BlenderManifest = {
+      postId: "p",
+      clips: { cover: { ...rendered("a"), modelHash: "m1" } },
+    };
+    expect(clipStatuses(job, manifest, "m2").cover).toBe("stale");
+    expect(clipStatuses(job, manifest, "m1").cover).toBe("ok");
+  });
+
+  it("accepts old renders with no model hash, and an unreadable model file", () => {
+    const manifest: BlenderManifest = { postId: "p", clips: { cover: rendered("a") } };
+    expect(clipStatuses(job, manifest, "m2").cover).toBe("ok");
+    const tracked: BlenderManifest = {
+      postId: "p",
+      clips: { cover: { ...rendered("a"), modelHash: "m1" } },
+    };
+    expect(clipStatuses(job, tracked, null).cover).toBe("ok");
+  });
+
   it("reports nothing when every clip is ok", () => {
     const manifest: BlenderManifest = {
       postId: "p",

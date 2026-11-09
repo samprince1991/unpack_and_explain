@@ -16,7 +16,10 @@ const HALF_WIDTH = 220; // keeps a label's box inside the column
 export const BlenderLabels: React.FC<{
   clip: BlenderClipId;
   area?: ClipArea;
-}> = ({ clip, area: areaProp }) => {
+  // Big number on the amber part itself, shifted this many px down from its center, instead
+  // of a small label above it. For parts wide enough to hold the text.
+  onPart?: { dy: number };
+}> = ({ clip, area: areaProp, onPart }) => {
   const frame = useCurrentFrame();
   const { manifest, areas } = useBlender();
   const area = areaProp ?? areas[clip];
@@ -44,6 +47,28 @@ export const BlenderLabels: React.FC<{
         );
         const px = area.x + point[0] * area.width;
         const py = area.y + point[1] * area.height;
+        if (onPart) {
+          return (
+            <div
+              key={`${track.text}-${i}`}
+              style={{
+                position: "absolute",
+                left: px - HALF_WIDTH,
+                top: py + onPart.dy - typeScale.title / 2,
+                width: HALF_WIDTH * 2,
+                opacity,
+                textAlign: "center",
+                lineHeight: 1,
+                fontFamily: fonts.heading,
+                fontWeight: weights.heading,
+                fontSize: typeScale.title,
+                color: colors.bg.base,
+              }}
+            >
+              {track.text}
+            </div>
+          );
+        }
         const x = Math.min(
           Math.max(px, column.x + HALF_WIDTH),
           column.x + column.width - HALF_WIDTH,

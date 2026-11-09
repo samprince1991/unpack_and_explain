@@ -1,0 +1,17 @@
+{
+  "postId": "post-07-credit-score",
+  "sounds": {
+    "weightclunk": {
+      "prompt": "heavy brass calibration weight set down on a steel plate, one solid clunk",
+      "seconds": 1,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-07-credit-score/sfx/weightclunk.mp3"
+    },
+    "dialsweep": {
+      "prompt": "mechanical gauge needle sweeping with fine ratchet clicks, brief",
+      "seconds": 1.5,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-07-credit-score/sfx/dialsweep.mp3"
+    }
+  }
+}
