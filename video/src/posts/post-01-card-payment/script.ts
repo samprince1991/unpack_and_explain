@@ -15,6 +15,7 @@ export const script: PostScript = {
   // Built before 3D hero scenes: keep the approved mechanism on re-renders.
   hero3d: { optOut: "built before 3D heroes" },
   blender: { optOut: "built before Blender" },
+  sfx: { optOut: "posted before SFX" },
   verify: [
     "Settlement timing (varies by country and card network); cite the source on screen",
     "Up to five companies in the chain (terminal provider/processor, shop's bank, card network, your bank)",

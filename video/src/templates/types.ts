@@ -26,6 +26,29 @@ export type ScriptSection = {
   visual: string;
 };
 
+// Sound effects (docs/specs/2026-11-08-sfx-pipeline-design.md). Template cards keep their
+// own sounds, so cues only go in the post's own sections.
+export const SFX_SECTIONS = ["hook", "setup", "mechanism", "payoff"] as const;
+export type SfxSection = (typeof SFX_SECTIONS)[number];
+
+export type SfxCustomSound = { prompt: string; seconds: number; volume?: number };
+
+export type SfxCue = {
+  // A shared sound from brand/audio.ts or a key of `custom`.
+  sound: string;
+  section: SfxSection;
+  // Word spoken in that section (first occurrence, same matching as useCue).
+  cue: string;
+  // -15 to 15. Negative leads the word: a swell that builds into it.
+  offsetFrames?: number;
+};
+
+export type SfxPlan = { custom?: Record<string, SfxCustomSound>; cues: SfxCue[] };
+
+// Written by `npm run sfx` next to the generated files.
+export type SfxManifestSound = { prompt: string; seconds: number; model: string; file: string };
+export type SfxManifest = { postId: string; sounds: Record<string, SfxManifestSound> };
+
 export type PostScript = {
   // Folder name under src/posts and public/posts, e.g. "post-02-gps".
   id: string;
@@ -60,6 +83,8 @@ export type PostScript = {
   // Blender-rendered 3D (frame-0 backdrop, hook, mechanism, cover). Posts built before
   // Blender opt out with a reason. See docs/specs/2026-11-02-blender-3d-design.md.
   blender: BlenderPlan | { optOut: string };
+  // Sound effects placed on spoken words. Posts built before SFX opt out with a reason.
+  sfx: SfxPlan | { optOut: string };
   // F posts only: section that gets the WHEN IT FAILED badge.
   failureSection?: SectionId;
   sections: ScriptSection[];
@@ -121,6 +146,14 @@ export type Shot = {
   keyPart?: string;
   // Parts pulled apart along the model's explode axis.
   exploded?: boolean;
+  // Degrees the camera turns around its view axis: the model looks tilted on screen.
+  roll?: number;
+  // Wide shots and clip starts: the part to center on instead of the model's center
+  // (when the visible parts sit off-center once others are hidden).
+  aim?: string;
+  // Clip start only: slow orbit in degrees per second (default 4). Lower it for flat models,
+  // which the default turns edge-on over a long clip.
+  drift?: number;
 };
 
 export const BEAT_ACTIONS = [
@@ -136,6 +169,10 @@ export const BEAT_ACTIONS = [
   "wide",
   // Amber off and spinning parts spin down (an engine dying, a machine switching off).
   "stop",
+  // A part slides to `by`; the model's `flex` parts (springs) stretch to stay attached.
+  "shift",
+  // A catalog `appearOnly` part scales in. Those parts are hidden until this beat.
+  "appear",
 ] as const;
 export type BeatAction = (typeof BEAT_ACTIONS)[number];
 
@@ -145,12 +182,15 @@ export type Beat = {
   // Fraction of the section used if the cue word isn't found in the VO timing.
   fallback: number;
   do: BeatAction;
-  // focus / spin / flow (from) / label: a catalog part.
+  // focus / spin / flow (from) / label / shift / appear: a catalog part.
   part?: string;
   // flow: destination part.
   to?: string;
   // flow: the camera follows the dot into a close-up of the destination. Default true.
   follow?: boolean;
+  // shift: offset from the part's rest place, in model units (the model's longest side is
+  // 2). [0, 0, 0] sends it home.
+  by?: readonly [number, number, number];
   // label: 2D text (a number or unit, never words the VO already says).
   label?: string;
   // shot / focus / wide: camera change. On focus, omit zoom: the close-up is sized

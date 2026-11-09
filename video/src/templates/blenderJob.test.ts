@@ -30,6 +30,7 @@ const script: PostScript = {
   topic: "Jet engine",
   source: "Somewhere",
   verify: [],
+  sfx: { optOut: "unit test base" },
   hero3d: "mechanism",
   blender: plan,
   sections: [
@@ -71,6 +72,14 @@ describe("buildBlenderJob", () => {
     expect(buildBlenderJob(script, slower, 30).hash).not.toBe(job.hash);
     const moved = { ...script, blender: { ...plan, cover: { ...plan.cover, yaw: 31 } } };
     expect(buildBlenderJob(moved, vo, 30).hash).not.toBe(job.hash);
+  });
+
+  it("hash ignores the sfx plan, so sound changes never need a Blender re-render", () => {
+    const withSound = {
+      ...script,
+      sfx: { cues: [{ sound: "tick", section: "mechanism" as const, cue: "compressor" }] },
+    };
+    expect(buildBlenderJob(withSound, vo, 30).hash).toBe(job.hash);
   });
 
   it("throws for opted-out posts", () => {

@@ -43,6 +43,9 @@ export const QuestionCard: React.FC<{
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const { visual } = layout.regions;
+  // With a 3D backdrop the words get the space above the clip, so a long question can't
+  // run down into the model.
+  const textBottom = backdrop ? layout.blender.opener.y : visual.bottom;
   // Marks start once the card has settled.
   const markAt = durations.enter;
 
@@ -78,7 +81,7 @@ export const QuestionCard: React.FC<{
           left: layout.column.x,
           top: visual.top,
           width: layout.column.width,
-          height: visual.bottom - visual.top,
+          height: textBottom - visual.top,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

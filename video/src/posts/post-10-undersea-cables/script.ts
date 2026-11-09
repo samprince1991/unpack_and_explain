@@ -9,6 +9,7 @@ export const script: PostScript = {
   hookHighlight: "1.5",
   topic: "internet",
   source: "TeleGeography (2026); International Cable Protection Committee",
+  sfx: { optOut: "SFX planned, awaiting paid-plan generation" },
   hero3d: "mechanism",
   blender: {
     model: "subsea-cable",

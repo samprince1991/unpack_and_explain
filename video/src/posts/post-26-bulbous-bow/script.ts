@@ -9,6 +9,7 @@ export const script: PostScript = {
   hookHighlight: "14%",
   topic: "ships",
   source: "FAO; Wallenius Wilhelmsen; Maersk via Ships Monthly",
+  sfx: { optOut: "SFX planned, awaiting paid-plan generation" },
   hero3d: "mechanism",
   blender: {
     model: "bulbous-bow",

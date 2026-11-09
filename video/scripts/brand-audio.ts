@@ -8,6 +8,7 @@ import {
   type AudioLibrary,
   type SfxName,
 } from "../src/brand/audio";
+import { generateSfx } from "./lib/sfxGenerate";
 
 const API = "https://api.elevenlabs.io";
 const MUSIC_NAME = "music-bed";
@@ -40,19 +41,16 @@ const main = async () => {
     const file = audioPath(name);
     if (force || !existsSync(join(publicDir, file))) {
       console.log(`Generating sfx: ${name}...`);
-      const audio = await generate(apiKey, "/v1/sound-generation", {
-        text: spec.prompt,
-        duration_seconds: spec.seconds,
-        prompt_influence: 0.6,
-      });
-      writeFileSync(join(publicDir, file), audio);
+      await generateSfx(apiKey, join(publicDir, file), spec.prompt, spec.seconds);
     }
     library.sfx[name] = file;
   }
 
+  // Opt-in: once a bed exists, every later render plays it.
   const musicFile = audioPath(MUSIC_NAME);
-  try {
-    if (force || !existsSync(join(publicDir, musicFile))) {
+  const wantMusic = process.argv.includes("--music");
+  if (wantMusic && (force || !existsSync(join(publicDir, musicFile)))) {
+    try {
       console.log("Generating music bed...");
       const audio = await generate(apiKey, "/v1/music", {
         prompt: music.prompt,
@@ -60,12 +58,12 @@ const main = async () => {
         force_instrumental: true,
       });
       writeFileSync(join(publicDir, musicFile), audio);
+    } catch (err) {
+      // Music needs a paid ElevenLabs plan; SFX still work without it.
+      console.warn(`Music skipped: ${err instanceof Error ? err.message : String(err)}`);
     }
-    library.music = musicFile;
-  } catch (err) {
-    // Music needs a paid ElevenLabs plan; SFX still work without it.
-    console.warn(`Music skipped: ${err instanceof Error ? err.message : String(err)}`);
   }
+  library.music = existsSync(join(publicDir, musicFile)) ? musicFile : null;
 
   writeFileSync(join(publicDir, audioLibraryPath), `${JSON.stringify(library, null, 2)}\n`);
   console.log(`Wrote ${audioLibraryPath}`);

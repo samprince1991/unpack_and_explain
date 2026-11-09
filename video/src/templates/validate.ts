@@ -1,12 +1,15 @@
+import { TEMPLATE_SFX, type SfxName } from "../brand/audio";
 import { MEME_DEFAULT_SECONDS, MEME_MAX_SECONDS } from "../brand/memes";
-import { isModelId, modelParts } from "../brand/models";
+import { isModelId, modelParts, models, type ModelEntry } from "../brand/models";
 import { isBlenderPlan } from "./blenderJob";
 import { brand } from "../brand/tokens";
 import { normalizeWord } from "./cues";
+import { isSfxPlan, isSharedSfx, SFX_LIMITS } from "./sfxCues";
 import { countWords } from "./timing";
 import {
   BEAT_ACTIONS,
   SECTION_ORDER,
+  SFX_SECTIONS,
   type Beat,
   type CarouselScript,
   type PostScript,
@@ -20,6 +23,76 @@ const spokenIn = (script: PostScript, section: SectionId, cue: string) =>
   (script.sections.find((s) => s.id === section)?.voiceover ?? "")
     .split(/[\s-]+/)
     .some((w) => normalizeWord(w) === normalizeWord(cue));
+
+const SFX_BANNED_PROMPT = /\b(voices?|speech|spoken|speaking|singing|vocals?|music|musical|melody|songs?)\b/i;
+
+// Rules for sound effects (docs/specs/2026-11-08-sfx-pipeline-design.md).
+const validateSfx = (script: PostScript, errors: string[], warnings: string[]) => {
+  const plan = script.sfx;
+  if (!isSfxPlan(plan)) {
+    if (!plan.optOut.trim()) {
+      errors.push("sfx.optOut needs a reason");
+    }
+    return;
+  }
+  const { cuesPerReel, cuesInMechanism, customSounds, customMinSeconds, customMaxSeconds, maxOffsetFrames } =
+    SFX_LIMITS;
+  if (plan.cues.length === 0) {
+    errors.push("an sfx plan needs at least 1 cue (otherwise use optOut)");
+  }
+  if (plan.cues.length > cuesPerReel) {
+    errors.push(`sfx: at most ${cuesPerReel} cues per reel`);
+  }
+  if (plan.cues.filter((c) => c.section === "mechanism").length > cuesInMechanism) {
+    errors.push(`sfx: at most ${cuesInMechanism} cues in the mechanism`);
+  }
+
+  const custom = Object.entries(plan.custom ?? {});
+  if (custom.length > customSounds) {
+    errors.push(`sfx: at most ${customSounds} topic sounds per reel`);
+  }
+  for (const [name, sound] of custom) {
+    if (isSharedSfx(name)) {
+      errors.push(`sfx: topic sound "${name}" shadows a shared sound`);
+    }
+    if (sound.seconds < customMinSeconds || sound.seconds > customMaxSeconds) {
+      errors.push(`sfx: topic sound "${name}" must be ${customMinSeconds}-${customMaxSeconds} s`);
+    }
+    if (SFX_BANNED_PROMPT.test(sound.prompt)) {
+      errors.push(`sfx: topic sound "${name}" can't ask for speech or music`);
+    }
+    if (!plan.cues.some((c) => c.sound === name)) {
+      warnings.push(`sfx: topic sound "${name}" is never used`);
+    }
+  }
+
+  for (const cue of plan.cues) {
+    const isCustom = plan.custom?.[cue.sound] !== undefined;
+    if (!isCustom && !isSharedSfx(cue.sound)) {
+      errors.push(`sfx cue "${cue.cue}": "${cue.sound}" is not a shared or custom sound`);
+    } else if (TEMPLATE_SFX.includes(cue.sound as SfxName)) {
+      errors.push(`sfx cue "${cue.cue}": "${cue.sound}" is placed by the template`);
+    }
+    if (!(SFX_SECTIONS as readonly string[]).includes(cue.section)) {
+      errors.push(`sfx cue "${cue.cue}" must be in the hook, setup, mechanism or payoff`);
+      continue;
+    }
+    const spoken = (script.sections.find((s) => s.id === cue.section)?.voiceover ?? "")
+      .split(/[\s-]+/)
+      .map(normalizeWord)
+      .filter(Boolean);
+    const first = spoken.indexOf(normalizeWord(cue.cue));
+    if (first === -1) {
+      errors.push(`sfx cue "${cue.cue}" is not spoken in the ${cue.section} section`);
+    } else if (first === spoken.length - 1) {
+      // A sound on a section's last word is what made the old section whoosh sound wrong.
+      errors.push(`sfx cue "${cue.cue}" is the last word of the ${cue.section} section`);
+    }
+    if (Math.abs(cue.offsetFrames ?? 0) > maxOffsetFrames) {
+      errors.push(`sfx cue "${cue.cue}": offsetFrames must be -${maxOffsetFrames} to ${maxOffsetFrames}`);
+    }
+  }
+};
 
 // Rules for the Blender plan (docs/specs/2026-11-02-blender-3d-design.md).
 const validateBlender = (script: PostScript, errors: string[]) => {
@@ -38,6 +111,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
     return;
   }
   const parts = modelParts(plan.model);
+  const appearOnly: readonly string[] = (models[plan.model] as ModelEntry).appearOnly ?? [];
   const checkPart = (where: string, part: string | undefined) => {
     if (part !== undefined && !parts.includes(part)) {
       errors.push(`${where}: part "${part}" is not in model ${plan.model} (${parts.join(", ")})`);
@@ -45,6 +119,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
   };
   const checkShot = (where: string, shot: Partial<Shot>) => {
     checkPart(where, shot.keyPart);
+    checkPart(where, shot.aim);
     if (shot.zoom !== undefined && shot.zoom <= 0) {
       errors.push(`${where}: zoom must be > 0`);
     }
@@ -58,7 +133,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       if (!spokenIn(script, section, beat.cue)) {
         errors.push(`${where}: cue "${beat.cue}" is not spoken in the ${section} section`);
       }
-      if (["focus", "spin", "flow", "label"].includes(beat.do) && !beat.part) {
+      if (["focus", "spin", "flow", "label", "shift", "appear"].includes(beat.do) && !beat.part) {
         errors.push(`${where}: "${beat.do}" needs a part`);
       }
       if (beat.follow !== undefined && beat.do !== "flow") {
@@ -66,6 +141,15 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       }
       if (beat.do === "flow" && !beat.to) {
         errors.push(`${where}: "flow" needs a destination part (to)`);
+      }
+      if (beat.do === "shift" && !beat.by) {
+        errors.push(`${where}: "shift" needs an offset (by)`);
+      }
+      if (beat.by && beat.do !== "shift") {
+        errors.push(`${where}: "by" only applies to shift`);
+      }
+      if (beat.do === "appear" && beat.part && !appearOnly.includes(beat.part)) {
+        errors.push(`${where}: part "${beat.part}" is not in the model's appearOnly list`);
       }
       if (beat.do === "label" && !beat.label?.trim()) {
         errors.push(`${where}: "label" needs label text`);
@@ -158,6 +242,7 @@ export const validateScript = (script: PostScript) => {
 
   validateBlender(script, errors);
   checkCameraRhythm(script, warnings);
+  validateSfx(script, errors, warnings);
 
   if (script.meme) {
     const { section, cue, seconds = MEME_DEFAULT_SECONDS } = script.meme;

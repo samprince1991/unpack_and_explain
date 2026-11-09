@@ -14,6 +14,7 @@ const base: PostScript = {
   topic: "Thing",
   source: "Somewhere.gov",
   verify: [],
+  sfx: { optOut: "unit test base" },
   hero3d: "mechanism",
   blender: { optOut: "unit test base" },
   sections: [
@@ -26,6 +27,82 @@ const base: PostScript = {
     { id: "cta", voiceover: brand.ctaLine, visual: "" },
   ],
 };
+
+describe("sfx plan", () => {
+  // The hook starts on "alpha" and ends on "omega".
+  const sections = base.sections.map((s) =>
+    s.id === "hook" ? { ...s, voiceover: `alpha beta gamma delta ${words(6)} omega` } : s,
+  );
+  const withSfx = (sfx: PostScript["sfx"]) => ({ ...base, sections, sfx }) as PostScript;
+  const cue = { sound: "tick", section: "hook" as const, cue: "alpha" };
+  const errorsOf = (sfx: PostScript["sfx"]) => validateScript(withSfx(sfx)).errors;
+
+  it("accepts a sparse plan", () => {
+    const result = validateScript(withSfx({ cues: [cue] }));
+    expect(result.errors).toEqual([]);
+    expect(result.warnings).toEqual([]);
+  });
+
+  it("needs an opt-out reason and at least one cue", () => {
+    expect(errorsOf({ optOut: " " })).toContain("sfx.optOut needs a reason");
+    expect(errorsOf({ cues: [] })[0]).toMatch(/at least 1 cue/);
+  });
+
+  it("limits cues per reel and in the mechanism", () => {
+    const mech = { sound: "tick", section: "mechanism" as const, cue: "word" };
+    expect(errorsOf({ cues: Array.from({ length: 9 }, () => cue) })[0]).toMatch(/at most 8 cues/);
+    expect(errorsOf({ cues: Array.from({ length: 5 }, () => mech) })[0]).toMatch(/at most 4 cues in the mechanism/);
+  });
+
+  it("limits topic sounds and warns about unused ones", () => {
+    const custom = (n: number) =>
+      Object.fromEntries(Array.from({ length: n }, (_, i) => [`s${i}`, { prompt: "metal clang", seconds: 1 }]));
+    expect(errorsOf({ custom: custom(4), cues: [cue] }).join()).toMatch(/at most 3 topic sounds/);
+    expect(validateScript(withSfx({ custom: custom(1), cues: [cue] })).warnings[0]).toMatch(/"s0" is never used/);
+  });
+
+  it("limits topic sound length and bans shadowing a shared name", () => {
+    const sized = (seconds: number) => ({ custom: { a: { prompt: "clang", seconds } }, cues: [{ ...cue, sound: "a" }] });
+    expect(errorsOf(sized(5))[0]).toMatch(/0.5-4 s/);
+    expect(errorsOf(sized(0.4))[0]).toMatch(/0.5-4 s/);
+    const shadow = { custom: { tick: { prompt: "clang", seconds: 1 } }, cues: [cue] };
+    expect(errorsOf(shadow)[0]).toMatch(/shared sound/);
+  });
+
+  it("rejects unknown and template sounds", () => {
+    expect(errorsOf({ cues: [{ ...cue, sound: "banana" }] })[0]).toMatch(/not a shared or custom sound/);
+    expect(errorsOf({ cues: [{ ...cue, sound: "pop" }] })[0]).toMatch(/template/);
+  });
+
+  it("rejects template sections at runtime", () => {
+    const bad = { sound: "tick", section: "congrats", cue: "Congrats" } as unknown as typeof cue;
+    expect(errorsOf({ cues: [bad] })[0]).toMatch(/hook, setup, mechanism or payoff/);
+  });
+
+  it("needs the cue spoken, and not as the section's last word", () => {
+    expect(errorsOf({ cues: [{ ...cue, cue: "banana" }] })[0]).toMatch(/not spoken/);
+    expect(errorsOf({ cues: [{ ...cue, cue: "omega" }] })[0]).toMatch(/last word/);
+  });
+
+  it("allows a repeat of the last word when it's first spoken earlier", () => {
+    const repeated = base.sections.map((s) =>
+      s.id === "hook" ? { ...s, voiceover: `alpha beta ${words(8)} alpha` } : s,
+    );
+    const script = { ...base, sections: repeated, sfx: { cues: [cue] } } as PostScript;
+    expect(validateScript(script).errors).toEqual([]);
+  });
+
+  it("limits offsets", () => {
+    expect(errorsOf({ cues: [{ ...cue, offsetFrames: 16 }] })[0]).toMatch(/-15 to 15/);
+  });
+
+  it("bans speech and music in topic prompts", () => {
+    const plan = (prompt: string) => ({ custom: { a: { prompt, seconds: 1 } }, cues: [{ ...cue, sound: "a" }] });
+    expect(errorsOf(plan("a man's voice saying hello"))[0]).toMatch(/speech or music/);
+    expect(errorsOf(plan("upbeat Music loop"))[0]).toMatch(/speech or music/);
+    expect(errorsOf(plan("jet engine spooling up"))).toEqual([]);
+  });
+});
 
 describe("validateScript", () => {
   it("accepts an explicit 3D opt-out with a reason", () => {
