@@ -32,6 +32,7 @@ export const PayoffScene: React.FC = () => {
           <Interactive.G name="Bow and bulbs">
             <WaveProfile
               box={BOW}
+              waterBody={false}
               crest={crest}
               bulbs={[
                 { ...OLD, dx: out * 120, dy: out * 60, opacity: 1 - out },

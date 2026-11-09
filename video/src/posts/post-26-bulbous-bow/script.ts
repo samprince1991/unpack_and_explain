@@ -13,40 +13,47 @@ export const script: PostScript = {
   hero3d: "mechanism",
   blender: {
     model: "bulbous-bow",
+    // Reel-worlds pilot: the sea is cut along the hull, so the bulb reads below the surface.
+    // The cut line only reads at low yaw, so the camera stays under about 20 degrees and barely
+    // drifts. Zooms are set by hand here: the clip's 30 mm lens frames tighter than `fit` assumes.
+    world: "sea",
     coverText: "Ships hide this bump",
     coverHighlight: "bump",
-    // Yaw 0 looks at the side the wave lines are on (-y); positive yaw swings toward the bow.
-    // The waves start sunk away (exploded) and only come up in the mechanism.
-    cover: { yaw: 38, pitch: 6, zoom: 1.5, keyPart: "bulb", exploded: true },
-    opener: { yaw: 32, pitch: 4, zoom: 1.5, keyPart: "bulb", exploded: true },
+    cover: { yaw: 20, pitch: 9, zoom: 3, keyPart: "bulb", aim: "bulb", exploded: true, frameY: 0.64 },
+    opener: { yaw: 20, pitch: 9, zoom: 3, keyPart: "bulb", aim: "bulb", exploded: true, drift: 0.4, frameY: 0.7 },
     hook: {
-      yaw: 24,
-      pitch: 14,
-      zoom: 1.4,
+      yaw: 18,
+      pitch: 11,
+      zoom: 2.6,
+      aim: "bulb",
       exploded: true,
+      drift: 0.4,
+      // Low in the frame: the hook title sits in the sky above the ship.
+      frameY: 0.6,
       beats: [
-        // Above the water on the whole bow, then down to the bulb on "bump".
-        { cue: "noticed", fallback: 0.2, do: "shot", shot: { yaw: 28, pitch: 6 } },
-        { cue: "bump", fallback: 0.45, do: "focus", part: "bulb", shot: { yaw: 40, pitch: 2 } },
+        { cue: "noticed", fallback: 0.2, do: "shot", shot: { yaw: 20, pitch: 9 } },
+        { cue: "bump", fallback: 0.45, do: "focus", part: "bulb", shot: { yaw: 14, pitch: 7, zoom: 4 } },
       ],
     },
     mechanism: {
-      yaw: 12,
-      pitch: 10,
-      zoom: 1.35,
+      // The water starts with only the bow wave standing; "cancel" adds the bulb's wave to it.
+      yaw: 18,
+      pitch: 9,
+      zoom: 3,
+      aim: "bulb",
       exploded: true,
+      drift: 0.3,
+      sea: "bowWave",
       beats: [
-        { cue: "bulb", fallback: 0.08, do: "focus", part: "bulb", shot: { yaw: 35, pitch: 4 } },
-        // The two waves rise out of the water and the camera pulls back to show them.
-        { cue: "makes", fallback: 0.3, do: "collapse", shot: { yaw: 8, pitch: 8 } },
-        { cue: "own", fallback: 0.33, do: "focus", part: "bulbwave", shot: { yaw: 14, pitch: 6 } },
-        { cue: "step", fallback: 0.42, do: "focus", part: "bowwave", shot: { yaw: 6, pitch: 8 } },
+        { cue: "bulb", fallback: 0.08, do: "focus", part: "bulb", shot: { yaw: 14, pitch: 7, zoom: 5 } },
+        { cue: "makes", fallback: 0.3, do: "collapse", shot: { yaw: 6, pitch: 9, zoom: 3.4, aim: "bulb" } },
+        { cue: "own", fallback: 0.33, do: "shot", shot: { keyPart: "bulbwave" } },
+        { cue: "step", fallback: 0.42, do: "shot", shot: { keyPart: "bowwave" } },
         // Where one rises, the other dips: the key hops between the two lines.
-        { cue: "rises", fallback: 0.58, do: "shot", shot: { yaw: 10, keyPart: "bulbwave" } },
-        { cue: "dips", fallback: 0.66, do: "shot", shot: { yaw: 4, keyPart: "bowwave" } },
-        // They cancel: both sink away, leaving the calm waterline; pull back wide. Yaw -25
-        // offsets the slow orbit drift (4 deg/s, ~44 deg by here), so the end is a side view again.
-        { cue: "cancel", fallback: 0.78, do: "explode", shot: { yaw: -25, pitch: 10, zoom: 1.35 } },
+        { cue: "rises", fallback: 0.58, do: "shot", shot: { keyPart: "bulbwave" } },
+        { cue: "dips", fallback: 0.66, do: "shot", shot: { keyPart: "bowwave" } },
+        // They cancel: the lines settle into the water, the surface flattens, and we pull back.
+        { cue: "cancel", fallback: 0.78, do: "explode", shot: { yaw: 14, pitch: 10, zoom: 2.6, aim: "bulb" } },
         { cue: "smaller", fallback: 0.9, do: "stop" },
       ],
     },
@@ -79,7 +86,7 @@ export const script: PostScript = {
       voiceover:
         "So shipbuilders add a bulb below the waterline, ahead of the bow. It makes its own wave, out of step with the bow wave. Where one rises, the other dips. They partly cancel, so the ship drags a smaller wave.",
       visual:
-        "Blender mechanism: wide on the bow; focus on the bulb on 'bulb'; on 'makes' the two wave lines rise out of the water; 'own' the bulb's wave is amber, 'step' the bow wave; 'rises' / 'dips' the key hops between them; on 'cancel' both sink away and the camera pulls back wide on the calm waterline.",
+        "Blender mechanism in the sea world: wide on the bow with its wave standing; focus on the bulb on 'bulb'; on 'makes' the two wave lines rise from the water; 'own' the bulb's wave is amber, 'step' the bow wave; 'rises' / 'dips' the key hops between them; on 'cancel' the lines settle in, the surface flattens and the camera pulls back.",
     },
     {
       id: "payoff",

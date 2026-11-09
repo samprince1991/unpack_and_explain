@@ -11,10 +11,13 @@ import type {
   SectionId,
   Shot,
   VoManifest,
+  WorldId,
 } from "./types";
 
 // Bump when blender/*.py changes the look, so every render is marked stale.
 export const BLENDER_LOOK_VERSION = 2;
+// Bump when blender/world/*.py changes, so renders using a world are marked stale.
+export const BLENDER_WORLD_VERSION = 1;
 
 export type JobBeat = Omit<Beat, "cue" | "fallback"> & { frame: number };
 
@@ -33,21 +36,31 @@ export type BlenderJob = {
   postId: string;
   fps: number;
   lookVersion: number;
+  world?: WorldId;
   model: { id: ModelId } & ModelEntry;
   clips: JobClip[];
   hash: string;
 };
 
-// Screen area of each clip. Without a hook title the hook gets the whole visual region.
-export const blenderAreas = (script: Pick<PostScript, "hookTitle">) => ({
-  ...layout.blender,
-  hook: script.hookTitle === false ? layout.blender.mechanism : layout.blender.hook,
-});
-
-export type BlenderAreas = ReturnType<typeof blenderAreas>;
-
 export const isBlenderPlan = (b: PostScript["blender"]): b is BlenderPlan =>
   typeof b === "object" && !("optOut" in b);
+
+// Screen area of each clip. Without a hook title the hook gets the whole visual region.
+export const blenderAreas = (script: Pick<PostScript, "hookTitle" | "blender">) => {
+  const full = layout.blender.world;
+  if (isBlenderPlan(script.blender) && script.blender.world) {
+    return { opener: full, hook: full, mechanism: full, cover: full, backdrop: full };
+  }
+  return {
+    opener: layout.blender.opener,
+    hook: script.hookTitle === false ? layout.blender.mechanism : layout.blender.hook,
+    mechanism: layout.blender.mechanism,
+    cover: layout.blender.cover,
+    backdrop: full,
+  };
+};
+
+export type BlenderAreas = ReturnType<typeof blenderAreas>;
 
 // Deterministic JSON (sorted keys) so the hash doesn't depend on key order.
 const stable = (value: unknown): string => {
@@ -92,7 +105,7 @@ const resolveBeats = (
     .sort((a, b) => a.frame - b.frame);
 };
 
-const shotOf = ({ yaw, pitch, zoom, keyPart, exploded, roll, drift, aim }: Shot): Shot => ({
+const shotOf = ({ yaw, pitch, zoom, keyPart, exploded, roll, drift, aim, frameY, sea }: Shot): Shot => ({
   yaw,
   pitch,
   zoom,
@@ -101,6 +114,8 @@ const shotOf = ({ yaw, pitch, zoom, keyPart, exploded, roll, drift, aim }: Shot)
   roll,
   drift,
   aim,
+  frameY,
+  sea,
 });
 
 // The job Blender renders: one clip per 3D moment, frame-exact against the VO.
@@ -117,11 +132,20 @@ export const buildBlenderJob = (script: PostScript, vo: VoManifest, fps: number)
     }
     return t.durationInFrames;
   };
-  const { cover } = layout.blender;
+  const areas = blenderAreas(script);
+  const { cover } = areas;
   const model = { id: plan.model, ...models[plan.model] };
   const withHash = (c: Omit<JobClip, "hash">): JobClip => ({
     ...c,
-    hash: hashString(stable({ c, model, fps, lookVersion: BLENDER_LOOK_VERSION })),
+    hash: hashString(
+      stable({
+        c,
+        model,
+        fps,
+        lookVersion: BLENDER_LOOK_VERSION,
+        world: plan.world ? `${plan.world}-${BLENDER_WORLD_VERSION}` : undefined,
+      }),
+    ),
   });
   const reelClip = (
     id: Exclude<BlenderClipId, "cover">,
@@ -130,7 +154,7 @@ export const buildBlenderJob = (script: PostScript, vo: VoManifest, fps: number)
     beats?: Beat[],
   ) => {
     const frames = length(section);
-    const area = blenderAreas(script)[id];
+    const area = areas[id];
     return withHash({
       id,
       frames,
@@ -154,7 +178,27 @@ export const buildBlenderJob = (script: PostScript, vo: VoManifest, fps: number)
     reelClip("hook", "hook", plan.hook, plan.hook.beats),
     reelClip("mechanism", "mechanism", plan.mechanism, plan.mechanism.beats),
   ];
-  const body = { postId: script.id, fps, lookVersion: BLENDER_LOOK_VERSION, model, clips };
+  if (plan.world) {
+    // The world without the ship, shared by the 2D sections (each plays it from its own start).
+    clips.push(
+      withHash({
+        id: "backdrop",
+        frames: Math.max(length("setup"), length("payoff")),
+        width: areas.backdrop.width,
+        height: areas.backdrop.height,
+        start: { yaw: 0, pitch: 7, zoom: 3, drift: 0, frameY: 0.5, exploded: true },
+        beats: [],
+      }),
+    );
+  }
+  const body = {
+    postId: script.id,
+    fps,
+    lookVersion: BLENDER_LOOK_VERSION,
+    ...(plan.world ? { world: plan.world } : {}),
+    model,
+    clips,
+  };
   return { ...body, hash: hashString(stable(body)) };
 };
 

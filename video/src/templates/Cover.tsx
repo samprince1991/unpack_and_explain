@@ -58,15 +58,16 @@ export const Cover: React.FC<CoverProps> = ({
     >
       <AbsoluteFill>
         <Background />
-        <BlenderClip clip="cover" area={layout.blender.cover} frame={0} />
+        <BlenderClip clip="cover" frame={0} />
         <div
           style={{
             position: "absolute",
             left: 0,
             right: 0,
-            top: feed.y,
-            height: 520,
-            background: `linear-gradient(${withAlpha(colors.bg.base, 0.9)}, ${withAlpha(colors.bg.base, 0)})`,
+            // A world fills the frame, so the scrim runs to the top instead of showing an edge.
+            top: plan.world ? 0 : feed.y,
+            height: plan.world ? feed.y + 520 : 520,
+            background: `linear-gradient(${withAlpha(colors.bg.base, 0.9)} ${plan.world ? feed.y : 0}px, ${withAlpha(colors.bg.base, 0)})`,
           }}
         />
         <Interactive.Div

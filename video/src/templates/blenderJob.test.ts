@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { brand } from "../brand/tokens";
+import { durations } from "../brand/motion";
 import { blenderFramePath, buildBlenderJob } from "./blenderJob";
+import { computeTimeline } from "./timing";
 import type { BlenderPlan, PostScript } from "./types";
 import { buildEstimatedManifest } from "./vo";
 
@@ -88,6 +90,53 @@ describe("buildBlenderJob", () => {
 
   it("pads frame file names to 4 digits", () => {
     expect(blenderFramePath("post-99-test", "hook", 7)).toBe("posts/post-99-test/3d/hook/0007.png");
+  });
+});
+
+describe("worlds", () => {
+  const sea = { ...script, blender: { ...plan, model: "bulbous-bow" as const, world: "sea" as const } };
+  const plain = { ...script, blender: { ...plan, model: "bulbous-bow" as const } };
+  const worldJob = buildBlenderJob(sea, vo, 30);
+  const plainJob = buildBlenderJob(plain, vo, 30);
+  const length = (id: string) => worldJob.clips.find((c) => c.id === id)!.frames;
+
+  it("leaves a post without a world alone: same clips and no world in the job", () => {
+    expect(plainJob.clips.map((c) => c.id)).toEqual(["cover", "opener", "hook", "mechanism"]);
+    expect(plainJob).not.toHaveProperty("world");
+    expect(plainJob.clips.find((c) => c.id === "mechanism")!.height).toBe(870);
+  });
+
+  it("an explicitly undefined world keeps every hash", () => {
+    const same = { ...plain, blender: { ...plain.blender, world: undefined } };
+    const again = buildBlenderJob(same, vo, 30);
+    expect(again.hash).toBe(plainJob.hash);
+    expect(again.clips.map((c) => c.hash)).toEqual(plainJob.clips.map((c) => c.hash));
+  });
+
+  it("renders every clip full-frame and adds a backdrop as long as the longer 2D section", () => {
+    expect(worldJob.world).toBe("sea");
+    expect(worldJob.clips.map((c) => c.id)).toEqual(["cover", "opener", "hook", "mechanism", "backdrop"]);
+    for (const clip of worldJob.clips) {
+      expect([clip.width, clip.height]).toEqual([1080, 1920]);
+    }
+    const timeline = computeTimeline(vo.sections, 30, durations.crossfade).sections;
+    const frames = (id: string) => timeline.find((s) => s.id === id)!.durationInFrames;
+    expect(length("backdrop")).toBe(Math.max(frames("setup"), frames("payoff")));
+  });
+
+  it("a world changes the clip hashes, so old renders go stale", () => {
+    const hook = (j: typeof worldJob) => j.clips.find((c) => c.id === "hook")!;
+    expect(hook(worldJob).hash).not.toBe(hook(plainJob).hash);
+  });
+
+  it("keeps world framing and sea state in the clip start", () => {
+    const framed = {
+      ...sea,
+      blender: { ...sea.blender, opener: { ...sea.blender.opener, frameY: 0.7, sea: "bowWave" as const } },
+    };
+    const opener = buildBlenderJob(framed, vo, 30).clips.find((c) => c.id === "opener")!;
+    expect(opener.start.frameY).toBe(0.7);
+    expect(opener.start.sea).toBe("bowWave");
   });
 });
 

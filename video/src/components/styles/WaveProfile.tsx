@@ -101,6 +101,9 @@ type WaveProfileProps = {
   // Draws the crest in amber: the key element of the beat.
   crestAccent?: boolean;
   bulbs?: WaveBulb[];
+  // Tints the water in front of the hull. Turn it off over a world backdrop, where its
+  // rectangle would show.
+  waterBody?: boolean;
   // Frame the drawing enters.
   at?: number;
 };
@@ -115,6 +118,7 @@ export const WaveProfile: React.FC<WaveProfileProps> = ({
   crest = 0,
   crestAccent = false,
   bulbs = [],
+  waterBody = true,
   at = 0,
 }) => {
   const frame = useCurrentFrame();
@@ -131,11 +135,13 @@ export const WaveProfile: React.FC<WaveProfileProps> = ({
         <path d={hullPath(box)} fill={colors.diagram.fill} stroke={colors.diagram.stroke} strokeWidth={5} strokeLinejoin="round" />
       </g>
       {/* water in front of the hull below the line, so the underwater part reads submerged */}
-      <path
-        d={`${water} L ${box.right + 20} ${box.keel + 120} L ${box.left - 20} ${box.keel + 120} Z`}
-        fill={colors.bg.base}
-        opacity={0.45}
-      />
+      {waterBody ? (
+        <path
+          d={`${water} L ${box.right + 20} ${box.keel + 120} L ${box.left - 20} ${box.keel + 120} Z`}
+          fill={colors.bg.base}
+          opacity={0.45}
+        />
+      ) : null}
       {/* bulbs over the tint: the bow's own part, and often the amber key */}
       <g style={{ translate: `0 ${bob}px` }}>
           {bulbs.map((bulb, i) => (

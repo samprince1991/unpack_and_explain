@@ -6,7 +6,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { fonts, weights } from "../brand/fonts";
-import { colors, typeScale } from "../brand/tokens";
+import { colors, typeScale, video } from "../brand/tokens";
 import { useBlender } from "../templates/blender";
 import { blenderFramePath } from "../templates/blenderJob";
 import type { BlenderClipId } from "../templates/types";
@@ -64,12 +64,14 @@ export const BlenderClip: React.FC<{
   }
 
   const frame = Math.min(Math.max(fixed ?? current, 0), rendered.frames - 1);
+  // A full-frame world has no clip edge to soften.
+  const mask = area.height >= video.height ? undefined : edgeMask;
   return (
     <AbsoluteFill>
       <Interactive.Div name={`Blender ${clip}`} style={{ ...box, ...style }}>
         <Img
           src={staticFile(blenderFramePath(postId, clip, frame))}
-          style={{ width: "100%", height: "100%", maskImage: edgeMask, WebkitMaskImage: edgeMask }}
+          style={{ width: "100%", height: "100%", maskImage: mask, WebkitMaskImage: mask }}
         />
       </Interactive.Div>
     </AbsoluteFill>

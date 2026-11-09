@@ -7,7 +7,7 @@ import { normalizeWord } from "./cues";
 import { isSfxPlan, isSharedSfx, SFX_LIMITS } from "./sfxCues";
 import { countWords } from "./timing";
 import {
-  BEAT_ACTIONS,
+  BEAT_ACTIONS, WORLDS,
   SECTION_ORDER,
   SFX_SECTIONS,
   type Beat,
@@ -117,7 +117,17 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       errors.push(`${where}: part "${part}" is not in model ${plan.model} (${parts.join(", ")})`);
     }
   };
+  if (plan.world !== undefined) {
+    if (!(WORLDS as readonly string[]).includes(plan.world)) {
+      errors.push(`blender.world "${plan.world}" is unknown (${WORLDS.join(", ")})`);
+    } else if (plan.world === "sea" && !parts.includes("waterline")) {
+      errors.push('blender.world "sea" needs a model with a waterline part');
+    }
+  }
   const checkShot = (where: string, shot: Partial<Shot>) => {
+    if (shot.frameY !== undefined && (shot.frameY < 0 || shot.frameY > 1)) {
+      errors.push(`${where}: frameY must be between 0 and 1`);
+    }
     checkPart(where, shot.keyPart);
     checkPart(where, shot.aim);
     if (shot.zoom !== undefined && shot.zoom <= 0) {

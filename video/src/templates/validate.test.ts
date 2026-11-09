@@ -223,6 +223,25 @@ describe("validateScript: blender plan", () => {
     expect(validateScript(withPlan(plan)).errors).toEqual([]);
   });
 
+  it("accepts the sea world on a model with a waterline", () => {
+    const sea = { ...plan, model: "bulbous-bow", world: "sea", hook: { yaw: 20, pitch: 10, zoom: 1 }, mechanism: { yaw: 60, pitch: 20, zoom: 1, beats: [{ cue: "squeezes", fallback: 0.5, do: "wide" }] } };
+    expect(validateScript(withPlan(sea)).errors).toEqual([]);
+  });
+
+  it("rejects unknown worlds, and the sea on a model with no waterline", () => {
+    expect(validateScript(withPlan({ ...plan, world: "moon" })).errors).toContain(
+      'blender.world "moon" is unknown (sea)',
+    );
+    expect(validateScript(withPlan({ ...plan, world: "sea" })).errors).toContain(
+      'blender.world "sea" needs a model with a waterline part',
+    );
+  });
+
+  it("rejects framing outside the picture", () => {
+    const off = { ...plan, opener: { ...plan.opener, frameY: 1.4 } };
+    expect(validateScript(withPlan(off)).errors).toContain("blender.opener: frameY must be between 0 and 1");
+  });
+
   it("rejects an opt-out without a reason", () => {
     expect(validateScript({ ...base, blender: { optOut: " " } }).errors).toContain(
       "blender.optOut needs a reason",

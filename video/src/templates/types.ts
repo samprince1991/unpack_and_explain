@@ -154,6 +154,10 @@ export type Shot = {
   // Clip start only: slow orbit in degrees per second (default 4). Lower it for flat models,
   // which the default turns edge-on over a long clip.
   drift?: number;
+  // Worlds: screen height of the focus, 0 top to 1 bottom (default 0.42, above the captions).
+  frameY?: number;
+  // Sea world, clip start: the water with only the bow wave, or calm (default).
+  sea?: "calm" | "bowWave";
 };
 
 export const BEAT_ACTIONS = [
@@ -198,8 +202,14 @@ export type Beat = {
   shot?: Partial<Shot>;
 };
 
+// Opaque full-frame environments (docs/specs/2026-11-09-reel-worlds-design.md).
+export const WORLDS = ["sea"] as const;
+export type WorldId = (typeof WORLDS)[number];
+
 export type BlenderPlan = {
   model: ModelId;
+  // Renders every clip inside a world, and adds a backdrop clip behind the 2D sections.
+  world?: WorldId;
   // Cover title, at most 4 words. Defaults to hookText.
   coverText?: string;
   // Word of the cover title colored amber. Defaults to hookHighlight.
@@ -211,7 +221,7 @@ export type BlenderPlan = {
   mechanism: Shot & { beats: Beat[] };
 };
 
-export const BLENDER_CLIPS = ["cover", "opener", "hook", "mechanism"] as const;
+export const BLENDER_CLIPS = ["cover", "opener", "hook", "mechanism", "backdrop"] as const;
 export type BlenderClipId = (typeof BLENDER_CLIPS)[number];
 
 // Written by Blender next to the PNG sequences.
