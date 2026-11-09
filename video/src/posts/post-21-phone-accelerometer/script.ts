@@ -27,7 +27,6 @@ export const script: PostScript = {
       { sound: "tick", section: "payoff", cue: "nearly" },
     ],
   },
-  hero3d: "mechanism",
   blender: {
     model: "mems-accelerometer",
     coverText: "Your phone hides this",

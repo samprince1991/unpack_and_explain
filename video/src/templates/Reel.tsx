@@ -32,7 +32,6 @@ import { audioCues } from "./audioCues";
 import { BlenderContext } from "./blender";
 import { blenderAreas, isBlenderPlan } from "./blenderJob";
 import { pickLook, transitionMixes } from "./look";
-import { MemeMoment } from "./MemeMoment";
 import { SectionContext } from "./SectionContext";
 import { isSfxPlan, resolveSfxCues, SFX_FADE_FRAMES, sfxFile } from "./sfxCues";
 import { computeTimeline, mergeCaptions, SOURCE_LEAD_SECONDS } from "./timing";
@@ -197,9 +196,6 @@ export const Reel: React.FC<
                   ) : null}
                   {section.id === script.failureSection ? (
                     <FailureBadge />
-                  ) : null}
-                  {script.meme && section.id === script.meme.section ? (
-                    <MemeMoment meme={script.meme} />
                   ) : null}
                 </SectionContext.Provider>
                 {section.file && audioMix !== "sfx" ? <Audio src={staticFile(section.file)} /> : null}

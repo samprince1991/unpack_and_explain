@@ -9,8 +9,7 @@ export const script: PostScript = {
   hookHighlight: "3",
   topic: "cloud",
   source: "AWS Amazon S3 docs; IEA, Energy and AI (2025)",
-  sfx: { optOut: "SFX planned, awaiting paid-plan generation" },
-  hero3d: "mechanism",
+  sfx: { optOut: "sounds not made yet" },
   blender: {
     model: "data-center",
     coverText: "The cloud has walls",

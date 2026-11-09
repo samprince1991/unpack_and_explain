@@ -44,7 +44,6 @@ const script: PostScript = {
   source: "Somewhere",
   verify: [],
   sfx: { optOut: "unit test base" },
-  hero3d: "mechanism",
   blender: plan,
   sections: [
     { id: "question", voiceover: "Do you know how a jet engine works?", visual: "" },
@@ -61,6 +60,7 @@ const vo = buildEstimatedManifest(script, 2.5);
 
 describe("buildBlenderJob", () => {
   const job = buildBlenderJob(script, vo, 30);
+  const clipHashes = (j: typeof job) => j.clips.map((c) => c.hash);
   const clip = (id: string) => job.clips.find((c) => c.id === id)!;
 
   it("makes a one-frame cover and reel clips as long as their sections", () => {
@@ -80,11 +80,11 @@ describe("buildBlenderJob", () => {
   });
 
   it("hash is stable and changes with the VO or the plan", () => {
-    expect(buildBlenderJob(script, vo, 30).hash).toBe(job.hash);
+    expect(clipHashes(buildBlenderJob(script, vo, 30))).toEqual(clipHashes(job));
     const slower = buildEstimatedManifest(script, 2);
-    expect(buildBlenderJob(script, slower, 30).hash).not.toBe(job.hash);
+    expect(clipHashes(buildBlenderJob(script, slower, 30))).not.toEqual(clipHashes(job));
     const moved = { ...script, blender: { ...plan, cover: { ...plan.cover, yaw: 31 } } };
-    expect(buildBlenderJob(moved, vo, 30).hash).not.toBe(job.hash);
+    expect(clipHashes(buildBlenderJob(moved, vo, 30))).not.toEqual(clipHashes(job));
   });
 
   it("hash ignores the sfx plan, so sound changes never need a Blender re-render", () => {
@@ -92,7 +92,7 @@ describe("buildBlenderJob", () => {
       ...script,
       sfx: { cues: [{ sound: "tick", section: "mechanism" as const, cue: "compressor" }] },
     };
-    expect(buildBlenderJob(withSound, vo, 30).hash).toBe(job.hash);
+    expect(clipHashes(buildBlenderJob(withSound, vo, 30))).toEqual(clipHashes(job));
   });
 
   it("throws for opted-out posts", () => {
@@ -120,7 +120,6 @@ describe("worlds", () => {
   it("an explicitly undefined world keeps every hash", () => {
     const same = { ...plain, blender: { ...plain.blender, world: undefined } };
     const again = buildBlenderJob(same, vo, 30);
-    expect(again.hash).toBe(plainJob.hash);
     expect(again.clips.map((c) => c.hash)).toEqual(plainJob.clips.map((c) => c.hash));
   });
 

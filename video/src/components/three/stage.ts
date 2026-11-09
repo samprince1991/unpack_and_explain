@@ -31,7 +31,7 @@ export type StageOptions = {
 
 export type StageView = { rotation: Vec3; pan: [number, number]; zoom: number };
 
-// The 3D canvas fills the visual region on the centered column (same box as WireGlobe).
+// The 3D canvas fills the visual region on the centered column.
 export const STAGE = {
   left: layout.column.x,
   top: layout.regions.visual.top,

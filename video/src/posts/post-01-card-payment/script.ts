@@ -12,8 +12,6 @@ export const script: PostScript = {
   // Built before per-post looks: keep the approved look on re-renders.
   look: classicLook,
   source: "Card network / acquirer docs",
-  // Built before 3D hero scenes: keep the approved mechanism on re-renders.
-  hero3d: { optOut: "built before 3D heroes" },
   blender: { optOut: "built before Blender" },
   sfx: { optOut: "posted before SFX" },
   verify: [

@@ -15,7 +15,6 @@ const base: PostScript = {
   source: "Somewhere.gov",
   verify: [],
   sfx: { optOut: "unit test base" },
-  hero3d: "mechanism",
   blender: { optOut: "unit test base" },
   sections: [
     { id: "question", voiceover: "Do you know how this works?", visual: "" },
@@ -105,16 +104,6 @@ describe("sfx plan", () => {
 });
 
 describe("validateScript", () => {
-  it("accepts an explicit 3D opt-out with a reason", () => {
-    const script = { ...base, hero3d: { optOut: "built before 3D heroes" } };
-    expect(validateScript(script).errors).toEqual([]);
-  });
-
-  it("rejects a 3D opt-out without a reason", () => {
-    const script = { ...base, hero3d: { optOut: "  " } };
-    expect(validateScript(script).errors).toContain("hero3d.optOut needs a reason");
-  });
-
   it("accepts a valid E script", () => {
     expect(validateScript(base)).toEqual({ errors: [], warnings: [] });
   });
@@ -165,27 +154,6 @@ describe("validateScript", () => {
     expect(validateScript({ ...base, sections }).errors).toContain(
       'congrats voiceover must start with "Congrats"',
     );
-  });
-
-  it("accepts one approved meme in an allowed section, on a spoken cue word", () => {
-    const sections = base.sections.map((x) =>
-      x.id === "payoff" ? { ...x, voiceover: `${words(25)} internet.` } : x,
-    );
-    const meme = { id: "they-dont-know" as const, section: "payoff" as const, cue: "internet" };
-    expect(validateScript({ ...base, sections, meme }).errors).toEqual([]);
-  });
-
-  it("rejects a meme cue that isn't spoken in its section", () => {
-    const meme = { id: "they-dont-know" as const, section: "payoff" as const, cue: "banana" };
-    expect(validateScript({ ...base, meme }).errors[0]).toMatch(/meme cue "banana"/);
-  });
-
-  it("caps meme length", () => {
-    const sections = base.sections.map((x) =>
-      x.id === "payoff" ? { ...x, voiceover: `${words(25)} internet.` } : x,
-    );
-    const meme = { id: "this-is-fine" as const, section: "payoff" as const, cue: "internet", seconds: 4 };
-    expect(validateScript({ ...base, sections, meme }).errors[0]).toMatch(/at most 2.5 s/);
   });
 
   it("warns when spoken words are outside 100-130", () => {
@@ -274,11 +242,9 @@ describe("validateScript: blender plan", () => {
     expect(validateScript(withPlan(label("40:1"))).errors).toEqual([]);
   });
 
-  it("caps the cover text and needs hero3d", () => {
+  it("caps the cover text", () => {
     const long = { ...plan, coverText: "one two three four five" };
     expect(validateScript(withPlan(long)).errors[0]).toMatch(/at most 4 words/);
-    const noHero = { ...withPlan(plan), hero3d: { optOut: "x" } };
-    expect(validateScript(noHero).errors).toContain('a blender plan needs hero3d: "mechanism"');
   });
 
   describe("camera rhythm (close-up, then wide)", () => {

@@ -11,11 +11,7 @@ export const script: PostScript = {
   topic: "GPS",
   // Built before per-post looks: keep the approved look on re-renders.
   look: classicLook,
-  // Most people think maps need data; land it right after "...works with no internet."
-  meme: { id: "they-dont-know", section: "payoff", cue: "internet", seconds: 2 },
   source: "GPS.gov",
-  // Built before 3D hero scenes: keep the approved mechanism on re-renders.
-  hero3d: { optOut: "built before 3D heroes" },
   blender: { optOut: "built before Blender" },
   sfx: { optOut: "posted before SFX" },
   verify: [

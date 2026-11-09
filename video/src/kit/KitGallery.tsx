@@ -1,4 +1,4 @@
-// Studio previews of our own motion kit (src/components/motion, transitions, LineIcon, three).
+// Studio previews of our own motion kit (src/components/motion, transitions, LineIcon).
 // Demos only: posts never import from src/kit.
 import { Composition, Folder } from "remotion";
 import { carousel, video } from "../brand/tokens";
@@ -16,7 +16,6 @@ import { KitIcons } from "./KitIcons";
 import { KitLooks, kitLooksFrames } from "./KitLooks";
 import { KitStyles, kitStylesFrames } from "./KitStyles";
 import { KitMotion } from "./KitMotion";
-import { KitThree, kitThreeFrames } from "./KitThree";
 import { KitTransitions, kitTransitionsFrames } from "./KitTransitions";
 
 const size = {
@@ -69,12 +68,6 @@ export const KitGallery: React.FC = () => (
       id="Kit-Icons"
       component={KitIcons}
       durationInFrames={120}
-      {...size}
-    />
-    <Composition
-      id="Kit-Three"
-      component={KitThree}
-      durationInFrames={kitThreeFrames}
       {...size}
     />
     <Composition

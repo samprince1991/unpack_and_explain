@@ -42,10 +42,6 @@ metrics:  # fill in after posting
 | Congrats | Congrats, you just learned how GPS finds you. | Congrats card (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
 
-## Notes
-
-- Meme: `they-dont-know` in the payoff, right after "...works with no internet." (2 s).
-
 ## Caption
 
 Your phone doesn't talk to GPS satellites. It only listens. Save this for the next time you hear 'GPS is tracking me'.

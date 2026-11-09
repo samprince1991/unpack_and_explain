@@ -15,7 +15,6 @@ export const blenderSample: PostScript = {
   source: "Kit sample",
   verify: [],
   sfx: { optOut: "kit sample" },
-  hero3d: "mechanism",
   blender: {
     model: "jet-engine",
     coverText: "Inside a jet engine",

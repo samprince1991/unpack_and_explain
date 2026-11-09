@@ -16,7 +16,6 @@ const withBeats = (extra: Beat[], aim?: string): PostScript => ({
   source: "Somewhere.gov",
   verify: [],
   sfx: { optOut: "unit test base" },
-  hero3d: "mechanism",
   blender: {
     model: "mems-accelerometer",
     cover: shot,
