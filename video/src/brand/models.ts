@@ -142,6 +142,33 @@ export const models = {
     spinAxis: "x",
     useFor: "Ships, hulls, bow waves, wave cancelling, fuel use at sea (idea 26)",
   },
+  "credit-weights": {
+    title: "Five calibration weights on a rack, sized by importance, with a half-ring dial on a post",
+    file: "models/credit-weights.glb",
+    source: "Procedural, blender/models/credit_weights.py",
+    license: "own",
+    parts: {
+      payment: ["payment"],
+      owed: ["owed"],
+      history: ["history"],
+      newcredit: ["newcredit"],
+      mix: ["mix"],
+      dial: ["dial"],
+      post: ["post"],
+      rack: ["rack"],
+    },
+    keyPart: "payment",
+    // Nothing spreads out (spacing 0): weights lift forward with `shift` beats. "explode" clears
+    // the dial and its post out of the close-ups, and "collapse" brings them back.
+    explode: {
+      axis: "x",
+      order: ["payment", "owed", "history", "newcredit", "mix"],
+      spacing: 0,
+      away: ["dial", "post"],
+    },
+    spinAxis: "z",
+    useFor: "Weighing things up, scores and ratings, how much each factor counts (idea 7)",
+  },
   "mems-accelerometer": {
     title: "Phone with an accelerometer chip: LGA package, control chip, bond wires, MEMS die, perforated weight with comb fingers, folded springs, axis arrows",
     file: "models/mems-accelerometer.glb",

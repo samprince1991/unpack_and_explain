@@ -18,6 +18,8 @@ import { Post12 } from "./posts/post-12-cloud-myth";
 import { script as post12 } from "./posts/post-12-cloud-myth/script";
 import { Post20 } from "./posts/post-20-vibe-coding";
 import { script as post20 } from "./posts/post-20-vibe-coding/script";
+import { Post07 } from "./posts/post-07-credit-score";
+import { script as post07 } from "./posts/post-07-credit-score/script";
 import { Post21 } from "./posts/post-21-phone-accelerometer";
 import { script as post21 } from "./posts/post-21-phone-accelerometer/script";
 import { Post26 } from "./posts/post-26-bulbous-bow";
@@ -174,6 +176,26 @@ export const RemotionRoot: React.FC = () => {
         width={video.width}
         height={video.height}
         defaultProps={{ script: post21, blender3d: null, showGuides: false }}
+        calculateMetadata={calculateCoverMetadata}
+      />
+      <Composition
+        id="Post07-CreditScore"
+        component={Post07}
+        durationInFrames={video.fps * 40}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post07, vo: null, audio: null, showGuides: false }}
+        calculateMetadata={calculateReelMetadata}
+      />
+      <Composition
+        id="Cover07-CreditScore"
+        component={Cover}
+        durationInFrames={1}
+        fps={video.fps}
+        width={video.width}
+        height={video.height}
+        defaultProps={{ script: post07, blender3d: null, showGuides: false }}
         calculateMetadata={calculateCoverMetadata}
       />
       <ElementsGallery />
