@@ -129,7 +129,7 @@ Once about 12-15 ideas are posted, shift the mix toward the format that wins on 
 | Video code | `video/src/posts/post-02-gps/` |
 | Voice-over + captions | `video/public/posts/post-02-gps/` |
 | Studio composition | `Post02-Gps` |
-| Renders | `video/out/post-02-gps.master.mp4` |
+| Renders | `video/out/post-02-gps/post-02-gps.master.mp4` |
 
 ## Legend
 

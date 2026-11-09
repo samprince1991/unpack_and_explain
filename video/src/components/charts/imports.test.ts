@@ -3,7 +3,7 @@ import { join, relative } from "node:path";
 import { describe, expect, it } from "vitest";
 
 // D3 is for maths only. These modules mutate the DOM or run on the wall clock,
-// which flickers in Remotion renders (see docs/specs/2026-11-06-d3-charts-design.md).
+// which flickers in Remotion renders (see docs/motion-kit.md).
 const BANNED =
   /from\s+["'](d3|d3-selection|d3-transition|d3-timer|d3-ease)["']/;
 
