@@ -241,7 +241,7 @@ Elements (remotion.dev/elements) are copy-in source snippets, not npm packages. 
 
 | Layer | Location | Rules |
 |---|---|---|
-| **Library** (original, unbranded) | `src/elements/<category>/<slug>.element.tsx` + `<Name>Composition.tsx` demo | Reference only. Never edit, never import from a post. Excluded from the brand guard. Previewable in Studio under the **Elements** folder (ids `El-<Name>`), registered by `src/elements/ElementsGallery.tsx`. |
+| **Library** (original, unbranded) | `src/elements/<category>/<slug>.element.tsx` + `<Name>Composition.tsx` demo | Reference only. Never edit, never import from a post. Excluded from the brand guard. The ones that fit this channel are previewable in Studio under the **Elements** folder (ids `El-<Name>`), registered by `src/elements/ElementsGallery.tsx`; the rest stay here as files only. |
 | **Branded copy** (what posts use) | `src/components/elements/<slug>.tsx` | Adapted to our tokens (below). Subject to the brand guard. |
 
 Categories: `audio`, `backgrounds`, `captions`, `charts`, `effects`, `layouts`, `maps`, `overlays`, `storytelling`, `text`, `youtube`.
@@ -276,7 +276,7 @@ Kept but not for current reels: lower thirds (faceless channel), polaroid/notebo
 3. Use `typeScale` sizes and motion presets (`ease.*`, `durations.*`).
 4. Use it inside a post scene within `layout.regions`; keep its `Interactive` props so Studio editing works.
 
-**When the user adds a new Element in Studio:** Studio drops `src/<slug>.element.tsx` + `src/<Name>Composition.tsx` and adds imports/entries to `Root.tsx`. Move both files into the right `src/elements/<category>/`, add a `<Composition id="El-<Name>">` line to `ElementsGallery.tsx` (use the demo's `durationInFrames`), and remove what Studio added to `Root.tsx`. Root only registers posts + `<ElementsGallery />` + `<KitGallery />`.
+**When the user adds a new Element in Studio:** Studio drops `src/<slug>.element.tsx` + `src/<Name>Composition.tsx` and adds imports/entries to `Root.tsx`. Move both files into the right `src/elements/<category>/`, add a `<Composition id="El-<Name>">` line to `ElementsGallery.tsx` (use the demo's `durationInFrames`), and remove what Studio added to `Root.tsx`. Root only registers posts (inside its `Reels`, `Covers` and `Carousels` folders, in number order, with each `id` written inline because `scripts/lib/qaAudio.ts` searches for it) + `<ElementsGallery />` + `<KitGallery />`.
 
 ## Memes
 
