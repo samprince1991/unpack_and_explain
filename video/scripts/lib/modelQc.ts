@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, writeFileSync } from "node:fs";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import type { ModelEntry } from "../../src/brand/models";
@@ -17,12 +17,16 @@ export const runModelQc = (file: string, entry?: ModelEntry): boolean => {
     throw new Error("Blender not found (set BLENDER_PATH in video/.env): can't run geometry QC");
   }
   const args = ["-b", "--factory-startup", "--python", join(REPO, "blender", "qc.py"), "--", join(VIDEO, "public", file)];
-  if (entry) {
-    const json = join(mkdtempSync(join(tmpdir(), "model-qc-")), "model.json");
+  const dir = entry ? mkdtempSync(join(tmpdir(), "model-qc-")) : null;
+  if (dir) {
+    const json = join(dir, "model.json");
     writeFileSync(json, JSON.stringify(entry));
     args.push(json);
   }
   const res = spawnSync(exe, args, { encoding: "utf8" });
+  if (dir) {
+    rmSync(dir, { recursive: true, force: true });
+  }
   const lines = `${res.stdout}\n${res.stderr}`.split(/\r?\n/).filter((l) => l.startsWith("[qc]"));
   lines.forEach((l) => console.log(l));
   if (!lines.length) {

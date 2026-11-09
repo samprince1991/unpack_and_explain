@@ -5,6 +5,7 @@ from PIL import Image, ImageDraw
 src, out, step, per = sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4])
 files = sorted(glob.glob(os.path.join(src, "*.jpeg")))
 picked = files[::step]
+os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
 cols = 8
 for s in range(0, len(picked), per):
     chunk = picked[s:s+per]

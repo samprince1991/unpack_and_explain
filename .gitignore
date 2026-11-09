@@ -2,4 +2,5 @@
 ~$*
 blender/tokens.json
 blender/raw/
-blender/__pycache__/
+__pycache__/
+.superpowers/

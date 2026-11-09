@@ -1,4 +1,3 @@
-import { spawnSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { durations } from "../src/brand/motion";
@@ -8,11 +7,9 @@ import { computeTimeline } from "../src/templates/timing";
 import type { PostScript, VoManifest } from "../src/templates/types";
 import { voManifestPath } from "../src/templates/vo";
 import { compositionForPost, cueWindows } from "./lib/qaAudio";
+import { remotion, run } from "./lib/remotion";
 
 const OUT = "out/qa";
-
-const run = (command: string, args: string[]) =>
-  spawnSync(command, args.map((a) => `"${a}"`), { stdio: "inherit", shell: true }).status === 0;
 
 const must = (ok: boolean, what: string) => {
   if (!ok) {
@@ -23,7 +20,7 @@ const must = (ok: boolean, what: string) => {
 const renderStem = (composition: string, name: string, props: string | null) => {
   const wav = `${OUT}/${name}.wav`;
   must(
-    run("npx", ["remotion", "render", composition, wav, "--codec=wav", ...(props ? [`--props=${props}`] : [])]),
+    remotion(["render", composition, wav, "--codec=wav", ...(props ? [`--props=${props}`] : [])]),
     `Rendering the ${name} stem`,
   );
   return wav;
@@ -32,7 +29,7 @@ const renderStem = (composition: string, name: string, props: string | null) => 
 const toAnalysisWav = (wav: string) => {
   const out = wav.replace(/\.wav$/, "16.wav");
   must(
-    run("npx", ["remotion", "ffmpeg", "-v", "error", "-y", "-i", wav, "-ac", "1", "-ar", "16000", "-c:a", "pcm_s16le", out]),
+    remotion(["ffmpeg", "-v", "error", "-y", "-i", wav, "-ac", "1", "-ar", "16000", "-c:a", "pcm_s16le", out]),
     `Converting ${wav}`,
   );
   return out;

@@ -4,6 +4,7 @@ import { voice } from "../src/brand/voice";
 import { alignmentToCaptions, type Alignment } from "../src/templates/alignment";
 import type { PostScript, VoManifest, VoSection } from "../src/templates/types";
 import { voManifestPath } from "../src/templates/vo";
+import { parseOnly, requireApiKey } from "./lib/cli";
 import { cleanVoSection } from "./lib/voClean";
 
 type TtsResponse = { audio_base64: string; alignment: Alignment };
@@ -40,13 +41,7 @@ const main = async () => {
   if (!postId) {
     throw new Error("Usage: npm run tts -- <post-id>   e.g. npm run tts -- post-02-gps");
   }
-  const apiKey = process.env.ELEVENLABS_API_KEY;
-  if (!apiKey) {
-    throw new Error("ELEVENLABS_API_KEY is missing. Add it to video/.env");
-  }
-  if (voice.voiceId.startsWith("REPLACE")) {
-    throw new Error("Set voice.voiceId in src/brand/voice.ts first");
-  }
+  const apiKey = requireApiKey();
 
   const { script } = (await import(`../src/posts/${postId}/script`)) as { script: PostScript };
   const voDir = join(process.cwd(), "public", "posts", postId, "vo");
@@ -54,8 +49,10 @@ const main = async () => {
 
   // --only=congrats,cta regenerates just those sections and keeps the rest of the
   // existing VO untouched (each generation sounds slightly different).
-  const onlyArg = process.argv.find((a) => a.startsWith("--only="));
-  const only = onlyArg ? onlyArg.slice("--only=".length).split(",") : null;
+  const only = parseOnly(
+    process.argv,
+    script.sections.map((s) => s.id),
+  );
   const manifestFile = join(process.cwd(), "public", voManifestPath(postId));
   const existing: VoManifest | null =
     only && existsSync(manifestFile)
@@ -65,20 +62,28 @@ const main = async () => {
     throw new Error(`--only needs an existing ${voManifestPath(postId)}; run without --only first`);
   }
 
-  const sections: VoSection[] = [];
+  // Synthesize everything before touching any file: if the API fails halfway, the approved
+  // VO and vo.json stay as they were.
+  const takes = new Map<string, TtsResponse>();
   for (const [i, section] of script.sections.entries()) {
     const kept = existing?.sections.find((s) => s.id === section.id);
     if (only && !only.includes(section.id) && kept) {
-      sections.push(kept);
       continue;
     }
     console.log(`Synthesizing ${section.id}...`);
-    const data = await synthesize(
-      apiKey,
-      section.voiceover,
-      script.sections[i - 1]?.voiceover,
-      script.sections[i + 1]?.voiceover,
+    takes.set(
+      section.id,
+      await synthesize(apiKey, section.voiceover, script.sections[i - 1]?.voiceover, script.sections[i + 1]?.voiceover),
     );
+  }
+
+  const sections: VoSection[] = [];
+  for (const section of script.sections) {
+    const data = takes.get(section.id);
+    if (!data) {
+      sections.push(existing?.sections.find((s) => s.id === section.id) as VoSection);
+      continue;
+    }
     const file = `posts/${postId}/vo/${section.id}.mp3`;
     writeFileSync(join(process.cwd(), "public", file), Buffer.from(data.audio_base64, "base64"));
     const ends = data.alignment.character_end_times_seconds;

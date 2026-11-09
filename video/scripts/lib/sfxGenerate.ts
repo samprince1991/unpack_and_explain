@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { SFX_MODEL, SFX_PROMPT_INFLUENCE } from "../../src/brand/audio";
 import { cleanSfxSamples, pcmToWav, wavToPcm } from "./sfxEdges";
-import { ffmpeg } from "./voClean";
+import { ffmpeg } from "./remotion";
 
 const CHANNELS = 2;
 const SAMPLE_RATE = 44100;

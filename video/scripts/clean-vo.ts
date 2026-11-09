@@ -21,4 +21,9 @@ const main = () => {
   console.log("Done.");
 };
 
-main();
+try {
+  main();
+} catch (err) {
+  console.error(err instanceof Error ? err.message : err);
+  process.exit(1);
+}
