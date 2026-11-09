@@ -8,7 +8,7 @@
 
 **Tech:** Blender 4.5 LTS (Eevee, Freestyle), Remotion, Vitest. Spec: `docs/specs/2026-11-09-reel-worlds-design.md`.
 
-**Progress:** Tasks 1-2 done; Task 3 (Gate 1 decision) waiting on the user.
+**Progress:** Gate 1 passed (user, 2026-11-09). Motion test rendered; user review pending before Part 2.
 
 ---
 

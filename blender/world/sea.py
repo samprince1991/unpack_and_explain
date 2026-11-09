@@ -1,4 +1,4 @@
-"""The `sea` world: sky, a low warm sun, and a sea cut in section just in front of the ship,
+"""The `sea` world: sky, a low warm sun, and a sea cut in section along the ship's side,
 so one picture shows the surface above the cut edge and the hull and bulb below it, with no
 transparent water to render. The wave shapes are sampled from the model's own wave tubes
 and stored as shape keys, which add linearly: the surface is the literal sum of the waves.
@@ -6,10 +6,11 @@ A schematic illustration, not a fluid simulation."""
 
 import bisect
 import math
-import random
 
 import bpy
 from mathutils import Vector
+
+from build import interpolation
 
 from common import color, color_srgb
 
@@ -21,34 +22,70 @@ CUT_GAP = 0.02
 WAKE_SLANT = 0.55  # the waves trail aft with distance from the hull (a V-shaped wake)
 WAKE_DECAY = 1.1
 FADE_NEAR, FADE_FAR = 7.0, 38.0  # the water dissolves into the sky toward the horizon
-SECTION_GAP = 0.05  # wave lines sit in front of the cut, clear of the water mesh
+EDGE_OFFSET = 0.004  # the drawn edge sits just in front of the water, so it never fights it
+TUBE_SIDES, TUBE_THIN = 16, 0.4  # the wave tubes thin down until their outlines merge into one line
+# Travelling swell: amplitude, x and y wave numbers, phase, radians per second.
+SWELLS = [(0.010, 2.1, 1.3, 0.0, 0.9), (0.007, 3.7, -2.3, 1.0, 1.3), (0.004, 7.1, 4.9, 2.0, 2.0)]
+BUMP_DRIFT = 0.012  # ripple texture drift per frame
 SUN_DIR = (0.2, 0.95, 0.13)  # toward the sun: low, ahead of the camera, off the bow
-GLOW_THRESHOLD = 0.1  # only the amber key blooms, not the faint world light
 
 
 def _principled(mat):
     return next(n for n in mat.node_tree.nodes if n.type == "BSDF_PRINCIPLED")
 
 
-def _swell(x, y):
-    return (
-        0.010 * math.sin(2.1 * x + 1.3 * y)
-        + 0.007 * math.sin(3.7 * x - 2.3 * y + 1.0)
-        + 0.004 * math.sin(7.1 * x + 4.9 * y + 2.0)
-    )
+def _swell_keys():
+    """Each swell is two shape keys in quadrature, so keying them cos / sin makes it travel."""
+    keys = {}
+    for i, (amp, kx, ky, phase, _rate) in enumerate(SWELLS):
+        keys[f"swell{i}s"] = lambda x, y, a=amp, u=kx, v=ky, p=phase: a * math.sin(u * x + v * y + p)
+        keys[f"swell{i}c"] = lambda x, y, a=amp, u=kx, v=ky, p=phase: a * math.cos(u * x + v * y + p)
+    return keys
+
+
+def _cut_profile(hull, level):
+    """The cut follows the hull's waterline, so no water band crosses the hull. Returns cut(x)."""
+    bins = {}
+    for v in hull.data.vertices:
+        co = hull.matrix_world @ v.co
+        if abs(co.z - level) < 0.06:
+            k = round(co.x / 0.03)
+            bins[k] = max(bins.get(k, 0.0), abs(co.y))
+    keys = sorted(bins)
+    xs = [k * 0.03 for k in keys]
+    beams = [
+        sum(bins[n] for n in keys[max(i - 2, 0) : i + 3]) / len(keys[max(i - 2, 0) : i + 3])
+        for i in range(len(keys))
+    ]
+
+    def cut(x):
+        if x <= xs[0]:
+            beam = beams[0]
+        elif x >= xs[-1]:
+            beam = 0.0
+        else:
+            i = bisect.bisect_right(xs, x)
+            f = (x - xs[i - 1]) / (xs[i] - xs[i - 1])
+            beam = beams[i - 1] * (1 - f) + beams[i] * f
+        return -(beam + CUT_GAP)
+
+    return cut
 
 
 class Profile:
-    """Wave height over world x, read from a wave tube's vertices (relative to the sea level)."""
+    """Wave height over world x, read from a wave tube's ring centers (relative to the sea level)."""
 
     def __init__(self, objects, level):
-        buckets = {}
+        points = []
         for obj in objects:
-            for v in obj.data.vertices:
-                co = obj.matrix_world @ v.co
-                buckets.setdefault(round(co.x, 4), []).append(co.z)
-        self.xs = sorted(buckets)
-        self.zs = [sum(buckets[x]) / len(buckets[x]) - level for x in self.xs]
+            verts = obj.data.vertices
+            for start in range(0, len(verts), TUBE_SIDES):
+                ring = [obj.matrix_world @ v.co for v in verts[start : start + TUBE_SIDES]]
+                center = sum(ring, Vector()) / len(ring)
+                points.append((center.x, center.z - level))
+        points.sort()
+        self.xs = [p[0] for p in points]
+        self.zs = [p[1] for p in points]
 
     def at(self, x):
         if x <= self.xs[0] or x >= self.xs[-1]:
@@ -66,17 +103,18 @@ def _axis_x():
     return left + near + right
 
 
-def _grid_mesh(name, xs, ys, height):
-    """A quad grid; height(x, y) gives z. Returns (object, list of (x, y) per vertex)."""
+def _grid_mesh(name, xs, rows, cut, level):
+    """A quad grid starting at the cut; `rows` are y offsets from it. Returns (object, [(x, y)])."""
     verts, uv = [], []
-    for y in ys:
+    for row in rows:
         for x in xs:
-            verts.append((x, y, height(x, y)))
+            y = cut(x) + row
+            verts.append((x, y, level))
             uv.append((x, y))
     nx = len(xs)
     faces = [
         (j * nx + i, j * nx + i + 1, (j + 1) * nx + i + 1, (j + 1) * nx + i)
-        for j in range(len(ys) - 1)
+        for j in range(len(rows) - 1)
         for i in range(nx - 1)
     ]
     mesh = bpy.data.meshes.new(name)
@@ -86,12 +124,13 @@ def _grid_mesh(name, xs, ys, height):
     return bpy.data.objects.new(name, mesh), uv
 
 
-def _add_keys(obj, uv, base, wave_fns):
+def _add_keys(obj, uv, level, fns):
     obj.shape_key_add(name="Basis", from_mix=False)
-    for name, fn in wave_fns.items():
+    for name, fn in fns.items():
         key = obj.shape_key_add(name=name, from_mix=False)
+        key.slider_min = -1.0
         for i, (x, y) in enumerate(uv):
-            key.data[i].co.z = base(x, y) + fn(x, y)
+            key.data[i].co.z = level + fn(x, y)
 
 
 def _water_material(tokens):
@@ -111,7 +150,10 @@ def _water_material(tokens):
     bump = tree.nodes.new("ShaderNodeBump")
     bump.inputs["Strength"].default_value = 0.22
     bump.inputs["Distance"].default_value = 0.05
-    tree.links.new(coord.outputs["Object"], noise.inputs["Vector"])
+    drift = tree.nodes.new("ShaderNodeMapping")
+    drift.name = "ripple-drift"
+    tree.links.new(coord.outputs["Object"], drift.inputs["Vector"])
+    tree.links.new(drift.outputs["Vector"], noise.inputs["Vector"])
     tree.links.new(noise.outputs["Fac"], bump.inputs["Height"])
     tree.links.new(bump.outputs["Normal"], bsdf.inputs["Normal"])
 
@@ -221,6 +263,7 @@ def _sun(tokens):
     data.energy = 1.4
     data.angle = math.radians(4)
     data.color = color_srgb(tokens["colors"]["env"]["light"])
+    data.specular_factor = 0.06  # a soft glint road: the amber stays the brightest thing
     obj = bpy.data.objects.new("sun", data)
     # Low, ahead of the camera and off the bow side: a glint road on the water and a rim on the hull.
     obj.rotation_euler = Vector(SUN_DIR).to_track_quat("Z", "Y").to_euler()
@@ -283,82 +326,6 @@ def _plating(mat):
     tree.links.new(worn.outputs["Result"], bsdf.inputs["Roughness"])
 
 
-def _faint_light_material(name, tokens, strength, top, bottom):
-    """Faint unlit light that fades out with depth (shafts, specks)."""
-    mat = bpy.data.materials.new(name)
-    mat.use_nodes = True
-    tree = mat.node_tree
-    tree.nodes.clear()
-    geometry = tree.nodes.new("ShaderNodeNewGeometry")
-    split = tree.nodes.new("ShaderNodeSeparateXYZ")
-    fade = tree.nodes.new("ShaderNodeMapRange")
-    fade.inputs["From Min"].default_value = top
-    fade.inputs["From Max"].default_value = bottom
-    emit = tree.nodes.new("ShaderNodeEmission")
-    emit.inputs["Color"].default_value = color(tokens["colors"]["env"]["light"])
-    emit.inputs["Strength"].default_value = strength
-    clear = tree.nodes.new("ShaderNodeBsdfTransparent")
-    add = tree.nodes.new("ShaderNodeAddShader")
-    mix = tree.nodes.new("ShaderNodeMixShader")
-    output = tree.nodes.new("ShaderNodeOutputMaterial")
-    tree.links.new(geometry.outputs["Position"], split.inputs[0])
-    tree.links.new(split.outputs["Z"], fade.inputs["Value"])
-    tree.links.new(emit.outputs[0], add.inputs[0])
-    tree.links.new(clear.outputs[0], add.inputs[1])
-    tree.links.new(fade.outputs["Result"], mix.inputs[0])
-    tree.links.new(add.outputs[0], mix.inputs[1])
-    tree.links.new(clear.outputs[0], mix.inputs[2])
-    tree.links.new(mix.outputs[0], output.inputs["Surface"])
-    return mat
-
-
-def _underwater(scene, tokens, level, cut):
-    """Slanted light shafts and drifting specks, so the water below the cut has depth."""
-    coll = bpy.data.collections.new("world-underwater")
-    scene.collection.children.link(coll)
-    rng = random.Random(26)
-
-    verts, faces = [], []
-    for x, width in ((-1.9, 0.5), (-1.0, 0.28), (-0.3, 0.42), (0.55, 0.3), (1.3, 0.55), (2.1, 0.35)):
-        y = rng.uniform(1.5, 4.0)
-        lean, depth = 0.55, 3.2
-        i = len(verts)
-        verts += [
-            (x, y, level - 0.02),
-            (x + width, y, level - 0.02),
-            (x + width * 1.5 - lean * depth, y, level - depth),
-            (x - lean * depth, y, level - depth),
-        ]
-        faces.append((i, i + 1, i + 2, i + 3))
-    mesh = bpy.data.meshes.new("shafts")
-    mesh.from_pydata(verts, [], faces)
-    mesh.update()
-    shafts = bpy.data.objects.new("shafts", mesh)
-    coll.objects.link(shafts)
-    mesh.materials.append(_faint_light_material("shafts", tokens, 0.22, level, level - 2.4))
-
-    verts, faces = [], []
-    for _ in range(420):
-        x, y = rng.uniform(-3.5, 3.5), rng.uniform(cut + 0.1, 5.0)
-        z = level - rng.uniform(0.06, 2.6)
-        r = rng.uniform(0.002, 0.007)
-        i = len(verts)
-        verts += [(x - r, y, z), (x + r, y, z), (x, y, z + r * 1.7)]
-        faces.append((i, i + 1, i + 2))
-    mesh = bpy.data.meshes.new("specks")
-    mesh.from_pydata(verts, [], faces)
-    mesh.update()
-    specks = bpy.data.objects.new("specks", mesh)
-    coll.objects.link(specks)
-    mesh.materials.append(_faint_light_material("specks", tokens, 1.6, level, level - 2.6))
-
-
-def _soften_glow(scene):
-    node = next((n for n in scene.node_tree.nodes if n.type == "GLARE"), None) if scene.node_tree else None
-    if node:
-        node.inputs["Threshold"].default_value = GLOW_THRESHOLD
-
-
 def _edge_lineset(scene, coll, tokens):
     """The cut edge is drawn as one soft Freestyle line: it traces the wave profile."""
     settings = scene.view_layers[0].freestyle_settings
@@ -377,13 +344,40 @@ def _edge_lineset(scene, coll, tokens):
     style.caps = "ROUND"
 
 
+def _rounded_glow(mat, tokens):
+    """Emission falls off toward the silhouette, so the amber part reads as round and not flat."""
+    tree = mat.node_tree
+    bsdf = _principled(mat)
+    amber = color(tokens["colors"]["amber"])
+    weight = tree.nodes.new("ShaderNodeLayerWeight")
+    weight.inputs["Blend"].default_value = 0.35
+    mix = tree.nodes.new("ShaderNodeMixRGB")
+    mix.inputs["Color1"].default_value = amber
+    mix.inputs["Color2"].default_value = (amber[0] * 0.5, amber[1] * 0.5, amber[2] * 0.5, 1.0)
+    tree.links.new(weight.outputs["Facing"], mix.inputs["Fac"])
+    tree.links.new(mix.outputs[0], bsdf.inputs["Emission Color"])
+
+
+def _thin_tubes(parts):
+    """Thins each wave tube ring by ring, about its own center."""
+    for name in ("bowwave", "bulbwave"):
+        for obj in parts[name]["objects"]:
+            verts = obj.data.vertices
+            if len(verts) % TUBE_SIDES:
+                print(f"[sea] {name}: unexpected vertex count {len(verts)}, not thinned")
+                continue
+            for start in range(0, len(verts), TUBE_SIDES):
+                ring = verts[start : start + TUBE_SIDES]
+                center = sum((v.co for v in ring), Vector()) / TUBE_SIDES
+                for v in ring:
+                    v.co = center + (v.co - center) * TUBE_THIN
+            obj.data.update()
+
+
 def build_sea(scene, tokens, parts):
-    """Builds the world around the model. Call after the Clip exists (it adds a lineset).
-    Returns {"level", "cut", "keys": [water key blocks' owners]}."""
+    """Builds the world around the model. Call after the Clip exists (it adds a lineset)."""
     level = parts["waterline"]["base"].z
-    # Just in front of the hull, so the water band crossing the hull stays thin.
-    hull = parts["hull"]["objects"][0]
-    cut = min((hull.matrix_world @ v.co).y for v in hull.data.vertices) - CUT_GAP
+    cut = _cut_profile(parts["hull"]["objects"][0], level)
 
     scene.render.film_transparent = False
     _sky(scene, tokens)
@@ -396,31 +390,29 @@ def build_sea(scene, tokens, parts):
 
     def wave(profile):
         def fn(x, y):
-            d = max(abs(y) - abs(cut), 0.0)
+            d = max(abs(y) - abs(cut(x)), 0.0)
             return profile.at(x + WAKE_SLANT * d) * math.exp(-d / WAKE_DECAY)
 
         return fn
 
-    keys = {"bow": wave(bow), "bulb": wave(bulb)}
-
-    def base(x, y):
-        return level + _swell(x, y)
+    keys = {"bow": wave(bow), "bulb": wave(bulb), **_swell_keys()}
 
     xs = _axis_x()
-    ys = [cut + FAR_Y * (j / NY) ** 2.4 for j in range(NY + 1)]
+    rows = [FAR_Y * (j / NY) ** 2.4 for j in range(NY + 1)]
     coll = bpy.data.collections.new("world-sea")
     scene.collection.children.link(coll)
 
-    water, uv = _grid_mesh("sea", xs, ys, base)
+    water, uv = _grid_mesh("sea", xs, rows, cut, level)
     coll.objects.link(water)
-    water.data.materials.append(_water_material(tokens))
-    _add_keys(water, uv, base, keys)
+    material = _water_material(tokens)
+    water.data.materials.append(material)
+    _add_keys(water, uv, level, keys)
 
     # A one-row strip along the cut, with the same keys, whose border is the drawn edge.
-    near_xs = [x for x in xs if -FAR_X * 0.4 < x < FAR_X * 0.4]
+    near_xs = [x for x in xs if abs(x) < FAR_X * 0.4]
     edge_coll = bpy.data.collections.new("world-seaedge")
     scene.collection.children.link(edge_coll)
-    edge, edge_uv = _grid_mesh("sea-edge", near_xs, [cut, cut + 0.0005], base)
+    edge, edge_uv = _grid_mesh("sea-edge", near_xs, [-EDGE_OFFSET, -EDGE_OFFSET + 0.0005], cut, level)
     edge_coll.objects.link(edge)
     hidden = bpy.data.materials.new("sea-edge")
     hidden.use_nodes = True
@@ -430,31 +422,67 @@ def build_sea(scene, tokens, parts):
     output = tree.nodes.new("ShaderNodeOutputMaterial")
     tree.links.new(clear.outputs[0], output.inputs["Surface"])
     edge.data.materials.append(hidden)
-    _add_keys(edge, edge_uv, base, keys)
+    _add_keys(edge, edge_uv, level, keys)
     _edge_lineset(scene, edge_coll, tokens)
 
     for part in ("hull", "bulb"):
         _submerge(parts[part]["mat"], level, tokens)
     _plating(parts["hull"]["mat"])
-    _underwater(scene, tokens, level, cut)
-    _soften_glow(scene)
-    for obj in parts["waterline"]["objects"]:
-        obj.hide_render = True  # the real water surface replaces the drawn waterline
+    _rounded_glow(parts["bulb"]["mat"], tokens)
+    _thin_tubes(parts)
+    for part in parts["waterline"]["objects"]:
+        part.hide_render = True  # the real water surface replaces the drawn waterline
 
-    return {"level": level, "cut": cut, "meshes": [water, edge]}
+    sea = {"level": level, "meshes": [water, edge], "material": material}
+    set_swell(sea, 0.0)
+    return sea
 
 
-def set_waves(sea, bow, bulb):
+def set_waves(sea, bow, bulb, frame=None):
     for obj in sea["meshes"]:
         blocks = obj.data.shape_keys.key_blocks
         blocks["bow"].value = bow
         blocks["bulb"].value = bulb
+        if frame is not None:
+            blocks["bow"].keyframe_insert("value", frame=frame)
+            blocks["bulb"].keyframe_insert("value", frame=frame)
 
 
-def wave_lines_to_cut(parts, sea):
-    """Moves the wave tubes onto the section, so both profiles read in front of the water."""
+def set_swell(sea, seconds, frame=None):
+    for obj in sea["meshes"]:
+        blocks = obj.data.shape_keys.key_blocks
+        for i, (_amp, _kx, _ky, _phase, rate) in enumerate(SWELLS):
+            blocks[f"swell{i}s"].value = math.cos(rate * seconds)
+            blocks[f"swell{i}c"].value = math.sin(rate * seconds)
+            if frame is not None:
+                blocks[f"swell{i}s"].keyframe_insert("value", frame=frame)
+                blocks[f"swell{i}c"].keyframe_insert("value", frame=frame)
+
+
+def flatten_lines(parts, sea, start, end):
+    """The wave lines settle into the surface as the waves cancel, then disappear."""
     for name in ("bowwave", "bulbwave"):
         pivot = parts[name]["pivot"]
-        # Flatten onto one plane: the tubes curve with the hull and would cross the cut.
-        pivot.scale.y = 0.001
-        pivot.location.y = sea["cut"] - SECTION_GAP
+        pivot.keyframe_insert("scale", frame=start)
+        pivot.keyframe_insert("location", frame=start)
+        pivot.scale.z = 0.02
+        pivot.location.z = sea["level"]
+        pivot.keyframe_insert("scale", frame=end)
+        pivot.keyframe_insert("location", frame=end)
+        for obj in parts[name]["objects"]:
+            with interpolation("CONSTANT"):
+                obj.hide_render = False
+                obj.keyframe_insert("hide_render", frame=0)
+                obj.hide_render = True
+                obj.keyframe_insert("hide_render", frame=end)
+
+
+def animate_ambient(sea, frames, fps):
+    """The swell travels and the ripples drift for the whole clip."""
+    with interpolation("LINEAR"):
+        for f in range(frames + 1):
+            set_swell(sea, f / fps, frame=f)
+        socket = sea["material"].node_tree.nodes["ripple-drift"].inputs["Location"]
+        for f in (0, frames):
+            socket.default_value = (BUMP_DRIFT * f, BUMP_DRIFT * f * 0.5, 0.0)
+            socket.keyframe_insert("default_value", frame=f)
