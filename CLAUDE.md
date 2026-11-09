@@ -235,7 +235,7 @@ Design: `docs/specs/2026-10-30-reel-variety-design.md`. **Fixed frame, varied co
 
 ## Remotion Elements
 
-Elements (remotion.dev/elements) are copy-in source snippets, not npm packages. They are added **only through Studio** (right inspector → Actions → **Browse Elements** → pick → confirm); there is no CLI, so an agent can't add them. All 40 catalog Elements we use are already installed (deps in `package.json`, assets in `public/elements/`).
+Elements (remotion.dev/elements) are copy-in source snippets, not npm packages. They are added **only through Studio** (right inspector → Actions → **Browse Elements** → pick → confirm); there is no CLI, so an agent can't add them. The catalog Elements we keep are already installed (deps in `package.json`, assets in `public/elements/`).
 
 **Two layers, kept separate:**
 
@@ -244,21 +244,20 @@ Elements (remotion.dev/elements) are copy-in source snippets, not npm packages. 
 | **Library** (original, unbranded) | `src/elements/<category>/<slug>.element.tsx` + `<Name>Composition.tsx` demo | Reference only. Never edit, never import from a post. Excluded from the brand guard. The ones that fit this channel are previewable in Studio under the **Elements** folder (ids `El-<Name>`), registered by `src/elements/ElementsGallery.tsx`; the rest stay here as files only. |
 | **Branded copy** (what posts use) | `src/components/elements/<slug>.tsx` | Adapted to our tokens (below). Subject to the brand guard. |
 
-Categories: `audio`, `backgrounds`, `captions`, `charts`, `effects`, `layouts`, `maps`, `overlays`, `storytelling`, `text`, `youtube`.
+Categories: `audio`, `backgrounds`, `captions`, `charts`, `effects`, `layouts`, `maps`, `storytelling`, `text`, `youtube`.
 
 **Which Elements fit this channel:**
 
 | Element (library path) | Use it for |
 |---|---|
 | `charts/number-counter` | Big stats ("~30 satellites", "$440M in 45 minutes") |
-| `charts/horizontal-bar-chart`, `vertical-bar-chart`, `line-chart`, `pie-chart` | Reference only: use `components/charts/` (D3) for charts |
 | `text/circle-marker`, `text-marker`, `strike-through`, `crossed-off` | Emphasis; Q posts (strike the myth, mark the fact) |
 | `storytelling/news-article-highlight` | F posts: citing the real incident / investigation |
 | `maps/spinning-globe`, `maps/map-flyover` | Geography (cables, GPS, SWIFT, flights) |
 | `backgrounds/moving-waves` | Optional subtle full-frame ambient background, restyled neutral at low opacity |
 | `youtube/*` | Only when we start YouTube |
 
-Kept but not for current reels: lower thirds (faceless channel), polaroid/notebook/paper/starburst, product/discount/peel/tear/shine, split-screen/PiP, audio visualizers, cylinder/spinning text, Element caption styles (we use our `Captions`), social safe zones (we use `SafeZoneGuide`).
+Kept but not for current reels: polaroid/notebook/paper/starburst, product/discount/peel/tear/shine, split-screen/PiP, audio visualizers, cylinder/spinning text, Element caption styles (we use our `Captions`). Removed on 2026-11-09: the bar, line and pie charts (use `components/charts/`), watercolor map, lower thirds (faceless channel) and social safe zones (we use `SafeZoneGuide`).
 
 **Rendering notes:** `maps/spinning-globe` (and other WebGPU Elements) fail in the default headless renderer ("No WebGPU adapter available"); render with `--gl=angle --chrome-mode=chrome-for-testing`. Map Elements load remote tiles/images, so rendering needs network access.
 
