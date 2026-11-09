@@ -1,26 +1,42 @@
-// Renders a post's Blender 3D clips (docs/specs/2026-11-02-blender-3d-design.md).
+// Renders a post's Blender 3D clips (docs/specs/2026-11-09-blender-render-pipeline-design.md).
 //
-//   npm run blender -- post-NN-slug [--preview] [--only=cover,opener,hook,mechanism]
-//   npm run blender -- kit-blender [--preview]     (the Kit-Blender sample)
-//   npm run blender -- --selftest                  (cube in look A; checks alpha + amber)
+//   npm run blender -- post-NN-slug [--preview] [--force] [--workers=N] [--only=cover,hook]
+//   npm run blender -- post-NN-slug --frames[=120,240]   (test stills in out/blender-frames/)
+//   npm run blender -- kit-blender [--preview]           (the Kit-Blender sample)
+//   npm run blender -- --selftest                        (cube in look A; checks alpha + amber)
 //
-// Exports blender/tokens.json from the brand tokens, builds the job from script.ts +
-// vo.json (same cue maths as useCue), runs headless Blender, then checks the manifest.
-import { spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+// Exports blender/tokens.json, builds the job from script.ts + vo.json (same cue maths as
+// useCue), then renders each clip that isn't up to date. This file is the manifest's only
+// writer. A clip reaches its folder only once every frame has rendered.
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { colors, video } from "../src/brand/tokens";
 import { voice } from "../src/brand/voice";
 import { LINE } from "../src/components/three/materials";
-import { blenderDir, buildBlenderJob } from "../src/templates/blenderJob";
-import type { BlenderManifest, PostScript, VoManifest } from "../src/templates/types";
+import { blenderDir, buildBlenderJob, hashBytes, type BlenderJob, type JobClip } from "../src/templates/blenderJob";
+import type { BlenderLabelTrack, BlenderManifest, PostScript, VoManifest } from "../src/templates/types";
 import { buildEstimatedManifest, staleSections, voManifestPath } from "../src/templates/vo";
 import { findBlender } from "./lib/blender";
+import {
+  allFrames,
+  CHUNK_FRAMES,
+  chunkFrames,
+  clipDecision,
+  framesComplete,
+  hashSources,
+  parseBlenderArgs,
+  testFrames,
+  type BlenderArgs,
+} from "./lib/blenderPlan";
+import { runPool, startBlender } from "./lib/blenderPool";
 
 const VIDEO = resolve(__dirname, "..");
 const REPO = resolve(VIDEO, "..");
 const BLENDER_DIR = join(REPO, "blender");
 const PUBLIC = join(VIDEO, "public");
+const RENDER_SCRIPT = join(BLENDER_DIR, "render.py");
+const WORLD_DIR = join(BLENDER_DIR, "world");
+const CODE_FILES = ["build.py", "look.py", "common.py", "qc.py", "render.py", "tokens.json"];
 
 const requiredVersion = () => readFileSync(join(BLENDER_DIR, "VERSION"), "utf8").trim();
 
@@ -39,17 +55,6 @@ const exportTokens = () => {
     lines: LINE,
   };
   writeFileSync(join(BLENDER_DIR, "tokens.json"), JSON.stringify(tokens, null, 2));
-};
-
-const runBlender = (exe: string, args: string[]) => {
-  const result = spawnSync(
-    exe,
-    ["-b", "--factory-startup", "--python", join(BLENDER_DIR, "render.py"), "--", ...args],
-    { stdio: "inherit" },
-  );
-  if (result.status !== 0) {
-    throw new Error(`Blender exited with ${result.status}`);
-  }
 };
 
 const loadScript = async (postId: string): Promise<PostScript> => {
@@ -73,8 +78,125 @@ const loadVoFile = (script: PostScript): VoManifest => {
   return vo;
 };
 
+const computeCodeHash = (modelId: string) => {
+  const read = (path: string) => ({ path, text: readFileSync(join(BLENDER_DIR, path), "latin1") });
+  const world = readdirSync(WORLD_DIR)
+    .filter((f) => f.endsWith(".py"))
+    .map((f) => `world/${f}`);
+  const blend = `models/${modelId}.blend`;
+  const hasBlend = existsSync(join(BLENDER_DIR, blend));
+  if (hasBlend) {
+    console.warn(`[blender] ${blend} is tracked here, but final renders can't verify it`);
+  }
+  return hashSources([...CODE_FILES, ...world, ...(hasBlend ? [blend] : [])].map(read));
+};
+
+const readManifest = (path: string, postId: string): BlenderManifest =>
+  existsSync(path)
+    ? { postId, clips: (JSON.parse(readFileSync(path, "utf8")) as BlenderManifest).clips }
+    : { postId, clips: {} };
+
+type FrameRun = {
+  exe: string;
+  jobPath: string;
+  clipId: string;
+  outDir: string;
+  chunks: number[][];
+  args: BlenderArgs;
+  metaPath: string | null;
+  onFinished?: (finished: number) => void;
+};
+
+const renderFrames = ({ exe, jobPath, clipId, outDir, chunks, args, metaPath, onFinished }: FrameRun) =>
+  runPool(
+    chunks.map((frames, index) => ({ frames, index })),
+    args.workers,
+    ({ frames, index }) =>
+      startBlender(exe, RENDER_SCRIPT, [
+        "--worker",
+        jobPath,
+        clipId,
+        outDir,
+        frames.join(","),
+        // Label tracks cover the whole clip, so the first chunk's are enough.
+        index === 0 && metaPath ? metaPath : "-",
+        ...(args.preview ? ["--preview"] : []),
+      ]),
+    onFinished,
+  );
+
+const renderClip = async (exe: string, jobPath: string, clip: JobClip, outDir: string, args: BlenderArgs) => {
+  const tmp = join(outDir, `${clip.id}.tmp`);
+  const metaPath = `${tmp}.meta.json`;
+  rmSync(tmp, { recursive: true, force: true });
+  rmSync(metaPath, { force: true });
+  mkdirSync(tmp, { recursive: true });
+  try {
+    const chunks = chunkFrames(allFrames(clip.frames), CHUNK_FRAMES);
+    await renderFrames({
+      exe,
+      jobPath,
+      clipId: clip.id,
+      outDir: tmp,
+      chunks,
+      args,
+      metaPath,
+      onFinished: (finished) => console.log(`[blender] ${clip.id}: ${finished}/${chunks.length} chunks`),
+    });
+    if (!framesComplete(readdirSync(tmp), clip.frames)) {
+      throw new Error(`${clip.id}: Blender finished but frames are missing`);
+    }
+    const meta = JSON.parse(readFileSync(metaPath, "utf8")) as {
+      labels: BlenderLabelTrack[];
+      blenderVersion: string;
+    };
+    const clipDir = join(outDir, clip.id);
+    rmSync(clipDir, { recursive: true, force: true, maxRetries: 5 });
+    renameSync(tmp, clipDir);
+    return meta;
+  } catch (err) {
+    rmSync(tmp, { recursive: true, force: true, maxRetries: 5 });
+    throw err;
+  } finally {
+    rmSync(metaPath, { force: true });
+  }
+};
+
+const renderTestStills = async (
+  exe: string,
+  jobPath: string,
+  job: BlenderJob,
+  clips: JobClip[],
+  args: BlenderArgs,
+) => {
+  const wanted = args.frames as "beats" | number[];
+  for (const clip of clips) {
+    const { frames, dropped } = testFrames(clip, wanted);
+    if (dropped.length > 0) {
+      console.warn(`[blender] ${clip.id}: only has ${clip.frames} frames, dropped ${dropped.join(", ")}`);
+    }
+    if (frames.length === 0) {
+      continue;
+    }
+    const dir = join(VIDEO, "out", "blender-frames", job.postId, clip.id);
+    rmSync(dir, { recursive: true, force: true });
+    mkdirSync(dir, { recursive: true });
+    const size = Math.min(CHUNK_FRAMES, Math.ceil(frames.length / args.workers));
+    await renderFrames({
+      exe,
+      jobPath,
+      clipId: clip.id,
+      outDir: dir,
+      chunks: chunkFrames(frames, size),
+      args,
+      metaPath: null,
+    });
+    console.log(`[blender] ${clip.id}: frames ${frames.join(", ")} -> ${dir}`);
+  }
+};
+
 const main = async () => {
-  const args = process.argv.slice(2);
+  const args = parseBlenderArgs(process.argv.slice(2));
   const exe = findBlender();
   if (!exe) {
     throw new Error(
@@ -83,18 +205,15 @@ const main = async () => {
   }
   exportTokens();
 
-  if (args.includes("--selftest")) {
+  if (args.selftest) {
     const out = join(VIDEO, "out", "blender-selftest");
     mkdirSync(out, { recursive: true });
-    runBlender(exe, ["--selftest", out]);
+    await startBlender(exe, RENDER_SCRIPT, ["--selftest", out]).done;
+    console.log("[selftest] OK");
     return;
   }
 
-  const postId = args.find((a) => !a.startsWith("--"));
-  if (!postId) {
-    throw new Error("Usage: npm run blender -- post-NN-slug [--preview] [--only=cover,hook]");
-  }
-  const script = await loadScript(postId);
+  const script = await loadScript(args.postId as string);
   const vo = loadVoFile(script);
   const job = buildBlenderJob(script, vo, video.fps);
   const outDir = join(PUBLIC, blenderDir(script.id));
@@ -102,20 +221,52 @@ const main = async () => {
   const jobPath = join(outDir, "job.json");
   writeFileSync(jobPath, JSON.stringify(job, null, 2));
 
-  const flags = args.filter((a) => a.startsWith("--"));
+  const clips = job.clips.filter((c) => !args.only || args.only.includes(c.id));
   const started = Date.now();
-  runBlender(exe, [jobPath, outDir, ...flags]);
-
-  const manifest = JSON.parse(readFileSync(join(outDir, "manifest.json"), "utf8")) as BlenderManifest;
-  const only = flags.find((f) => f.startsWith("--only="))?.slice(7).split(",");
-  const missing = job.clips
-    .filter((c) => !only || only.includes(c.id))
-    .filter((c) => manifest.clips[c.id]?.hash !== c.hash)
-    .map((c) => c.id);
-  if (missing.length > 0) {
-    throw new Error(`Blender finished but these clips are missing or stale: ${missing.join(", ")}`);
+  if (args.frames) {
+    await renderTestStills(exe, jobPath, job, clips, args);
+    console.log(`[blender] stills done in ${Math.round((Date.now() - started) / 1000)} s`);
+    return;
   }
-  console.log(`[blender] done in ${Math.round((Date.now() - started) / 1000)} s -> ${outDir}`);
+
+  const modelHash = hashBytes(readFileSync(join(PUBLIC, job.model.file)));
+  const codeHash = computeCodeHash(job.model.id);
+  const manifestPath = join(outDir, "manifest.json");
+  const manifest = readManifest(manifestPath, job.postId);
+  let rendered = 0;
+  for (const clip of clips) {
+    const clipDir = join(outDir, clip.id);
+    const framesOnDisk = existsSync(clipDir) && framesComplete(readdirSync(clipDir), clip.frames);
+    const decision = clipDecision(clip, manifest.clips[clip.id], {
+      modelHash,
+      codeHash,
+      preview: args.preview,
+      force: args.force,
+      framesOnDisk,
+    });
+    if (!decision.render) {
+      console.log(`[blender] ${clip.id}: skipped (${decision.reason}; --force re-renders)`);
+      continue;
+    }
+    console.log(`[blender] ${clip.id}: rendering ${clip.frames} frames (${decision.reason})`);
+    const meta = await renderClip(exe, jobPath, clip, outDir, args);
+    manifest.clips[clip.id] = {
+      hash: clip.hash,
+      modelHash,
+      codeHash,
+      frames: clip.frames,
+      width: clip.width,
+      height: clip.height,
+      preview: args.preview,
+      blenderVersion: meta.blenderVersion,
+      labels: meta.labels,
+    };
+    writeFileSync(manifestPath, JSON.stringify(manifest, null, 2)); // keep progress if a later clip fails
+    rendered++;
+  }
+  console.log(
+    `[blender] rendered ${rendered}/${clips.length} clips in ${Math.round((Date.now() - started) / 1000)} s -> ${outDir}`,
+  );
 };
 
 main().catch((err: unknown) => {

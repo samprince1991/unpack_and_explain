@@ -18,6 +18,7 @@ import {
   blenderProblems,
   clipStatuses,
   loadBlenderManifest,
+  loadModelHash,
 } from "./blender";
 import { blenderAreas, buildBlenderJob, isBlenderPlan } from "./blenderJob";
 import type { BlenderManifest, PostScript } from "./types";
@@ -128,12 +129,13 @@ export const calculateCoverMetadata: CalculateMetadataFunction<
   if (isBlenderPlan(props.script.blender)) {
     const vo = await loadVo(props.script, voice.wordsPerSecond);
     const job = buildBlenderJob(props.script, vo, video.fps);
-    const { cover } = clipStatuses(job, blender3d);
-    if (cover !== "ok" && getRemotionEnvironment().isRendering) {
-      throw new Error(
-        blenderProblems(props.script.id, { ...clipStatuses(job, blender3d) }) ??
-          "",
-      );
+    const statuses = clipStatuses(
+      job,
+      blender3d,
+      await loadModelHash(job.model.file),
+    );
+    if (statuses.cover !== "ok" && getRemotionEnvironment().isRendering) {
+      throw new Error(blenderProblems(props.script.id, statuses) ?? "");
     }
   }
   return { props: { ...props, blender3d } };

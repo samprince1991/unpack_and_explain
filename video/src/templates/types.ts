@@ -235,6 +235,10 @@ export type BlenderLabelTrack = {
 
 export type BlenderManifestClip = {
   hash: string;
+  // Hash of the model's GLB. A mismatch makes the clip stale. Older renders have none.
+  modelHash?: string;
+  // Hash of the shared Blender code. Only `npm run blender` compares it (re-renders, never blocks).
+  codeHash?: string;
   frames: number;
   width: number;
   height: number;
@@ -244,7 +248,7 @@ export type BlenderManifestClip = {
   labels: BlenderLabelTrack[];
 };
 
-// Written by blender/render.py next to the PNG sequences; one entry per rendered clip.
+// Written by scripts/blender.ts next to the PNG sequences; one entry per rendered clip.
 export type BlenderManifest = {
   postId: string;
   clips: Partial<Record<BlenderClipId, BlenderManifestClip>>;

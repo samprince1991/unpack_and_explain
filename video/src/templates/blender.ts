@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { staticFile } from "remotion";
-import { blenderManifestPath, type BlenderAreas, type BlenderJob } from "./blenderJob";
+import { blenderManifestPath, hashBytes, type BlenderAreas, type BlenderJob } from "./blenderJob";
 import type { BlenderClipId, BlenderManifest } from "./types";
 
 export type ClipStatus = "ok" | "missing" | "stale" | "preview";
@@ -9,13 +9,15 @@ export type ClipStatus = "ok" | "missing" | "stale" | "preview";
 export const clipStatuses = (
   job: BlenderJob,
   manifest: BlenderManifest | null,
+  modelHash: string | null = null,
 ): Partial<Record<BlenderClipId, ClipStatus>> =>
   Object.fromEntries(
     job.clips.map((clip) => {
       const rendered = manifest?.clips[clip.id];
+      const modelChanged = Boolean(modelHash && rendered?.modelHash && rendered.modelHash !== modelHash);
       const status: ClipStatus = !rendered
         ? "missing"
-        : rendered.hash !== clip.hash
+        : rendered.hash !== clip.hash || modelChanged
           ? "stale"
           : rendered.preview
             ? "preview"
@@ -43,6 +45,16 @@ export const loadBlenderManifest = async (postId: string): Promise<BlenderManife
   try {
     const res = await fetch(staticFile(blenderManifestPath(postId)));
     return res.ok ? ((await res.json()) as BlenderManifest) : null;
+  } catch {
+    return null;
+  }
+};
+
+// Null when the file can't be read: the job's own check reports a truly missing model.
+export const loadModelHash = async (file: string): Promise<string | null> => {
+  try {
+    const res = await fetch(staticFile(file));
+    return res.ok ? hashBytes(new Uint8Array(await res.arrayBuffer())) : null;
   } catch {
     return null;
   }

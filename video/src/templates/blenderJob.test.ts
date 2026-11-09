@@ -1,10 +1,21 @@
 import { describe, expect, it } from "vitest";
 import { brand } from "../brand/tokens";
 import { durations } from "../brand/motion";
-import { blenderFramePath, buildBlenderJob } from "./blenderJob";
+import { blenderFramePath, buildBlenderJob, hashBytes, hashString } from "./blenderJob";
 import { computeTimeline } from "./timing";
 import type { BlenderPlan, PostScript } from "./types";
 import { buildEstimatedManifest } from "./vo";
+
+describe("hashBytes", () => {
+  it("matches hashString on ASCII and the FNV-1a test vector", () => {
+    const bytes = new TextEncoder().encode("a");
+    expect(hashBytes(bytes)).toBe("e40c292c");
+    expect(hashBytes(bytes)).toBe(hashString("a"));
+  });
+  it("changes when one byte changes", () => {
+    expect(hashBytes(new Uint8Array([1, 2, 3]))).not.toBe(hashBytes(new Uint8Array([1, 2, 4])));
+  });
+});
 
 const plan: BlenderPlan = {
   model: "jet-engine",
