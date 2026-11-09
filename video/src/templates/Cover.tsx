@@ -58,7 +58,7 @@ export const Cover: React.FC<CoverProps> = ({
     >
       <AbsoluteFill>
         <Background />
-        <BlenderClip clip="cover" area={layout.blender.cover} frame={0} />
+        <BlenderClip clip="cover" frame={0} />
         <div
           style={{
             position: "absolute",

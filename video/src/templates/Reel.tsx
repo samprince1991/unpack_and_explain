@@ -26,6 +26,7 @@ import {
   type SectionTransitionName,
 } from "../components/transitions/sectionTransitions";
 import { Watermark } from "../components/Watermark";
+import { CaptionScrim, WorldBackdrop, WorldDust } from "../components/WorldBackdrop";
 import { BlenderClip } from "../components/BlenderClip";
 import { audioCues } from "./audioCues";
 import { BlenderContext } from "./blender";
@@ -132,6 +133,7 @@ export const Reel: React.FC<
     ...transitions,
   };
   const has3d = isBlenderPlan(script.blender);
+  const world = isBlenderPlan(script.blender) ? script.blender.world : undefined;
   const sfxCues = isSfxPlan(script.sfx)
     ? resolveSfxCues(script.sfx, vo.sections, sections, fps, durations.crossfade)
     : [];
@@ -183,7 +185,9 @@ export const Reel: React.FC<
                     durationInFrames: t.durationInFrames,
                   }}
                 >
+                  {world && (section.id === "setup" || section.id === "payoff") ? <WorldBackdrop /> : null}
                   {scene}
+                  {world && (section.id === "hook" || section.id === "mechanism") ? <WorldDust /> : null}
                   {section.id === "hook" && script.hookTitle !== false ? (
                     <HookTitle
                       text={script.hookText}
@@ -214,6 +218,7 @@ export const Reel: React.FC<
             hideFrom={timing("hook").from}
             showAt={timing("hook").from + Math.ceil(durations.crossfade / 2)}
           >
+            {world ? <CaptionScrim /> : null}
             <Captions captions={captions} />
           </CaptionGate>
         </Sequence>

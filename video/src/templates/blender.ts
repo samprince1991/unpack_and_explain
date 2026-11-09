@@ -9,7 +9,7 @@ export type ClipStatus = "ok" | "missing" | "stale" | "preview";
 export const clipStatuses = (
   job: BlenderJob,
   manifest: BlenderManifest | null,
-): Record<BlenderClipId, ClipStatus> =>
+): Partial<Record<BlenderClipId, ClipStatus>> =>
   Object.fromEntries(
     job.clips.map((clip) => {
       const rendered = manifest?.clips[clip.id];
@@ -22,13 +22,13 @@ export const clipStatuses = (
             : "ok";
       return [clip.id, status];
     }),
-  ) as Record<BlenderClipId, ClipStatus>;
+  );
 
 // Problems that block a final render (anything goes in Studio). QA renders may accept
 // preview clips with the allowBlenderPreview prop; missing or stale clips always block.
 export const blenderProblems = (
   postId: string,
-  statuses: Record<BlenderClipId, ClipStatus>,
+  statuses: Partial<Record<BlenderClipId, ClipStatus>>,
   allowPreview = false,
 ) => {
   const bad = Object.entries(statuses).filter(

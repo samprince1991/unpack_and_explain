@@ -49,6 +49,8 @@ export const layout = {
     hook: { x: 0, y: 620, width: video.width, height: 610 },
     mechanism: { x: 0, y: 360, width: video.width, height: 870 },
     cover: { x: 0, y: 240, width: video.width, height: 1440 },
+    // Worlds (docs/specs/2026-11-09-reel-worlds-design.md) render every clip opaque, full-frame.
+    world: { x: 0, y: 0, width: video.width, height: video.height },
   },
 } as const;
 

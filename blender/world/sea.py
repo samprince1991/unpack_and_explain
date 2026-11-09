@@ -6,6 +6,7 @@ A schematic illustration, not a fluid simulation."""
 
 import bisect
 import math
+import sys
 
 import bpy
 from mathutils import Vector
@@ -19,6 +20,9 @@ FAR_X = 70.0
 FAR_Y = 90.0
 NX_NEAR, NX_FAR, NY = 260, 28, 200
 CUT_GAP = 0.02
+LENS = 30  # wider than the band clips' 50 mm: closer camera, a more monumental ship
+PUSH = 1.1  # slow push-in, as in build.py
+FRAME_Y = 0.42  # default screen height of the focus: above the captions
 WAKE_SLANT = 0.55  # the waves trail aft with distance from the hull (a V-shaped wake)
 WAKE_DECAY = 1.1
 FADE_NEAR, FADE_FAR = 7.0, 38.0  # the water dissolves into the sky toward the horizon
@@ -374,10 +378,11 @@ def _thin_tubes(parts):
             obj.data.update()
 
 
-def build_sea(scene, tokens, parts):
+def build_sea(scene, tokens, parts, flat_cut=False):
     """Builds the world around the model. Call after the Clip exists (it adds a lineset)."""
     level = parts["waterline"]["base"].z
-    cut = _cut_profile(parts["hull"]["objects"][0], level)
+    hull_cut = _cut_profile(parts["hull"]["objects"][0], level)
+    cut = (lambda _x: hull_cut(0.0)) if flat_cut else hull_cut
 
     scene.render.film_transparent = False
     _sky(scene, tokens)
@@ -433,7 +438,7 @@ def build_sea(scene, tokens, parts):
     for part in parts["waterline"]["objects"]:
         part.hide_render = True  # the real water surface replaces the drawn waterline
 
-    sea = {"level": level, "meshes": [water, edge], "material": material}
+    sea = {"level": level, "meshes": [water, edge], "material": material, "module": sys.modules[__name__]}
     set_swell(sea, 0.0)
     return sea
 
@@ -459,24 +464,6 @@ def set_swell(sea, seconds, frame=None):
                 blocks[f"swell{i}c"].keyframe_insert("value", frame=frame)
 
 
-def flatten_lines(parts, sea, start, end):
-    """The wave lines settle into the surface as the waves cancel, then disappear."""
-    for name in ("bowwave", "bulbwave"):
-        pivot = parts[name]["pivot"]
-        pivot.keyframe_insert("scale", frame=start)
-        pivot.keyframe_insert("location", frame=start)
-        pivot.scale.z = 0.02
-        pivot.location.z = sea["level"]
-        pivot.keyframe_insert("scale", frame=end)
-        pivot.keyframe_insert("location", frame=end)
-        for obj in parts[name]["objects"]:
-            with interpolation("CONSTANT"):
-                obj.hide_render = False
-                obj.keyframe_insert("hide_render", frame=0)
-                obj.hide_render = True
-                obj.keyframe_insert("hide_render", frame=end)
-
-
 def animate_ambient(sea, frames, fps):
     """The swell travels and the ripples drift for the whole clip."""
     with interpolation("LINEAR"):
@@ -486,3 +473,35 @@ def animate_ambient(sea, frames, fps):
         for f in (0, frames):
             socket.default_value = (BUMP_DRIFT * f, BUMP_DRIFT * f * 0.5, 0.0)
             socket.keyframe_insert("default_value", frame=f)
+
+
+def settle(sea, start, end):
+    """The bulb's wave adds to the bow wave and the surface flattens (partly: they don't fully cancel)."""
+    set_waves(sea, 1.0, 0.0, frame=start)
+    set_waves(sea, 1.0, 1.0, frame=end)
+
+
+def build_clip_world(scene, tokens, parts, camera_object, clip, fps):
+    """The whole world for one clip: sea, water state, lens and framing. Returns the sea."""
+    start = clip["start"]
+    backdrop = clip["id"] == "backdrop"
+    sea = build_sea(scene, tokens, parts, flat_cut=backdrop)
+    set_waves(sea, 1.0, 0.0 if start.get("sea") == "bowWave" else 1.0, frame=0)
+    if clip["frames"] > 1:
+        animate_ambient(sea, clip["frames"], fps)
+
+    camera = camera_object.data
+    camera.animation_data_clear()  # the band clips' 50 mm push-in
+    with interpolation("LINEAR"):
+        camera.lens = LENS
+        camera.keyframe_insert("lens", frame=0)
+        camera.lens = LENS * (PUSH if clip["frames"] > 1 else 1)
+        camera.keyframe_insert("lens", frame=max(clip["frames"], 1))
+    # Shift is a fraction of the (horizontal) sensor width: negative lifts the focus up the frame.
+    camera.shift_y = (start.get("frameY", FRAME_Y) - 0.5) * clip["height"] / clip["width"]
+
+    if backdrop:
+        for info in parts.values():
+            for obj in info["objects"]:
+                obj.hide_render = True
+    return sea

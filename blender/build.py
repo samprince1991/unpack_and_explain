@@ -35,6 +35,8 @@ LENS = 50
 SENSOR = 36
 COLUMN_FRACTION = 780 / 1080  # keep the model inside the 540-centered column
 HIDDEN = 0.001
+SEA_FLAT = 0.02  # how flat the wave lines get as they settle into the water
+SEA_SETTLE = 30  # frames for the water to flatten when the waves cancel
 
 
 @contextmanager
@@ -225,6 +227,7 @@ class Clip:
             job["fps"],
             clip["start"].get("drift", ORBIT_DEG_PER_S),
         )
+        self.sea = None  # set by the sea world (see build_clip)
         self.radius = radius
         self.styles = look.setup_freestyle(scene, {p: v["coll"] for p, v in parts.items()}, tokens)
         self.exploded = False
@@ -250,6 +253,8 @@ class Clip:
     def _explode_offset(self, part, exploded):
         order = self.model["explode"]["order"]
         if exploded and part in self.model["explode"].get("away", []):
+            if self.sea:  # settles into the water surface instead of dropping through the picture
+                return Vector((0, 0, self.sea["level"] - self.parts[part]["base"].z))
             return Vector((0, 0, -AWAY))  # drops below, out of the way of the camera
         if not exploded or part not in order:
             return Vector()
@@ -295,7 +300,10 @@ class Clip:
                 gone = HIDDEN if exploded else 1.0
                 if glide:
                     pivot.keyframe_insert("scale", frame=frame)
-                pivot.scale = (gone, gone, gone)
+                if self.sea:
+                    pivot.scale = (1, 1, SEA_FLAT if exploded else 1)
+                else:
+                    pivot.scale = (gone, gone, gone)
                 pivot.keyframe_insert("scale", frame=frame + (GLIDE if glide else 0))
                 # Shrunk to HIDDEN, Freestyle still draws a speck: hide it outright while away
                 # (hidden once it has shrunk, shown again as soon as it starts growing back).
@@ -505,6 +513,8 @@ class Clip:
         elif kind in ("explode", "collapse"):
             exploding = kind == "explode"
             self.set_explode(exploding, f)
+            if self.sea and exploding:
+                self.sea["module"].settle(self.sea, f, f + SEA_SETTLE)
             self.move_camera(
                 {
                     "target": self._wide_target(shot),
@@ -586,6 +596,11 @@ def build_clip(scene, job, clip, tokens, preview, repo_root):
     look.setup_lights(radius)
     look.setup_glow(scene)
     c = Clip(scene, job, clip, tokens, parts, radius)
+    if job.get("world"):
+        # Before c.start(): the sea reads the wave parts where they rest, and start() moves them.
+        from world import sea as sea_world
+
+        c.sea = sea_world.build_clip_world(scene, tokens, parts, c.rig.cam, clip, job["fps"])
     c.start()
     for beat in clip["beats"]:
         c.apply(beat)
