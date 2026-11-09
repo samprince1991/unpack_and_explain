@@ -8,7 +8,7 @@
 
 **Tech:** Blender 4.5 LTS (Eevee, Freestyle), Remotion, Vitest. Spec: `docs/specs/2026-11-09-reel-worlds-design.md`.
 
-**Progress:** Gate 1 passed (user, 2026-11-09). Motion test rendered; user review pending before Part 2.
+**Progress:** Part 2 built and post 26 converted (2026-11-09). Full render, QA and the side-by-side are done; the user decides whether worlds become the default. CLAUDE.md and the per-post workflow change only if they do.
 
 ---
 

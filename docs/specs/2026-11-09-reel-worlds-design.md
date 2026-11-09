@@ -35,7 +35,7 @@ only (proves nothing about later reels).
 
 ## Gate 1: three still frames
 
-Before any pipeline change, a standalone script (`blender/world/styleframes.py`) renders three
+Before any pipeline change, a standalone script (`blender/world/styleframes.py`, deleted once Gate 1 passed) renders three
 full-size frames for the user to compare with the current ones:
 
 1. Wide bow in the sea.
@@ -52,7 +52,7 @@ pilot stops here.
 lives in `blender/world/`, with one preset now. Posts without `world` render exactly as today, and
 their clip hashes don't change.
 
-**Look.** Opaque full-frame render: animated sea, fog, horizon, a soft shaft of light. Colors come
+**Look.** Opaque full-frame render: animated sea, fog, horizon and sun glow (light shafts were tried and dropped: they never rendered, so dust comes from `DustField` in Remotion). Colors come
 from new muted `env.*` tokens in `src/brand/tokens.ts`, passed through `tokens.json`. Amber remains
 the only key color, one per beat. Freestyle outlines stay on the model's parts only (linesets are
 already per part collection), which keeps the signature look and means `qc.py` still checks only

@@ -186,7 +186,7 @@ export const buildBlenderJob = (script: PostScript, vo: VoManifest, fps: number)
         frames: Math.max(length("setup"), length("payoff")),
         width: areas.backdrop.width,
         height: areas.backdrop.height,
-        start: { yaw: 0, pitch: 7, zoom: 3, drift: 0, frameY: 0.3, exploded: true },
+        start: { yaw: 0, pitch: 7, zoom: 3, drift: 0, frameY: 0.5, exploded: true },
         beats: [],
       }),
     );
