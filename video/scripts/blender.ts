@@ -34,6 +34,7 @@ const exportTokens = () => {
       amber: colors.amber[500],
       bgBase: colors.bg.base,
       bgRaised: colors.bg.raised,
+      env: colors.env,
     },
     lines: LINE,
   };

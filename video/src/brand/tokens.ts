@@ -14,6 +14,16 @@ export const colors = {
   // Neutral line art for all scene diagrams. Teal is reserved for brand moments
   // (logo, step badges, CTA, FACT); amber marks the one key element per scene.
   diagram: { stroke: "#e2e8f0", soft: "#94a3b8", faint: "#475569", fill: "#1e293b" },
+  // Muted world tones for Blender environments (docs/specs/2026-11-09-reel-worlds-design.md).
+  // Backdrop only: amber stays the one key color, and scene objects keep diagram colors.
+  env: {
+    skyTop: "#111c30",
+    horizon: "#6b7a8c",
+    surface: "#223a52",
+    seaShallow: "#1b3650",
+    seaDeep: "#081320",
+    light: "#f6d7a3",
+  },
 } as const;
 
 export const withAlpha = (hex: string, alpha: number): string => {
