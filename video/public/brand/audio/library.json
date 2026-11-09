@@ -1,7 +1,14 @@
 {
   "sfx": {
     "pop": "brand/audio/pop.mp3",
-    "chime": "brand/audio/chime.mp3"
+    "chime": "brand/audio/chime.mp3",
+    "tick": "brand/audio/tick.mp3",
+    "thud": "brand/audio/thud.mp3",
+    "swell": "brand/audio/swell.mp3",
+    "sweep": "brand/audio/sweep.mp3",
+    "snap": "brand/audio/snap.mp3",
+    "stamp": "brand/audio/stamp.mp3",
+    "buzz": "brand/audio/buzz.mp3"
   },
   "music": null
 }

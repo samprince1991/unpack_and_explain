@@ -29,6 +29,7 @@ CLOSE_MIN = 1.6
 CLOSE_MAX = 3.5
 PUSH = 1.1  # slow push-in over every clip (lens), so the camera never sits still
 FSTOP = 5.6  # at zoom 1; scaled with zoom so close-ups keep the same light depth of field
+SHIFT_FRAMES = 14  # a `shift` beat: a part slides, flex parts (springs) stretch with it
 AWAY = 0.6  # how far "away" parts (e.g. a casing) drop while they shrink out of view
 LENS = 50
 SENSOR = 36
@@ -146,7 +147,7 @@ def group_parts(meshes, model, tokens):
         lo = Vector((min(c[i] for c in corners) for i in range(3)))
         hi = Vector((max(c[i] for c in corners) for i in range(3)))
         size = (hi - lo).length / 2  # half the box diagonal: sizes the close-up
-        parts[part] = {"pivot": pivot, "coll": coll, "mat": mat, "base": center.copy(), "size": size, "objects": objs}
+        parts[part] = {"pivot": pivot, "coll": coll, "mat": mat, "base": center.copy(), "size": size, "extent": hi - lo, "objects": objs}
     return parts
 
 
@@ -163,7 +164,7 @@ def _fit_distance(radius, width, height):
 class Rig:
     """focus (target location) > drift (slow orbit) > rig (yaw, pitch) > camera (distance)."""
 
-    def __init__(self, scene, radius, width, height, frames, fps):
+    def __init__(self, scene, radius, width, height, frames, fps, drift=ORBIT_DEG_PER_S):
         self.focus = _empty("focus")
         self.drift = _empty("drift", parent=self.focus)
         self.rig = _empty("rig", parent=self.drift)
@@ -187,12 +188,16 @@ class Rig:
         with interpolation("LINEAR"):
             self.drift.rotation_euler = (0, 0, 0)
             self.drift.keyframe_insert("rotation_euler", index=2, frame=0)
-            self.drift.rotation_euler = (0, 0, math.radians(ORBIT_DEG_PER_S * max(frames, 1) / fps))
+            self.drift.rotation_euler = (0, 0, math.radians(drift * max(frames, 1) / fps))
             self.drift.keyframe_insert("rotation_euler", index=2, frame=max(frames, 1))
 
     def set(self, state, frame):
         self.rig.rotation_euler = (math.radians(-state["pitch"]), 0, math.radians(state["yaw"]))
         self.cam.location = (0, -self.base / state["zoom"], 0)
+        # The camera looks along the rig's +Y, so turning around Y rolls it around its view
+        # axis. Negative: a positive roll tilts the picture clockwise (the model's +X goes down).
+        self.cam.rotation_euler = (math.radians(90), math.radians(-state.get("roll", 0)), 0)
+        self.cam.keyframe_insert("rotation_euler", frame=frame)
         self.focus.location = state["target"]
         self.cam.data.dof.aperture_fstop = FSTOP * max(state["zoom"], 1.0)
         self.cam.data.dof.keyframe_insert("aperture_fstop", frame=frame)
@@ -211,7 +216,15 @@ class Clip:
         self.tokens = tokens
         self.parts = parts
         self.frames = clip["frames"]
-        self.rig = Rig(scene, radius, clip["width"], clip["height"], self.frames, job["fps"])
+        self.rig = Rig(
+            scene,
+            radius,
+            clip["width"],
+            clip["height"],
+            self.frames,
+            job["fps"],
+            clip["start"].get("drift", ORBIT_DEG_PER_S),
+        )
         self.radius = radius
         self.styles = look.setup_freestyle(scene, {p: v["coll"] for p, v in parts.items()}, tokens)
         self.exploded = False
@@ -219,12 +232,22 @@ class Clip:
         self.labels = []
         self.cuts = []  # frames where the camera or the key part changes (labels end there)
         self.spins = []  # {"part", "start", "end"}; keyed in finish() once ends are known
+        self.shifts = {}  # part -> offset from `shift` beats, on top of the explode offset
         start = clip["start"]
-        self.cam = {"yaw": start["yaw"], "pitch": start["pitch"], "zoom": start["zoom"], "target": Vector()}
+        self.cam = {
+            "yaw": start["yaw"],
+            "pitch": start["pitch"],
+            "zoom": start["zoom"],
+            "roll": start.get("roll", 0),
+            "target": parts[start["aim"]]["base"].copy() if start.get("aim") else Vector(),
+        }
         self.start_zoom = start["zoom"]
 
     # explode offsets
     def _offset(self, part, exploded):
+        return self._explode_offset(part, exploded) + self.shifts.get(part, Vector())
+
+    def _explode_offset(self, part, exploded):
         order = self.model["explode"]["order"]
         if exploded and part in self.model["explode"].get("away", []):
             return Vector((0, 0, -AWAY))  # drops below, out of the way of the camera
@@ -250,6 +273,7 @@ class Clip:
             "zoom": shot.get("zoom", self.close_zoom(part)),
             "yaw": shot.get("yaw"),
             "pitch": shot.get("pitch"),
+            "roll": shot.get("roll"),
         }
 
     def explode_zoom(self):
@@ -277,6 +301,10 @@ class Clip:
                 # (hidden once it has shrunk, shown again as soon as it starts growing back).
                 for obj in info["objects"]:
                     with interpolation("CONSTANT"):
+                        if exploded and glide:
+                            # Without this key the part is hidden from frame 0.
+                            obj.hide_render = False
+                            obj.keyframe_insert("hide_render", frame=frame)
                         obj.hide_render = exploded
                         obj.keyframe_insert("hide_render", frame=frame + (GLIDE if exploded and glide else 0))
             if glide:
@@ -321,6 +349,15 @@ class Clip:
         start = self.clip["start"]
         for part in self.parts:
             self._paint(part, False, 0)
+        # appearOnly parts stay hidden in every clip until an `appear` beat.
+        for part in self.model.get("appearOnly", []):
+            pivot = self.parts[part]["pivot"]
+            pivot.scale = (HIDDEN, HIDDEN, HIDDEN)
+            pivot.keyframe_insert("scale", frame=0)
+            for obj in self.parts[part]["objects"]:
+                with interpolation("CONSTANT"):
+                    obj.hide_render = True
+                    obj.keyframe_insert("hide_render", frame=0)
         if start.get("exploded"):
             self.set_explode(True, 0, glide=False)
             self.cam["zoom"] *= self.explode_zoom()
@@ -348,6 +385,48 @@ class Clip:
                     obj.keyframe_insert("hide_render", frame=0)
                     obj.hide_render = False
                     obj.keyframe_insert("hide_render", frame=at)
+
+    def appear(self, part, frame):
+        pivot = self.parts[part]["pivot"]
+        pivot.scale = (HIDDEN, HIDDEN, HIDDEN)
+        pivot.keyframe_insert("scale", frame=frame)
+        pivot.scale = (1, 1, 1)
+        pivot.keyframe_insert("scale", frame=frame + ENTER)
+        for obj in self.parts[part]["objects"]:
+            with interpolation("CONSTANT"):
+                obj.hide_render = False
+                obj.keyframe_insert("hide_render", frame=frame)
+
+    def _slide(self, part, offset, frame):
+        pivot = self.parts[part]["pivot"]
+        pivot.location = self.center(part)
+        pivot.keyframe_insert("location", frame=frame)
+        self.shifts[part] = offset
+        pivot.location = self.center(part)
+        pivot.keyframe_insert("location", frame=frame + SHIFT_FRAMES)
+
+    def shift(self, part, by, frame):
+        """Slides a part to `by` (offset from its rest place, 0 = back home). The model's flex
+        parts keep one end fixed and stretch so the other end stays on the moving part."""
+        by = Vector(by)
+        self._slide(part, by, frame)
+        flex = self.model.get("flex")
+        if not flex:
+            return
+        axis = "xyz".index(flex["axis"])
+        for name, anchor in flex["parts"].items():
+            info = self.parts[name]
+            pivot = info["pivot"]
+            length = info["extent"][axis]
+            pivot.keyframe_insert("scale", index=axis, frame=frame)
+            scale = list(pivot.scale)
+            sign = 1 if anchor == "min" else -1
+            scale[axis] = (length + sign * by[axis]) / length
+            pivot.scale = scale
+            pivot.keyframe_insert("scale", index=axis, frame=frame + SHIFT_FRAMES)
+            half = Vector()
+            half[axis] = by[axis] / 2  # the fixed end stays put, so the middle moves half as far
+            self._slide(name, half, frame)
 
     def spin(self, part, frame):
         self.spins.append({"part": part, "start": frame, "end": None})
@@ -407,6 +486,10 @@ class Clip:
             # The camera travels with the dot and lands on a close-up of the destination.
             self.move_camera(self.close_up(dst, shot or {}), frame, glide=FLOW_FRAMES)
 
+    def _wide_target(self, shot):
+        """Wide shots aim at the model's centre, or at the part named by `aim`."""
+        return self.center(shot["aim"]) if shot.get("aim") else Vector()
+
     def apply(self, beat):
         f = beat["frame"]
         shot = beat.get("shot") or {}
@@ -424,28 +507,33 @@ class Clip:
             self.set_explode(exploding, f)
             self.move_camera(
                 {
-                    "target": Vector(),
+                    "target": self._wide_target(shot),
                     "zoom": shot.get("zoom", self.wide_zoom(exploding)),
                     "yaw": shot.get("yaw"),
                     "pitch": shot.get("pitch"),
+                    "roll": shot.get("roll"),
                 },
                 f,
             )
         elif kind == "spin":
             self.spin(beat["part"], f)
+        elif kind == "shift":
+            self.shift(beat["part"], beat["by"], f)
+        elif kind == "appear":
+            self.appear(beat["part"], f)
         elif kind == "stop":
             self.stop(f)
         elif kind == "flow":
             self.flow(beat["part"], beat["to"], f, follow=beat.get("follow", True), shot=shot)
         elif kind == "wide":
             self.move_camera(
-                {"target": Vector(), "zoom": shot.get("zoom", self.wide_zoom()), "yaw": shot.get("yaw"), "pitch": shot.get("pitch")},
+                {"target": self._wide_target(shot), "zoom": shot.get("zoom", self.wide_zoom()), "yaw": shot.get("yaw"), "pitch": shot.get("pitch"), "roll": shot.get("roll")},
                 f,
             )
         elif kind == "label":
             self.labels.append({"text": beat["label"], "part": beat["part"], "from": f})
         elif kind == "shot":
-            self.move_camera({"yaw": shot.get("yaw"), "pitch": shot.get("pitch"), "zoom": shot.get("zoom")}, f)
+            self.move_camera({"yaw": shot.get("yaw"), "pitch": shot.get("pitch"), "zoom": shot.get("zoom"), "roll": shot.get("roll")}, f)
             if shot.get("keyPart"):
                 self.set_amber(shot["keyPart"], f)
             if "exploded" in shot:

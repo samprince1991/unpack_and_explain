@@ -1,0 +1,17 @@
+{
+  "postId": "post-21-phone-accelerometer",
+  "sounds": {
+    "springwobble": {
+      "prompt": "tiny metal spring wobbling briefly, soft and delicate",
+      "seconds": 1,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-21-phone-accelerometer/sfx/springwobble.mp3"
+    },
+    "fallrush": {
+      "prompt": "soft rush of air as a small object falls, gentle whoosh",
+      "seconds": 1.5,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-21-phone-accelerometer/sfx/fallrush.mp3"
+    }
+  }
+}

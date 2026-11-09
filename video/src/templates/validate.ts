@@ -1,6 +1,6 @@
 import { TEMPLATE_SFX, type SfxName } from "../brand/audio";
 import { MEME_DEFAULT_SECONDS, MEME_MAX_SECONDS } from "../brand/memes";
-import { isModelId, modelParts } from "../brand/models";
+import { isModelId, modelParts, models, type ModelEntry } from "../brand/models";
 import { isBlenderPlan } from "./blenderJob";
 import { brand } from "../brand/tokens";
 import { normalizeWord } from "./cues";
@@ -111,6 +111,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
     return;
   }
   const parts = modelParts(plan.model);
+  const appearOnly: readonly string[] = (models[plan.model] as ModelEntry).appearOnly ?? [];
   const checkPart = (where: string, part: string | undefined) => {
     if (part !== undefined && !parts.includes(part)) {
       errors.push(`${where}: part "${part}" is not in model ${plan.model} (${parts.join(", ")})`);
@@ -118,6 +119,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
   };
   const checkShot = (where: string, shot: Partial<Shot>) => {
     checkPart(where, shot.keyPart);
+    checkPart(where, shot.aim);
     if (shot.zoom !== undefined && shot.zoom <= 0) {
       errors.push(`${where}: zoom must be > 0`);
     }
@@ -131,7 +133,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       if (!spokenIn(script, section, beat.cue)) {
         errors.push(`${where}: cue "${beat.cue}" is not spoken in the ${section} section`);
       }
-      if (["focus", "spin", "flow", "label"].includes(beat.do) && !beat.part) {
+      if (["focus", "spin", "flow", "label", "shift", "appear"].includes(beat.do) && !beat.part) {
         errors.push(`${where}: "${beat.do}" needs a part`);
       }
       if (beat.follow !== undefined && beat.do !== "flow") {
@@ -139,6 +141,15 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       }
       if (beat.do === "flow" && !beat.to) {
         errors.push(`${where}: "flow" needs a destination part (to)`);
+      }
+      if (beat.do === "shift" && !beat.by) {
+        errors.push(`${where}: "shift" needs an offset (by)`);
+      }
+      if (beat.by && beat.do !== "shift") {
+        errors.push(`${where}: "by" only applies to shift`);
+      }
+      if (beat.do === "appear" && beat.part && !appearOnly.includes(beat.part)) {
+        errors.push(`${where}: part "${beat.part}" is not in the model's appearOnly list`);
       }
       if (beat.do === "label" && !beat.label?.trim()) {
         errors.push(`${where}: "label" needs label text`);

@@ -30,6 +30,11 @@ export type ModelEntry = {
   // Parts whose 52-80 degree edges really are sharp (flat blades, boxes), so QC lets them
   // draw as lines. Round parts never go here: give them more segments instead.
   hardEdges?: readonly string[];
+  // Parts hidden in every clip until an `appear` beat (arrows, axes).
+  appearOnly?: readonly string[];
+  // `shift` beats stretch these parts along `axis`, keeping the end named by the part's
+  // value fixed (a spring on an anchor), so the other end stays on the part that slides.
+  flex?: { axis: "x" | "y" | "z"; parts: Readonly<Record<string, "min" | "max">> };
   useFor: string;
 };
 
@@ -136,6 +141,47 @@ export const models = {
     },
     spinAxis: "x",
     useFor: "Ships, hulls, bow waves, wave cancelling, fuel use at sea (idea 26)",
+  },
+  "mems-accelerometer": {
+    title: "Phone with an accelerometer chip: LGA package, control chip, bond wires, MEMS die, perforated weight with comb fingers, folded springs, axis arrows",
+    file: "models/mems-accelerometer.glb",
+    source: "Procedural, blender/models/mems_accelerometer.py",
+    license: "own",
+    parts: {
+      phone: ["phone"],
+      lid: ["lid"],
+      base: ["base"],
+      asic: ["asic"],
+      wires: ["wires"],
+      frame: ["frame"],
+      weight: ["weight"],
+      fixedtop: ["fixedtop"],
+      fixedbottom: ["fixedbottom"],
+      springleft: ["springleft"],
+      springright: ["springright"],
+      axisx: ["axisx"],
+      axisy: ["axisy"],
+      ground: ["ground"],
+    },
+    keyPart: "weight",
+    // Nothing spreads out (spacing 0): "explode" means opening up. The phone and the chip's
+    // lid are `away` parts, so explode removes them and leaves the die.
+    explode: {
+      axis: "y",
+      order: ["base", "asic", "wires", "frame", "fixedtop", "fixedbottom", "springleft", "springright", "weight"],
+      spacing: 0,
+      away: ["phone", "lid"],
+    },
+    spinAxis: "z",
+    appearOnly: ["axisx", "axisy", "ground"],
+    // The arrows only appear after the lid has gone, so the two are never on screen together.
+    contacts: [
+      ["axisx", "lid"],
+      ["axisy", "lid"],
+      ["ground", "lid"],
+    ],
+    flex: { axis: "x", parts: { springleft: "min", springright: "max" } },
+    useFor: "Phone sensors, MEMS, accelerometers, tilt and free fall, tiny machines in chips (idea 21)",
   },
 } as const satisfies Record<string, ModelEntry>;
 
