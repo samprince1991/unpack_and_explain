@@ -475,6 +475,14 @@ def animate_ambient(sea, frames, fps):
             socket.keyframe_insert("default_value", frame=f)
 
 
+def show_edge(sea, visible, frame):
+    """The drawn cut edge steps aside while the wave lines are up: it would double the bow wave."""
+    edge = sea["meshes"][1]
+    with interpolation("CONSTANT"):
+        edge.hide_render = not visible
+        edge.keyframe_insert("hide_render", frame=frame)
+
+
 def settle(sea, start, end):
     """The bulb's wave adds to the bow wave and the surface flattens (partly: they don't fully cancel)."""
     set_waves(sea, 1.0, 0.0, frame=start)
@@ -500,6 +508,13 @@ def build_clip_world(scene, tokens, parts, camera_object, clip, fps):
     # Shift is a fraction of the (horizontal) sensor width: negative lifts the focus up the frame.
     camera.shift_y = (start.get("frameY", FRAME_Y) - 0.5) * clip["height"] / clip["width"]
 
+    # Nothing sits in front of the wave lines, and Freestyle's occlusion hides long stretches
+    # of a line near where the two cross.
+    settings = scene.view_layers[0].freestyle_settings
+    for name in ("bowwave", "bulbwave"):
+        settings.linesets[f"lines-{name}"].select_by_visibility = False
+
+    show_edge(sea, not backdrop, 0)  # the backdrop sits behind 2D drawings with their own water line
     if backdrop:
         for info in parts.values():
             for obj in info["objects"]:

@@ -515,6 +515,8 @@ class Clip:
             self.set_explode(exploding, f)
             if self.sea and exploding:
                 self.sea["module"].settle(self.sea, f, f + SEA_SETTLE)
+            if self.sea:
+                self.sea["module"].show_edge(self.sea, exploding, f + GLIDE)
             self.move_camera(
                 {
                     "target": self._wide_target(shot),

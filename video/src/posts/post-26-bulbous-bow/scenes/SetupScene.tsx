@@ -29,7 +29,7 @@ export const SetupScene: React.FC = () => {
         <SceneCanvas>
           <Camera duration={durationInFrames}>
             <Interactive.G name="Bow pushing water">
-              <WaveProfile box={BOW} crest={crest} crestAccent={frame >= wave && frame < fuel} />
+              <WaveProfile box={BOW} waterBody={false} crest={crest} crestAccent={frame >= wave && frame < fuel} />
             </Interactive.G>
             <Interactive.G name="Fuel gauge">
               <Reveal at={fuel - 6}>
