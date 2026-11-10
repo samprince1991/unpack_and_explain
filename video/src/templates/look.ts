@@ -18,6 +18,9 @@ export const transitionMixes = {
   chapter: { hook: "zoomDip", setup: "dip", mechanism: "zoomDip", payoff: "iris", congrats: "dip" },
   focus: { hook: "dip", setup: "iris", mechanism: "push", payoff: "iris", congrats: "zoomDip" },
   classic: { hook: "dip", setup: "dip", mechanism: "dip", payoff: "dip", congrats: "dip" },
+  // Posts with a Blender world (set by the Reel template, not the rotation): only plain fades,
+  // since moving or masking a full-frame picture shows its edges.
+  world: { hook: "dip", setup: "dip", mechanism: "dip", payoff: "dip", congrats: "dip" },
 } as const satisfies Record<string, Record<SceneEntry, SectionTransitionName>>;
 export type TransitionMix = keyof typeof transitionMixes;
 const ROTATING_MIXES = ["steady", "process", "chapter", "focus"] as const;

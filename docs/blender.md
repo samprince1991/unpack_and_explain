@@ -52,8 +52,17 @@ Every new reel renders inside a world (decided 2026-11-10, see `docs/design-deci
 
 `world: "sea"` in the plan renders every clip opaque and full-frame inside that world, and adds a `backdrop` clip that plays dimmed behind the 2D setup and payoff. Code: `blender/world/`. Colors: the muted `env.*` tokens.
 
-- The sea needs a model with a `waterline` part (`validateScript` checks it).
-- Extra shot fields: `frameY` (screen height of the focus, 0 top to 1 bottom, default 0.42, above the captions) and, on a clip's start, `sea` (`calm` or `bowWave`).
+Two worlds so far:
+
+| World | Scene | Use for |
+|---|---|---|
+| `sea` | Open sea cut in section along a ship's hull, so the part below the waterline shows. Needs a model with a `waterline` part (`validateScript` checks it) | Ships, hulls, anything that sits in the water |
+| `coast` | Sea, beach, dunes, grassland with a road, fence, lamps and power lines, hills fading into haze. Any model | Anything that sits on water or land: hovercraft, vehicles, bridges, outdoor machines |
+
+- **Coast placements** (clip start field `coast`): `sea` (on the water, the beach far ahead; default), `shore` (on the water right at the beach), `land` (on the grass, the road and lamps behind it, the sea far back). The backdrop clip always shows the shore.
+- **Hovercraft effects:** a model with a `skirt` part presses a shallow dip into the water and gets a ring of spray around the skirt, when it's over water.
+- The coast world draws no lines and fades into opaque haze with distance (never to transparent, which dithers into noise).
+- Extra shot fields: `frameY` (screen height of the focus, 0 top to 1 bottom, default 0.42, above the captions) and, on a clip's start, `sea` (`calm` or `bowWave`, sea world) or `coast` (`sea`, `shore` or `land`, coast world).
 - Freestyle lines stay on the model's parts, so `qc.py` still checks only the model.
 - `BLENDER_WORLD_VERSION` marks renders stale when `blender/world/*.py` changes the picture.
 
@@ -93,4 +102,4 @@ After changing a model's geometry, rebuild its GLB. Every post rendered with mod
 
 ## Render time
 
-Three workers on the RTX 3000 Ada laptop: about 0.4-0.5 s a frame for plain clips, about 2.5 s a frame for the sea world at 1080x1920. Iterate with `--frames`, `--preview` and `--only`.
+Three workers on the RTX 3000 Ada laptop: about 0.4-0.5 s a frame for plain clips, about 2.5 s a frame for the sea world at 1080x1920. The coast world renders a full-size still in about 10 s including scene build. Iterate with `--frames`, `--preview` and `--only`.

@@ -29,6 +29,8 @@ Each post's look picks a transition mix. `Reel` also takes `transitions={{ mecha
 - `iris`: zoom into a detail
 - `wipe`: before/after, myth/fact
 
+**World posts use `dip` everywhere** (the `world` mix, set by `Reel`, not the rotation). Each section there is an opaque full-frame picture, so a push slides the frame edge into view, an iris cuts a hard circle through the scenery and a zoom dip shrinks the picture off the frame edges.
+
 Scenes are transparent over one background, so every transition hands off sequentially or with complementary masks. Never use stock `@remotion/transitions` presentations (slide, wipe, iris...) directly: they stack the two scenes.
 
 ## Animation libraries

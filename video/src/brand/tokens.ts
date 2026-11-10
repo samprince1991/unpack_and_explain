@@ -23,6 +23,11 @@ export const colors = {
     seaShallow: "#1b3650",
     seaDeep: "#081320",
     light: "#f6d7a3",
+    // Coast world: beach, grassland, roads and the posts, poles and lamps on them.
+    sand: "#4d4838",
+    land: "#1f2c25",
+    road: "#1b2029",
+    structure: "#3b4553",
   },
 } as const;
 

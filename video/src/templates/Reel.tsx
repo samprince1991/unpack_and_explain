@@ -127,12 +127,14 @@ export const Reel: React.FC<
   const cta = timing("cta");
   const sourceFrom = Math.max(0, cta.from - SOURCE_LEAD_SECONDS * fps);
   const look = pickLook(script.postNumber, script.look);
-  const mix: TransitionMap = {
-    ...transitionMixes[look.transitions],
-    ...transitions,
-  };
   const has3d = isBlenderPlan(script.blender);
   const world = isBlenderPlan(script.blender) ? script.blender.world : undefined;
+  // World posts fill every section with an opaque full-frame picture, so a push, iris or
+  // zoom dip shows its hard edges; they fade through the background instead.
+  const mix: TransitionMap = {
+    ...transitionMixes[world ? "world" : look.transitions],
+    ...transitions,
+  };
   const sfxCues = isSfxPlan(script.sfx)
     ? resolveSfxCues(script.sfx, vo.sections, sections, fps, durations.crossfade)
     : [];

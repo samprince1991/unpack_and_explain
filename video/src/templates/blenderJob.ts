@@ -113,7 +113,7 @@ const resolveBeats = (
     .sort((a, b) => a.frame - b.frame);
 };
 
-const shotOf = ({ yaw, pitch, zoom, keyPart, exploded, roll, drift, aim, frameY, sea }: Shot): Shot => ({
+const shotOf = ({ yaw, pitch, zoom, keyPart, exploded, roll, drift, aim, frameY, sea, coast }: Shot): Shot => ({
   yaw,
   pitch,
   zoom,
@@ -124,6 +124,7 @@ const shotOf = ({ yaw, pitch, zoom, keyPart, exploded, roll, drift, aim, frameY,
   aim,
   frameY,
   sea,
+  coast,
 });
 
 // The job Blender renders: one clip per 3D moment, frame-exact against the VO.

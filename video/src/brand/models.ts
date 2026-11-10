@@ -210,6 +210,34 @@ export const models = {
     flex: { axis: "x", parts: { springleft: "min", springright: "max" } },
     useFor: "Phone sensors, MEMS, accelerometers, tilt and free fall, tiny machines in chips (idea 21)",
   },
+  hovercraft: {
+    title: "Light open-cockpit hovercraft: finger skirt, rounded hull, bench, one big ducted fan with a wire guard, rudder vanes, air cushion and push arrows",
+    file: "models/hovercraft.glb",
+    source: "Procedural, blender/models/hovercraft.py",
+    license: "own",
+    parts: {
+      skirt: ["skirt"],
+      hull: ["hull"],
+      seat: ["seat"],
+      duct: ["duct"],
+      guard: ["guard"],
+      fan: ["fan"],
+      rudders: ["rudders"],
+      cushion: ["cushion"],
+      pushgrid: ["pushgrid"],
+      leaks: ["leaks"],
+    },
+    keyPart: "cushion",
+    // Nothing spreads out (spacing 0). The skirt is the `away` part: "explode" drops it out of
+    // view so the air cushion under the hull shows; "collapse" brings it back.
+    explode: { axis: "z", order: ["hull", "seat"], spacing: 0, away: ["skirt"] },
+    // The one fan (lift and thrust) spins about the forward axis.
+    spinAxis: "x",
+    // The air under the hull, the arrows it pushes up with and the air leaking out.
+    appearOnly: ["cushion", "pushgrid", "leaks"],
+    hardEdges: ["fan", "rudders"],
+    useFor: "Hovercraft, air cushions, lift from pressure x area, amphibious craft (idea 27; coast world)",
+  },
 } as const satisfies Record<string, ModelEntry>;
 
 export type ModelId = keyof typeof models;

@@ -193,7 +193,7 @@ describe("validateScript: blender plan", () => {
   });
 
   it("requires a world unless the post opts out with a reason", () => {
-    const required = 'blender.world is required (sea); add a world for the topic (docs/blender.md)';
+    const required = 'blender.world is required (sea, coast); add a world for the topic (docs/blender.md)';
     expect(validateScript(withPlan({ ...plan, worldOptOut: undefined })).errors).toContain(required);
     expect(validateScript(withPlan({ ...plan, worldOptOut: " " })).errors).toContain(required);
   });
@@ -209,9 +209,20 @@ describe("validateScript: blender plan", () => {
     expect(validateScript(withPlan(sea)).errors).toEqual([]);
   });
 
+  it("accepts the coast world with a placement, and rejects a placement elsewhere", () => {
+    const coast = { ...plan, worldOptOut: undefined, world: "coast", opener: { ...plan.opener, coast: "shore" } };
+    expect(validateScript(withPlan(coast)).errors).toEqual([]);
+    expect(validateScript(withPlan({ ...coast, opener: { ...plan.opener, coast: "moon" } })).errors).toContain(
+      "blender.opener: coast must be sea, shore, land",
+    );
+    expect(validateScript(withPlan({ ...plan, opener: { ...plan.opener, coast: "land" } })).errors).toContain(
+      "blender.opener: coast only applies to the coast world",
+    );
+  });
+
   it("rejects unknown worlds, and the sea on a model with no waterline", () => {
     expect(validateScript(withPlan({ ...plan, world: "moon" })).errors).toContain(
-      'blender.world "moon" is unknown (sea)',
+      'blender.world "moon" is unknown (sea, coast)',
     );
     expect(validateScript(withPlan({ ...plan, world: "sea" })).errors).toContain(
       'blender.world "sea" needs a model with a waterline part',

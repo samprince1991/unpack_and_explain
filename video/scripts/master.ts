@@ -3,7 +3,9 @@ import { ffmpeg } from "./lib/remotion";
 // Loudness-masters a rendered reel for Instagram / Shorts: -14 LUFS integrated,
 // true peak <= -1 dBTP. Two-pass ffmpeg loudnorm, video stream copied untouched.
 // Usage: npm run master -- out/post-02-gps/post-02-gps.mp4   ->   .../post-02-gps.master.mp4
-const TARGET = { I: -14, TP: -1, LRA: 11 };
+// TP aims 1 dB under the -1 dBTP ceiling: the AAC encode after loudnorm adds about
+// 0.3-0.6 dB of inter-sample overshoot (post 27: -0.73 dBTP with TP -1, -0.88 with -1.5, -1.72 with -2).
+const TARGET = { I: -14, TP: -2, LRA: 11 };
 
 type Measured = {
   input_i: string;

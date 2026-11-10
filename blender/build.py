@@ -253,7 +253,7 @@ class Clip:
     def _explode_offset(self, part, exploded):
         order = self.model["explode"]["order"]
         if exploded and part in self.model["explode"].get("away", []):
-            if self.sea:  # settles into the water surface instead of dropping through the picture
+            if self.sea and self.sea.get("flatAway", True):  # settles into the water instead of dropping through the picture
                 return Vector((0, 0, self.sea["level"] - self.parts[part]["base"].z))
             return Vector((0, 0, -AWAY))  # drops below, out of the way of the camera
         if not exploded or part not in order:
@@ -300,7 +300,7 @@ class Clip:
                 gone = HIDDEN if exploded else 1.0
                 if glide:
                     pivot.keyframe_insert("scale", frame=frame)
-                if self.sea:
+                if self.sea and self.sea.get("flatAway", True):
                     pivot.scale = (1, 1, SEA_FLAT if exploded else 1)
                 else:
                     pivot.scale = (gone, gone, gone)
@@ -600,9 +600,10 @@ def build_clip(scene, job, clip, tokens, preview, repo_root):
     c = Clip(scene, job, clip, tokens, parts, radius)
     if job.get("world"):
         # Before c.start(): the sea reads the wave parts where they rest, and start() moves them.
-        from world import sea as sea_world
+        import importlib
 
-        c.sea = sea_world.build_clip_world(scene, tokens, parts, c.rig.cam, clip, job["fps"])
+        world = importlib.import_module(f"world.{job['world']}")
+        c.sea = world.build_clip_world(scene, tokens, parts, c.rig.cam, clip, job["fps"])
     c.start()
     for beat in clip["beats"]:
         c.apply(beat)

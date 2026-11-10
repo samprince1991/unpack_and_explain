@@ -1,0 +1,23 @@
+{
+  "postId": "post-27-hovercraft",
+  "sounds": {
+    "fanspin": {
+      "prompt": "large ducted fan spinning up, smooth rising whoosh of air, no engine roar",
+      "seconds": 1.5,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-27-hovercraft/sfx/fanspin.mp3"
+    },
+    "airhiss": {
+      "prompt": "soft steady hiss of air escaping from under a rubber edge, gentle",
+      "seconds": 1.5,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-27-hovercraft/sfx/airhiss.mp3"
+    },
+    "spray": {
+      "prompt": "light water spray misting up, soft splashy hiss, short",
+      "seconds": 1.2,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-27-hovercraft/sfx/spray.mp3"
+    }
+  }
+}

@@ -24,6 +24,8 @@ import { Post21 } from "./posts/post-21-phone-accelerometer";
 import { script as post21 } from "./posts/post-21-phone-accelerometer/script";
 import { Post26 } from "./posts/post-26-bulbous-bow";
 import { script as post26 } from "./posts/post-26-bulbous-bow/script";
+import { Post27 } from "./posts/post-27-hovercraft";
+import { script as post27 } from "./posts/post-27-hovercraft/script";
 import { calculateCoverMetadata, Cover } from "./templates/Cover";
 import { calculateReelMetadata } from "./templates/metadata";
 
@@ -123,6 +125,16 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{ script: post26, vo: null, audio: null, showGuides: false }}
           calculateMetadata={calculateReelMetadata}
         />
+        <Composition
+          id="Post27-Hovercraft"
+          component={Post27}
+          durationInFrames={video.fps * 40}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post27, vo: null, audio: null, showGuides: false }}
+          calculateMetadata={calculateReelMetadata}
+        />
       </Folder>
       <Folder name="Covers">
         <Composition
@@ -183,6 +195,16 @@ export const RemotionRoot: React.FC = () => {
           width={video.width}
           height={video.height}
           defaultProps={{ script: post26, blender3d: null, showGuides: false }}
+          calculateMetadata={calculateCoverMetadata}
+        />
+        <Composition
+          id="Cover27-Hovercraft"
+          component={Cover}
+          durationInFrames={1}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post27, blender3d: null, showGuides: false }}
           calculateMetadata={calculateCoverMetadata}
         />
       </Folder>

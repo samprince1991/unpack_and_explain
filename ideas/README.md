@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**26 ideas** (by status: 14 idea, 1 scripted, 3 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**37 ideas** (by status: 14 idea, 11 scripted, 4 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -35,19 +35,30 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Markets | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | You never see the hidden queue behind every stock price. | E | idea | Nasdaq Rule 4757 (Book Processing), via SEC filings | - |
 | Credit | 7 | [How credit scores work](idea-07-credit-score/idea.md) | You don't need a big salary for a high credit score. | E | rendered | myFICO, What's in your credit score; CFPB, What is a credit score | 1 |
 
-### Aviation & engineering (9)
+### Aviation & engineering (20)
 
 | Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
 |---|---|---|---|---|---|---|---|
 | Flight | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Most people explain lift wrong. | Q | scripted | NASA Glenn 'lift' explainer pages | 1 |
 | Flight | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Autopilot isn't flying the plane. It's following instructions. | E | idea | Aircraft manufacturer / FAA docs | - |
+| Flight | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | You don't need a runway to fly at 200 mph. | E | scripted | Joby Aviation; Wikipedia, Joby Aviation; Motley Fool, 30 Oct 2026 | 2 |
+| Flight | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Nobody tells you 2 plates do all of a helicopter's steering. | E | scripted | FAA Helicopter Flying Handbook (FAA-H-8083-21B), ch. 3 | 1 |
+| Flight | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | If one motor dies, an air taxi falls. Not quite. | Q | scripted | Archer Aviation (via AIN Online, Vertical Mag) | 3 |
 | Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | [posted](https://www.instagram.com/reel/DfPEJpBIkrN) | Canadian investigation report on Air Canada Flight 143 (1983) | - |
 | Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | [posted](https://www.instagram.com/p/DfZfdEok4Sz) | NASA Glenn Research Center, Beginner's Guide to Propulsion | - |
 | Structures | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | A bridge tore itself apart in a light wind. | F | idea | Washington State archives / FHWA | - |
 | Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | NASA/JPL Mishap Investigation Board report | - |
 | Space | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Hubble's $1.5B mirror was wrong by 2 microns. | F | idea | NASA 'Hubble's Mirror Flaw'; Allen Report (1990) | - |
 | Machines | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Your elevator cable snaps. You still don't fall. | Q | idea | ASME A17.1 (rope count and safety factors, as adopted in state codes); Otis safety systems; Otis 1854 demonstration | 1 |
+| Machines | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | You don't need wheels to hit 603 kilometers an hour. | E | scripted | Wikipedia, SCMaglev; Guinness World Records | 2 |
 | Ships | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | You've never noticed the bump that saves ships up to 14% fuel. | E | rendered | FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log) | 1 |
+| Ships | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | You don't need strong air to lift an 11-tonne hovercraft. | E | rendered | SR.N6 worked example (Wikipedia, Hovercraft); National Historic Ships UK; SR.N4 specifications | 2 |
+| Cars | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Nobody tells you Tesla's flying car runs on compressed air. | Q | scripted | Tesla Roadster unveil, 15 Oct 2026 (TechCrunch, CNN, Drive Tesla Canada) | 3 |
+| Cars | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Nobody tells you a fan won an F1 race in 1978. | E | scripted | Wikipedia, Brabham BT46; Motor Sport, 1978 Swedish GP | 2 |
+| Cars | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Nobody tells you braking gives an electric car back 32% in the city. | E | scripted | U.S. DOE / EPA, fueleconomy.gov: Where the energy goes, electric cars | 1 |
+| Cars | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Nobody tells you an F1 car could drive on the ceiling at 210 km/h. | E | scripted | NASA Glenn, lift equation; Planet F1; University of Leicester Physics Special Topics | 2 |
+| Cars | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Nobody tells you a robotaxi uses three kinds of eyes. | E | scripted | Waymo, A suite of sensors (support page); Waymo 6th-gen Driver coverage (Ward's Auto, Automotive World) | 2 |
+| Cars | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Nobody tells you the heater eats an electric car's range. | E | scripted | AAA, Feb 2019 EV temperature study; fueleconomy.gov, cold weather | 2 |
 
 ## Schedule
 
@@ -79,6 +90,17 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-12-04 | 5 | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Aviation & engineering › Machines | Q | idea | - | - | - |
 | 2026-12-07 | 6 | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
 | 2026-12-08 | 6 | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | Aviation & engineering › Ships | E | rendered | 76.4 | 124 | 50 |
+| 2026-12-10 | 6 | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | Aviation & engineering › Ships | E | rendered | 77.8 | 124 | 50 |
+| 2026-12-11 | 6 | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Aviation & engineering › Cars | Q | scripted | 81.4 | 124 | 50 |
+| 2026-12-14 | 7 | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | Aviation & engineering › Flight | E | scripted | 77.8 | 128 | 51 |
+| 2026-12-15 | 7 | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Aviation & engineering › Cars | E | scripted | 81.4 | 125 | 50 |
+| 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | scripted | 77.8 | 128 | 51 |
+| 2026-12-18 | 7 | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Aviation & engineering › Cars | E | scripted | 78.6 | 124 | 50 |
+| 2026-12-21 | 8 | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Aviation & engineering › Flight | E | scripted | 81.4 | 128 | 51 |
+| 2026-12-22 | 8 | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Aviation & engineering › Cars | E | scripted | 70 | 125 | 50 |
+| 2026-12-24 | 8 | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Aviation & engineering › Cars | E | scripted | 81.4 | 127 | 51 |
+| 2026-12-25 | 8 | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | 52.4 | 130 | 52 |
+| 2026-12-28 | 9 | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Aviation & engineering › Cars | E | scripted | 52.2 | 126 | 50 |
 
 Est. s assumes 2.5 words/s; the real length comes from the voice-over.
 
@@ -99,13 +121,13 @@ Rank by × median and sends / reach, not raw views. High non-follower reach with
 
 ## Formats
 
-Posted 8 of 26 ideas (31%).
+Posted 8 of 37 ideas (22%).
 
 | Format | Ideas | Posted | Avg reach | Avg watch % | Avg share + save | Avg follows / 1k |
 |---|---|---|---|---|---|---|
-| E | 12 | 5 | 93 | - | 0.0% | 1.7 |
+| E | 21 | 5 | 93 | - | 0.0% | 1.7 |
 | F | 6 | 1 | 117 | - | 0.0% | 0 |
-| Q | 5 | 1 | 126 | - | 0.0% | 0 |
+| Q | 7 | 1 | 126 | - | 0.0% | 0 |
 | C | 3 | 1 | 0 | - | - | - |
 
 **Best format so far:** by watch time - (needs 3 posted per format); by share + save rate E; by follows per 1k reach E.

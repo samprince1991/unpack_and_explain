@@ -7,6 +7,7 @@ import { isSfxPlan, isSharedSfx, SFX_LIMITS } from "./sfxCues";
 import { countWords } from "./timing";
 import {
   BEAT_ACTIONS,
+  COAST_PLACEMENTS,
   SECTION_ORDER,
   SFX_SECTIONS,
   WORLDS,
@@ -131,6 +132,12 @@ const validateBlender = (script: PostScript, errors: string[]) => {
   const checkShot = (where: string, shot: Partial<Shot>) => {
     if (shot.frameY !== undefined && (shot.frameY < 0 || shot.frameY > 1)) {
       errors.push(`${where}: frameY must be between 0 and 1`);
+    }
+    if (shot.coast !== undefined && !(COAST_PLACEMENTS as readonly string[]).includes(shot.coast)) {
+      errors.push(`${where}: coast must be ${COAST_PLACEMENTS.join(", ")}`);
+    }
+    if (shot.coast !== undefined && plan.world !== "coast") {
+      errors.push(`${where}: coast only applies to the coast world`);
     }
     checkPart(where, shot.keyPart);
     checkPart(where, shot.aim);

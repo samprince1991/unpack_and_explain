@@ -146,6 +146,8 @@ export type Shot = {
   frameY?: number;
   // Sea world, clip start: the water with only the bow wave, or calm (default).
   sea?: "calm" | "bowWave";
+  // Coast world, clip start: where the model sits (default sea). The backdrop always shows the shore.
+  coast?: CoastPlacement;
 };
 
 export const BEAT_ACTIONS = [
@@ -191,7 +193,9 @@ export type Beat = {
 };
 
 // Opaque full-frame environments (docs/blender.md).
-export const WORLDS = ["sea"] as const;
+export const WORLDS = ["sea", "coast"] as const;
+export const COAST_PLACEMENTS = ["sea", "shore", "land"] as const;
+export type CoastPlacement = (typeof COAST_PLACEMENTS)[number];
 export type WorldId = (typeof WORLDS)[number];
 
 export type BlenderPlan = {
