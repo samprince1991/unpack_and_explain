@@ -4,71 +4,78 @@
   "sections": [
     {
       "id": "question",
-      "text": "Do you know how air actually lifts 60 cars?",
+      "text": "Do you know how a hovercraft actually lifts 60 cars?",
       "file": "posts/post-27-hovercraft/vo/question.mp3",
-      "durationMs": 2508,
+      "durationMs": 3251,
       "captions": [
         {
           "text": "Do",
           "startMs": 0,
-          "endMs": 151,
-          "timestampMs": 76,
+          "endMs": 139,
+          "timestampMs": 70,
           "confidence": null
         },
         {
           "text": " you",
-          "startMs": 197,
-          "endMs": 267,
-          "timestampMs": 232,
+          "startMs": 186,
+          "endMs": 255,
+          "timestampMs": 221,
           "confidence": null
         },
         {
           "text": " know",
-          "startMs": 313,
-          "endMs": 441,
-          "timestampMs": 377,
+          "startMs": 290,
+          "endMs": 406,
+          "timestampMs": 348,
           "confidence": null
         },
         {
           "text": " how",
-          "startMs": 488,
-          "endMs": 615,
-          "timestampMs": 552,
+          "startMs": 453,
+          "endMs": 546,
+          "timestampMs": 500,
           "confidence": null
         },
         {
-          "text": " air",
-          "startMs": 697,
-          "endMs": 917,
-          "timestampMs": 807,
+          "text": " a",
+          "startMs": 592,
+          "endMs": 615,
+          "timestampMs": 603,
+          "confidence": null
+        },
+        {
+          "text": " hovercraft",
+          "startMs": 662,
+          "endMs": 1173,
+          "timestampMs": 918,
           "confidence": null
         },
         {
           "text": " actually",
-          "startMs": 987,
-          "endMs": 1358,
-          "timestampMs": 1173,
+          "startMs": 1254,
+          "endMs": 1730,
+          "timestampMs": 1492,
           "confidence": null
         },
         {
           "text": " lifts",
-          "startMs": 1416,
-          "endMs": 1660,
-          "timestampMs": 1538,
+          "startMs": 1788,
+          "endMs": 2009,
+          "timestampMs": 1898,
           "confidence": null
         },
         {
           "text": " 60",
-          "startMs": 1695,
-          "endMs": 2020,
-          "timestampMs": 1858,
+          "startMs": 2043,
+          "endMs": 2299,
+          "timestampMs": 2171,
           "confidence": null
         },
         {
           "text": " cars?",
-          "startMs": 2090,
-          "endMs": 2508,
-          "timestampMs": 2299,
+          "startMs": 2368,
+          "endMs": 3251,
+          "timestampMs": 2810,
           "confidence": null
         }
       ]
@@ -153,106 +160,85 @@
     },
     {
       "id": "setup",
-      "text": "A boat drags through water. A car grips the road. A hovercraft touches neither.",
+      "text": "A hovercraft never touches the water. Nothing solid holds it up.",
       "file": "posts/post-27-hovercraft/vo/setup.mp3",
-      "durationMs": 5390,
+      "durationMs": 3950,
       "captions": [
         {
           "text": "A",
           "startMs": 0,
-          "endMs": 104,
-          "timestampMs": 52,
-          "confidence": null
-        },
-        {
-          "text": " boat",
-          "startMs": 221,
-          "endMs": 464,
-          "timestampMs": 343,
-          "confidence": null
-        },
-        {
-          "text": " drags",
-          "startMs": 522,
-          "endMs": 906,
-          "timestampMs": 714,
-          "confidence": null
-        },
-        {
-          "text": " through",
-          "startMs": 929,
-          "endMs": 1126,
-          "timestampMs": 1027,
-          "confidence": null
-        },
-        {
-          "text": " water.",
-          "startMs": 1173,
-          "endMs": 1602,
-          "timestampMs": 1388,
-          "confidence": null
-        },
-        {
-          "text": " A",
-          "startMs": 1927,
-          "endMs": 2009,
-          "timestampMs": 1968,
-          "confidence": null
-        },
-        {
-          "text": " car",
-          "startMs": 2101,
-          "endMs": 2345,
-          "timestampMs": 2223,
-          "confidence": null
-        },
-        {
-          "text": " grips",
-          "startMs": 2415,
-          "endMs": 2647,
-          "timestampMs": 2531,
-          "confidence": null
-        },
-        {
-          "text": " the",
-          "startMs": 2682,
-          "endMs": 2752,
-          "timestampMs": 2717,
-          "confidence": null
-        },
-        {
-          "text": " road.",
-          "startMs": 2810,
-          "endMs": 3181,
-          "timestampMs": 2996,
-          "confidence": null
-        },
-        {
-          "text": " A",
-          "startMs": 3506,
-          "endMs": 3587,
-          "timestampMs": 3547,
+          "endMs": 93,
+          "timestampMs": 47,
           "confidence": null
         },
         {
           "text": " hovercraft",
-          "startMs": 3704,
-          "endMs": 4365,
-          "timestampMs": 4035,
+          "startMs": 174,
+          "endMs": 731,
+          "timestampMs": 453,
+          "confidence": null
+        },
+        {
+          "text": " never",
+          "startMs": 824,
+          "endMs": 1057,
+          "timestampMs": 940,
           "confidence": null
         },
         {
           "text": " touches",
-          "startMs": 4412,
-          "endMs": 4748,
-          "timestampMs": 4580,
+          "startMs": 1103,
+          "endMs": 1405,
+          "timestampMs": 1254,
           "confidence": null
         },
         {
-          "text": " neither.",
-          "startMs": 4830,
-          "endMs": 5390,
-          "timestampMs": 5248,
+          "text": " the",
+          "startMs": 1451,
+          "endMs": 1521,
+          "timestampMs": 1486,
+          "confidence": null
+        },
+        {
+          "text": " water.",
+          "startMs": 1567,
+          "endMs": 1950,
+          "timestampMs": 1759,
+          "confidence": null
+        },
+        {
+          "text": " Nothing",
+          "startMs": 2392,
+          "endMs": 2775,
+          "timestampMs": 2584,
+          "confidence": null
+        },
+        {
+          "text": " solid",
+          "startMs": 2868,
+          "endMs": 3228,
+          "timestampMs": 3048,
+          "confidence": null
+        },
+        {
+          "text": " holds",
+          "startMs": 3262,
+          "endMs": 3471,
+          "timestampMs": 3367,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 3518,
+          "endMs": 3576,
+          "timestampMs": 3547,
+          "confidence": null
+        },
+        {
+          "text": " up.",
+          "startMs": 3634,
+          "endMs": 3950,
+          "timestampMs": 3953,
           "confidence": null
         }
       ]

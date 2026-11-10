@@ -2,6 +2,7 @@
 id: 28
 slug: tesla-roadster-myth
 title: "Myth: Tesla's new Roadster is a flying car"
+topic: "Roadster"
 format: Q
 category: "Aviation & engineering"
 subcategory: "Cars"
@@ -33,6 +34,17 @@ metrics:  # fill in after posting
 
 # Idea 28: Myth: Tesla's new Roadster is a flying car
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | how Tesla's Roadster flies |
+| Hook | the 'flying car' runs on compressed air |
+| Setup | the Roadster jumped five parked cars; myth: it's a flying car |
+| Mechanism | no wings; about 600 L of compressed air blasts from ten nozzles and shoves the car the other way, like rocket thrusters; it drops when they stop |
+| Payoff | fact: it's a car that jumps; a fan underneath sucks it down for grip |
+| Answer | Mechanism: it doesn't fly; compressed-air nozzles shove it up and it comes straight back down |
+
 ## Script
 
 | Section | Voice-over | Visual |
@@ -44,6 +56,12 @@ metrics:  # fill in after posting
 | Payoff | FACT: it's a car that jumps. And a fan underneath does the opposite job, sucking the car down onto the road for grip. | 2D: FACT stamp (teal) on 'car that jumps'; side-view line art of the underbody, a fan (amber) and arrows pulling down into the road on 'sucking the car down'. |
 | Congrats | Congrats, you just learned how Tesla's Roadster really jumps. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: Tesla's new Roadster
+Asks: how the Roadster flies
+Answer: it doesn't really fly: compressed air blasting from ten nozzles shoves it into a jump, then it comes back down
 
 ## Notes
 

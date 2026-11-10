@@ -3,6 +3,7 @@ import { brand } from "../../src/brand/tokens";
 import { countWords } from "../../src/templates/timing";
 import { SECTION_ORDER, type SectionId } from "../../src/templates/types";
 import { SLIDE_RANGE, SLIDE_WORDS, WORD_RANGE } from "../../src/templates/validate";
+import { mentionsTopic, opensOnTopic } from "./subject";
 
 // The content tracker: one ideas/idea-NN-slug/idea.md per idea (YAML front matter +
 // script). `npm run tracker` validates them and writes ideas/README.md. Once an idea is
@@ -37,6 +38,8 @@ export type IdeaMeta = {
   id: number;
   slug: string;
   title: string;
+  // Reels: the subject, the same as script.ts `topic` (amber on the question and congrats cards).
+  topic?: string;
   format: IdeaFormat;
   category: string;
   subcategory: string;
@@ -64,7 +67,14 @@ export type Idea = {
   sections: TrackerSection[];
   slides: Slide[];
   caption: string;
+  // Reels: `## Spine` rows (part lower-cased -> job) and `## Cold read` lines (key lower-cased).
+  spine: Record<string, string>;
+  coldRead: Record<string, string>;
 };
+
+// Spine rows every reel needs, in order. Answer says where the question card is answered.
+export const SPINE_PARTS = ["question", "hook", "setup", "mechanism", "payoff", "answer"] as const;
+export const COLD_READ_KEYS = ["about", "asks", "answer"] as const;
 
 export const isCarousel = (idea: Idea) => idea.meta.format === "C";
 
@@ -129,7 +139,17 @@ export const parseIdea = (folder: string, md: string): Idea => {
     headline: headline ?? "",
     body: text ?? "",
   }));
-  return { folder, meta, sections, slides, caption: sectionBody(body, "Caption") };
+  const spine = Object.fromEntries(
+    tableRows(sectionBody(body, "Spine")).map(([part, job]) => [part.toLowerCase(), (job ?? "").trim()]),
+  );
+  const coldRead = Object.fromEntries(
+    sectionBody(body, "Cold read")
+      .split(/\r?\n/)
+      .map((l) => l.match(/^\s*(\w+):\s*(.*)$/))
+      .filter((m): m is RegExpMatchArray => m !== null)
+      .map((m) => [m[1].toLowerCase(), m[2].trim()]),
+  );
+  return { folder, meta, sections, slides, caption: sectionBody(body, "Caption"), spine, coldRead };
 };
 
 export const spokenWords = (idea: Idea) =>
@@ -148,6 +168,35 @@ const validateSlides = ({ slides }: Idea, errors: string[]) => {
       errors.push(`slide ${i + 1} body has ${countWords(s.body)} words, max ${SLIDE_WORDS.body}`);
     }
   });
+};
+
+// One subject, easy to follow (docs/superpowers/specs/2026-11-10-one-subject-reels-design.md):
+// the topic is named in the title, question card and setup opening; the spine and cold read
+// are written before the script is approved. Rendered and posted reels are exempt.
+const validateStory = (idea: Idea, vo: (id: SectionId) => string, errors: string[]) => {
+  const topic = idea.meta.topic?.trim();
+  if (!topic) {
+    errors.push("topic is required for reels (the subject, amber on the question card)");
+  } else {
+    if (!mentionsTopic(idea.meta.title, topic)) {
+      errors.push(`title doesn't contain the topic "${topic}"`);
+    }
+    if (!mentionsTopic(vo("question"), topic)) {
+      errors.push(`question card doesn't name the topic "${topic}" (one subject per reel)`);
+    }
+    if (!opensOnTopic(vo("setup"), topic)) {
+      errors.push(`setup's first sentence doesn't name the topic "${topic}" (or open with it/this/that)`);
+    }
+  }
+  if (SPINE_PARTS.some((p) => !idea.spine[p])) {
+    errors.push("## Spine needs Question, Hook, Setup, Mechanism, Payoff and Answer rows");
+  }
+  if (idea.spine.answer !== undefined && !/^(Mechanism|Payoff):/.test(idea.spine.answer)) {
+    errors.push('## Spine Answer must start with "Mechanism:" or "Payoff:" (where the question card is answered)');
+  }
+  if (COLD_READ_KEYS.some((k) => !idea.coldRead[k])) {
+    errors.push("## Cold read needs About:, Asks: and Answer: lines");
+  }
 };
 
 export const validateIdea = (idea: Idea, taxonomy: Taxonomy): Problems => {
@@ -239,6 +288,9 @@ export const validateIdea = (idea: Idea, taxonomy: Taxonomy): Problems => {
     }
     if (!idea.caption) {
       warnings.push("no ## Caption section");
+    }
+    if (!["rendered", "posted"].includes(meta.status)) {
+      validateStory(idea, vo, errors);
     }
     const missing = (["hook_formula", "hook_score", "question_score"] as const).filter((k) => meta[k] === undefined);
     if (missing.length) {

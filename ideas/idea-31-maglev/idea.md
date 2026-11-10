@@ -2,6 +2,7 @@
 id: 31
 slug: maglev
 title: "How a maglev train floats"
+topic: "train"
 format: E
 category: "Aviation & engineering"
 subcategory: "Machines"
@@ -32,6 +33,17 @@ metrics:  # fill in after posting
 
 # Idea 31: How a maglev train floats
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | how a train floats 10 cm up |
+| Hook | no wheels needed to hit 603 km/h |
+| Setup | normal trains roll on steel wheels; Japan's SCMaglev lifts off |
+| Mechanism | the train's magnets make current flow in coils in the track walls, which become magnets that push it up and keep it centered; below 150 km/h it rolls on rubber wheels |
+| Payoff | above that it floats 10 cm up; 603 km/h world record in 2015 |
+| Answer | Mechanism: its magnets turn coils in the track into magnets that push it up |
+
 ## Script
 
 | Section | Voice-over | Visual |
@@ -43,6 +55,12 @@ metrics:  # fill in after posting
 | Payoff | Above that, it floats 10 centimeters up. In 2015, it hit 603 kilometers an hour, a world record. | 2D chart: gap measured with a ruler, "10 cm (4 in)" on 'floats'; bar chart of train speed records with the 2015 bar amber on '603'. |
 | Congrats | Congrats, you just learned how a maglev train floats. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: Japan's SCMaglev train
+Asks: how a train floats 10 cm up
+Answer: magnets on the train turn the track's coils into magnets that push it up, once it's going over 150 km/h
 
 ## Notes
 

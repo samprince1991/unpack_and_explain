@@ -2,6 +2,7 @@
 id: 37
 slug: ev-cold-range
 title: "Why electric cars lose range in the cold"
+topic: "electric car"
 format: E
 category: "Aviation & engineering"
 subcategory: "Cars"
@@ -32,17 +33,34 @@ metrics:  # fill in after posting
 
 # Idea 37: Why electric cars lose range in the cold
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | why electric cars lose 41% in winter |
+| Hook | the heater eats the range |
+| Setup | it has no free heat: a gas engine's waste heat warms the cabin, an electric motor barely warms up |
+| Mechanism | so the heat comes from the battery that drives the wheels, and a cold battery works worse too |
+| Payoff | AAA: range dropped 41% at -7 °C with the heater on; warm it up while plugged in |
+| Answer | Mechanism: the heater runs on the drive battery, and cold batteries work worse |
+
 ## Script
 
 | Section | Voice-over | Visual |
 |---|---|---|
-| Question | Do you know why EVs actually lose 41% in winter? | Question card over the Blender opener: a generic electric hatchback (procedural) in a snowy car park at night, the battery glowing amber in an X-ray view. |
+| Question | Do you know why electric cars actually lose 41% in winter? | Question card over the Blender opener: a generic electric hatchback (procedural) in a snowy car park at night, the battery glowing amber in an X-ray view. |
 | Hook | Nobody tells you the heater eats an electric car's range. | Blender hook: X-ray through the dashboard to the heater; a line from the battery to the heater glows amber on 'heater'. |
-| Setup | A gas engine wastes so much heat that cabin heat is basically free. An electric motor barely warms up. | 2D line art: a gas engine with heat waves flowing into a cabin on 'basically free'; an electric motor with no heat waves on 'barely gets warm' (motor amber). |
+| Setup | An electric car gets no free heat. A gas engine's waste heat warms the cabin. An electric motor barely warms up. | 2D: an electric car outline; on 'free heat' a thermometer icon at the cabin reads low; on 'gas engine' a faint inset engine with heat waves appears and fades; on 'motor' the car's motor turns amber with no heat waves. Parallax + dust. |
 | Mechanism | So the heat has to come from the battery, the same battery that drives the wheels. On a freezing day, that heater can take a huge share of the charge. And the battery itself also works worse when it's cold. | Blender cutaway: wide; close on the battery on 'battery' (amber); two lines out, one to the wheels and one to the heater, the heater line thickens on 'huge share'; frost forms on the battery pack and its glow dims on 'works worse when it's cold'; wide. |
 | Payoff | AAA tested five electric cars at minus 7 Celsius with the heater on. Range dropped 41%. Their tip: warm it up while it's still plugged in. | 2D chart: a range bar shrinks from 100 to 59 (amber) on '59', on screen "-7 °C (20 °F)" and "100 mi → 59 mi (161 → 95 km)"; a plug icon on 'plugged in'. |
 | Congrats | Congrats, you just learned why electric cars lose range in the cold. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: electric cars in the cold
+Asks: why electric cars lose 41% in winter
+Answer: the cabin heater runs off the battery that drives the wheels, and the battery works worse in the cold; AAA measured a 41% drop
 
 ## Notes
 

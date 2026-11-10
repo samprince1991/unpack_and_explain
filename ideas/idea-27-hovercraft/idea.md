@@ -2,6 +2,7 @@
 id: 27
 slug: hovercraft
 title: "How a hovercraft floats on air"
+topic: "a hovercraft"
 format: E
 category: "Aviation & engineering"
 subcategory: "Ships"
@@ -32,22 +33,39 @@ metrics:  # fill in after posting
 
 # Idea 27: How a hovercraft floats on air
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | how a hovercraft can lift something as heavy as 60 cars |
+| Hook | it does it with weak air: an 11-tonne craft rides on air barely above normal pressure |
+| Setup | the problem: a hovercraft never touches the water, so nothing solid holds it up |
+| Mechanism | a fan blows air under the hull, the skirt traps it; it pushes barely harder, but over the whole underside, so it adds up to the weight; air leaks out, so the fan never stops |
+| Payoff | the same trick scales up to the 320-tonne SR.N4 that carried 60 cars across the Channel |
+| Answer | Payoff: the same trapped-air trick, scaled up, carried up to 60 cars |
+
 ## Script
 
 | Section | Voice-over | Visual |
 |---|---|---|
-| Question | Do you know how air actually lifts 60 cars? | Question card (template) over the Blender opener in the coast world (placement `sea`): low three-quarter view of a hovercraft on the water, spray ring around the skirt, the skirt amber. |
+| Question | Do you know how a hovercraft actually lifts 60 cars? | Question card (template) over the Blender opener in the coast world (placement `sea`): low three-quarter view of a hovercraft on the water, spray ring around the skirt, the skirt amber. |
 | Hook | You don't need strong air to lift an 11-tonne hovercraft. | Blender hook: the camera drops from the deck to the waterline and finds the gap under the skirt, the cushion glowing amber on 'air'. On-screen: "11 t (12 US tons)". |
-| Setup | A boat drags through water. A car grips the road. A hovercraft touches neither. | 2D, three quick panels in one line-art style: a hull with a drag wake on 'drags', a tyre on tarmac on 'grips', then a hovercraft lifting clear of the ground line on 'neither' (gap amber). Parallax + dust. |
+| Setup | A hovercraft never touches the water. Nothing solid holds it up. | 2D: the side-view hovercraft over a water line; it lifts on 'touches' and the gap under the skirt turns amber; a soft pulse in the empty gap on 'solid'. World backdrop behind. |
 | Mechanism | A fan blows air under the hull, and a rubber skirt traps it. That air pushes barely harder than the air outside. But it pushes on the whole underside, and over that much area, it adds up to the full weight. Air keeps leaking out under the skirt, so the fan never stops. | Blender mechanism, cutaway side view: wide on the craft; close on the lift fan on 'fan' (amber), air arrows flowing down; on 'skirt' the skirt is the key; on 'barely' a small pressure gauge appears with "+0.75% (765 Pa, 0.11 psi)" on screen; on 'whole underside' a grid of small arrows pushes up across the whole hull bottom (amber); on 'leaking' wisps escape under the skirt edge, the fan spins on; wide again at the end. |
 | Payoff | The same trick scales up. The biggest ones weighed 320 tonnes and carried up to 60 cars across the English Channel. | 2D map style: Dover to Calais line draws on 'Channel'; a scale bar grows from the small craft to the big one on 'scales up'; on screen "SR.N4: 320 t (353 US tons)"; a row of car icons counts up to 60 on 'cars', the last car amber. |
 | Congrats | Congrats, you just learned how a hovercraft floats. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
 
+## Cold read
+
+About: a hovercraft
+Asks: how a hovercraft can lift 60 cars
+Answer: a fan fills the space under the hull with air that a skirt traps; it pushes only a little harder than normal air, but over the whole underside, so it holds the full weight; the same trick, scaled up, carried 60 cars across the Channel
+
 ## Notes
 
 - Hooks scored (hookscore.py): #20 Permission "You don't need strong air to lift an 11-tonne hovercraft." 77.8 STRONG; #3 Nobody Tells You "Nobody tells you the air holding up a hovercraft is barely pushing." 50.8; #23 Statistic "Air less than 1% above normal pressure lifts an 11-tonne hovercraft." 49.2; #26 Superlative "The biggest hovercraft carried 60 cars on a cushion of air." 44.0.
-- Question cards scored: "Do you know how air actually lifts 60 cars?" 62.2 (picked: the payoff answers it, so the loop closes); "Do you know how an 11-tonne hovercraft actually floats?" 62.2 (repeats the hook); "Do you know how a hovercraft actually floats?" 45.0.
+- Rewritten 2026-11-10 for one subject: the old card ("Do you know how air actually lifts 60 cars?") and setup (a boat, a car, then the hovercraft) put three vehicles in front of the viewer in 8 s. New card "Do you know how a hovercraft actually lifts 60 cars?" 62.2; new setup line 58.2. Earlier question cards scored: "Do you know how air actually lifts 60 cars?" 62.2; "Do you know how an 11-tonne hovercraft actually floats?" 62.2 (repeats the hook); "Do you know how a hovercraft actually floats?" 45.0.
 - Hook title (hookText, 28 chars max): "Weak air lifts 11 tonnes", highlight "Weak".
 - World: `coast` (built for this post). Placement `sea` for the opener, hook and mechanism (spray ring and cushion dip on the water); the backdrop behind the 2D setup and payoff shows the shore, which suits the beach payoff.
 - Model: procedural `hovercraft` (`blender/models/hovercraft.py`, license own), modelled on a light open-cockpit rescue hovercraft the user shared: finger skirt (`skirt`), hull with a covered bow cowl (`hull`), bench (`seat`), one big fan (`fan`, spins about X) in a round duct (`duct`) behind a wire guard (`guard`), three rudder vanes (`rudders`), and appear-only `cushion` (key), `pushgrid` (arrows up on the hull bottom) and `leaks` (air escaping under the skirt). One fan does lift and thrust, so the mechanism's 'fan' beat focuses on `fan` and flows to `cushion`. Not the previous post's model.

@@ -20,6 +20,10 @@ const checkScriptTs = async (idea: Idea, errors: string[]) => {
     return;
   }
   const { script } = (await import(`../src/posts/${folder}/script`)) as { script: PostScript };
+  // The idea's subject is the code's topic (amber on the question and congrats cards).
+  if (!["rendered", "posted"].includes(idea.meta.status) && idea.meta.topic && script.topic !== idea.meta.topic) {
+    errors.push(`topic "${idea.meta.topic}" differs from script.ts topic "${script.topic}"`);
+  }
   for (const s of idea.sections) {
     const code = script.sections.find((c) => c.id === s.id)?.voiceover;
     if (code !== s.voiceover) {

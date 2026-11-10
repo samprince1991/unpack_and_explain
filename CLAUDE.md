@@ -16,7 +16,7 @@ Faceless explainer reels ("How things actually work") built with Remotion. Prima
 
 ## Repo map
 
-- `ideas/`: **the content tracker**. One `ideas/idea-NN-slug/idea.md` per idea: YAML front matter (id, date, format, category, subcategory, status, link, hook, hook_formula, hook_score, question_score, companion_of, source, verify, metrics) + a `## Script` table (Section | Voice-over | Visual) for reels or a `## Slides` table for carousels + `## Caption`. `NN` = idea ID. Once built, an idea becomes a post: its code, VO and render folders use the matching `post-NN-slug` name. `category` / `subcategory` must come from `ideas/categories.yml` (add new sub-categories there first). `ideas/README.md` is **generated**: never edit it by hand.
+- `ideas/`: **the content tracker**. One `ideas/idea-NN-slug/idea.md` per idea: YAML front matter (id, date, format, topic, category, subcategory, status, link, hook, hook_formula, hook_score, question_score, companion_of, source, verify, metrics) + for reels a `## Spine` table (Part | Job), a `## Script` table (Section | Voice-over | Visual) and a `## Cold read` (About / Asks / Answer), or a `## Slides` table for carousels; then `## Caption`. `NN` = idea ID. Once built, an idea becomes a post: its code, VO and render folders use the matching `post-NN-slug` name. `category` / `subcategory` must come from `ideas/categories.yml` (add new sub-categories there first). `ideas/README.md` is **generated**: never edit it by hand.
 - `logo/`: master logo files. **Never edit.** `npm run assets` copies what the video needs.
 - `instagram/`: state for the instagram-agent skills (`voice.md`, `swipe.md`, `profile.md`, `engage.md`). Skills read and write here, **not** `~/.claude/instagram/`.
 - `blender/`: headless Blender scripts, procedural models in `blender/models/`, worlds in `blender/world/`. Colors only from the generated `blender/tokens.json`; never write color values here (the brand guard scans it).
@@ -140,6 +140,18 @@ Load fonts only through `src/brand/fonts.ts` (`@remotion/google-fonts`). Sentenc
 6. **Before / on CTA:** `SourceTag` ("Source: ...") visible for the last 3 s.
 7. **CTA card (3-4 s):** Stacked-Dark logo, tagline, handle (`brand.handle` = `@unpack_and_explain`).
 
+### One subject, easy to follow
+
+A muted viewer must know what the reel is about from frame 0 and follow it line by line. `npm run tracker` enforces the checkable parts on every reel not yet rendered or posted.
+
+- **One subject.** `topic` (idea.md front matter and `script.ts`) is the subject. It appears in the title, the question card and the setup's first sentence (or that sentence opens with it / this / that). Any number on the question card is about the subject; never borrow a number or object from elsewhere in the script to lift the score.
+- **One comparison at most**, and only with the ordinary version of the same thing (normal trains for a maglev, normal braking for regen), drawn on the same object where possible. No unrelated objects with their own icons. Every scene shows the subject.
+- **Each section has one job:** Question (curiosity about the subject), Hook (a surprising claim about it), Setup (the problem the mechanism solves), Mechanism (the steps, cause to effect, one per sentence), Payoff (what it leads to), Congrats (what was learned).
+- **Each sentence follows from the one before** ("so", "but", "then" logic). If two sentences can swap without breaking the meaning, one doesn't belong.
+- **The question card is answered** explicitly, in the mechanism or payoff.
+- **`## Spine`** in idea.md (Question, Hook, Setup, Mechanism, Payoff, Answer: one line each, Answer starts `Mechanism:` or `Payoff:`) is written and approved before the script lines.
+- **`## Cold read`** (About / Asks / Answer) is written by Claude from the voice-over alone before the user approves the script. If any line can't be filled from the VO, the script isn't ready.
+
 ## Motion
 
 - Animate only with `useCurrentFrame()` + inline `interpolate()` in the `style` prop. Use `scale` / `translate` / `rotate` style properties, not `transform` strings.
@@ -170,7 +182,7 @@ Load fonts only through `src/brand/fonts.ts` (`@remotion/google-fonts`). Sentenc
 The pipeline is in `docs/instagram-pipeline.md`. **Where a skill disagrees with this file, this file wins.**
 
 - State lives in `instagram/`, not `~/.claude/instagram/`. The skills' `log.md` = the hook fields and metrics in each `idea.md`; their `plan.md` = the schedule in `ideas/README.md`. Read `instagram/voice.md` before writing anything.
-- Reel anatomy stays (question card first, logo sting, congrats, fixed CTA), even though `/ig-reel` says "cut the intro, no logo sting". Instead, the question card must score `hookscore.py` 50+ and aim for 7 words or fewer with something concrete.
+- Reel anatomy stays (question card first, logo sting, congrats, fixed CTA), even though `/ig-reel` says "cut the intro, no logo sting". Instead, the question card must score `hookscore.py` 50+ and aim for 7 words or fewer with something concrete. Only score candidates that already name the subject (`topic`); a higher score from a borrowed number or object doesn't count.
 - Our safe zones, layout regions and 150 wpm (`voice.wordsPerSecond` 2.5) win over the skills' safe zones and 165 wpm. The beat sheet's "beat over 4 s" flag is met by visual changes (motion every 2 s), not only by splitting lines.
 - `/ig-human` and `detect.py` results on scripts are **suggestions**: show the user the proposed rewrites; never change script text or facts without approval. BURSTINESS is advisory on our short, even sentences. Captions, comments, replies and DMs do go through `/ig-human` before the user sees them.
 - Never post, like, follow, comment or DM on the user's behalf, never log into Instagram, never ask for a password, never scrape. Every skill ends with copy-ready text the user posts by hand. `/ig-viral` reads in the user's own Chrome with the user present (claude-in-chrome), at human speed, about 10 accounts.
@@ -179,7 +191,7 @@ The pipeline is in `docs/instagram-pipeline.md`. **Where a skill disagrees with 
 
 ## Per-post workflow
 
-1. Script it with `/ig-reel` into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Caption` from `/ig-caption`, `verify` list), run `npm run ig -- idea-NN-slug`, record `hook_formula` / `hook_score` / `question_score`, set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built > rendered > posted); after posting add `link` and fill in `metrics`.
+1. Agree the `## Spine` and `topic` with the user, then script it with `/ig-reel` into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Cold read`, `## Caption` from `/ig-caption`, `verify` list), run `npm run ig -- idea-NN-slug`, record `hook_formula` / `hook_score` / `question_score`, set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built > rendered > posted); after posting add `link` and fill in `metrics`.
    - **Analytics:** ask the user for a fresh Instagram insights export (CSV) whenever the newest `# as of` date on posted metrics is more than 7 days old, and at the start of any planning or new-post work. The CSV has views, reach, likes, comments, shares, saves and follows. `hold_3s`, `watch_pct` and `nonfollower_pct` aren't in it, so ask for those per reel from Insights too.
 2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` at most 28 characters (2 lines), CTA exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words. List "verify" facts in `verify`.
 3. Run TTS (bleed is trimmed automatically; check the "trimmed" lines it prints), or build with estimated timing first.
@@ -195,6 +207,7 @@ The pipeline is in `docs/instagram-pipeline.md`. **Where a skill disagrees with 
 - [ ] Mechanism goes wide > close-ups > wide, the key part centered and big in each close-up; one amber part per beat in every clip; nothing clipped; labels inside `layout.regions`
 - [ ] Rendered inside a world (no `worldOptOut` on new posts); question readable over the 3D backdrop at frame 0; cover readable in the 4:5 and 3:4 crops; CC-BY model credit in the caption; `npm run blender` up to date
 - [ ] 3D edges: `npm run model:qc` passes, and full-size frames (not the 25% contact sheet) cropped 2-3x at every junction show single clean lines: no broken or dashed lines, no faceted curves, no outline that stops inside another part
+- [ ] One subject: the topic is named on the question card and opens the setup; no unrelated objects; every scene shows the subject; the question card is answered (spine Answer row)
 - [ ] Congrats line before the CTA; total length 35-52 s
 - [ ] Nothing outside safe zones
 - [ ] Readable text >= 44 px, sources >= 32 px

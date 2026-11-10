@@ -17,6 +17,7 @@ Money & payments:
 export const FRONT = `id: 2
 slug: gps
 title: "How GPS finds you"
+topic: "GPS"
 format: E
 category: "Everyday tech"
 subcategory: "Location & GPS"
@@ -48,11 +49,28 @@ export const SCRIPT = `
 |---|---|---|
 | Question | Do you know how GPS finds you? | Card |
 | Hook | ${words(10)} | a \\| b |
-| Setup | ${words(15)} | x |
+| Setup | GPS ${words(14)} | x |
 | Mechanism | ${words(50)} | x |
 | Payoff | ${words(25)} | x |
 | Congrats | Congrats, you just learned how GPS finds you. | Card |
 | CTA | ${brand.ctaLine} | Logo |
+
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | how GPS finds you |
+| Hook | your phone only listens |
+| Setup | satellites broadcast time |
+| Mechanism | delays to distances to a fix |
+| Payoff | it works with no signal sent |
+| Answer | Mechanism: four delays fix your position |
+
+## Cold read
+
+About: GPS
+Asks: how GPS finds you
+Answer: your phone times four satellite signals
 
 ## Caption
 

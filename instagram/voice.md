@@ -28,7 +28,8 @@ Voice profile read by every instagram-agent skill (`/ig-reel`, `/ig-caption`, `/
 
 ## Fixed lines
 
-- **Question (opens every reel):** "Do you know how {topic} ...?" style, 7 words or fewer with something concrete, `hookscore.py` 50+.
+- **Question (opens every reel):** "Do you know how {topic} ...?" style, 7 words or fewer with something concrete, `hookscore.py` 50+. It always names the subject; a number in it is about the subject, never borrowed from elsewhere in the script.
+- **One subject per reel:** open the setup on the subject too. Compare only with the ordinary version of the same thing, at most once. Each line follows from the one before.
 - **Congrats (before the CTA):** "Congrats, you just learned how {topic} ..."
 - **Spoken CTA (exact):** "Follow Unpack and Explain for how things actually work."
 

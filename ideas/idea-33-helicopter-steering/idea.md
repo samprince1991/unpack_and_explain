@@ -2,6 +2,7 @@
 id: 33
 slug: helicopter-steering
 title: "How a helicopter steers"
+topic: "helicopter"
 format: E
 category: "Aviation & engineering"
 subcategory: "Flight"
@@ -31,17 +32,34 @@ metrics:  # fill in after posting
 
 # Idea 33: How a helicopter steers
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | how one rotor steers a helicopter |
+| Hook | two plates do all of its steering |
+| Setup | it has no wing flaps; its one main rotor has to do everything |
+| Mechanism | the swashplate (one plate still, one spinning): the collective raises it so every blade bites harder and it climbs; the cyclic tilts it so the rotor tilts and it goes that way |
+| Payoff | the spinning rotor twists the body, so a tail rotor holds the nose straight |
+| Answer | Mechanism: the swashplate under the rotor rises to climb and tilts to steer |
+
 ## Script
 
 | Section | Voice-over | Visual |
 |---|---|---|
 | Question | Do you know how 1 rotor actually steers a helicopter? | Question card over the Blender opener: a light single-rotor helicopter (procedural) hovering, the rotor hub amber. |
 | Hook | Nobody tells you 2 plates do all of a helicopter's steering. | Blender hook: camera rises to the rotor hub and finds the two plates (amber) on '2 plates'. |
-| Setup | A plane steers with flaps on its wings. A helicopter's one rotor has to do everything. | 2D line art: a plane silhouette with flaps flicking on 'flaps', then a single rotor disc circle on 'one spinning rotor' (amber). |
+| Setup | A helicopter has no wing flaps to steer with. Its one main rotor has to do everything. | 2D: the helicopter in side view; on 'flaps' the places a wing would be stay empty (faint dashed outline that fades); on 'rotor' the main rotor turns amber. Parallax + dust. |
 | Mechanism | Under the rotor sits the swashplate: one plate stays still, one spins. Pull the collective lever, and the whole plate rises. Every blade bites harder, so it climbs. Push the cyclic stick, and the plate tilts. Each blade bites harder on one side, the rotor tilts, and the helicopter goes that way. | Blender close-ups: the swashplate, lower plate neutral, upper plate spinning on 'one that spins'; plate rises on 'whole plate rises', all blades twist up together (amber), helicopter climbs; plate tilts on 'tilts', one side of the blade circle highlighted on 'one side'; the rotor disc tilts and the helicopter drifts that way; wide. |
 | Payoff | But spinning the rotor twists the body the other way. So a small tail rotor pushes sideways to hold the nose straight. | Blender wide: body starts to turn opposite the rotor (curved arrow) on 'twists the body'; tail rotor spins up (amber) on 'tail rotor', side arrow from it, nose holds still. |
 | Congrats | Congrats, you just learned how a helicopter steers. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: a helicopter
+Asks: how one rotor steers a helicopter
+Answer: a two-part swashplate under the rotor rises to make it climb and tilts the rotor to steer; the tail rotor keeps the nose straight
 
 ## Notes
 

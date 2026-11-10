@@ -2,6 +2,7 @@
 id: 4
 slug: lift-myth
 title: "Myth: planes fly because air pushes up from below"
+topic: "plane"
 format: Q
 category: "Aviation & engineering"
 subcategory: "Flight"
@@ -27,6 +28,17 @@ metrics:  # fill in after posting
 
 # Idea 4: Myth: planes fly because air pushes up from below
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | what really keeps a plane in the air |
+| Hook | the myth: air pushes up on the wing from below |
+| Setup | that's only part of the story |
+| Mechanism | the tilted, curved wing bends air down; faster air on top has lower pressure; the difference pushes the wing up |
+| Payoff | the 'air races to catch up' story is wrong too: the air over the top gets to the back first |
+| Answer | Mechanism: the wing bends air down, and lower pressure on top pushes it up |
+
 ## Script
 
 | Section | Voice-over | Visual |
@@ -38,6 +50,12 @@ metrics:  # fill in after posting
 | Payoff | And no, the air over the top isn't racing to catch up with the air below. It actually gets to the back first. | Two dots race across the wing; the top dot wins. |
 | Congrats | Congrats, you just learned how a wing really makes lift. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: how a plane's wing makes lift
+Asks: what really keeps a plane in the air
+Answer: the wing bends air downward, and the faster air on top has lower pressure, so the wing is pushed up
 
 ## Caption
 

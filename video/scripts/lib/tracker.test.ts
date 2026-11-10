@@ -85,6 +85,39 @@ describe("validateIdea", () => {
     ]);
   });
 
+  it("keeps the reel on its topic: title, question card and setup opening", () => {
+    const offTopic = SCRIPT.replace("Do you know how GPS finds you?", "Do you know how your phone finds you?").replace(
+      "| Setup | GPS ",
+      "| Setup | Satellites hum. ",
+    );
+    const { errors } = validateIdea(idea(FRONT.replace('title: "How GPS finds you"', 'title: "How phones find you"'), offTopic), TAXONOMY);
+    expect(errors).toEqual([
+      'title doesn\'t contain the topic "GPS"',
+      'question card doesn\'t name the topic "GPS" (one subject per reel)',
+      'setup\'s first sentence doesn\'t name the topic "GPS" (or open with it/this/that)',
+    ]);
+    const noTopic = idea(FRONT.replace('topic: "GPS"\n', ""));
+    expect(validateIdea(noTopic, TAXONOMY).errors).toEqual(["topic is required for reels (the subject, amber on the question card)"]);
+  });
+
+  it("needs a full spine and a cold read before the script is approved", () => {
+    const body = SCRIPT.replace("| Answer | Mechanism: four delays fix your position |\n", "| Answer | four delays |\n")
+      .replace("| Hook | your phone only listens |\n", "")
+      .replace("Asks: how GPS finds you\n", "");
+    const { errors } = validateIdea(idea(FRONT, body), TAXONOMY);
+    expect(errors).toEqual([
+      "## Spine needs Question, Hook, Setup, Mechanism, Payoff and Answer rows",
+      '## Spine Answer must start with "Mechanism:" or "Payoff:" (where the question card is answered)',
+      "## Cold read needs About:, Asks: and Answer: lines",
+    ]);
+  });
+
+  it("leaves rendered and posted reels alone", () => {
+    const old = SCRIPT.replace("Do you know how GPS finds you?", "Do you know how your phone finds you?").replace(/## Spine[\s\S]*?## Caption/, "## Caption");
+    const front = FRONT.replace("status: scripted", "status: rendered").replace('topic: "GPS"\n', "");
+    expect(validateIdea(idea(front, old), TAXONOMY).errors).toEqual([]);
+  });
+
   it("checks the link is an https URL", () => {
     const p = idea(FRONT.replace("status: scripted", 'status: scripted\nlink: "instagram.com/reel/x"'));
     expect(validateIdea(p, TAXONOMY).errors).toEqual(["link must be an https:// URL, got instagram.com/reel/x"]);

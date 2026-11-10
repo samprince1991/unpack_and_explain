@@ -2,6 +2,7 @@
 id: 34
 slug: f1-upside-down
 title: "Could an F1 car drive upside down"
+topic: "F1 car"
 format: E
 category: "Aviation & engineering"
 subcategory: "Cars"
@@ -32,17 +33,34 @@ metrics:  # fill in after posting
 
 # Idea 34: Could an F1 car drive upside down
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | how two wings hold an F1 car down |
+| Hook | an F1 car could drive on the ceiling at 210 km/h |
+| Setup | its wings are plane wings upside down, so they push down |
+| Mechanism | faster air under the wings lowers the pressure and presses the car into the track; the floor sucks too; double the speed, four times the push; fast enough, more than its weight |
+| Payoff | so on a ceiling the air could hold it up; nobody has tried |
+| Answer | Mechanism: upside-down wings lower the pressure under them and press the car down |
+
 ## Script
 
 | Section | Voice-over | Visual |
 |---|---|---|
-| Question | Do you know how 2 wings actually hold a car down? | Question card over the Blender opener: a generic modern open-wheel race car (procedural, no team livery) in a tunnel, the front and rear wings amber. |
+| Question | Do you know how 2 wings actually hold an F1 car down? | Question card over the Blender opener: a generic modern open-wheel race car (procedural, no team livery) in a tunnel, the front and rear wings amber. |
 | Hook | Nobody tells you an F1 car could drive on the ceiling at 210 km/h. | Blender hook: the camera rolls 180 degrees until the car is on the tunnel ceiling; on screen "210 km/h (130 mph)". |
-| Setup | A plane's wing lifts it up. Flip that wing over, and it pushes down instead. | 2D line art: a wing cross-section with an up arrow on 'lift it', it flips on 'flip' and the arrow points down (amber) on 'pushes down'. |
-| Mechanism | That's an F1 car's wings. Air rushes faster under them, the pressure drops, and the car is pressed into the track. The floor sucks it down too. Double the speed, and that push gets four times stronger. Fast enough, and it beats the car's own weight. | Blender: wide; close on the rear wing on 'wings' with airflow lines, faster lines underneath; pressure gauge drops on 'pressure there drops'; arrows press down on 'pressed into the track'; close on the floor on 'floor' (amber), arrows under it; 2D chart overlay on 'Double the speed': a curve with 1x at v and 4x at 2v; weight arrow and downforce arrow, downforce grows past it on 'bigger than the car's own weight'. |
+| Setup | An F1 car has wings too, but upside down. A plane's wing lifts, and flipped over it pushes down instead. | 2D: the F1 car in side view; on 'upside down' its front wing profile flips over; on 'pushes down' arrows press down from the wing into the track (amber). Parallax + dust. |
+| Mechanism | Air rushes faster under them, the pressure drops, and the car is pressed into the track. The floor sucks it down too. Double the speed, and that push gets four times stronger. Fast enough, and it beats the car's own weight. | Blender: wide; close on the rear wing on 'wings' with airflow lines, faster lines underneath; pressure gauge drops on 'pressure there drops'; arrows press down on 'pressed into the track'; close on the floor on 'floor' (amber), arrows under it; 2D chart overlay on 'Double the speed': a curve with 1x at v and 4x at 2v; weight arrow and downforce arrow, downforce grows past it on 'bigger than the car's own weight'. |
 | Payoff | So on a ceiling, the air could hold it up. The catch is getting up there at full speed. Nobody has ever tried. | Blender: the car on the tunnel ceiling, downforce arrow up (amber) on 'hold it up'; a question mark on the ramp up to the ceiling on 'catch'. |
 | Congrats | Congrats, you just learned how downforce works. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: an F1 car's downforce
+Asks: how two wings hold an F1 car down
+Answer: they're upside-down wings; faster air underneath lowers the pressure and presses the car down, more than its own weight at speed
 
 ## Notes
 

@@ -2,6 +2,7 @@
 id: 32
 slug: regen-braking
 title: "How braking charges an electric car"
+topic: "braking"
 format: E
 category: "Aviation & engineering"
 subcategory: "Cars"
@@ -31,17 +32,34 @@ metrics:  # fill in after posting
 
 # Idea 32: How braking charges an electric car
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | how braking saves 32% of energy |
+| Hook | braking gives an electric car back 32% in the city |
+| Setup | with normal braking, speed turns into heat and is lost |
+| Mechanism | the motor works both ways: when the wheels turn it, it becomes a generator, sends current back to the battery, and that drag slows the car |
+| Payoff | about 32% in city traffic, about 6% on the highway (US DOE) |
+| Answer | Mechanism: the motor becomes a generator, so slowing down charges the battery |
+
 ## Script
 
 | Section | Voice-over | Visual |
 |---|---|---|
 | Question | Do you know how braking actually saves 32% of energy? | Question card over the Blender opener: a generic electric hatchback (procedural) at a city crossing, brake disc glowing, the motor amber in an X-ray view. |
 | Hook | Nobody tells you braking gives an electric car back 32% in the city. | Blender hook: X-ray view through the wheel to the motor; arrows run from the wheel back to the battery (amber) on 'back'. |
-| Setup | Normal brakes squeeze the wheels and turn your speed into heat. That energy is gone. | 2D line art: a brake pad clamps a disc on 'squeeze', heat waves rise on 'heat' (amber), then fade on 'gone'. |
+| Setup | With normal braking, the brakes squeeze the wheels and turn your speed into heat. That energy is gone. | 2D line art: a brake pad clamps a disc on 'squeeze', heat waves rise on 'heat' (amber), then fade on 'gone'. |
 | Mechanism | An electric motor works both ways. Feed it power, and it spins the wheels. Let the wheels spin it, and it becomes a generator. So when you lift off the pedal, the wheels push current back into the battery, and that drag is what slows you down. | Blender cutaway: wide; close on the motor on 'electric motor' (amber); arrows battery to wheel on 'spins the wheels'; arrows reverse wheel to battery on 'generator'; pedal lifts on 'lift off the pedal'; battery level ticks up on 'back into the battery'; car slows, speed lines shorten on 'slows you down'; wide. |
 | Payoff | In city traffic, the U.S. Department of Energy estimates that adds back about 32%. On the highway, it's about 6%. | 2D chart: two bars, city 32% (amber) and highway 6%, on screen "32%" and "6%"; small 'stop-go' squiggle above city, a straight line above highway. |
 | Congrats | Congrats, you just learned how braking charges an electric car. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: braking in an electric car
+Asks: how braking saves 32% of energy
+Answer: the motor runs as a generator, so slowing down charges the battery instead of making heat; about 32% in the city
 
 ## Notes
 

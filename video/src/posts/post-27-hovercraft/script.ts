@@ -18,8 +18,8 @@ export const script: PostScript = {
     },
     cues: [
       { sound: "spray", section: "hook", cue: "air" },
-      { sound: "sweep", section: "setup", cue: "drags" },
       { sound: "swell", section: "setup", cue: "touches" },
+      { sound: "sweep", section: "setup", cue: "solid" },
       { sound: "fanspin", section: "mechanism", cue: "blows" },
       { sound: "tick", section: "mechanism", cue: "barely" },
       { sound: "airhiss", section: "mechanism", cue: "leaking" },
@@ -99,7 +99,7 @@ export const script: PostScript = {
   sections: [
     {
       id: "question",
-      voiceover: "Do you know how air actually lifts 60 cars?",
+      voiceover: "Do you know how a hovercraft actually lifts 60 cars?",
       visual:
         "Question card (template) over the Blender opener in the coast world (placement `sea`): low three-quarter view of a hovercraft on the water, spray ring around the skirt, the skirt amber.",
     },
@@ -111,9 +111,9 @@ export const script: PostScript = {
     },
     {
       id: "setup",
-      voiceover: "A boat drags through water. A car grips the road. A hovercraft touches neither.",
+      voiceover: "A hovercraft never touches the water. Nothing solid holds it up.",
       visual:
-        "2D, three quick panels in one line-art style: a hull with a drag wake on 'drags', a tyre on tarmac on 'grips', then a hovercraft lifting clear of the ground line on 'neither' (gap amber). Parallax + dust.",
+        "2D: the side-view hovercraft over a water line; it lifts on 'touches' and the gap under the skirt turns amber; a soft pulse in the empty gap on 'solid'. World backdrop behind.",
     },
     {
       id: "mechanism",

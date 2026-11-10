@@ -2,6 +2,7 @@
 id: 30
 slug: fan-car
 title: "The fan car that won its only race"
+topic: "fan car"
 format: E
 category: "Aviation & engineering"
 subcategory: "Cars"
@@ -10,7 +11,7 @@ date: 2026-12-15
 status: scripted
 hook_formula: 3
 hook_score: 81.4
-question_score: 62.2
+question_score: 60.9
 hook: "Nobody tells you a fan won an F1 race in 1978."
 source: "Wikipedia, Brabham BT46; Motor Sport, 1978 Swedish GP"
 verify:
@@ -32,17 +33,34 @@ metrics:  # fill in after posting
 
 # Idea 30: The fan car that won its only race
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | how one fan glued a car to the track |
+| Hook | a fan won an F1 race in 1978 |
+| Setup | the fan car chased downforce: air pushing it into the track |
+| Mechanism | Brabham's engine-driven fan sucked air from under the car, skirts sealed the sides, the low pressure underneath pressed it down, harder as the engine spun faster |
+| Payoff | Lauda won the 1978 Swedish Grand Prix by over half a minute; fan cars were banned |
+| Answer | Mechanism: the fan sucked air out from under the car, so the air above pressed it onto the track |
+
 ## Script
 
 | Section | Voice-over | Visual |
 |---|---|---|
-| Question | Do you know how 1 fan actually won a race? | Question card over the Blender opener: a generic late-70s wedge race car (procedural, no sponsor liveries) with a big round fan on the tail, the fan amber. |
+| Question | Do you know how 1 fan actually glued a car to the track? | Question card over the Blender opener: a generic late-70s wedge race car (procedural, no sponsor liveries) with a big round fan on the tail, the fan amber. |
 | Hook | Nobody tells you a fan won an F1 race in 1978. | Blender hook: camera circles to the rear, the fan spins up (amber) on 'fan'; on screen "1978". |
-| Setup | Race cars corner faster when air pushes them into the track. That's downforce. | 2D line art: a car icon on a curve, a downward arrow grows on 'pushes them harder' (amber); kinetic type 'downforce' (display) on 'downforce'. |
+| Setup | The fan car chased downforce: air pushing a race car into the track. | 2D: the fan car in side view on a curve of track; on 'downforce' it leans into the curve; on 'pushing' air arrows press it down into the track (amber arrows). Parallax + dust. |
 | Mechanism | Brabham bolted an engine-driven fan to the back. Officially, it was for cooling. But it also sucked air from under the car, and sliding skirts sealed the sides. Lower pressure underneath, so the air above pressed the car down. The faster the engine spun, the harder it pulled. | Blender cutaway side view: wide; close on the fan on 'big fan' with a belt line to the engine; small radiator glows on 'cooling'; air arrows drawn out from under the floor on 'sucked air out'; skirts touch the ground on 'skirts' (amber); pressure gauge drops on 'lower pressure'; arrows press down on the body on 'pressed the car down'; fan speeds up on 'faster'; wide again. |
 | Payoff | Niki Lauda won the Swedish Grand Prix by over half a minute. Rivals protested, Brabham withdrew it, and fan cars were banned. | 2D chart: two bars on 'over half a minute' (winner amber), "+34 s" on screen; a protest stamp-style label on 'protested'; the fan icon crossed out (coral) on 'banned'. |
 | Congrats | Congrats, you just learned how the fan car stuck to the track. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: Brabham's fan car
+Asks: how one fan glued a car to the track
+Answer: it sucked air from under the car; with the sides sealed, the lower pressure underneath pressed it onto the track
 
 ## Notes
 

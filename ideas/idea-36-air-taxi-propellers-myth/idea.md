@@ -2,6 +2,7 @@
 id: 36
 slug: air-taxi-propellers-myth
 title: "Myth: if one motor dies, an air taxi falls"
+topic: "air taxi"
 format: Q
 category: "Aviation & engineering"
 subcategory: "Flight"
@@ -33,6 +34,17 @@ metrics:  # fill in after posting
 
 # Idea 36: Myth: if one motor dies, an air taxi falls
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | why air taxis have 12 propellers |
+| Hook | the myth: if one motor dies, it falls |
+| Setup | myth: it's a giant drone, which can't stay level if one propeller stops |
+| Mechanism | Archer's Midnight spreads the job over twelve motors (six tilt, six lift), evenly placed, so if one fails the others share its load |
+| Payoff | fact: the batteries are split into six packs too; no single failure can bring it down |
+| Answer | Mechanism: so that if one fails, the others share its load and keep it level |
+
 ## Script
 
 | Section | Voice-over | Visual |
@@ -44,6 +56,12 @@ metrics:  # fill in after posting
 | Payoff | FACT: the batteries are split the same way, into six packs. Archer says no single failure can bring it down. | 2D: FACT stamp (teal) on 'FACT'; six battery blocks in pairs under the wings on 'six packs', one dims and the others stay lit; on screen "Archer: no single point of failure". |
 | Congrats | Congrats, you just learned why air taxis have so many propellers. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: air taxis (Archer's Midnight)
+Asks: why air taxis have 12 propellers
+Answer: the lifting job is spread over twelve motors, so if one fails the others keep it level
 
 ## Notes
 

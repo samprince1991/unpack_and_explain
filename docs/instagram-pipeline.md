@@ -10,7 +10,7 @@ The `instagram-agent` plugin (13 skills, `/ig-*`) runs the account around the Re
 | 1 | Research | monthly | `/ig-viral` (outlier multiple over each account's median, hook formulas) | `instagram/swipe.md` |
 | 2 | Review + plan | weekly | `/ig-audit` on posted ideas (rank by multiple and sends per reach; separate hook problems from profile problems), then `/ig-plan` | New or moved ideas and dates in `ideas/`; the 10-account engagement list in `instagram/engage.md`. The user approves the week |
 | 3 | Ideas | ongoing | `/ig-plan`, `/ig-reply` (a comment question many people share becomes an idea, formula #16), `/ig-repurpose` (a posted reel's mechanism becomes a companion carousel) | `ideas/idea-NN-slug/idea.md` under an existing sub-category |
-| 4 | Script a reel | per reel | `/ig-reel`: 3 hooks from different `hooks.json` formulas, scored; best 50+; beat sheet. Then `/ig-human` | `## Script` table, `hook_formula`, `hook_score`, `question_score`. The user approves the script |
+| 4 | Script a reel | per reel | `/ig-reel`: 3 hooks from different `hooks.json` formulas, scored; best 50+; beat sheet. Then `/ig-human` | `topic`, `## Spine` (agreed first), `## Script` table, `## Cold read`, `hook_formula`, `hook_score`, `question_score`. The user approves the script. One-subject and flow rules: `CLAUDE.md` > Reel anatomy |
 | 4b | Script a carousel | per carousel | `/ig-carousel`, then `/ig-human` | `## Slides` table. The user approves the copy |
 | 5 | Caption | per post | `/ig-caption` (Job A for reels: ask + context + search terms; Job B for carousels: the hook), then `/ig-human`; `npm run ig` lint shows READY | `## Caption` |
 | 6 | Build | per post | Per-post workflow (reels), `carousels.md` (carousels) | MP4 / slide PNGs |

@@ -2,6 +2,7 @@
 id: 29
 slug: air-taxi
 title: "How an electric air taxi flies"
+topic: "air taxi"
 format: E
 category: "Aviation & engineering"
 subcategory: "Flight"
@@ -32,17 +33,34 @@ metrics:  # fill in after posting
 
 # Idea 29: How an electric air taxi flies
 
+## Spine
+
+| Part | Job |
+|---|---|
+| Question | how six propellers fly an air taxi |
+| Hook | no runway, and it still flies at 200 mph |
+| Setup | it has to lift straight up, then fly fast; most aircraft can only do one |
+| Mechanism | six propellers point up to lift off like a drone, tilt forward so the wing carries it like a plane, and tilt back to land |
+| Payoff | a pilot and four passengers, up to 150 miles a charge; first passengers planned in Dubai |
+| Answer | Mechanism: the propellers point up to lift, then tilt forward so the wing carries it |
+
 ## Script
 
 | Section | Voice-over | Visual |
 |---|---|---|
-| Question | Do you know how 6 propellers actually fly a plane? | Question card over the Blender opener: a six-propeller tilt-wing air taxi (procedural, no Joby livery) on a rooftop pad, the props amber. |
+| Question | Do you know how 6 propellers actually fly an air taxi? | Question card over the Blender opener: a six-propeller tilt-wing air taxi (procedural, no Joby livery) on a rooftop pad, the props amber. |
 | Hook | You don't need a runway to fly at 200 mph. | Blender hook: the aircraft rises straight up past the camera; on screen "200 mph (320 km/h)". |
-| Setup | Helicopters lift straight up, but they're slow. Planes are fast, but need a runway. Joby's air taxi does both. | 2D three-panel line art: helicopter with sound waves on 'loud', plane on a long runway line on 'runway', then both icons merge into one on 'both' (amber). |
+| Setup | An air taxi has to lift straight up, then fly fast. Most aircraft can only do one of those. | 2D: the air taxi in side view on a pad; on 'straight up' it rises with an up arrow; on 'fast' it streaks forward with speed lines (amber on the taxi); on 'one of those' the two moves split into two paths from the same taxi. Parallax + dust. |
 | Mechanism | It has six electric propellers. For takeoff, they point up, like a drone, and lift it straight off the pad. Then the propellers tilt forward. Now the wing carries the weight, and the propellers just push it along, like a plane. To land, they tilt back up. | Blender: wide on the aircraft; close on one prop pointing up on 'six electric propellers' (amber), lift arrows down; wide as it climbs; close on a wing nacelle as it tilts forward on 'tilt forward' (amber); lift arrow moves to the wing on 'wing carries the weight'; wide cruise; props tilt back up on 'land'. |
 | Payoff | It carries a pilot and four passengers, up to 150 miles on one charge. Joby is aiming to fly its first passengers in Dubai. | 2D map style: a pad-to-pad line draws on '150 miles' with "240 km" on screen; seat icons 1+4 on 'pilot and four passengers' (pilot seat amber); a pin on Dubai on 'Dubai'. |
 | Congrats | Congrats, you just learned how an air taxi flies. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+
+## Cold read
+
+About: Joby's electric air taxi
+Asks: how six propellers fly an air taxi
+Answer: they point up to lift it like a drone, then tilt forward so the wing holds it up like a plane
 
 ## Notes
 
