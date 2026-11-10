@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**37 ideas** (by status: 14 idea, 10 scripted, 5 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**50 ideas** (by status: 27 idea, 10 scripted, 5 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -60,6 +60,24 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Cars | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Nobody tells you a robotaxi uses three kinds of eyes. | E | scripted | Waymo, A suite of sensors (support page); Waymo 6th-gen Driver coverage (Ward's Auto, Automotive World) | 2 |
 | Cars | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Nobody tells you the heater eats an electric car's range. | E | scripted | AAA, Feb 2019 EV temperature study; fueleconomy.gov, cold weather | 2 |
 
+### Style & beauty (13)
+
+| Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
+|---|---|---|---|---|---|---|---|
+| Jewellery | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Nobody tells you your gold ring is a quarter other metals. | E | idea | World Gold Council, About gold jewellery; investment (lost-wax) casting references | 2 |
+| Jewellery | 39 | [What your gold stamp means](idea-39-gold-karats/idea.md) | 750, 585, 375: read your ring. | C | idea | World Gold Council, assay and fineness | - |
+| Jewellery | 40 | [Myth: white gold is naturally white](idea-40-white-gold-myth/idea.md) | Your white gold ring is secretly yellow. | Q | idea | {{source}}: needs a GIA, assay-office or refiner page | 2 |
+| Jewellery | 41 | [How a lab-grown diamond is made](idea-41-lab-grown-diamond/idea.md) | Nobody tells you a lab-grown diamond starts as a gas. | E | idea | GIA, HPHT and CVD diamond growth processes; GIA Gems & Gemology, Summer 2024 | 2 |
+| Jewellery | 42 | [How a pearl is grown](idea-42-cultured-pearl/idea.md) | Nobody tells you most pearls start as a bead of shell. | E | idea | GIA Gems & Gemology, Winter 2017 (akoya farming, Australia); GIA, Different pearl types explained | 2 |
+| Skin & hair | 43 | [How sunscreen actually works](idea-43-sunscreen/idea.md) | SPF 50 isn't much stronger than SPF 30. | E | idea | American Academy of Dermatology, Sunscreen FAQs; U.S. FDA, sunscreen labeling | 4 |
+| Skin & hair | 50 | [What the SPF number really means](idea-50-spf-cheat-sheet/idea.md) | SPF 30 vs 50: 1% apart. | C | idea | American Academy of Dermatology; U.S. FDA | 2 |
+| Skin & hair | 45 | [Myth: shaved hair grows back thicker](idea-45-shaving-myth/idea.md) | Shaving doesn't make hair grow back thicker. | Q | idea | Mayo Clinic, Does shaving unwanted body hair make it grow back thicker and darker? | 1 |
+| Skin & hair | 46 | [How a hair straightener works](idea-46-hair-straightener/idea.md) | Nobody tells you rain undoes your hair straightener. | E | idea | {{source}}: needs a cosmetic-science source (e.g. Robbins, Chemical and Physical Behavior of Human Hair, or a peer-reviewed review on hair bonds) | 2 |
+| Makeup & nails | 47 | [Why gel nails need a lamp](idea-47-gel-nails/idea.md) | Nobody tells you gel polish never actually dries. | E | idea | Dymax, 'What are oligomers for LED-curable nail gel coatings' (Cosmetics & Toiletries); Nailpro, nail salon product ingredients | 3 |
+| Fragrance | 44 | [Why perfume changes smell over the day](idea-44-perfume-notes/idea.md) | Nobody tells you your perfume is a race between molecules. | E | idea | Cosmetics & Toiletries, 'Top note vs middle and bottom notes' (Poucher evaporation scale) | 2 |
+| Fabrics | 48 | [Why jeans are white on the inside](idea-48-jeans-indigo/idea.md) | Nobody tells you your blue jeans are white inside every thread. | E | idea | Wikipedia, Denim; {{source}}: a mill or textile-science source on ring dyeing | 1 |
+| Fabrics | 49 | [How silk is made](idea-49-silk/idea.md) | Nobody tells you one silk cocoon is a single 900-metre thread. | E | idea | Britannica, Sericulture | 2 |
+
 ## Schedule
 
 | Date | Wk | # | Idea | Topic | Fmt | Status | Hook score | Words | Est. s |
@@ -101,6 +119,19 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-12-24 | 8 | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Aviation & engineering › Cars | E | scripted | 81.4 | 125 | 50 |
 | 2026-12-25 | 8 | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | 52.4 | 130 | 52 |
 | 2026-12-28 | 9 | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Aviation & engineering › Cars | E | scripted | 52.2 | 129 | 52 |
+| 2026-12-29 | 9 | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Style & beauty › Jewellery | E | idea | - | - | - |
+| 2026-12-30 | 9 | 39 | [What your gold stamp means](idea-39-gold-karats/idea.md) | Style & beauty › Jewellery | C | idea | - | - | - |
+| 2026-12-31 | 9 | 40 | [Myth: white gold is naturally white](idea-40-white-gold-myth/idea.md) | Style & beauty › Jewellery | Q | idea | - | - | - |
+| 2027-01-01 | 9 | 41 | [How a lab-grown diamond is made](idea-41-lab-grown-diamond/idea.md) | Style & beauty › Jewellery | E | idea | - | - | - |
+| 2027-01-04 | 10 | 42 | [How a pearl is grown](idea-42-cultured-pearl/idea.md) | Style & beauty › Jewellery | E | idea | - | - | - |
+| 2027-01-05 | 10 | 43 | [How sunscreen actually works](idea-43-sunscreen/idea.md) | Style & beauty › Skin & hair | E | idea | - | - | - |
+| 2027-01-06 | 10 | 50 | [What the SPF number really means](idea-50-spf-cheat-sheet/idea.md) | Style & beauty › Skin & hair | C | idea | - | - | - |
+| 2027-01-07 | 10 | 44 | [Why perfume changes smell over the day](idea-44-perfume-notes/idea.md) | Style & beauty › Fragrance | E | idea | - | - | - |
+| 2027-01-08 | 10 | 45 | [Myth: shaved hair grows back thicker](idea-45-shaving-myth/idea.md) | Style & beauty › Skin & hair | Q | idea | - | - | - |
+| 2027-01-11 | 11 | 46 | [How a hair straightener works](idea-46-hair-straightener/idea.md) | Style & beauty › Skin & hair | E | idea | - | - | - |
+| 2027-01-12 | 11 | 47 | [Why gel nails need a lamp](idea-47-gel-nails/idea.md) | Style & beauty › Makeup & nails | E | idea | - | - | - |
+| 2027-01-14 | 11 | 48 | [Why jeans are white on the inside](idea-48-jeans-indigo/idea.md) | Style & beauty › Fabrics | E | idea | - | - | - |
+| 2027-01-15 | 11 | 49 | [How silk is made](idea-49-silk/idea.md) | Style & beauty › Fabrics | E | idea | - | - | - |
 
 Est. s assumes 2.5 words/s; the real length comes from the voice-over.
 
@@ -121,14 +152,14 @@ Rank by × median and sends / reach, not raw views. High non-follower reach with
 
 ## Formats
 
-Posted 8 of 37 ideas (22%).
+Posted 8 of 50 ideas (16%).
 
 | Format | Ideas | Posted | Avg reach | Avg watch % | Avg share + save | Avg follows / 1k |
 |---|---|---|---|---|---|---|
-| E | 21 | 5 | 93 | - | 0.0% | 1.7 |
+| E | 30 | 5 | 93 | - | 0.0% | 1.7 |
 | F | 6 | 1 | 117 | - | 0.0% | 0 |
-| Q | 7 | 1 | 126 | - | 0.0% | 0 |
-| C | 3 | 1 | 0 | - | - | - |
+| Q | 9 | 1 | 126 | - | 0.0% | 0 |
+| C | 5 | 1 | 0 | - | - | - |
 
 **Best format so far:** by watch time - (needs 3 posted per format); by share + save rate E; by follows per 1k reach E.
 
