@@ -198,6 +198,9 @@ export type BlenderPlan = {
   model: ModelId;
   // Renders every clip inside a world, and adds a backdrop clip behind the 2D sections.
   world?: WorldId;
+  // Every new reel needs a world. Only posts built before worlds were required set this
+  // reason instead (validateScript enforces one or the other).
+  worldOptOut?: string;
   // Cover title, at most 4 words. Defaults to hookText.
   coverText?: string;
   // Word of the cover title colored amber. Defaults to hookHighlight.

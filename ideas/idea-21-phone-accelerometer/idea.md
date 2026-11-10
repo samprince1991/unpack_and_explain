@@ -6,8 +6,9 @@ format: E
 category: "Everyday tech"
 subcategory: "Devices"
 week: 5
-date: 2026-11-30
-status: rendered
+date: 2026-11-08
+status: posted
+link: "https://www.instagram.com/reel/DfgmpugIbXy"
 hook_formula: 3
 hook_score: 52.2
 question_score: 62.2
@@ -18,16 +19,16 @@ verify:
   - "'2-millimeter chip' is spoken without 'about': the source says the package is about 2 x 2 x 1 mm, and ST's figure is not specific to one phone"
 notes: "MEMS accelerometer: a silicon proof mass on springs between comb fingers; tilt or shake moves it, the capacitance change becomes a number. Great exploded-view 3D (chip > die > comb)."
 metrics:  # fill in after posting
-  views: null
-  reach: null
+  views: 126  # as of 2026-11-09 (insights export)
+  reach: 121
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 0
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 0
 ---
 
 # Idea 21: How your phone knows which way is up

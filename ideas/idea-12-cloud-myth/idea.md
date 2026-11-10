@@ -6,8 +6,9 @@ format: Q
 category: "Everyday tech"
 subcategory: "Internet"
 week: 3
-date: 2026-11-20
-status: rendered
+date: 2026-11-05
+status: posted
+link: "https://www.instagram.com/reel/DfWzUgUIq2n"
 hook_formula: 3
 hook_score: 83.0
 question_score: 62.2
@@ -15,16 +16,16 @@ hook: "Nobody tells you Amazon's cloud copies your files into 3 buildings."
 source: "AWS Amazon S3 docs (data protection); IEA Energy and AI (2025)"
 verify: []
 metrics:  # fill in after posting
-  views: null
-  reach: null
+  views: 140  # as of 2026-11-09 (insights export)
+  reach: 126
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 4
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 0
 ---
 
 # Idea 12: Myth: 'Cloud storage is in the sky'

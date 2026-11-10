@@ -56,7 +56,7 @@ Why the pipeline is built the way it is, and what was tried or rejected. The rul
 - **The world is built into each clip.** Ship and water render in one opaque scene, so the hull really meets the water and the light is shared. Rejected: a separate background layer (the ship still floats) and a hand-built scene for one post (proves nothing for later reels).
 - **Muted world tones with one amber key.** A colorful world and photo cards were both rejected.
 - **The water explains the mechanism.** Wave shapes are stored as shape keys, which add linearly, so the surface is the literal sum of the waves. It's an illustration, not a fluid simulation.
-- **Worlds stay optional.** They cost much more render time (about 2.5 s a frame against 0.4-0.5 s), so a post opts in when a place helps the explanation.
+- **Worlds are required on every new reel (2026-11-10).** The user asked for it after the sea-world pilot (post 26). They cost much more render time (about 2.5 s a frame against 0.4-0.5 s), and each new topic usually needs a new world, so budget for that. Posts built before the rule keep `worldOptOut`. Note: when this was decided, post 26 was not posted yet, so there was no metric comparison behind it. Compare its `hold_3s` and `watch_pct` with the earlier reels once it has them.
 
 ## Charts
 

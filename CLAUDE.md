@@ -136,8 +136,9 @@ Load fonts only through `src/brand/fonts.ts` (`@remotion/google-fonts`). Sentenc
 2. **Throughout (not CTA):** avatar watermark, burned-in captions (active word amber), motion at least every 2 s.
 3. **Mechanism:** a Blender 3D scene (`docs/blender.md`), one idea per beat, synced to the VO. **No on-screen text that repeats the voice-over.** On-screen text is only for what the VO doesn't say: a number, a unit conversion, a source.
 4. **Hook:** Blender too. **Setup and payoff** stay 2D, with scene styles and charts.
-5. **Before / on CTA:** `SourceTag` ("Source: ...") visible for the last 3 s.
-6. **CTA card (3-4 s):** Stacked-Dark logo, tagline, handle (`brand.handle` = `@unpack_and_explain`).
+5. **World:** every new reel renders inside a Blender world (`world` in the `blender` plan), with its dimmed backdrop behind the 2D sections. If no world fits the topic, build one first (`docs/blender.md`). Only posts built before 2026-11-10 use `worldOptOut`.
+6. **Before / on CTA:** `SourceTag` ("Source: ...") visible for the last 3 s.
+7. **CTA card (3-4 s):** Stacked-Dark logo, tagline, handle (`brand.handle` = `@unpack_and_explain`).
 
 ## Motion
 
@@ -179,9 +180,10 @@ The pipeline is in `docs/instagram-pipeline.md`. **Where a skill disagrees with 
 ## Per-post workflow
 
 1. Script it with `/ig-reel` into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Caption` from `/ig-caption`, `verify` list), run `npm run ig -- idea-NN-slug`, record `hook_formula` / `hook_score` / `question_score`, set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built > rendered > posted); after posting add `link` and fill in `metrics`.
+   - **Analytics:** ask the user for a fresh Instagram insights export (CSV) whenever the newest `# as of` date on posted metrics is more than 7 days old, and at the start of any planning or new-post work. The CSV has views, reach, likes, comments, shares, saves and follows. `hold_3s`, `watch_pct` and `nonfollower_pct` aren't in it, so ask for those per reel from Insights too.
 2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` at most 28 characters (2 lines), CTA exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words. List "verify" facts in `verify`.
 3. Run TTS (bleed is trimmed automatically; check the "trimmed" lines it prints), or build with estimated timing first.
-4. Pick the model (catalog, or `npm run model:add`), write the `blender` plan from the Visual column, run `npm run blender -- post-NN-slug --preview`, review, then the full render. Register `CoverNN-Slug` and run `npm run cover`.
+4. Pick the model (catalog, or `npm run model:add`) and the world (an existing one, or build a new one for the topic), write the `blender` plan from the Visual column, run `npm run blender -- post-NN-slug --preview`, review, then the full render. Register `CoverNN-Slug` and run `npm run cover`.
 5. Write the `sfx` plan (sparse cues on spoken words, topic sounds that differ from the last post's), then `npm run sfx -- post-NN-slug`.
 6. Build the scenes from the Visual column with shared components and scene styles; bespoke scene components live only in the post folder. The template adds the hook title, failure badge, watermark, captions, source line and CTA card. Sync visuals to the VO with `useCue("word", fallbackFraction)`.
 7. Export `PostNN` (wrapping `Reel` with the scene map) from `index.tsx` and register `PostNN-Slug` in `Root.tsx`, in the `Reels` folder, with `calculateMetadata={calculateReelMetadata}`.
@@ -191,7 +193,7 @@ The pipeline is in `docs/instagram-pipeline.md`. **Where a skill disagrees with 
 
 - [ ] Look comes from the rotation (or a pinned slot with a reason); scene styles differ from the last 3 posts
 - [ ] Mechanism goes wide > close-ups > wide, the key part centered and big in each close-up; one amber part per beat in every clip; nothing clipped; labels inside `layout.regions`
-- [ ] Question readable over the 3D backdrop at frame 0; cover readable in the 4:5 and 3:4 crops; CC-BY model credit in the caption; `npm run blender` up to date
+- [ ] Rendered inside a world (no `worldOptOut` on new posts); question readable over the 3D backdrop at frame 0; cover readable in the 4:5 and 3:4 crops; CC-BY model credit in the caption; `npm run blender` up to date
 - [ ] 3D edges: `npm run model:qc` passes, and full-size frames (not the 25% contact sheet) cropped 2-3x at every junction show single clean lines: no broken or dashed lines, no faceted curves, no outline that stops inside another part
 - [ ] Congrats line before the CTA; total length 35-52 s
 - [ ] Nothing outside safe zones

@@ -115,6 +115,12 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       errors.push(`${where}: part "${part}" is not in model ${plan.model} (${parts.join(", ")})`);
     }
   };
+  if (plan.world === undefined && !plan.worldOptOut?.trim()) {
+    errors.push(`blender.world is required (${WORLDS.join(", ")}); add a world for the topic (docs/blender.md)`);
+  }
+  if (plan.world !== undefined && plan.worldOptOut !== undefined) {
+    errors.push("blender: set world or worldOptOut, not both");
+  }
   if (plan.world !== undefined) {
     if (!(WORLDS as readonly string[]).includes(plan.world)) {
       errors.push(`blender.world "${plan.world}" is unknown (${WORLDS.join(", ")})`);

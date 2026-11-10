@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**26 ideas** (by status: 14 idea, 1 scripted, 7 rendered, 4 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**26 ideas** (by status: 14 idea, 1 scripted, 3 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -17,18 +17,18 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Location & GPS | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | GPS works with no signal at all. | Q | idea | GPS.gov | - |
 | Wireless | 5 | [How WiFi works](idea-05-wifi/idea.md) | WiFi is just radio, and your router is a tiny radio station. | E | idea | IEEE / Wi-Fi Alliance basics | - |
 | Wireless | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | What actually happens if you don't switch it on? | Q | idea | Aviation authority guidance | - |
-| Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Nobody sees the 1.5 million kilometers of cable your internet runs on. | E | rendered | TeleGeography Submarine Cable FAQ (2026); International Cable Protection Committee | 2 |
-| Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Nobody tells you Amazon's cloud copies your files into 3 buildings. | Q | rendered | AWS Amazon S3 docs (data protection); IEA Energy and AI (2025) | - |
+| Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Nobody sees the 1.5 million kilometers of cable your internet runs on. | E | [posted](https://www.instagram.com/reel/DfTq3Z-I1Ml) | TeleGeography Submarine Cable FAQ (2026); International Cable Protection Committee | 2 |
+| Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Nobody tells you Amazon's cloud copies your files into 3 buildings. | Q | [posted](https://www.instagram.com/reel/DfWzUgUIq2n) | AWS Amazon S3 docs (data protection); IEA Energy and AI (2025) | - |
 | Internet | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | In 2012, one extra second broke Reddit for you. | F | idea | The Register, 2 July 2012; Google leap smear docs; CGPM 2026 (Scientific American, Euronews) | 1 |
 | Data & codes | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | A QR code is a tiny grid of yes/no answers. | E | idea | ISO/IEC 18004 overview | - |
-| AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | posted | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | - |
-| Devices | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Nobody tells you your phone hides a weight on springs. | E | rendered | STMicroelectronics; capacitive MEMS accelerometer patent US6910379; Android developer docs | 2 |
+| AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | [posted](https://www.instagram.com/reel/DfOxCyZoUsn) | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | - |
+| Devices | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Nobody tells you your phone hides a weight on springs. | E | [posted](https://www.instagram.com/reel/DfgmpugIbXy) | STMicroelectronics; capacitive MEMS accelerometer patent US6910379; Android developer docs | 2 |
 
 ### Money & payments (6)
 
 | Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
 |---|---|---|---|---|---|---|---|
-| Payments | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Nobody tells you a card tap moves zero money. | E | posted | Card network / acquirer docs | 2 |
+| Payments | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Nobody tells you a card tap moves zero money. | E | [posted](https://www.instagram.com/reel/DfHZUnZIbeZ) | Card network / acquirer docs | 2 |
 | Payments | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Saveable cheat sheet | C | idea | Reuse facts from idea 1 | - |
 | Payments | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Sending $100 abroad can take 3 banks. | E | idea | SWIFT public docs | 1 |
 | Markets | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | A software glitch lost $440M in 45 minutes. | F | idea | SEC order on Knight Capital (2013) | - |
@@ -41,8 +41,8 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 |---|---|---|---|---|---|---|---|
 | Flight | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Most people explain lift wrong. | Q | scripted | NASA Glenn 'lift' explainer pages | 1 |
 | Flight | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Autopilot isn't flying the plane. It's following instructions. | E | idea | Aircraft manufacturer / FAA docs | - |
-| Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | posted | Canadian investigation report on Air Canada Flight 143 (1983) | - |
-| Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | rendered | NASA Glenn Research Center, Beginner's Guide to Propulsion | - |
+| Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | [posted](https://www.instagram.com/reel/DfPEJpBIkrN) | Canadian investigation report on Air Canada Flight 143 (1983) | - |
+| Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | [posted](https://www.instagram.com/p/DfZfdEok4Sz) | NASA Glenn Research Center, Beginner's Guide to Propulsion | - |
 | Structures | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | A bridge tore itself apart in a light wind. | F | idea | Washington State archives / FHWA | - |
 | Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | NASA/JPL Mishap Investigation Board report | - |
 | Space | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Hubble's $1.5B mirror was wrong by 2 microns. | F | idea | NASA 'Hubble's Mirror Flaw'; Allen Report (1990) | - |
@@ -54,26 +54,26 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Date | Wk | # | Idea | Topic | Fmt | Status | Hook score | Words | Est. s |
 |---|---|---|---|---|---|---|---|---|---|
 | 2026-10-29 | 0 | 2 | [How GPS finds you](idea-02-gps/idea.md) | Everyday tech › Location & GPS | E | [posted](https://www.instagram.com/reel/DfE-k9so_ys) | - | 126 | 50 |
-| 2026-10-30 | 0 | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Money & payments › Payments | E | posted | 81.4 | 121 | 48 |
-| 2026-11-02 | 1 | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | Aviation & engineering › Engines | F | posted | 57.2 | 127 | 51 |
-| 2026-11-02 | 1 | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | Everyday tech › AI | E | posted | 70 | 127 | 51 |
+| 2026-10-30 | 0 | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Money & payments › Payments | E | [posted](https://www.instagram.com/reel/DfHZUnZIbeZ) | 81.4 | 121 | 48 |
+| 2026-11-01 | 1 | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | Everyday tech › AI | E | [posted](https://www.instagram.com/reel/DfOxCyZoUsn) | 70 | 127 | 51 |
+| 2026-11-02 | 1 | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | Aviation & engineering › Engines | F | [posted](https://www.instagram.com/reel/DfPEJpBIkrN) | 57.2 | 127 | 51 |
+| 2026-11-03 | 3 | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Everyday tech › Internet | E | [posted](https://www.instagram.com/reel/DfTq3Z-I1Ml) | 81.6 | 126 | 50 |
 | 2026-11-04 | 1 | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Money & payments › Payments | C | idea | - | - | - |
+| 2026-11-05 | 3 | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Everyday tech › Internet | Q | [posted](https://www.instagram.com/reel/DfWzUgUIq2n) | 83 | 122 | 49 |
 | 2026-11-06 | 1 | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | - | 118 | 47 |
+| 2026-11-06 | 3 | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | Aviation & engineering › Engines | C | [posted](https://www.instagram.com/p/DfZfdEok4Sz) | 81.4 | 9 slides | - |
+| 2026-11-08 | 5 | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Everyday tech › Devices | E | [posted](https://www.instagram.com/reel/DfgmpugIbXy) | 52.2 | 125 | 50 |
 | 2026-11-09 | 2 | 5 | [How WiFi works](idea-05-wifi/idea.md) | Everyday tech › Wireless | E | idea | - | - | - |
 | 2026-11-10 | 2 | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | Money & payments › Markets | F | idea | - | - | - |
 | 2026-11-11 | 2 | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | Everyday tech › Location & GPS | C | rendered | 66.2 | 9 slides | - |
 | 2026-11-12 | 2 | 7 | [How credit scores work](idea-07-credit-score/idea.md) | Money & payments › Credit | E | rendered | 77.8 | 121 | 48 |
 | 2026-11-13 | 2 | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | Everyday tech › Wireless | Q | idea | - | - | - |
 | 2026-11-16 | 3 | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | Aviation & engineering › Structures | F | idea | - | - | - |
-| 2026-11-17 | 3 | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Everyday tech › Internet | E | rendered | 81.6 | 126 | 50 |
-| 2026-11-18 | 3 | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | Aviation & engineering › Engines | C | rendered | 81.4 | 9 slides | - |
 | 2026-11-19 | 3 | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Aviation & engineering › Flight | E | idea | - | - | - |
-| 2026-11-20 | 3 | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Everyday tech › Internet | Q | rendered | 83 | 122 | 49 |
 | 2026-11-23 | 4 | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
 | 2026-11-24 | 4 | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Everyday tech › Data & codes | E | idea | - | - | - |
 | 2026-11-26 | 4 | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Money & payments › Payments | E | idea | - | - | - |
 | 2026-11-27 | 4 | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | Everyday tech › Location & GPS | Q | idea | - | - | - |
-| 2026-11-30 | 5 | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Everyday tech › Devices | E | rendered | 52.2 | 125 | 50 |
 | 2026-12-01 | 5 | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | Money & payments › Markets | E | idea | - | - | - |
 | 2026-12-03 | 5 | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | Everyday tech › Internet | F | idea | - | - | - |
 | 2026-12-04 | 5 | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Aviation & engineering › Machines | Q | idea | - | - | - |
@@ -86,25 +86,29 @@ Est. s assumes 2.5 words/s; the real length comes from the voice-over.
 
 | # | Idea | Post | Views | × median | Reach | Non-follower | Hold 3 s | Watch % | Sends / reach | Share + save | Follows / 1k |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 2 | [How GPS finds you](idea-02-gps/idea.md) | [watch](https://www.instagram.com/reel/DfE-k9so_ys) | 130 | 2.1x | - | - | - | - | - | - | - |
-| 1 | [How a card payment works](idea-01-card-payment/idea.md) | - | 2 | 0.0x | - | - | - | - | - | - | - |
-| 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | - | 0 | 0.0x | - | - | - | - | - | - | - |
-| 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | - | 120 | 2.0x | - | - | - | - | - | - | - |
+| 2 | [How GPS finds you](idea-02-gps/idea.md) | [watch](https://www.instagram.com/reel/DfE-k9so_ys) | 131 | 1.1x | 116 | - | - | - | 0.0% | 0.0% | 8.6 |
+| 1 | [How a card payment works](idea-01-card-payment/idea.md) | [watch](https://www.instagram.com/reel/DfHZUnZIbeZ) | 2 | 0.0x | 1 | - | - | - | 0.0% | 0.0% | 0 |
+| 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | [watch](https://www.instagram.com/reel/DfOxCyZoUsn) | 120 | 1.0x | 108 | - | - | - | 0.0% | 0.0% | 0 |
+| 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | [watch](https://www.instagram.com/reel/DfPEJpBIkrN) | 121 | 1.0x | 117 | - | - | - | 0.0% | 0.0% | 0 |
+| 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | [watch](https://www.instagram.com/reel/DfTq3Z-I1Ml) | 122 | 1.0x | 118 | - | - | - | 0.0% | 0.0% | 0 |
+| 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | [watch](https://www.instagram.com/reel/DfWzUgUIq2n) | 140 | 1.2x | 126 | - | - | - | 0.0% | 0.0% | 0 |
+| 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | [watch](https://www.instagram.com/p/DfZfdEok4Sz) | 0 | 0.0x | 0 | - | - | - | - | - | - |
+| 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | [watch](https://www.instagram.com/reel/DfgmpugIbXy) | 126 | 1.0x | 121 | - | - | - | 0.0% | 0.0% | 0 |
 
 Rank by × median and sends / reach, not raw views. High non-follower reach with few follows is a profile problem; low hold at 3 s is a hook problem.
 
 ## Formats
 
-Posted 4 of 26 ideas (15%).
+Posted 8 of 26 ideas (31%).
 
 | Format | Ideas | Posted | Avg reach | Avg watch % | Avg share + save | Avg follows / 1k |
 |---|---|---|---|---|---|---|
-| E | 12 | 3 | - | - | - | - |
-| F | 6 | 1 | - | - | - | - |
-| Q | 5 | 0 | - | - | - | - |
-| C | 3 | 0 | - | - | - | - |
+| E | 12 | 5 | 93 | - | 0.0% | 1.7 |
+| F | 6 | 1 | 117 | - | 0.0% | 0 |
+| Q | 5 | 1 | 126 | - | 0.0% | 0 |
+| C | 3 | 1 | 0 | - | - | - |
 
-**Best format so far:** by watch time - (needs 3 posted per format); by share + save rate - (needs 3 posted per format); by follows per 1k reach - (needs 3 posted per format).
+**Best format so far:** by watch time - (needs 3 posted per format); by share + save rate E; by follows per 1k reach E.
 
 Once about 12-15 ideas are posted, shift the mix toward the format that wins on watch time, shares/saves and follows. Small samples mislead, so formats are only compared once each has at least 3 posted.
 

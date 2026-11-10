@@ -16,6 +16,7 @@ export const script: PostScript = {
   failureSection: "payoff",
   blender: {
     model: "jet-engine",
+    worldOptOut: "built before worlds were required",
     // Non-breaking space keeps "41,000 ft." on one line at display size.
     coverText: "41,000 ft. Zero engines.",
     coverHighlight: "Zero",

@@ -8,6 +8,7 @@ subcategory: "Payments"
 week: 0
 date: 2026-10-30
 status: posted
+link: "https://www.instagram.com/reel/DfHZUnZIbeZ"
 hook: "Nobody tells you a card tap moves zero money."
 hook_formula: 3
 hook_score: 81.4
@@ -17,16 +18,16 @@ verify:
   - "Settlement timing (varies by country and card network); cite the source on screen"
   - "Up to five companies in the chain (terminal provider/processor, shop's bank, card network, your bank)"
 metrics:  # fill in after posting
-  views: 2  # as of 2026-11-02
-  reach: null
+  views: 2  # as of 2026-11-09 (insights export)
+  reach: 1
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 0
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 0
 ---
 
 # Idea 1: How a card payment works

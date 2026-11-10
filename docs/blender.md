@@ -46,7 +46,9 @@ Wide, close-ups on the part that matters, then wide again.
 
 `validateScript` warns when the mechanism has no close-up or ends on one without a `wide` / `collapse` / `explode` after it.
 
-## Worlds (optional)
+## Worlds (required)
+
+Every new reel renders inside a world (decided 2026-11-10, see `docs/design-decisions.md`). `validateScript` fails a plan with no `world`; only posts built before then set `worldOptOut` with a reason. When no existing world fits the topic, build a new one in `blender/world/` before the post's 3D (muted `env.*` tones, one amber key) and add its id to `WORLDS` in `src/templates/types.ts`.
 
 `world: "sea"` in the plan renders every clip opaque and full-frame inside that world, and adds a `backdrop` clip that plays dimmed behind the 2D setup and payoff. Code: `blender/world/`. Colors: the muted `env.*` tokens.
 

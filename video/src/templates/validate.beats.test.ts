@@ -18,6 +18,7 @@ const withBeats = (extra: Beat[], aim?: string): PostScript => ({
   sfx: { optOut: "unit test base" },
   blender: {
     model: "mems-accelerometer",
+    worldOptOut: "unit test base",
     cover: shot,
     opener: shot,
     hook: shot,

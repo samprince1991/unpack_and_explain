@@ -12,6 +12,7 @@ export const script: PostScript = {
   sfx: { optOut: "sounds not made yet" },
   blender: {
     model: "data-center",
+    worldOptOut: "built before worlds were required",
     coverText: "The cloud has walls",
     coverHighlight: "walls",
     // yaw 0 looks from the front (the feed cable side); pitch high enough to see into

@@ -174,6 +174,7 @@ describe("validateScript: blender plan", () => {
   );
   const plan = {
     model: "jet-engine" as const,
+    worldOptOut: "unit test base" as string | undefined,
     cover: { yaw: 30, pitch: 15, zoom: 1 },
     opener: { yaw: 20, pitch: 10, zoom: 1 },
     hook: { yaw: 20, pitch: 10, zoom: 1, beats: [{ cue: "engines", fallback: 0.5, do: "reveal" as const }] },
@@ -191,8 +192,20 @@ describe("validateScript: blender plan", () => {
     expect(validateScript(withPlan(plan)).errors).toEqual([]);
   });
 
+  it("requires a world unless the post opts out with a reason", () => {
+    const required = 'blender.world is required (sea); add a world for the topic (docs/blender.md)';
+    expect(validateScript(withPlan({ ...plan, worldOptOut: undefined })).errors).toContain(required);
+    expect(validateScript(withPlan({ ...plan, worldOptOut: " " })).errors).toContain(required);
+  });
+
+  it("rejects a world and an opt-out together", () => {
+    expect(validateScript(withPlan({ ...plan, world: "sea" })).errors).toContain(
+      "blender: set world or worldOptOut, not both",
+    );
+  });
+
   it("accepts the sea world on a model with a waterline", () => {
-    const sea = { ...plan, model: "bulbous-bow", world: "sea", hook: { yaw: 20, pitch: 10, zoom: 1 }, mechanism: { yaw: 60, pitch: 20, zoom: 1, beats: [{ cue: "squeezes", fallback: 0.5, do: "wide" }] } };
+    const sea = { ...plan, worldOptOut: undefined, model: "bulbous-bow", world: "sea", hook: { yaw: 20, pitch: 10, zoom: 1 }, mechanism: { yaw: 60, pitch: 20, zoom: 1, beats: [{ cue: "squeezes", fallback: 0.5, do: "wide" }] } };
     expect(validateScript(withPlan(sea)).errors).toEqual([]);
   });
 

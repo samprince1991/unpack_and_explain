@@ -12,6 +12,7 @@ export const script: PostScript = {
   sfx: { optOut: "sounds not made yet" },
   blender: {
     model: "subsea-cable",
+    worldOptOut: "built before worlds were required",
     coverText: "The internet is underwater",
     coverHighlight: "underwater",
     cover: { yaw: -32, pitch: 20, zoom: 1.15, keyPart: "fibers" },

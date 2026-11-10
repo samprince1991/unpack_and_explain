@@ -16,16 +16,16 @@ verify:
   - "Altitude"
   - "Relativity drift figure (commonly cited ~10 km / 6 mi per day)"
 metrics:  # fill in after posting
-  views: 130  # as of 2026-11-02
-  reach: null
+  views: 131  # as of 2026-11-09 (insights export)
+  reach: 116
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 2
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 1
 ---
 
 # Idea 2: How GPS finds you
