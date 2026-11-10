@@ -12,6 +12,7 @@ Faceless explainer reels ("How things actually work") built with Remotion. Prima
 | Carousels | `docs/carousels.md` |
 | Remotion Elements | `docs/remotion-elements.md` |
 | Any Instagram stage or `/ig-*` skill | `docs/instagram-pipeline.md` |
+| Which model / subagent does a step | `docs/model-tiers.md` |
 | Why something is built this way, before changing it | `docs/design-decisions.md` |
 
 ## Repo map
@@ -240,4 +241,4 @@ The pipeline is in `docs/instagram-pipeline.md`. **Where a skill disagrees with 
 - Don't rewrite, shorten or "improve" script text without asking.
 - Don't modify anything in `logo/` or redefine brand values inside a post folder.
 - Don't commit or push unless the user asks.
-- Don't spawn subagents (including subagent-driven-development or reviewer agents). Execute plans and reviews directly in the main session to keep cost down.
+- Don't spawn Opus subagents, and don't use subagent-driven-development or reviewer agents. Spawn only the cheap project agents in `.claude/agents/` (`docs/model-tiers.md`), and only for their listed jobs. Spine, script, hooks, scenes, Blender worlds/models, visual QA and debugging stay in the main session.

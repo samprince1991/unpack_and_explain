@@ -20,6 +20,8 @@ The `instagram-agent` plugin (13 skills, `/ig-*`) runs the account around the Re
 
 **Cadence:** reels Mon/Tue/Thu/Fri, carousel Wed, stories on posting days, engagement round daily.
 
+Which model or subagent handles each stage: `docs/model-tiers.md`.
+
 ## Skills
 
 | Skill | Use it for |
