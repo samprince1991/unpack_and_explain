@@ -69,8 +69,36 @@ describe("shift and appear beats", () => {
     expect(errorsOf([{ ...beat, do: "appear", part: "weight" }])[0]).toMatch(/not in the model's appearOnly list/);
   });
 
+  it("lets appearOnly parts vanish, and nothing else", () => {
+    expect(errorsOf([{ ...beat, do: "vanish", part: "ground" }])).toEqual([]);
+    expect(errorsOf([{ ...beat, do: "vanish", part: "weight" }])[0]).toMatch(/not in the model's appearOnly list/);
+  });
+
   it("checks the part a shot aims at", () => {
     expect(errorsOf([], "nonsense")[0]).toMatch(/part "nonsense" is not in model/);
     expect(errorsOf([], "weight")).toEqual([]);
+  });
+});
+
+describe("part groups", () => {
+  const coupe = (extra: Beat[]): PostScript => {
+    const base = withBeats([]);
+    const plan = base.blender as Extract<PostScript["blender"], { model: string }>;
+    return {
+      ...base,
+      blender: {
+        ...plan,
+        model: "coupe",
+        mechanism: { ...plan.mechanism, beats: [{ cue: "word", fallback: 0.1, do: "focus", part: "tanks" }, { cue: "word", fallback: 0.9, do: "wide" }, ...extra] },
+      },
+    };
+  };
+
+  it("lets a shift move a catalog group", () => {
+    expect(validateScript(coupe([{ ...beat, do: "shift", part: "car", by: [0, 0, 0.3] }])).errors).toEqual([]);
+  });
+
+  it("only lets shift use a group", () => {
+    expect(validateScript(coupe([{ ...beat, do: "focus", part: "car" }])).errors[0]).toMatch(/group "car" only applies to shift/);
   });
 });

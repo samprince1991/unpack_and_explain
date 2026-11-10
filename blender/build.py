@@ -415,8 +415,14 @@ class Clip:
 
     def shift(self, part, by, frame):
         """Slides a part to `by` (offset from its rest place, 0 = back home). The model's flex
-        parts keep one end fixed and stretch so the other end stays on the moving part."""
+        parts keep one end fixed and stretch so the other end stays on the moving part. A
+        catalog `groups` name moves all its parts together (a whole car hopping)."""
         by = Vector(by)
+        group = self.model.get("groups", {}).get(part)
+        if group:
+            for member in group:
+                self._slide(member, by.copy(), frame)
+            return
         self._slide(part, by, frame)
         flex = self.model.get("flex")
         if not flex:
@@ -435,6 +441,17 @@ class Clip:
             half = Vector()
             half[axis] = by[axis] / 2  # the fixed end stays put, so the middle moves half as far
             self._slide(name, half, frame)
+
+    def vanish(self, part, frame):
+        """An appearOnly part scales back out and hides (air jets switching off)."""
+        pivot = self.parts[part]["pivot"]
+        pivot.keyframe_insert("scale", frame=frame)
+        pivot.scale = (HIDDEN, HIDDEN, HIDDEN)
+        pivot.keyframe_insert("scale", frame=frame + ENTER)
+        for obj in self.parts[part]["objects"]:
+            with interpolation("CONSTANT"):
+                obj.hide_render = True
+                obj.keyframe_insert("hide_render", frame=frame + ENTER)
 
     def spin(self, part, frame):
         self.spins.append({"part": part, "start": frame, "end": None})
@@ -533,6 +550,8 @@ class Clip:
             self.shift(beat["part"], beat["by"], f)
         elif kind == "appear":
             self.appear(beat["part"], f)
+        elif kind == "vanish":
+            self.vanish(beat["part"], f)
         elif kind == "stop":
             self.stop(f)
         elif kind == "flow":

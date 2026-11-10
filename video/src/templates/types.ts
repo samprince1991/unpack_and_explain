@@ -167,6 +167,8 @@ export const BEAT_ACTIONS = [
   "shift",
   // A catalog `appearOnly` part scales in. Those parts are hidden until this beat.
   "appear",
+  // An `appearOnly` part scales back out (air jets switching off).
+  "vanish",
 ] as const;
 export type BeatAction = (typeof BEAT_ACTIONS)[number];
 
@@ -176,13 +178,13 @@ export type Beat = {
   // Fraction of the section used if the cue word isn't found in the VO timing.
   fallback: number;
   do: BeatAction;
-  // focus / spin / flow (from) / label / shift / appear: a catalog part.
+  // focus / spin / flow (from) / label / shift / appear / vanish: a catalog part (shift: or a group).
   part?: string;
   // flow: destination part.
   to?: string;
   // flow: the camera follows the dot into a close-up of the destination. Default true.
   follow?: boolean;
-  // shift: offset from the part's rest place, in model units (the model's longest side is
+  // shift: offset from the part's rest place (a catalog `groups` name moves its parts together), in model units (the model's longest side is
   // 2). [0, 0, 0] sends it home.
   by?: readonly [number, number, number];
   // label: 2D text (a number or unit, never words the VO already says).
@@ -193,7 +195,7 @@ export type Beat = {
 };
 
 // Opaque full-frame environments (docs/blender.md).
-export const WORLDS = ["sea", "coast"] as const;
+export const WORLDS = ["sea", "coast", "track"] as const;
 export const COAST_PLACEMENTS = ["sea", "shore", "land"] as const;
 export type CoastPlacement = (typeof COAST_PLACEMENTS)[number];
 export type WorldId = (typeof WORLDS)[number];

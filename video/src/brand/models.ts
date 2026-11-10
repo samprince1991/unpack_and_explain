@@ -35,6 +35,9 @@ export type ModelEntry = {
   // `shift` beats stretch these parts along `axis`, keeping the end named by the part's
   // value fixed (a spring on an anchor), so the other end stays on the part that slides.
   flex?: { axis: "x" | "y" | "z"; parts: Readonly<Record<string, "min" | "max">> };
+  // Named sets of parts a `shift` beat moves together (a whole car hopping). Beats name the
+  // group as their `part`.
+  groups?: Readonly<Record<string, readonly string[]>>;
   useFor: string;
 };
 
@@ -237,6 +240,41 @@ export const models = {
     appearOnly: ["cushion", "pushgrid", "leaks"],
     hardEdges: ["fan", "rudders"],
     useFor: "Hovercraft, air cushions, lift from pressure x area, amphibious craft (idea 27; coast world)",
+  },
+  coupe: {
+    title: "Generic low two-seat sports coupe with cold-gas thrusters: body shell, glass, lights, skirts, rear wing, spoked wheels, seats, air tanks and pipes, ten nozzles, air jets and a push arrow",
+    file: "models/coupe.glb",
+    source: "Procedural, blender/models/coupe.py",
+    license: "own",
+    parts: {
+      body: ["body"],
+      glass: ["glass"],
+      lights: ["lights"],
+      trim: ["trim"],
+      wing: ["wing"],
+      floor: ["floor"],
+      cabin: ["cabin"],
+      tanks: ["tanks"],
+      pipes: ["pipes"],
+      wheels: ["wheels"],
+      nozzle: ["nozzle"],
+      nozzles: ["nozzles"],
+      rear: ["rear"],
+      jet: ["jet"],
+      jets: ["jets"],
+      push: ["push"],
+    },
+    keyPart: "tanks",
+    // Nothing spreads out (spacing 0). The shell and everything on it (glass, lights, trim,
+    // wing) are `away` parts: "explode" drops them out of view, a cutaway that shows the seats,
+    // the air tanks and their pipes on the floor pan; "collapse" brings them back.
+    explode: { axis: "z", order: ["floor", "cabin", "tanks", "pipes"], spacing: 0, away: ["body", "glass", "lights", "trim", "wing"] },
+    spinAxis: "y",
+    // The air out of the nozzles, and the push the car gets the other way.
+    appearOnly: ["jet", "jets", "push"],
+    // The whole car hops: a `shift` beat on "car" moves every part together.
+    groups: { car: ["body", "glass", "lights", "trim", "wing", "floor", "cabin", "tanks", "pipes", "wheels", "nozzle", "nozzles", "rear", "jet", "jets", "push"] },
+    useFor: "Cars and car tech, thrusters, compressed air, jumps (idea 28; track world)",
   },
 } as const satisfies Record<string, ModelEntry>;
 

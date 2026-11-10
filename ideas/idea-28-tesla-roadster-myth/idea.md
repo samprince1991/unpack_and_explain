@@ -8,7 +8,7 @@ category: "Aviation & engineering"
 subcategory: "Cars"
 week: 6
 date: 2026-12-11
-status: scripted
+status: rendered
 hook_formula: 3
 hook_score: 81.4
 question_score: 65.2
@@ -51,7 +51,7 @@ metrics:  # fill in after posting
 |---|---|---|
 | Question | Do you know how Tesla's Roadster actually flies? | Question card over the Blender opener: a low, generic two-seat sports coupe (procedural, no Tesla badges or logo) on a test-track ramp at dusk; the rear nozzles amber. |
 | Hook | Nobody tells you Tesla's flying car runs on compressed air. | Blender hook: camera slides along the side of the car to a cutaway of the air tanks (amber on 'compressed air'). |
-| Setup | In October, Tesla's new Roadster jumped over five parked cars. MYTH: it's a flying car. | 2D kinetic type + line art: five simple car silhouettes in a row on 'five parked cars', a dashed arc jumps over them on 'jumping'; MYTH stamp (coral) on 'flying car'. |
+| Setup | In October, Tesla's new Roadster jumped over five parked cars. Myth: it's a flying car. | 2D kinetic type + line art: five simple car silhouettes in a row on 'five parked cars', a dashed arc jumps over them on 'jumping'; MYTH stamp (coral) on 'flying car'. |
 | Mechanism | There are no wings. Tanks hold about 600 liters of compressed air, and ten nozzles let it out. Air blasts one way, so the car gets shoved the other way. It's the same trick rockets use to steer in space. When the nozzles stop, the car comes straight back down. | Blender cutaway: wide on the car; close on the tank stack on '600 liters' (amber) with on-screen "600 L (159 US gal)"; close on one nozzle on 'ten nozzles', a cone of air out (amber) and an arrow on the car the opposite way on 'shoved'; small spacecraft silhouette with a puff on 'rockets'; wide: the arc of the jump, air cone cuts off on 'stop' and the car drops back to the ground line. |
 | Payoff | FACT: it's a car that jumps. And a fan underneath does the opposite job, sucking the car down onto the road for grip. | 2D: FACT stamp (teal) on 'car that jumps'; side-view line art of the underbody, a fan (amber) and arrows pulling down into the road on 'sucking the car down'. |
 | Congrats | Congrats, you just learned how Tesla's Roadster really jumps. | Congrats card: teal check + chime (template). |
@@ -68,8 +68,8 @@ Answer: it doesn't really fly: compressed air blasting from ten nozzles shoves i
 - Hooks scored (hookscore.py): #3 Nobody Tells You "Nobody tells you Tesla's flying car runs on compressed air." 81.4 STRONG (picked); #20 Permission "You don't need wings to jump a car over five cars." 77.8; #22 Contrarian "Tesla's new Roadster isn't a flying car. It hops." 39.2.
 - Question cards scored: "Do you know how Tesla's Roadster actually flies?" 65.2 (picked; the FACT answers 'it doesn't'); "Can Tesla's new Roadster actually fly?" 59.0.
 - Hook title (28 chars max): "Flying on bottled air", highlight "bottled air".
-- Model: draw a generic coupe, not a copy of the Roadster body, and no Tesla logo (trademark). Name the car in VO/caption only.
-- World: none fits yet (sea, coast). Needs a new `track` world (test track / ramp at dusk); the same world can serve ideas 30 and 34.
+- Model: draw a generic coupe, not a copy of the Roadster body, and no Tesla logo (trademark). Name the car in VO/caption only. Built as procedural `coupe` (`blender/models/coupe.py`, license own): `body` shell with `glass`, `lights`, `trim` (skirts, intakes) and a rear `wing` (all `away` in the cutaway), `floor`, `cabin` (seats, steering wheel), `tanks` (key), `pipes`, spoked `wheels`, the key sill `nozzle`, seven more `nozzles`, two `rear` nozzles, appear-only `jet`, `jets` and `push` (arrow up over the roof); group `car` hops with a `shift` beat. Not the previous post's model.
+- World: new `track` world (`blender/world/track.py`): test track at dusk, edge lines, barrier and light towers on the far side, launch ramp ahead. The same world can serve ideas 30 and 34.
 - Timely: the unveil was 15 Oct 2026. Consider moving this ahead of older ideas in the schedule.
 - Units: 600 L = 159 US gal.
 
@@ -95,4 +95,8 @@ Checked 2026-11-10.
 - Performance trim: 'multi-mode suction system'; the car hung upside down from a ledge held by fan suction. [TechCrunch](https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/), [KUTV](https://kutv.com/news/nation-world/flying-cars-are-real-elon-musk-tesla-debuts-new-roadster-dramatic-fashion-ramp-spacex-thruster-texas-0-to-60-mph-second-ramp-performance-thrust-invite-only-reservation-flight-technology)
 - Production planned for 2028; flying features not approved for public roads; no price given. [CNN](https://www.cnn.com/2026/10/15/business/tesla-unveils-what-it-says-is-a-flying-car), [Star-Advertiser](https://www.staradvertiser.com/2026/10/16/breaking-news/tesla-unveils-roadster-with-thrusters-targets-2028-production/)
 - Cold-gas thrusters push by Newton's third law, the same way spacecraft attitude thrusters work. General physics; [NASA Glenn, Newton's third law](https://www.grc.nasa.gov/www/k-12/airplane/newton3.html)
+- Verify list re-checked 2026-11-10 before the final render:
+  - 600 L and ten nozzles: TechCrunch quotes Moravy (Tesla's engineering VP), "10 thrusters connected to 600 liters of compressed air"; Drive Tesla Canada: two tanks, 600 L combined, "10 nozzles". The "two main thrusters" report is the outlier. Kept as scripted.
+  - Fan on the jump car: MercoPress says the demo car "uses two systems", suction fans under the chassis plus the compressed-air thrusters; TechCrunch says the demo used "high-powered fans and thrusters". Kept as scripted. [MercoPress](https://en.mercopress.com/2026/10/18/tesla-s-new-roadster-uses-compressed-air-and-fans-to-jump-and-drive-upside-down)
+  - Five cars: TechCrunch lists a Cybercab, Cybertruck, Tesla Semi, Model Y and Model 3. Kept as scripted.
 - Dropped: '27 ft jump' and '0-60 in 0.81 s' (single-source or company-only numbers that sources disagree on).

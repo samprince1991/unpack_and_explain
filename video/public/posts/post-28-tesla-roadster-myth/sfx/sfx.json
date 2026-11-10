@@ -1,0 +1,17 @@
+{
+  "postId": "post-28-tesla-roadster-myth",
+  "sounds": {
+    "valve": {
+      "prompt": "soft short hiss of a high-pressure air valve opening, clean, no clank",
+      "seconds": 1,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-28-tesla-roadster-myth/sfx/valve.mp3"
+    },
+    "blast": {
+      "prompt": "sharp burst of compressed air from a nozzle, cold gas thruster puff, short whoosh",
+      "seconds": 1.2,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-28-tesla-roadster-myth/sfx/blast.mp3"
+    }
+  }
+}

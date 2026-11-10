@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**37 ideas** (by status: 14 idea, 11 scripted, 4 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**37 ideas** (by status: 14 idea, 10 scripted, 5 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -53,7 +53,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Machines | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | You don't need wheels to hit 603 kilometers an hour. | E | scripted | Wikipedia, SCMaglev; Guinness World Records | 2 |
 | Ships | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | You've never noticed the bump that saves ships up to 14% fuel. | E | rendered | FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log) | 1 |
 | Ships | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | You don't need strong air to lift an 11-tonne hovercraft. | E | rendered | SR.N6 worked example (Wikipedia, Hovercraft); National Historic Ships UK; SR.N4 specifications | 2 |
-| Cars | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Nobody tells you Tesla's flying car runs on compressed air. | Q | scripted | Tesla Roadster unveil, 15 Oct 2026 (TechCrunch, CNN, Drive Tesla Canada) | 3 |
+| Cars | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Nobody tells you Tesla's flying car runs on compressed air. | Q | rendered | Tesla Roadster unveil, 15 Oct 2026 (TechCrunch, CNN, Drive Tesla Canada) | 3 |
 | Cars | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Nobody tells you a fan won an F1 race in 1978. | E | scripted | Wikipedia, Brabham BT46; Motor Sport, 1978 Swedish GP | 2 |
 | Cars | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Nobody tells you braking gives an electric car back 32% in the city. | E | scripted | U.S. DOE / EPA, fueleconomy.gov: Where the energy goes, electric cars | 1 |
 | Cars | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Nobody tells you an F1 car could drive on the ceiling at 210 km/h. | E | scripted | NASA Glenn, lift equation; Planet F1; University of Leicester Physics Special Topics | 2 |
@@ -91,7 +91,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-12-07 | 6 | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
 | 2026-12-08 | 6 | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | Aviation & engineering › Ships | E | rendered | 76.4 | 124 | 50 |
 | 2026-12-10 | 6 | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | Aviation & engineering › Ships | E | rendered | 77.8 | 122 | 49 |
-| 2026-12-11 | 6 | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Aviation & engineering › Cars | Q | scripted | 81.4 | 124 | 50 |
+| 2026-12-11 | 6 | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Aviation & engineering › Cars | Q | rendered | 81.4 | 124 | 50 |
 | 2026-12-14 | 7 | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | Aviation & engineering › Flight | E | scripted | 77.8 | 129 | 52 |
 | 2026-12-15 | 7 | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Aviation & engineering › Cars | E | scripted | 81.4 | 128 | 51 |
 | 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | scripted | 77.8 | 128 | 51 |

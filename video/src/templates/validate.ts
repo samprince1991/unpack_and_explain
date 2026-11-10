@@ -111,6 +111,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
   }
   const parts = modelParts(plan.model);
   const appearOnly: readonly string[] = (models[plan.model] as ModelEntry).appearOnly ?? [];
+  const groups: Readonly<Record<string, readonly string[]>> = (models[plan.model] as ModelEntry).groups ?? {};
   const checkPart = (where: string, part: string | undefined) => {
     if (part !== undefined && !parts.includes(part)) {
       errors.push(`${where}: part "${part}" is not in model ${plan.model} (${parts.join(", ")})`);
@@ -154,7 +155,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       if (!spokenIn(script, section, beat.cue)) {
         errors.push(`${where}: cue "${beat.cue}" is not spoken in the ${section} section`);
       }
-      if (["focus", "spin", "flow", "label", "shift", "appear"].includes(beat.do) && !beat.part) {
+      if (["focus", "spin", "flow", "label", "shift", "appear", "vanish"].includes(beat.do) && !beat.part) {
         errors.push(`${where}: "${beat.do}" needs a part`);
       }
       if (beat.follow !== undefined && beat.do !== "flow") {
@@ -169,7 +170,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       if (beat.by && beat.do !== "shift") {
         errors.push(`${where}: "by" only applies to shift`);
       }
-      if (beat.do === "appear" && beat.part && !appearOnly.includes(beat.part)) {
+      if ((beat.do === "appear" || beat.do === "vanish") && beat.part && !appearOnly.includes(beat.part)) {
         errors.push(`${where}: part "${beat.part}" is not in the model's appearOnly list`);
       }
       if (beat.do === "label" && !beat.label?.trim()) {
@@ -178,7 +179,13 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       if (beat.label && spokenIn(script, section, beat.label) && !/\d/.test(beat.label)) {
         errors.push(`${where}: label "${beat.label}" repeats the voice-over`);
       }
-      checkPart(where, beat.part);
+      if (beat.part !== undefined && beat.part in groups) {
+        if (beat.do !== "shift") {
+          errors.push(`${where}: group "${beat.part}" only applies to shift`);
+        }
+      } else {
+        checkPart(where, beat.part);
+      }
       checkPart(where, beat.to);
       checkShot(where, beat.shot ?? {});
     });
