@@ -2,7 +2,7 @@
 
 ## Voice-over
 
-- ElevenLabs premade voice **Brian** (`nPczCjzI2devNBz1zQrb`), set in `src/brand/voice.ts`. Never switch voice or settings per post. Changing it means re-running `npm run tts` for every post you want to re-render.
+- ElevenLabs voice `ktkP7Nsj67dw2zcplQYt` (replaced premade Brian on 2026-11-10; posts voiced before then still use Brian), set in `src/brand/voice.ts`. Never switch voice or settings per post. Changing it means re-running `npm run tts` for every post you want to re-render.
 - **Tone: upbeat and warm, never flat.** The settings (stability 0.35, style 0.45) give an energetic read. Scripts help with punctuation: "?" on the question, short sentences, and **no "!"** (it over-emphasizes the word before it). If a line sounds flat, rephrase or re-run TTS for that post; don't change the settings per post.
 - The API key is restricted (no `voices_read` / `user_read`), so voices can't be listed from here. Get voice IDs from the ElevenLabs website.
 - VO is generated per section with timestamps by `scripts/tts.ts`. Section length = real audio length + tail pad. The script's "Time" column is guidance only.

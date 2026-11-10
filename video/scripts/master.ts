@@ -4,8 +4,9 @@ import { ffmpeg } from "./lib/remotion";
 // true peak <= -1 dBTP. Two-pass ffmpeg loudnorm, video stream copied untouched.
 // Usage: npm run master -- out/post-02-gps/post-02-gps.mp4   ->   .../post-02-gps.master.mp4
 // TP aims 1 dB under the -1 dBTP ceiling: the AAC encode after loudnorm adds about
-// 0.3-0.6 dB of inter-sample overshoot (post 27: -0.73 dBTP with TP -1, -0.88 with -1.5, -1.72 with -2).
-const TARGET = { I: -14, TP: -2, LRA: 11 };
+// 0.3-0.6 dB of inter-sample overshoot (post 27: -0.73 dBTP with TP -1, -0.88 with -1.5, -1.72 with -2). The library voice from post 38
+// overshoots more (post 38: -0.99 dBTP with TP -2), so it aims at -2.5.
+const TARGET = { I: -14, TP: -2.5, LRA: 11 };
 
 type Measured = {
   input_i: string;

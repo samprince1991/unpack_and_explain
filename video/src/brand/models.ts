@@ -276,6 +276,40 @@ export const models = {
     groups: { car: ["body", "glass", "lights", "trim", "wing", "floor", "cabin", "tanks", "pipes", "wheels", "nozzle", "nozzles", "rear", "jet", "jets", "push"] },
     useFor: "Cars and car tech, thrusters, compressed air, jumps (idea 28; track world)",
   },
+  "gold-casting": {
+    title: "Lost-wax casting set: a gold ring, a melting dish of metal grains and its molten pool, and a wax copy of the ring buried in a two-half plaster block",
+    file: "models/gold-casting.glb",
+    source: "Procedural, blender/models/gold_casting.py",
+    license: "own",
+    parts: {
+      ring: ["ring"],
+      crucible: ["crucible"],
+      grains: ["grains"],
+      melt: ["melt"],
+      waxring: ["waxring", "sprue"],
+      plasterback: ["plasterback"],
+      plasterfront: ["plasterfront"],
+      hollow: ["hollow"],
+      cast: ["cast", "castsprue"],
+    },
+    keyPart: "ring",
+    // Nothing spreads out (spacing 0). "explode" is the wax melting out: the wax ring and the
+    // front plaster half are the `away` parts, so the hole in the back half shows.
+    explode: { axis: "x", order: ["crucible", "ring", "plasterback"], spacing: 0, away: ["waxring", "plasterfront"] },
+    // The finished ring turns on the bench like a turntable.
+    spinAxis: "z",
+    // The melt, the plaster that buries the wax, the hole the wax leaves, and the gold cast.
+    appearOnly: ["melt", "plasterback", "plasterfront", "hollow", "cast"],
+    // Never seen crossing: the melt scales in over the grains and swallows them, and the wax
+    // ring leaves (explode, away) before the cast appears in its place.
+    contacts: [
+      ["grains", "melt"],
+      ["waxring", "cast"],
+    ],
+    // The plaster halves are cut flat: their faces meet the curved sides at 90 degrees.
+    hardEdges: ["plasterback", "plasterfront"],
+    useFor: "Jewellery and metalwork: alloying, casting, moulds, how a ring is made (idea 38; bench world)",
+  },
 } as const satisfies Record<string, ModelEntry>;
 
 export type ModelId = keyof typeof models;

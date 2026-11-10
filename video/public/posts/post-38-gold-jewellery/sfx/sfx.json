@@ -1,0 +1,23 @@
+{
+  "postId": "post-38-gold-jewellery",
+  "sounds": {
+    "clink": {
+      "prompt": "small gold ring set down on a wooden workbench, single soft metallic clink",
+      "seconds": 0.8,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-38-gold-jewellery/sfx/clink.mp3"
+    },
+    "melt": {
+      "prompt": "soft bubbling sizzle of molten metal in a small ceramic crucible, gentle",
+      "seconds": 1.5,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-38-gold-jewellery/sfx/melt.mp3"
+    },
+    "pour": {
+      "prompt": "thin stream of molten metal pouring into a mould, soft liquid hiss",
+      "seconds": 1.5,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-38-gold-jewellery/sfx/pour.mp3"
+    }
+  }
+}

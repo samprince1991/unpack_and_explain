@@ -28,6 +28,8 @@ import { Post27 } from "./posts/post-27-hovercraft";
 import { script as post27 } from "./posts/post-27-hovercraft/script";
 import { Post28 } from "./posts/post-28-tesla-roadster-myth";
 import { script as post28 } from "./posts/post-28-tesla-roadster-myth/script";
+import { Post38 } from "./posts/post-38-gold-jewellery";
+import { script as post38 } from "./posts/post-38-gold-jewellery/script";
 import { calculateCoverMetadata, Cover } from "./templates/Cover";
 import { calculateReelMetadata } from "./templates/metadata";
 
@@ -147,6 +149,16 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{ script: post28, vo: null, audio: null, showGuides: false }}
           calculateMetadata={calculateReelMetadata}
         />
+        <Composition
+          id="Post38-GoldJewellery"
+          component={Post38}
+          durationInFrames={video.fps * 40}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post38, vo: null, audio: null, showGuides: false }}
+          calculateMetadata={calculateReelMetadata}
+        />
       </Folder>
       <Folder name="Covers">
         <Composition
@@ -227,6 +239,16 @@ export const RemotionRoot: React.FC = () => {
           width={video.width}
           height={video.height}
           defaultProps={{ script: post28, blender3d: null, showGuides: false }}
+          calculateMetadata={calculateCoverMetadata}
+        />
+        <Composition
+          id="Cover38-GoldJewellery"
+          component={Cover}
+          durationInFrames={1}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post38, blender3d: null, showGuides: false }}
           calculateMetadata={calculateCoverMetadata}
         />
       </Folder>

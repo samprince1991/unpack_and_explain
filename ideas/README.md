@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**50 ideas** (by status: 27 idea, 10 scripted, 5 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**50 ideas** (by status: 26 idea, 10 scripted, 6 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -64,7 +64,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 
 | Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
 |---|---|---|---|---|---|---|---|
-| Jewellery | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Nobody tells you your gold ring is a quarter other metals. | E | idea | World Gold Council, About gold jewellery; investment (lost-wax) casting references | 2 |
+| Jewellery | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Nobody tells you your gold ring is part copper. | E | rendered | World Gold Council; Bureau of Indian Standards; Ganoksin | - |
 | Jewellery | 39 | [What your gold stamp means](idea-39-gold-karats/idea.md) | 750, 585, 375: read your ring. | C | idea | World Gold Council, assay and fineness | - |
 | Jewellery | 40 | [Myth: white gold is naturally white](idea-40-white-gold-myth/idea.md) | Your white gold ring is secretly yellow. | Q | idea | {{source}}: needs a GIA, assay-office or refiner page | 2 |
 | Jewellery | 41 | [How a lab-grown diamond is made](idea-41-lab-grown-diamond/idea.md) | Nobody tells you a lab-grown diamond starts as a gas. | E | idea | GIA, HPHT and CVD diamond growth processes; GIA Gems & Gemology, Summer 2024 | 2 |
@@ -119,7 +119,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-12-24 | 8 | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Aviation & engineering › Cars | E | scripted | 81.4 | 125 | 50 |
 | 2026-12-25 | 8 | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | 52.4 | 130 | 52 |
 | 2026-12-28 | 9 | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Aviation & engineering › Cars | E | scripted | 52.2 | 129 | 52 |
-| 2026-12-29 | 9 | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Style & beauty › Jewellery | E | idea | - | - | - |
+| 2026-12-29 | 9 | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Style & beauty › Jewellery | E | rendered | 52.2 | 125 | 50 |
 | 2026-12-30 | 9 | 39 | [What your gold stamp means](idea-39-gold-karats/idea.md) | Style & beauty › Jewellery | C | idea | - | - | - |
 | 2026-12-31 | 9 | 40 | [Myth: white gold is naturally white](idea-40-white-gold-myth/idea.md) | Style & beauty › Jewellery | Q | idea | - | - | - |
 | 2027-01-01 | 9 | 41 | [How a lab-grown diamond is made](idea-41-lab-grown-diamond/idea.md) | Style & beauty › Jewellery | E | idea | - | - | - |

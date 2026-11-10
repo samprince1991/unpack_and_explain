@@ -193,7 +193,7 @@ describe("validateScript: blender plan", () => {
   });
 
   it("requires a world unless the post opts out with a reason", () => {
-    const required = 'blender.world is required (sea, coast, track); add a world for the topic (docs/blender.md)';
+    const required = 'blender.world is required (sea, coast, track, bench); add a world for the topic (docs/blender.md)';
     expect(validateScript(withPlan({ ...plan, worldOptOut: undefined })).errors).toContain(required);
     expect(validateScript(withPlan({ ...plan, worldOptOut: " " })).errors).toContain(required);
   });
@@ -222,7 +222,7 @@ describe("validateScript: blender plan", () => {
 
   it("rejects unknown worlds, and the sea on a model with no waterline", () => {
     expect(validateScript(withPlan({ ...plan, world: "moon" })).errors).toContain(
-      'blender.world "moon" is unknown (sea, coast, track)',
+      'blender.world "moon" is unknown (sea, coast, track, bench)',
     );
     expect(validateScript(withPlan({ ...plan, world: "sea" })).errors).toContain(
       'blender.world "sea" needs a model with a waterline part',

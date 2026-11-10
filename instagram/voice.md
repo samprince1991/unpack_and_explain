@@ -18,7 +18,7 @@ Voice profile read by every instagram-agent skill (`/ig-reel`, `/ig-caption`, `/
 - **Three reels that sound most like me:** idea 2 (`ideas/idea-02-gps/idea.md`), live at https://www.instagram.com/reel/DfE-k9so_ys. Add two more once they're posted.
 - **On camera I am:** faceless. Upbeat and warm voice-over, never flat, never hype.
 - **Face on camera:** never (faceless channel; drawn diagrams only, no stock footage or AI imagery).
-- **Voiceover or to-camera:** voiceover only, ElevenLabs voice Brian. The same voice and settings on every reel.
+- **Voiceover or to-camera:** voiceover only, ElevenLabs voice `ktkP7Nsj67dw2zcplQYt` (see `video/src/brand/voice.ts`). The same voice and settings on every reel.
 - **Pace:** 150 words per minute (2.5 words/s). Use `beats.py --wpm 150`.
 - **Words I actually use:** "actually", "your phone", "here's the trick", plain verbs, everyday comparisons, numbers with units (metric + imperial).
 - **Words I would never say out loud:** "stop scrolling", "in today's video", "follow for more", "you won't believe", "mind-blowing", "insane", "game-changer", "hack".

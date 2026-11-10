@@ -53,13 +53,14 @@ Every new reel renders inside a world (decided 2026-11-10, see `docs/design-deci
 
 `world: "sea"` in the plan renders every clip opaque and full-frame inside that world, and adds a `backdrop` clip that plays dimmed behind the 2D setup and payoff. Code: `blender/world/`. Colors: the muted `env.*` tokens.
 
-Three worlds so far:
+Four worlds so far:
 
 | World | Scene | Use for |
 |---|---|---|
 | `sea` | Open sea cut in section along a ship's hull, so the part below the waterline shows. Needs a model with a `waterline` part (`validateScript` checks it) | Ships, hulls, anything that sits in the water |
 | `coast` | Sea, beach, dunes, grassland with a road, fence, lamps and power lines, hills fading into haze. Any model | Anything that sits on water or land: hovercraft, vehicles, bridges, outdoor machines |
 | `track` | A test track at dusk: a straight of tarmac along the model's forward axis with edge lines, a low barrier and light towers on the far (+y) side, a launch ramp ahead, low sheds, grassland and hills in haze. Any model | Cars and other ground vehicles: jumps, launches, braking, grip (ideas 28, 30, 34) |
+| `bench` | A jeweller's workbench at night: a wide wooden bench top, a dim back wall with a pegboard of hanging tools and a shelf of jars, and a desk lamp at the far left throwing a warm pool of light on the model. 50 mm lens, so automatic close-ups size themselves. Any model | Jewellery, small crafted objects, anything made by hand on a table (idea 38) |
 
 - **Coast placements** (clip start field `coast`): `sea` (on the water, the beach far ahead; default), `shore` (on the water right at the beach), `land` (on the grass, the road and lamps behind it, the sea far back). The backdrop clip always shows the shore.
 - **Hovercraft effects:** a model with a `skirt` part presses a shallow dip into the water and gets a ring of spray around the skirt, when it's over water.

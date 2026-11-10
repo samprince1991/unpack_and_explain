@@ -164,7 +164,7 @@ A muted viewer must know what the reel is about from frame 0 and follow it line 
 
 ## Variety
 
-**Fixed frame, varied content layer.** Colors, fonts, Brian's voice, captions, the congrats and CTA cards, logo, watermark, safe zones, section order and audio never vary. These do:
+**Fixed frame, varied content layer.** Colors, fonts, the channel voice, captions, the congrats and CTA cards, logo, watermark, safe zones, section order and audio never vary. These do:
 
 | Layer | How it varies | Where |
 |---|---|---|
