@@ -39,11 +39,11 @@ export const script: PostScript = {
     hook: {
       yaw: -45,
       pitch: 14,
-      zoom: 2,
+      zoom: 1.8,
       coast: "sea",
       drift: 1.5,
-      // Low in the frame: the hook title sits in the sky above the craft.
-      frameY: 0.62,
+      // Below the hook title and its "11 t" label (y 700), above the captions (from y ~1330).
+      frameY: 0.55,
       beats: [
         // The camera drops toward the waterline; the skirt, where the air is, turns amber.
         // Zooms set by hand: an automatic close-up on the skirt (a ring as big as the craft)
