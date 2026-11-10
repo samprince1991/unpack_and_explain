@@ -1,8 +1,8 @@
-import { spawnSync } from "node:child_process";
+import { ffmpeg } from "./lib/remotion";
 
 // Loudness-masters a rendered reel for Instagram / Shorts: -14 LUFS integrated,
 // true peak <= -1 dBTP. Two-pass ffmpeg loudnorm, video stream copied untouched.
-// Usage: npm run master -- out/post-02-gps.mp4   ->  out/post-02-gps.master.mp4
+// Usage: npm run master -- out/post-02-gps/post-02-gps.mp4   ->   .../post-02-gps.master.mp4
 const TARGET = { I: -14, TP: -1, LRA: 11 };
 
 type Measured = {
@@ -11,18 +11,6 @@ type Measured = {
   input_lra: string;
   input_thresh: string;
   target_offset: string;
-};
-
-// Remotion's bundled ffmpeg has loudnorm, so no system ffmpeg is needed.
-const ffmpeg = (args: string[]) => {
-  const res = spawnSync("npx", ["remotion", "ffmpeg", ...args.map((a) => `"${a}"`)], {
-    encoding: "utf8",
-    shell: true,
-  });
-  if (res.status !== 0) {
-    throw new Error(`ffmpeg failed:\n${res.stderr.slice(-2000)}`);
-  }
-  return res.stderr;
 };
 
 const measure = (file: string): Measured => {
@@ -45,7 +33,7 @@ const measure = (file: string): Measured => {
 const main = () => {
   const input = process.argv[2];
   if (!input) {
-    throw new Error("Usage: npm run master -- out/<post>.mp4");
+    throw new Error("Usage: npm run master -- out/<post>/<post>.mp4");
   }
   const output = input.replace(/(\.[a-z0-9]+)$/i, ".master$1");
   const isWav = /\.wav$/i.test(input);

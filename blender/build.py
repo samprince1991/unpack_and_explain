@@ -21,7 +21,7 @@ FLOW_FRAMES = 24
 ORBIT_DEG_PER_S = 4  # slow constant drift so nothing sits still
 SPIN_TURNS_PER_S = 0.35
 SPIN_DOWN = 36  # frames for a spinning part to coast to a stop
-# Close / wide rhythm (docs/specs/2026-11-03-blender-camera-rhythm-design.md): a focus beat
+# Close / wide rhythm (docs/blender.md): a focus beat
 # frames the part so it fills CLOSE_FILL of the frame, centered on it, between CLOSE_MIN and
 # CLOSE_MAX times the clip's wide framing. `wide` (and explode / collapse) pull back.
 CLOSE_FILL = 0.6

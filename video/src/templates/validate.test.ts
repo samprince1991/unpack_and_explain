@@ -15,7 +15,6 @@ const base: PostScript = {
   source: "Somewhere.gov",
   verify: [],
   sfx: { optOut: "unit test base" },
-  hero3d: "mechanism",
   blender: { optOut: "unit test base" },
   sections: [
     { id: "question", voiceover: "Do you know how this works?", visual: "" },
@@ -105,16 +104,6 @@ describe("sfx plan", () => {
 });
 
 describe("validateScript", () => {
-  it("accepts an explicit 3D opt-out with a reason", () => {
-    const script = { ...base, hero3d: { optOut: "built before 3D heroes" } };
-    expect(validateScript(script).errors).toEqual([]);
-  });
-
-  it("rejects a 3D opt-out without a reason", () => {
-    const script = { ...base, hero3d: { optOut: "  " } };
-    expect(validateScript(script).errors).toContain("hero3d.optOut needs a reason");
-  });
-
   it("accepts a valid E script", () => {
     expect(validateScript(base)).toEqual({ errors: [], warnings: [] });
   });
@@ -167,27 +156,6 @@ describe("validateScript", () => {
     );
   });
 
-  it("accepts one approved meme in an allowed section, on a spoken cue word", () => {
-    const sections = base.sections.map((x) =>
-      x.id === "payoff" ? { ...x, voiceover: `${words(25)} internet.` } : x,
-    );
-    const meme = { id: "they-dont-know" as const, section: "payoff" as const, cue: "internet" };
-    expect(validateScript({ ...base, sections, meme }).errors).toEqual([]);
-  });
-
-  it("rejects a meme cue that isn't spoken in its section", () => {
-    const meme = { id: "they-dont-know" as const, section: "payoff" as const, cue: "banana" };
-    expect(validateScript({ ...base, meme }).errors[0]).toMatch(/meme cue "banana"/);
-  });
-
-  it("caps meme length", () => {
-    const sections = base.sections.map((x) =>
-      x.id === "payoff" ? { ...x, voiceover: `${words(25)} internet.` } : x,
-    );
-    const meme = { id: "this-is-fine" as const, section: "payoff" as const, cue: "internet", seconds: 4 };
-    expect(validateScript({ ...base, sections, meme }).errors[0]).toMatch(/at most 2.5 s/);
-  });
-
   it("warns when spoken words are outside 100-130", () => {
     const sections = base.sections.map((x) =>
       x.id === "mechanism" ? { ...x, voiceover: words(80) } : x,
@@ -206,6 +174,7 @@ describe("validateScript: blender plan", () => {
   );
   const plan = {
     model: "jet-engine" as const,
+    worldOptOut: "unit test base" as string | undefined,
     cover: { yaw: 30, pitch: 15, zoom: 1 },
     opener: { yaw: 20, pitch: 10, zoom: 1 },
     hook: { yaw: 20, pitch: 10, zoom: 1, beats: [{ cue: "engines", fallback: 0.5, do: "reveal" as const }] },
@@ -223,8 +192,20 @@ describe("validateScript: blender plan", () => {
     expect(validateScript(withPlan(plan)).errors).toEqual([]);
   });
 
+  it("requires a world unless the post opts out with a reason", () => {
+    const required = 'blender.world is required (sea); add a world for the topic (docs/blender.md)';
+    expect(validateScript(withPlan({ ...plan, worldOptOut: undefined })).errors).toContain(required);
+    expect(validateScript(withPlan({ ...plan, worldOptOut: " " })).errors).toContain(required);
+  });
+
+  it("rejects a world and an opt-out together", () => {
+    expect(validateScript(withPlan({ ...plan, world: "sea" })).errors).toContain(
+      "blender: set world or worldOptOut, not both",
+    );
+  });
+
   it("accepts the sea world on a model with a waterline", () => {
-    const sea = { ...plan, model: "bulbous-bow", world: "sea", hook: { yaw: 20, pitch: 10, zoom: 1 }, mechanism: { yaw: 60, pitch: 20, zoom: 1, beats: [{ cue: "squeezes", fallback: 0.5, do: "wide" }] } };
+    const sea = { ...plan, worldOptOut: undefined, model: "bulbous-bow", world: "sea", hook: { yaw: 20, pitch: 10, zoom: 1 }, mechanism: { yaw: 60, pitch: 20, zoom: 1, beats: [{ cue: "squeezes", fallback: 0.5, do: "wide" }] } };
     expect(validateScript(withPlan(sea)).errors).toEqual([]);
   });
 
@@ -274,11 +255,9 @@ describe("validateScript: blender plan", () => {
     expect(validateScript(withPlan(label("40:1"))).errors).toEqual([]);
   });
 
-  it("caps the cover text and needs hero3d", () => {
+  it("caps the cover text", () => {
     const long = { ...plan, coverText: "one two three four five" };
     expect(validateScript(withPlan(long)).errors[0]).toMatch(/at most 4 words/);
-    const noHero = { ...withPlan(plan), hero3d: { optOut: "x" } };
-    expect(validateScript(noHero).errors).toContain('a blender plan needs hero3d: "mechanism"');
   });
 
   describe("camera rhythm (close-up, then wide)", () => {

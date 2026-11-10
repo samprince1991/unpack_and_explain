@@ -9,7 +9,6 @@ With a meta path it also writes that clip's label tracks and the Blender version
 
 import json
 import os
-import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -22,40 +21,25 @@ from common import HERE, load_json, load_tokens, reset_scene, script_args  # noq
 REPO_ROOT = os.path.dirname(HERE)
 
 
-def render_clip(job, clip, out_dir, tokens, preview):
-    scene = reset_scene()
-    labels = build.build_clip(scene, job, clip, tokens, preview, REPO_ROOT)
-    clip_dir = os.path.join(out_dir, clip["id"])
-    shutil.rmtree(clip_dir, ignore_errors=True)
-    os.makedirs(clip_dir, exist_ok=True)
-    scene.render.filepath = os.path.join(clip_dir, "####")
-    print(f"[blender] rendering {clip['id']}: {clip['frames']} frames{' (preview)' if preview else ''}")
-    bpy.ops.render.render(animation=True)
-    return {
-        "hash": clip["hash"],
-        "frames": clip["frames"],
-        "width": clip["width"],
-        "height": clip["height"],
-        "preview": preview,
-        "blenderVersion": bpy.app.version_string,
-        "labels": labels,
-    }
-
-
-def run_worker(job_path, clip_id, out_dir, frames, meta_path, preview):
-    tokens = load_tokens()
-    job = load_json(job_path)
-    clip = next(c for c in job["clips"] if c["id"] == clip_id)
+def render_frames(job, clip, out_dir, frames, tokens, preview):
+    """Builds the clip's scene, renders the frames, and returns its label tracks."""
     scene = reset_scene()
     labels = build.build_clip(scene, job, clip, tokens, preview, REPO_ROOT)
     os.makedirs(out_dir, exist_ok=True)
-    if meta_path != "-":
-        with open(meta_path, "w", encoding="utf-8") as f:
-            json.dump({"labels": labels, "blenderVersion": bpy.app.version_string}, f)
     for frame in frames:
         scene.frame_set(frame)
         scene.render.filepath = os.path.join(out_dir, f"{frame:04d}.png")
         bpy.ops.render.render(write_still=True)
+    return labels
+
+
+def run_worker(job_path, clip_id, out_dir, frames, meta_path, preview):
+    job = load_json(job_path)
+    clip = next(c for c in job["clips"] if c["id"] == clip_id)
+    labels = render_frames(job, clip, out_dir, frames, load_tokens(), preview)
+    if meta_path != "-":
+        with open(meta_path, "w", encoding="utf-8") as f:
+            json.dump({"labels": labels, "blenderVersion": bpy.app.version_string}, f)
 
 
 def selftest(out_dir):
@@ -73,18 +57,17 @@ def selftest(out_dir):
             "spinAxis": "z",
         },
     }
-    clip = {"id": "cover", "frames": 1, "width": 1080, "height": 870, "hash": "selftest",
+    clip = {"id": "cover", "frames": 1, "width": 1080, "height": 870,
             "start": {"yaw": 35, "pitch": 20, "zoom": 1}, "beats": []}
-    run = render_clip(job, clip, out_dir, tokens, preview=True)
-    image = bpy.data.images.load(os.path.join(out_dir, "cover", "0000.png"))
+    render_frames(job, clip, out_dir, [0], tokens, preview=True)
+    image = bpy.data.images.load(os.path.join(out_dir, "0000.png"))
     px = list(image.pixels)
     rgba = [px[i : i + 4] for i in range(0, len(px), 4)]
     transparent = any(p[3] < 0.01 for p in rgba)
     amber = any(p[3] > 0.5 and p[0] > 0.6 and 0.25 < p[1] < 0.8 and p[2] < 0.35 for p in rgba)
-    print(f"[selftest] blender {run['blenderVersion']}: transparent={transparent} amber={amber}")
+    print(f"[selftest] blender {bpy.app.version_string}: transparent={transparent} amber={amber}")
     if not (transparent and amber):
         raise SystemExit(1)
-    print("[selftest] OK")
 
 
 def main():

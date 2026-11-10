@@ -27,9 +27,9 @@ export const script: PostScript = {
       { sound: "tick", section: "payoff", cue: "nearly" },
     ],
   },
-  hero3d: "mechanism",
   blender: {
     model: "mems-accelerometer",
+    worldOptOut: "built before worlds were required",
     coverText: "Your phone hides this",
     coverHighlight: "hides",
     // Yaw 0 looks straight at the open back of the phone and the die.

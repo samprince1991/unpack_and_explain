@@ -1,22 +1,11 @@
-import { spawnSync } from "node:child_process";
 import { copyFileSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import type { VoSection } from "../../src/templates/types";
+import { ffmpeg } from "./remotion";
 import { findTailBleed, rmsEnvelope } from "./voEdges";
 
 const ANALYSIS_RATE = 16000;
-
-// Remotion's bundled ffmpeg (no afade there, so we only ever cut inside silence).
-export const ffmpeg = (args: string[]) => {
-  const res = spawnSync("npx", ["remotion", "ffmpeg", ...args.map((a) => `"${a}"`)], {
-    encoding: "utf8",
-    shell: true,
-  });
-  if (res.status !== 0) {
-    throw new Error(`ffmpeg failed:\n${res.stderr.slice(-2000)}`);
-  }
-};
 
 const decodeMono = (file: string, dir: string): Int16Array => {
   const wav = join(dir, "analysis.wav");
@@ -30,6 +19,7 @@ const decodeMono = (file: string, dir: string): Int16Array => {
 
 // Trims a stitching bleed off the end of a section's mp3 (in place) and fits the
 // captions to the new length. Returns the section unchanged if the file is clean.
+// The bundled ffmpeg has no afade, so this only ever cuts inside silence.
 export const cleanVoSection = (publicDir: string, section: VoSection): VoSection => {
   if (!section.file || section.captions.length === 0) {
     return section;

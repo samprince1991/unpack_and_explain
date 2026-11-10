@@ -6,8 +6,9 @@ format: E
 category: "Everyday tech"
 subcategory: "AI"
 week: 1
-date: 2026-11-02
+date: 2026-11-01
 status: posted
+link: "https://www.instagram.com/reel/DfOxCyZoUsn"
 hook_formula: 20
 hook_score: 70
 question_score: 62
@@ -15,16 +16,16 @@ hook: "In 2026, you don't need to read one line of code to build an app."
 source: "Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works"
 verify: []
 metrics:  # fill in after posting
-  views: 120  # as of 2026-11-02
-  reach: null
+  views: 120  # as of 2026-11-09 (insights export)
+  reach: 108
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 0
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 0
 ---
 
 # Idea 20: How vibe coding actually works in 2026

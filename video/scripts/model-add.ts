@@ -1,4 +1,4 @@
-// Adds a 3D model to the catalog (docs/specs/2026-11-02-blender-3d-design.md).
+// Adds a 3D model to the catalog (docs/blender.md).
 //
 //   npm run model:add -- <raw.glb|gltf> --id <id> [--max-tris=80000]
 //
@@ -45,9 +45,9 @@ const stub = (id: string, file: string, names: string[]) => `  "${id}": {
 
 const main = async () => {
   const args = process.argv.slice(2);
-  const raw = args.find((a) => !a.startsWith("--"));
   const idArg = args.indexOf("--id");
   const id = idArg >= 0 ? args[idArg + 1] : undefined;
+  const raw = args.find((a, i) => !a.startsWith("--") && (idArg < 0 || i !== idArg + 1));
   const maxTris = Number(args.find((a) => a.startsWith("--max-tris="))?.split("=")[1] ?? 80000);
   if (!raw || !id || !/^[a-z0-9-]+$/.test(id)) {
     throw new Error("Usage: npm run model:add -- <raw.glb> --id <kebab-id> [--max-tris=80000]");

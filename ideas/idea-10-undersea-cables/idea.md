@@ -6,8 +6,9 @@ format: E
 category: "Everyday tech"
 subcategory: "Internet"
 week: 3
-date: 2026-11-17
-status: rendered
+date: 2026-11-03
+status: posted
+link: "https://www.instagram.com/reel/DfTq3Z-I1Ml"
 hook_formula: 3
 hook_score: 81.6
 question_score: 62.2
@@ -17,16 +18,16 @@ verify:
   - "Repeater spacing 50-80 km (engineering sources, not TeleGeography FAQ)"
   - "Lasers flash billions of times a second (modern line rates are tens of gigabaud)"
 metrics:  # fill in after posting
-  views: null
-  reach: null
+  views: 122  # as of 2026-11-09 (insights export)
+  reach: 118
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 1
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 0
 ---
 
 # Idea 10: How undersea cables carry the internet

@@ -151,7 +151,7 @@ const howTo = `**Add an idea**
 | Video code | \`video/src/posts/post-02-gps/\` |
 | Voice-over + captions | \`video/public/posts/post-02-gps/\` |
 | Studio composition | \`Post02-Gps\` |
-| Renders | \`video/out/post-02-gps.master.mp4\` |`;
+| Renders | \`video/out/post-02-gps/post-02-gps.master.mp4\` |`;
 
 const legend = (wordsPerSecond: number) => `- **Formats:** E = pure explainer (saves, shares, authority). F = explainer + failure story (reach, watch time). Q = quick myth / fact (fast to make on busy days). C = carousel (1080x1350 slides, usually a companion to a reel; saves and sends).
 - **Status:** idea → scripted (script or slides approved) → built (Remotion reel + VO, or carousel slides, done; now a post) → rendered (master MP4 or slide PNGs exported) → posted (\`link\` + metrics filled in). A status with a link opens the live post.

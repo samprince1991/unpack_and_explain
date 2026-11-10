@@ -6,8 +6,9 @@ format: C
 category: "Aviation & engineering"
 subcategory: "Engines"
 week: 3
-date: 2026-11-18
-status: rendered
+date: 2026-11-06
+status: posted
+link: "https://www.instagram.com/p/DfZfdEok4Sz"
 companion_of: 3
 hook: "4 steps your plane never stops"
 hook_formula: 11
@@ -15,16 +16,16 @@ hook_score: 81.4
 source: "NASA Glenn Research Center, Beginner's Guide to Propulsion"
 verify: []
 metrics:  # fill in after posting
-  views: null
-  reach: null
+  views: 0  # as of 2026-11-09 (insights export)
+  reach: 0
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s (reels only)
   watch_pct: null  # average watch time, % of video length (reels only)
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 0
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 0
 ---
 
 # Idea 19: Jet engine in 4 stages

@@ -1,4 +1,4 @@
-// Renders a post's Blender 3D clips (docs/specs/2026-11-09-blender-render-pipeline-design.md).
+// Renders a post's Blender 3D clips (docs/blender.md).
 //
 //   npm run blender -- post-NN-slug [--preview] [--force] [--workers=N] [--only=cover,hook]
 //   npm run blender -- post-NN-slug --frames[=120,240]   (test stills in out/blender-frames/)

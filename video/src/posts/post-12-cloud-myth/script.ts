@@ -9,10 +9,10 @@ export const script: PostScript = {
   hookHighlight: "3",
   topic: "cloud",
   source: "AWS Amazon S3 docs; IEA, Energy and AI (2025)",
-  sfx: { optOut: "SFX planned, awaiting paid-plan generation" },
-  hero3d: "mechanism",
+  sfx: { optOut: "sounds not made yet" },
   blender: {
     model: "data-center",
+    worldOptOut: "built before worlds were required",
     coverText: "The cloud has walls",
     coverHighlight: "walls",
     // yaw 0 looks from the front (the feed cable side); pitch high enough to see into

@@ -9,8 +9,7 @@ export const script: PostScript = {
   hookHighlight: "14%",
   topic: "ships",
   source: "FAO; Wallenius Wilhelmsen; Maersk via Ships Monthly",
-  sfx: { optOut: "SFX planned, awaiting paid-plan generation" },
-  hero3d: "mechanism",
+  sfx: { optOut: "sounds not made yet" },
   blender: {
     model: "bulbous-bow",
     // Reel-worlds pilot: the sea is cut along the hull, so the bulb reads below the surface.

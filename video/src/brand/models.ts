@@ -1,4 +1,4 @@
-// Approved 3D models for Blender renders (docs/specs/2026-11-02-blender-3d-design.md).
+// Approved 3D models for Blender renders (docs/blender.md).
 // Only these can be used in a reel (validateScript enforces it). Add one with
 // `npm run model:add -- <raw.glb> --id <id>`, then fill in every TODO field.
 //

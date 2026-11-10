@@ -1,6 +1,6 @@
 import type { PostScript } from "../../templates/types";
 
-// First post built with Blender 3D (docs/specs/2026-11-02-blender-3d-design.md).
+// First post built with Blender 3D.
 export const script: PostScript = {
   id: "post-03-jet-engine",
   postNumber: 3,
@@ -13,10 +13,10 @@ export const script: PostScript = {
   topic: "jet engine",
   source: "Board of Inquiry, Air Canada Flight 143 (1983)",
   sfx: { optOut: "posted before SFX" },
-  hero3d: "mechanism",
   failureSection: "payoff",
   blender: {
     model: "jet-engine",
+    worldOptOut: "built before worlds were required",
     // Non-breaking space keeps "41,000 ft." on one line at display size.
     coverText: "41,000 ft. Zero engines.",
     coverHighlight: "Zero",

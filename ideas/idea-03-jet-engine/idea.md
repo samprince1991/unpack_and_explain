@@ -8,6 +8,7 @@ subcategory: "Engines"
 week: 1
 date: 2026-11-02
 status: posted
+link: "https://www.instagram.com/reel/DfPEJpBIkrN"
 hook_formula: 25
 hook_score: 57.2
 question_score: 64.5
@@ -15,16 +16,16 @@ hook: "A passenger jet ran out of fuel at 41,000 ft. Both engines died."
 source: "Canadian investigation report on Air Canada Flight 143 (1983)"
 verify: []
 metrics:  # fill in after posting
-  views: 0  # as of 2026-11-02
-  reach: null
+  views: 121  # as of 2026-11-09 (insights export)
+  reach: 117
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 0
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 0
 ---
 
 # Idea 3: How a jet engine works + Gimli Glider

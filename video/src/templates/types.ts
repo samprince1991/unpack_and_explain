@@ -1,5 +1,4 @@
 import type { Caption } from "@remotion/captions";
-import type { MEME_SECTIONS, MemeId } from "../brand/memes";
 import type { ModelId } from "../brand/models";
 import type { Look } from "./look";
 
@@ -26,7 +25,7 @@ export type ScriptSection = {
   visual: string;
 };
 
-// Sound effects (docs/specs/2026-11-08-sfx-pipeline-design.md). Template cards keep their
+// Sound effects (docs/audio.md). Template cards keep their
 // own sounds, so cues only go in the post's own sections.
 export const SFX_SECTIONS = ["hook", "setup", "mechanism", "payoff"] as const;
 export type SfxSection = (typeof SFX_SECTIONS)[number];
@@ -66,22 +65,11 @@ export type PostScript = {
   topic: string;
   // Shown as "Source: ..." for the last 3 s.
   source: string;
-  // Optional, at most one per reel: an approved meme shown briefly right after `cue`
-  // is spoken in `section`. Leave it out when no meme genuinely fits.
-  meme?: {
-    id: MemeId;
-    section: (typeof MEME_SECTIONS)[number];
-    cue: string;
-    seconds?: number;
-  };
   // Pins question card / hook title / transition mix styles. Unset slots rotate by
   // postNumber (see templates/look.ts).
   look?: Partial<Look>;
-  // The mechanism is a 3D hero scene (three.js, src/components/three). Posts built
-  // before 3D heroes opt out with a reason. See docs/specs/2026-10-30-3d-hero-design.md.
-  hero3d: "mechanism" | { optOut: string };
   // Blender-rendered 3D (frame-0 backdrop, hook, mechanism, cover). Posts built before
-  // Blender opt out with a reason. See docs/specs/2026-11-02-blender-3d-design.md.
+  // Blender opt out with a reason. See docs/blender.md.
   blender: BlenderPlan | { optOut: string };
   // Sound effects placed on spoken words. Posts built before SFX opt out with a reason.
   sfx: SfxPlan | { optOut: string };
@@ -135,7 +123,7 @@ export type CarouselScript = {
   verify: string[];
 };
 
-// ---- Blender 3D (docs/specs/2026-11-02-blender-3d-design.md) ----
+// ---- Blender 3D (docs/blender.md) ----
 
 // Camera framing. yaw/pitch in degrees around the model, zoom 1 = whole model fits.
 export type Shot = {
@@ -202,7 +190,7 @@ export type Beat = {
   shot?: Partial<Shot>;
 };
 
-// Opaque full-frame environments (docs/specs/2026-11-09-reel-worlds-design.md).
+// Opaque full-frame environments (docs/blender.md).
 export const WORLDS = ["sea"] as const;
 export type WorldId = (typeof WORLDS)[number];
 
@@ -210,6 +198,9 @@ export type BlenderPlan = {
   model: ModelId;
   // Renders every clip inside a world, and adds a backdrop clip behind the 2D sections.
   world?: WorldId;
+  // Every new reel needs a world. Only posts built before worlds were required set this
+  // reason instead (validateScript enforces one or the other).
+  worldOptOut?: string;
   // Cover title, at most 4 words. Defaults to hookText.
   coverText?: string;
   // Word of the cover title colored amber. Defaults to hookHighlight.

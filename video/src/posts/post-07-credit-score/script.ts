@@ -29,9 +29,9 @@ export const script: PostScript = {
       { sound: "tick", section: "payoff", cue: "only" },
     ],
   },
-  hero3d: "mechanism",
   blender: {
     model: "credit-weights",
+    worldOptOut: "built before worlds were required",
     // One line: "Salary doesn't count" wraps to three at cover size and hits the dial.
     coverText: "Salary: 0%",
     coverHighlight: "0%",

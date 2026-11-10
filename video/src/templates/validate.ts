@@ -1,5 +1,4 @@
 import { TEMPLATE_SFX, type SfxName } from "../brand/audio";
-import { MEME_DEFAULT_SECONDS, MEME_MAX_SECONDS } from "../brand/memes";
 import { isModelId, modelParts, models, type ModelEntry } from "../brand/models";
 import { isBlenderPlan } from "./blenderJob";
 import { brand } from "../brand/tokens";
@@ -7,9 +6,10 @@ import { normalizeWord } from "./cues";
 import { isSfxPlan, isSharedSfx, SFX_LIMITS } from "./sfxCues";
 import { countWords } from "./timing";
 import {
-  BEAT_ACTIONS, WORLDS,
+  BEAT_ACTIONS,
   SECTION_ORDER,
   SFX_SECTIONS,
+  WORLDS,
   type Beat,
   type CarouselScript,
   type PostScript,
@@ -19,14 +19,18 @@ import {
 
 export const COVER_MAX_WORDS = 4;
 
-const spokenIn = (script: PostScript, section: SectionId, cue: string) =>
+const spokenWords = (script: PostScript, section: SectionId) =>
   (script.sections.find((s) => s.id === section)?.voiceover ?? "")
     .split(/[\s-]+/)
-    .some((w) => normalizeWord(w) === normalizeWord(cue));
+    .map(normalizeWord)
+    .filter(Boolean);
+
+const spokenIn = (script: PostScript, section: SectionId, cue: string) =>
+  spokenWords(script, section).includes(normalizeWord(cue));
 
 const SFX_BANNED_PROMPT = /\b(voices?|speech|spoken|speaking|singing|vocals?|music|musical|melody|songs?)\b/i;
 
-// Rules for sound effects (docs/specs/2026-11-08-sfx-pipeline-design.md).
+// Rules for sound effects (docs/audio.md).
 const validateSfx = (script: PostScript, errors: string[], warnings: string[]) => {
   const plan = script.sfx;
   if (!isSfxPlan(plan)) {
@@ -77,10 +81,7 @@ const validateSfx = (script: PostScript, errors: string[], warnings: string[]) =
       errors.push(`sfx cue "${cue.cue}" must be in the hook, setup, mechanism or payoff`);
       continue;
     }
-    const spoken = (script.sections.find((s) => s.id === cue.section)?.voiceover ?? "")
-      .split(/[\s-]+/)
-      .map(normalizeWord)
-      .filter(Boolean);
+    const spoken = spokenWords(script, cue.section);
     const first = spoken.indexOf(normalizeWord(cue.cue));
     if (first === -1) {
       errors.push(`sfx cue "${cue.cue}" is not spoken in the ${cue.section} section`);
@@ -94,7 +95,7 @@ const validateSfx = (script: PostScript, errors: string[], warnings: string[]) =
   }
 };
 
-// Rules for the Blender plan (docs/specs/2026-11-02-blender-3d-design.md).
+// Rules for the Blender plan (docs/blender.md).
 const validateBlender = (script: PostScript, errors: string[]) => {
   const plan = script.blender;
   if (!isBlenderPlan(plan)) {
@@ -102,9 +103,6 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       errors.push("blender.optOut needs a reason");
     }
     return;
-  }
-  if (script.hero3d !== "mechanism") {
-    errors.push('a blender plan needs hero3d: "mechanism"');
   }
   if (!isModelId(plan.model)) {
     errors.push(`blender.model "${plan.model}" is not in src/brand/models.ts`);
@@ -117,6 +115,12 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       errors.push(`${where}: part "${part}" is not in model ${plan.model} (${parts.join(", ")})`);
     }
   };
+  if (plan.world === undefined && !plan.worldOptOut?.trim()) {
+    errors.push(`blender.world is required (${WORLDS.join(", ")}); add a world for the topic (docs/blender.md)`);
+  }
+  if (plan.world !== undefined && plan.worldOptOut !== undefined) {
+    errors.push("blender: set world or worldOptOut, not both");
+  }
   if (plan.world !== undefined) {
     if (!(WORLDS as readonly string[]).includes(plan.world)) {
       errors.push(`blender.world "${plan.world}" is unknown (${WORLDS.join(", ")})`);
@@ -186,7 +190,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
   }
 };
 
-// Close / wide rhythm (docs/specs/2026-11-03-blender-camera-rhythm-design.md): the
+// Close / wide rhythm (docs/blender.md): the
 // mechanism moves in to the part that matters, then pulls back so the whole thing reads.
 const isCloseUp = (b: Beat) => b.do === "focus" || (b.do === "flow" && b.follow !== false);
 const isWide = (b: Beat) => b.do === "wide" || b.do === "collapse" || b.do === "explode";
@@ -246,24 +250,10 @@ export const validateScript = (script: PostScript) => {
   if (cta && cta.voiceover !== brand.ctaLine) {
     errors.push(`CTA voiceover must be exactly "${brand.ctaLine}"`);
   }
-  if (typeof script.hero3d === "object" && !script.hero3d.optOut.trim()) {
-    errors.push("hero3d.optOut needs a reason");
-  }
 
   validateBlender(script, errors);
   checkCameraRhythm(script, warnings);
   validateSfx(script, errors, warnings);
-
-  if (script.meme) {
-    const { section, cue, seconds = MEME_DEFAULT_SECONDS } = script.meme;
-    const spoken = script.sections.find((s) => s.id === section)?.voiceover ?? "";
-    if (!spoken.split(/\s+/).some((w) => normalizeWord(w) === normalizeWord(cue))) {
-      errors.push(`meme cue "${cue}" is not spoken in the ${section} section`);
-    }
-    if (seconds > MEME_MAX_SECONDS) {
-      errors.push(`meme must be at most ${MEME_MAX_SECONDS} s`);
-    }
-  }
 
   const total = script.sections.reduce((n, s) => n + countWords(s.voiceover), 0);
   if (total < WORD_RANGE.min || total > WORD_RANGE.max) {

@@ -16,16 +16,16 @@ verify:
   - "Altitude"
   - "Relativity drift figure (commonly cited ~10 km / 6 mi per day)"
 metrics:  # fill in after posting
-  views: 130  # as of 2026-11-02
-  reach: null
+  views: 131  # as of 2026-11-09 (insights export)
+  reach: 116
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 2
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 1
 ---
 
 # Idea 2: How GPS finds you
@@ -41,10 +41,6 @@ metrics:  # fill in after posting
 | Payoff | Your phone never sends anything back, so GPS works with no internet. And the satellites' clocks are corrected for relativity. Skip that, and you'd drift by several kilometers every day. | Phone shows airplane mode and still has a location pin. Clock with a tiny correction arrow. |
 | Congrats | Congrats, you just learned how GPS finds you. | Congrats card (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
-
-## Notes
-
-- Meme: `they-dont-know` in the payoff, right after "...works with no internet." (2 s).
 
 ## Caption
 

@@ -8,6 +8,7 @@ import {
   type AudioLibrary,
   type SfxName,
 } from "../src/brand/audio";
+import { requireApiKey } from "./lib/cli";
 import { generateSfx } from "./lib/sfxGenerate";
 
 const API = "https://api.elevenlabs.io";
@@ -26,10 +27,7 @@ const generate = async (apiKey: string, path: string, body: object): Promise<Buf
 };
 
 const main = async () => {
-  const apiKey = process.env.ELEVENLABS_API_KEY;
-  if (!apiKey) {
-    throw new Error("ELEVENLABS_API_KEY is missing. Add it to video/.env");
-  }
+  const apiKey = requireApiKey();
   // Existing files are kept so the brand sounds stay identical; --force regenerates.
   const force = process.argv.includes("--force");
   const publicDir = join(process.cwd(), "public");

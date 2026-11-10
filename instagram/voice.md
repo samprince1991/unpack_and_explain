@@ -2,8 +2,6 @@
 
 Voice profile read by every instagram-agent skill (`/ig-reel`, `/ig-caption`, `/ig-human`, ...). In this repo the skills read `instagram/voice.md`, not `~/.claude/instagram/voice.md`.
 
-Drafted by Claude on 2026-10-30 from CLAUDE.md and idea 2. Reviewed by the owner on 2026-10-30.
-
 ---
 
 ## Who I am
@@ -44,7 +42,7 @@ Beliefs some of the audience doesn't share. Good reels start here. Confirmed by 
 
 ## Off limits
 
-- **Topics I do not post about:** politics, real politicians, war and weapons, tragedy played for views, anything sexual, bullying, mocking groups. (Same list as the meme rules in CLAUDE.md.)
+- **Topics I do not post about:** politics, real politicians, war and weapons, tragedy played for views, anything sexual, bullying, mocking groups.
 - **Claims I am not allowed to make:** no financial, medical or legal advice. Every fact needs a source shown on screen; anything unverified stays in the idea's `verify` list until checked.
 - **Clients, numbers or names I cannot say publicly:** none.
 

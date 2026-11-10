@@ -35,11 +35,9 @@ export type JobClip = {
 export type BlenderJob = {
   postId: string;
   fps: number;
-  lookVersion: number;
   world?: WorldId;
   model: { id: ModelId } & ModelEntry;
   clips: JobClip[];
-  hash: string;
 };
 
 export const isBlenderPlan = (b: PostScript["blender"]): b is BlenderPlan =>
@@ -201,15 +199,13 @@ export const buildBlenderJob = (script: PostScript, vo: VoManifest, fps: number)
       }),
     );
   }
-  const body = {
+  return {
     postId: script.id,
     fps,
-    lookVersion: BLENDER_LOOK_VERSION,
     ...(plan.world ? { world: plan.world } : {}),
     model,
     clips,
   };
-  return { ...body, hash: hashString(stable(body)) };
 };
 
 export const blenderDir = (postId: string) => `posts/${postId}/3d`;
