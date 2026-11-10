@@ -1,6 +1,6 @@
 # Unpack & Explain: Video Production Rules
 
-Faceless explainer reels ("How things actually work") built with Remotion. Primary platform: Instagram Reels. YouTube Shorts later.
+Faceless explainer reels ("How things actually work") built with Remotion. Primary platform: Instagram Reels. The same reels also go up as YouTube Shorts (from 2026-11-10).
 
 ## Read before working on
 
@@ -17,7 +17,7 @@ Faceless explainer reels ("How things actually work") built with Remotion. Prima
 
 ## Repo map
 
-- `ideas/`: **the content tracker**. One `ideas/idea-NN-slug/idea.md` per idea: YAML front matter (id, date, format, topic, category, subcategory, status, link, hook, hook_formula, hook_score, question_score, companion_of, source, verify, metrics) + for reels a `## Spine` table (Part | Job), a `## Script` table (Section | Voice-over | Visual) and a `## Cold read` (About / Asks / Answer), or a `## Slides` table for carousels; then `## Caption`. `NN` = idea ID. Once built, an idea becomes a post: its code, VO and render folders use the matching `post-NN-slug` name. `category` / `subcategory` must come from `ideas/categories.yml` (add new sub-categories there first). `ideas/README.md` is **generated**: never edit it by hand.
+- `ideas/`: **the content tracker**. One `ideas/idea-NN-slug/idea.md` per idea: YAML front matter (id, date, format, topic, category, subcategory, status, link, hook, hook_formula, hook_score, question_score, companion_of, source, verify, metrics, youtube) + for reels a `## Spine` table (Part | Job), a `## Script` table (Section | Voice-over | Visual) and a `## Cold read` (About / Asks / Answer), or a `## Slides` table for carousels; then `## Caption`. `NN` = idea ID. Once built, an idea becomes a post: its code, VO and render folders use the matching `post-NN-slug` name. `category` / `subcategory` must come from `ideas/categories.yml` (add new sub-categories there first). `ideas/README.md` is **generated**: never edit it by hand.
 - `logo/`: master logo files. **Never edit.** `npm run assets` copies what the video needs.
 - `instagram/`: state for the instagram-agent skills (`voice.md`, `swipe.md`, `profile.md`, `engage.md`). Skills read and write here, **not** `~/.claude/instagram/`.
 - `blender/`: headless Blender scripts, procedural models in `blender/models/`, worlds in `blender/world/`. Colors only from the generated `blender/tokens.json`; never write color values here (the brand guard scans it).
@@ -192,7 +192,7 @@ The pipeline is in `docs/instagram-pipeline.md`. **Where a skill disagrees with 
 
 ## Per-post workflow
 
-1. Agree the `## Spine` and `topic` with the user, then script it with `/ig-reel` into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Cold read`, `## Caption` from `/ig-caption`, `verify` list), run `npm run ig -- idea-NN-slug`, record `hook_formula` / `hook_score` / `question_score`, set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built > rendered > posted); after posting add `link` and fill in `metrics`.
+1. Agree the `## Spine` and `topic` with the user, then script it with `/ig-reel` into `ideas/idea-NN-slug/idea.md` (`## Script` table, `## Cold read`, `## Caption` from `/ig-caption`, `verify` list), run `npm run ig -- idea-NN-slug`, record `hook_formula` / `hook_score` / `question_score`, set `status: scripted`, and run `npm run tracker`. Move `status` along as it progresses (built > rendered > posted); after posting add `link` and fill in `metrics`. `status` / `link` / `metrics` are Instagram's; when a reel goes up as a YouTube Short, add a `youtube:` block (`date`, `link`, `metrics`: views, engaged_views, stayed_pct, watch_pct, likes, comments, shares, subscribers) and fill it from YouTube Studio.
    - **Analytics:** ask the user for a fresh Instagram insights export (CSV) whenever the newest `# as of` date on posted metrics is more than 7 days old, and at the start of any planning or new-post work. The CSV has views, reach, likes, comments, shares, saves and follows. `hold_3s`, `watch_pct` and `nonfollower_pct` aren't in it, so ask for those per reel from Insights too.
 2. Create `src/posts/post-NN-slug/script.ts` with the VO text copied **verbatim**, plus a `script.test.ts` asserting `validateScript` returns no errors or warnings. Rules: section order, `source` required, `hookText` at most 28 characters (2 lines), CTA exactly `brand.ctaLine`, F posts need `failureSection`, 100-130 spoken words. List "verify" facts in `verify`.
 3. Run TTS (bleed is trimmed automatically; check the "trimmed" lines it prints), or build with estimated timing first.

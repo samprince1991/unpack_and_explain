@@ -150,6 +150,15 @@ Est. s assumes 2.5 words/s; the real length comes from the voice-over.
 
 Rank by × median and sends / reach, not raw views. High non-follower reach with few follows is a profile problem; low hold at 3 s is a hook problem.
 
+## YouTube Shorts
+
+| Posted | # | Idea | Short | Views | Engaged views | Stayed | Avg % viewed | Likes | Comments | Shares | Subs gained |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-10 | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | - | - | - | - | - | - | - | - | - |
+| 2026-11-10 | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | - | - | - | - | - | - | - | - | - |
+
+Stayed = YouTube's "viewed vs. swiped away" (the Shorts hook signal, like Hold 3 s on Instagram).
+
 ## Formats
 
 Posted 8 of 50 ideas (16%).
@@ -177,6 +186,8 @@ Once about 12-15 ideas are posted, shift the mix toward the format that wins on 
 **Add a sub-category or category:** add it to `ideas/categories.yml` first (the tracker rejects names that aren't listed), then use it in an idea.
 
 **After posting:** set `status: posted`, add `link` (the live post URL) and fill in `metrics`, then run the tracker.
+
+**After posting to YouTube:** add a `youtube:` block (`date`, `link`, `metrics`: views, engaged_views, stayed_pct, watch_pct, likes, comments, shares, subscribers). It is independent of `status`, which tracks Instagram.
 
 **Names:** once an idea is built it becomes a post, and everything outside `ideas/` uses the matching `post-NN-slug` name:
 

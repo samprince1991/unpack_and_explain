@@ -10,6 +10,7 @@ import {
   type Idea,
   type IdeaFormat,
   type Taxonomy,
+  type YtMetrics,
 } from "./tracker";
 
 // Renders ideas/README.md: topics first (so new ideas land under an existing theme),
@@ -114,6 +115,26 @@ ${rows.join("\n")}
 Rank by × median and sends / reach, not raw views. High non-follower reach with few follows is a profile problem; low hold at 3 s is a hook problem.`;
 };
 
+const youtube = (ideas: Idea[]) => {
+  const live = ideas
+    .filter((i) => i.meta.youtube)
+    .sort((a, b) => a.meta.youtube!.date.localeCompare(b.meta.youtube!.date));
+  if (!live.length) {
+    return "Nothing on YouTube yet.";
+  }
+  const share = (x: number | null | undefined) => (x == null ? "-" : `${x}%`);
+  const rows = live.map((i) => {
+    const y = i.meta.youtube!;
+    const m: Partial<YtMetrics> = y.metrics ?? {};
+    return `| ${y.date} | ${i.meta.id} | ${title(i)} | ${y.link ? `[watch](${y.link})` : "-"} | ${num(m.views)} | ${num(m.engaged_views)} | ${share(m.stayed_pct)} | ${share(m.watch_pct)} | ${num(m.likes)} | ${num(m.comments)} | ${num(m.shares)} | ${num(m.subscribers)} |`;
+  });
+  return `| Posted | # | Idea | Short | Views | Engaged views | Stayed | Avg % viewed | Likes | Comments | Shares | Subs gained |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+${rows.join("\n")}
+
+Stayed = YouTube's "viewed vs. swiped away" (the Shorts hook signal, like Hold 3 s on Instagram).`;
+};
+
 const formats = (ideas: Idea[]) => {
   const s = summarize(ideas);
   const rows = s.byFormat.map(
@@ -142,6 +163,8 @@ const howTo = `**Add an idea**
 **Add a sub-category or category:** add it to \`ideas/categories.yml\` first (the tracker rejects names that aren't listed), then use it in an idea.
 
 **After posting:** set \`status: posted\`, add \`link\` (the live post URL) and fill in \`metrics\`, then run the tracker.
+
+**After posting to YouTube:** add a \`youtube:\` block (\`date\`, \`link\`, \`metrics\`: views, engaged_views, stayed_pct, watch_pct, likes, comments, shares, subscribers). It is independent of \`status\`, which tracks Instagram.
 
 **Names:** once an idea is built it becomes a post, and everything outside \`ideas/\` uses the matching \`post-NN-slug\` name:
 
@@ -174,6 +197,10 @@ ${schedule(ideas, wordsPerSecond)}
 ## Performance
 
 ${performance(ideas)}
+
+## YouTube Shorts
+
+${youtube(ideas)}
 
 ## Formats
 

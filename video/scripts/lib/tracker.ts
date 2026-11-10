@@ -25,6 +25,22 @@ export const METRIC_KEYS = [
   "follows",
 ] as const;
 
+// YouTube Shorts analytics, per video (YouTube Studio > Analytics). The same reel goes
+// up on both platforms; Instagram stays the primary one, so `status` / `link` / `metrics`
+// stay Instagram's and YouTube gets its own optional block.
+export const YT_METRIC_KEYS = [
+  "views",
+  "engaged_views",
+  "stayed_pct", // "Viewed vs. swiped away": % who stayed to watch
+  "watch_pct", // average percentage viewed
+  "likes",
+  "comments",
+  "shares",
+  "subscribers", // subscribers gained
+] as const;
+export type YtMetrics = Record<(typeof YT_METRIC_KEYS)[number], number | null>;
+export type YouTube = { date: string; link?: string | null; metrics: YtMetrics };
+
 // Minimum ig-reel hookscore.py score for the hook and the question card.
 export const MIN_HOOK_SCORE = 50;
 // ig-carousel limits live in src/templates/validate.ts so the renderer agrees.
@@ -56,6 +72,7 @@ export type IdeaMeta = {
   verify: string[];
   notes?: string;
   metrics: Metrics;
+  youtube?: YouTube; // set once the reel is up as a YouTube Short
 };
 
 export type TrackerSection = { id: SectionId; voiceover: string; visual: string };
@@ -243,6 +260,25 @@ export const validateIdea = (idea: Idea, taxonomy: Taxonomy): Problems => {
     const v = meta.metrics?.[key];
     if (v !== null && v !== undefined && (typeof v !== "number" || v < 0)) {
       errors.push(`metrics.${key} must be a number >= 0 or null`);
+    }
+  }
+
+  const yt = meta.youtube;
+  if (yt !== undefined) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(yt?.date)) || Number.isNaN(Date.parse(yt?.date))) {
+      errors.push(`youtube.date must be YYYY-MM-DD, got ${yt?.date}`);
+    }
+    if (yt?.link != null && !/^https:\/\/\S+$/.test(String(yt.link))) {
+      errors.push(`youtube.link must be an https:// URL, got ${yt.link}`);
+    }
+    if (yt?.link == null) {
+      warnings.push("on YouTube but youtube.link is empty");
+    }
+    for (const key of YT_METRIC_KEYS) {
+      const v = yt?.metrics?.[key];
+      if (v !== null && v !== undefined && (typeof v !== "number" || v < 0)) {
+        errors.push(`youtube.metrics.${key} must be a number >= 0 or null`);
+      }
     }
   }
 

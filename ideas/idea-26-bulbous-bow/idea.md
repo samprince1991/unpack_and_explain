@@ -27,6 +27,18 @@ metrics:  # fill in after posting
   shares: null
   saves: null
   follows: null
+youtube:  # YouTube Short; status/link/metrics above are Instagram
+  date: 2026-11-10
+  link: null  # paste the Shorts URL
+  metrics:  # YouTube Studio > Analytics, fill in later
+    views: null
+    engaged_views: null
+    stayed_pct: null  # "viewed vs. swiped away", % stayed
+    watch_pct: null  # average percentage viewed
+    likes: null
+    comments: null
+    shares: null
+    subscribers: null  # subscribers gained
 ---
 
 # Idea 26: Why big ships have a bump on their nose

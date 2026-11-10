@@ -122,6 +122,20 @@ describe("validateIdea", () => {
     const p = idea(FRONT.replace("status: scripted", 'status: scripted\nlink: "instagram.com/reel/x"'));
     expect(validateIdea(p, TAXONOMY).errors).toEqual(["link must be an https:// URL, got instagram.com/reel/x"]);
   });
+
+  it("checks the youtube block", () => {
+    const ok = idea(FRONT.replace("status: scripted", 'status: scripted\nyoutube:\n  date: 2026-11-10\n  link: "https://youtube.com/shorts/x"\n  metrics:\n    views: 10\n    likes: null'));
+    expect(validateIdea(ok, TAXONOMY).errors).toEqual([]);
+    expect(validateIdea(ok, TAXONOMY).warnings).not.toContain("on YouTube but youtube.link is empty");
+    const bad = idea(FRONT.replace("status: scripted", 'status: scripted\nyoutube:\n  date: 10-11-2026\n  link: "youtube.com/x"\n  metrics:\n    views: -1'));
+    expect(validateIdea(bad, TAXONOMY).errors).toEqual([
+      "youtube.date must be YYYY-MM-DD, got 10-11-2026",
+      "youtube.link must be an https:// URL, got youtube.com/x",
+      "youtube.metrics.views must be a number >= 0 or null",
+    ]);
+    const noLink = idea(FRONT.replace("status: scripted", "status: scripted\nyoutube:\n  date: 2026-11-10\n  link: null"));
+    expect(validateIdea(noLink, TAXONOMY).warnings).toContain("on YouTube but youtube.link is empty");
+  });
 });
 
 describe("hook scores", () => {
