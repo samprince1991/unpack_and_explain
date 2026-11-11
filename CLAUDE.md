@@ -48,7 +48,7 @@ Faceless explainer reels ("How things actually work") built with Remotion. Prima
 | `npm run vo:clean -- post-NN-slug` | Trims stitching bleed off existing VO. `tts` already does this; safe to run twice |
 | `npm run sfx -- post-NN-slug [--only=name] [--force]` | Generates the post's topic sounds; keeps any whose prompt, length and model still match |
 | `npm run brand-audio` | Generates missing shared sounds. `--music` for the bed: ask the user first (`docs/audio.md`) |
-| `npm run blender -- post-NN-slug` | Renders the post's 3D clips, skipping up-to-date ones. Needs Blender 4.5 (`BLENDER_PATH` in `video/.env`). Flags: `--preview` (25% size, never replaces a full render), `--only=cover,opener,hook,mechanism`, `--force`, `--workers=N` (default 3) |
+| `npm run blender -- post-NN-slug` | Renders the post's 3D clips, skipping up-to-date ones. Needs Blender 5.3 (`BLENDER_PATH` in `video/.env`). Flags: `--preview` (25% size, never replaces a full render), `--only=cover,opener,hook,mechanism`, `--force`, `--workers=N` (default 3) |
 | `npm run blender -- post-NN-slug --frames` | Test stills at full size to `out/blender-frames/`: each clip's first, last and beat frames, or `--frames=120,240`. Never touches clips or the manifest |
 | `npm run blender -- --selftest` / `kit-blender` | Checks the install / renders the Kit sample |
 | `npm run model:add -- <raw.glb> --id <id>` | Cleans a model, writes `public/models/<id>.glb`, adds a TODO stub to `models.ts`, renders previews to `out/models/<id>/`. `npm test` fails until the stub is filled in |

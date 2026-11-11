@@ -105,6 +105,31 @@ Freestyle draws a crease wherever face normals differ by more than 40 degrees (`
 
 After changing a model's geometry, rebuild its GLB. Every post rendered with model tracking that uses it then goes stale until re-rendered.
 
+## Blender version
+
+Blender 5.3 (`blender/VERSION`, `BLENDER_PATH` in `video/.env`; the 4.5 path stays there as a commented fallback). Switched 2026-11-11 (`design-decisions.md`).
+
+- The code runs on both 4.5 and 5.x: `common.eevee_engine()` picks the engine name, and `look.setup_glow` builds the 5.x compositor (a `compositing_node_group` whose Group Output is the image, `ShaderNodeMix` / `ShaderNodeMath`, the `Emission` pass) or the 4.x one.
+- The glow fails soft: if the tree can't be built, the log prints `[look] glow skipped: ...` and the clip renders without bloom. Treat that line as a bug: amber without glow is a look change.
+- Vulkan is the default GPU backend on Windows from 5.3. With a warm shader cache it matches 4.5 speed (post 14 mechanism stills: 15 s against 16 s); OpenGL was slower (23-56 s). The first run after installing a new version compiles shaders and is slower.
+- Checks to repeat after any Blender upgrade: `npm run blender -- --selftest`, `--frames` on one post per world under both versions (pixel diff, side-by-side at full size), `npm run model:qc`, and rebuilding each `blender/models/*.py` without errors.
+
+## 5.3 features to try on the next reel
+
+These are opt-in trials, not yet part of look A. Run each on the next reel's model with `--frames` before the full render, show the side-by-sides to the user, and adopt only on approval. Adopting a trial that changes the picture means a `BLENDER_LOOK_VERSION` bump and a line in `design-decisions.md`.
+
+1. **Light-band surfaces (EEVEE Material Lighting nodes).** New in 5.3: `ShaderNodeLightAccumulation`, `ShaderNodeLightEvaluation` (diffuse term, direction, attenuation), `ShaderNodeLightInfo`, `ShaderNodeShadowRaycast`. Idea: in `look.part_material`, swap the Principled shading of navy parts for two soft bands between `diagram.fill` and `bg.raised` driven by the key light, plus a thin neutral rim from the rim light only. Flat bands sit better under Freestyle lines than PBR gradients, especially in close-ups. The amber emission and glow stay as they are.
+   - Try it behind a switch in `look.py` (default off), then render the same `--frames` with it off and on.
+   - Pass: surfaces read as two clean tones at full size and on the 25% contact sheet, lines and amber unchanged, colors still token-exact (Standard view), no shadow acne in `--sequence` motion.
+2. **Line Art for intersection lines.** Line Art is a Grease Pencil modifier (`GreasePencilLineartModifier`, Grease Pencil v3 in 5.x). It draws lines where surfaces cross, which Freestyle never does: that gap is why `qc.py` blocks part contacts and why models need collars and gaps.
+   - Try it as an add-on: Freestyle keeps silhouettes, borders and creases; Line Art draws intersections only, in `diagram.stroke` at the same width.
+   - Pass: at the model's junctions (cropped 2-3x at full size), the intersection line matches the Freestyle weight and color, doesn't flicker in motion, and stays neutral when the part's own lines are keyed amber.
+   - If it holds, `qc.py`'s contact check can become a warning for that model, and the collar rule loosens. That's a design decision: ask first.
+3. **Quad-Sphere for round parts.** `bpy.ops.mesh.primitive_quad_sphere_add(segments=..., method="EVEN_AREA")` builds a sphere from quads with no poles. UV spheres end in triangle fans at the poles, which can draw pinched crease lines. Use it in new procedural models for balls, bearings, pearls and domes. Pass: `npm run model:qc` and a full-size crop at the old pole position show no stray lines.
+4. **Curve to Mesh `Miter Scale`** (Geometry Nodes): keeps the tube radius even through bends. Use it only if a new model builds cables or wires from curves in Geometry Nodes. Our current models build tubes by hand.
+
+Already active with no plan changes: 5.3 fixed EEVEE soft-shadow banding at high sample counts and area-light leakage onto the backs of objects (all our lights are area lights). sRGB PNGs now carry an ICC profile, which made no measurable difference. Not useful for us: Gaussian splats (photo scans, off-brand), panoramic cameras, the sky sun disc (no world uses a sky texture), and the project system.
+
 ## Render time
 
 Three workers on the RTX 3000 Ada laptop: about 0.4-0.5 s a frame for plain clips, about 2.5 s a frame for the sea world at 1080x1920. The coast world renders a full-size still in about 10 s including scene build. Iterate with `--frames`, `--preview` and `--only`.

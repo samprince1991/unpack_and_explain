@@ -122,40 +122,90 @@ def setup_glow(scene):
     Skipped (with a note) if the compositor API differs."""
     try:
         scene.view_layers[0].use_pass_emit = True
-        scene.use_nodes = True
-        tree = scene.node_tree
-        tree.nodes.clear()
-        layers = tree.nodes.new("CompositorNodeRLayers")
-        glare = tree.nodes.new("CompositorNodeGlare")
-        glare.glare_type = "BLOOM"
-        glare.inputs["Threshold"].default_value = 0.0
-        glare.inputs["Strength"].default_value = GLOW_STRENGTH
-        glare.inputs["Size"].default_value = 0.6
-        tree.links.new(layers.outputs["Emit"], glare.inputs["Image"])
-        glow = glare.outputs["Glare"]
-
-        add = tree.nodes.new("CompositorNodeMixRGB")
-        add.blend_type = "ADD"
-        add.inputs["Fac"].default_value = 1.0
-        tree.links.new(layers.outputs["Image"], add.inputs[1])
-        tree.links.new(glow, add.inputs[2])
-
-        bw = tree.nodes.new("CompositorNodeRGBToBW")
-        tree.links.new(glow, bw.inputs[0])
-        alpha = tree.nodes.new("CompositorNodeMath")
-        alpha.operation = "MAXIMUM"
-        alpha.use_clamp = True
-        tree.links.new(layers.outputs["Alpha"], alpha.inputs[0])
-        tree.links.new(bw.outputs[0], alpha.inputs[1])
-
-        set_alpha = tree.nodes.new("CompositorNodeSetAlpha")
-        set_alpha.mode = "REPLACE_ALPHA"
-        tree.links.new(add.outputs[0], set_alpha.inputs["Image"])
-        tree.links.new(alpha.outputs[0], set_alpha.inputs["Alpha"])
-        out = tree.nodes.new("CompositorNodeComposite")
-        tree.links.new(set_alpha.outputs[0], out.inputs["Image"])
+        if hasattr(scene, "compositing_node_group"):
+            try:
+                _glow_tree_5x(scene)
+            except Exception:
+                scene.compositing_node_group = None  # a half-built tree would blank the image
+                raise
+        else:
+            _glow_tree_4x(scene)
     except Exception as err:  # noqa: BLE001 - keep rendering without glow
         print(f"[look] glow skipped: {err}")
+
+
+def _glow_tree_5x(scene):
+    """Blender 5.0+: the compositor is a node group whose output is the final image;
+    Mix/Math are shader nodes and many node options are input sockets."""
+    tree = bpy.data.node_groups.new("brand-glow", "CompositorNodeTree")
+    tree.interface.new_socket("Image", in_out="OUTPUT", socket_type="NodeSocketColor")
+    scene.compositing_node_group = tree
+    layers = tree.nodes.new("CompositorNodeRLayers")
+    glare = tree.nodes.new("CompositorNodeGlare")
+    glare.inputs["Type"].default_value = "Bloom"
+    glare.inputs["Threshold"].default_value = 0.0
+    glare.inputs["Strength"].default_value = GLOW_STRENGTH
+    glare.inputs["Size"].default_value = 0.6
+    tree.links.new(layers.outputs["Emission"], glare.inputs["Image"])  # 5.0 renamed "Emit"
+    glow = glare.outputs["Glare"]
+
+    add = tree.nodes.new("ShaderNodeMix")
+    add.data_type = "RGBA"
+    add.blend_type = "ADD"
+    add.inputs["Factor"].default_value = 1.0
+    tree.links.new(layers.outputs["Image"], add.inputs["A"])
+    tree.links.new(glow, add.inputs["B"])
+    add_out = next(o for o in add.outputs if o.enabled and o.type == "RGBA")
+
+    bw = tree.nodes.new("CompositorNodeRGBToBW")
+    tree.links.new(glow, bw.inputs[0])
+    alpha = tree.nodes.new("ShaderNodeMath")
+    alpha.operation = "MAXIMUM"
+    alpha.use_clamp = True
+    tree.links.new(layers.outputs["Alpha"], alpha.inputs[0])
+    tree.links.new(bw.outputs[0], alpha.inputs[1])
+
+    set_alpha = tree.nodes.new("CompositorNodeSetAlpha")
+    set_alpha.inputs["Type"].default_value = "Replace Alpha"
+    tree.links.new(add_out, set_alpha.inputs["Image"])
+    tree.links.new(alpha.outputs[0], set_alpha.inputs["Alpha"])
+    out = tree.nodes.new("NodeGroupOutput")
+    tree.links.new(set_alpha.outputs[0], out.inputs[0])
+
+
+def _glow_tree_4x(scene):
+    scene.use_nodes = True
+    tree = scene.node_tree
+    tree.nodes.clear()
+    layers = tree.nodes.new("CompositorNodeRLayers")
+    glare = tree.nodes.new("CompositorNodeGlare")
+    glare.glare_type = "BLOOM"
+    glare.inputs["Threshold"].default_value = 0.0
+    glare.inputs["Strength"].default_value = GLOW_STRENGTH
+    glare.inputs["Size"].default_value = 0.6
+    tree.links.new(layers.outputs["Emit"], glare.inputs["Image"])
+    glow = glare.outputs["Glare"]
+
+    add = tree.nodes.new("CompositorNodeMixRGB")
+    add.blend_type = "ADD"
+    add.inputs["Fac"].default_value = 1.0
+    tree.links.new(layers.outputs["Image"], add.inputs[1])
+    tree.links.new(glow, add.inputs[2])
+
+    bw = tree.nodes.new("CompositorNodeRGBToBW")
+    tree.links.new(glow, bw.inputs[0])
+    alpha = tree.nodes.new("CompositorNodeMath")
+    alpha.operation = "MAXIMUM"
+    alpha.use_clamp = True
+    tree.links.new(layers.outputs["Alpha"], alpha.inputs[0])
+    tree.links.new(bw.outputs[0], alpha.inputs[1])
+
+    set_alpha = tree.nodes.new("CompositorNodeSetAlpha")
+    set_alpha.mode = "REPLACE_ALPHA"
+    tree.links.new(add.outputs[0], set_alpha.inputs["Image"])
+    tree.links.new(alpha.outputs[0], set_alpha.inputs["Alpha"])
+    out = tree.nodes.new("CompositorNodeComposite")
+    tree.links.new(set_alpha.outputs[0], out.inputs["Image"])
 
 
 def setup_dof(camera, target, fstop=5.6):

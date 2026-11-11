@@ -32,6 +32,7 @@ Why the pipeline is built the way it is, and what was tried or rejected. The rul
 
 - **`npm run blender` is the only route into a reel.** The Blender MCP is an optional workbench; nothing rendered or edited in a live session ships.
 - **Node owns decisions and the manifest; `render.py` only renders the frames it's given.** Workers can't race on the manifest.
+- **Blender 5.3 instead of 4.5 LTS (2026-11-11).** 4.5 was the LTS when the pipeline was built, and nothing recorded a reason to stay on it. Moved for 5.x-era tooling and docs (agent skills target 5.2+) and the 5.3 EEVEE features (`blender.md`). Verified before switching: selftest, `--frames` on posts 14, 26, 27, 28 and 38 (all five worlds) under both versions with a mean pixel difference under 1/255 and no pixel more than 24/255 apart, `model:qc` on all 10 models, and every procedural model rebuilt. The only code break was the compositor glow, which failed soft (no bloom), so `look.py` now builds the 5.x tree. No `BLENDER_LOOK_VERSION` bump, because the picture didn't change.
 - **A clip reaches its folder only when every frame has rendered.** Failed runs and previews can no longer destroy a good full render.
 - **Three workers by default.** Measured on the RTX 3000 Ada laptop (8 GB VRAM), post 21 mechanism, 12 frames per process, one short run each:
 
