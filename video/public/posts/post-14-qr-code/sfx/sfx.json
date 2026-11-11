@@ -1,0 +1,23 @@
+{
+  "postId": "post-14-qr-code",
+  "sounds": {
+    "scan": {
+      "prompt": "soft short electronic chirp of a phone camera scanning a code, gentle and clean",
+      "seconds": 0.8,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-14-qr-code/sfx/scan.mp3"
+    },
+    "scratch": {
+      "prompt": "a fingernail scratching quickly across a paper sticker, short and dry",
+      "seconds": 0.8,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-14-qr-code/sfx/scratch.mp3"
+    },
+    "tear": {
+      "prompt": "a paper sticker corner tearing off, quick soft rip",
+      "seconds": 0.9,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-14-qr-code/sfx/tear.mp3"
+    }
+  }
+}

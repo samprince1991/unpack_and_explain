@@ -310,6 +310,29 @@ export const models = {
     hardEdges: ["plasterback", "plasterfront"],
     useFor: "Jewellery and metalwork: alloying, casting, moulds, how a ring is made (idea 38; bench world)",
   },
+  "qr-code": {
+    title: "QR code table stand: a real version 1-H QR code (21 x 21) as raised modules on a card in a small block, with its corner squares, one bit, one 8-bit block and a tear-away patch as parts",
+    file: "models/qr-code.glb",
+    source: "Procedural, blender/models/qr_code.py",
+    license: "own",
+    parts: {
+      stand: ["stand"],
+      card: ["card"],
+      finders: ["finders"],
+      data: ["data"],
+      bit: ["bit"],
+      byte: ["byte", "bytezeros"],
+      patch: ["patch"],
+    },
+    keyPart: "finders",
+    // Nothing spreads out (spacing 0). "explode" is part of the code going missing: the
+    // patch is the `away` part; "collapse" brings it back (worked out from the backup bits).
+    explode: { axis: "x", order: ["card"], spacing: 0, away: ["patch"] },
+    spinAxis: "z",
+    // Flat boxes and slabs: square module walls, the card's and stand's flat faces.
+    hardEdges: ["stand", "card", "finders", "data", "bit", "byte", "patch"],
+    useFor: "QR codes, barcodes, anything printed as a grid of bits (idea 14; cafe world)",
+  },
 } as const satisfies Record<string, ModelEntry>;
 
 export type ModelId = keyof typeof models;

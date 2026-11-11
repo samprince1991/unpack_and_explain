@@ -14,6 +14,8 @@ import { Post10 } from "./posts/post-10-undersea-cables";
 import { script as post10 } from "./posts/post-10-undersea-cables/script";
 import { Post12 } from "./posts/post-12-cloud-myth";
 import { script as post12 } from "./posts/post-12-cloud-myth/script";
+import { Post14 } from "./posts/post-14-qr-code";
+import { script as post14 } from "./posts/post-14-qr-code/script";
 import { Carousel18 } from "./posts/post-18-gps-steps";
 import { script as carousel18 } from "./posts/post-18-gps-steps/slides";
 import { Carousel19 } from "./posts/post-19-jet-engine-stages";
@@ -97,6 +99,16 @@ export const RemotionRoot: React.FC = () => {
           width={video.width}
           height={video.height}
           defaultProps={{ script: post12, vo: null, audio: null, showGuides: false }}
+          calculateMetadata={calculateReelMetadata}
+        />
+        <Composition
+          id="Post14-QrCode"
+          component={Post14}
+          durationInFrames={video.fps * 40}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post14, vo: null, audio: null, showGuides: false }}
           calculateMetadata={calculateReelMetadata}
         />
         <Composition
@@ -199,6 +211,16 @@ export const RemotionRoot: React.FC = () => {
           width={video.width}
           height={video.height}
           defaultProps={{ script: post12, blender3d: null, showGuides: false }}
+          calculateMetadata={calculateCoverMetadata}
+        />
+        <Composition
+          id="Cover14-QrCode"
+          component={Cover}
+          durationInFrames={1}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post14, blender3d: null, showGuides: false }}
           calculateMetadata={calculateCoverMetadata}
         />
         <Composition
