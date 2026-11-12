@@ -27,7 +27,7 @@ A fresh clone needs:
 
 - Node, then `cd video && npm install`.
 - `video/.env`, based on `video/.env.example`: `ELEVENLABS_API_KEY` and `BLENDER_PATH`.
-- [Blender 4.5 LTS](https://www.blender.org/download/lts/) for the 3D.
+- [Blender 5.3](https://www.blender.org/download/) for the 3D.
 - Python with Pillow for QA contact sheets (`pip install pillow`).
 - The Claude Code plugin for the Instagram skills: `/plugin install instagram-agent@instagram-agent-skill`.
 

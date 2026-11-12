@@ -8,7 +8,7 @@ category: "Aviation & engineering"
 subcategory: "Machines"
 week: 7
 date: 2026-12-17
-status: scripted
+status: rendered
 hook_formula: 20
 hook_score: 77.8
 question_score: 62.2
@@ -50,9 +50,9 @@ metrics:  # fill in after posting
 |---|---|---|
 | Question | Do you know how a train actually floats 10 cm up? | Question card over the Blender opener: a long-nosed maglev train (procedural, no JR livery) in a U-shaped guideway, the gap under the train amber. |
 | Hook | You don't need wheels to hit 603 kilometers an hour. | Blender hook: low camera at guideway level, the train streaks past; on screen "603 km/h (375 mph)". |
-| Setup | Normal trains roll on steel wheels. Japan's SCMaglev lifts off instead. | 2D line art: a steel wheel on a rail with shake lines on 'shake and wear', then the wheel fades and a gap opens on 'lifts off' (amber). |
-| Mechanism | Powerful magnets ride inside the train, and the track walls are lined with coils of wire. As the train speeds past, its magnets make current flow in those coils, so the coils become magnets too. They push the train up and keep it centered. Below 150 kilometers an hour, that current is too weak, so it rolls on rubber wheels. | Blender cutaway front view: wide; close on a magnet block in the bogie on 'magnets' (amber); coils in the wall on 'coils of wire'; current arrows run round a figure-8 coil as the train passes on 'current flow'; push arrows up and inwards on 'push the train up and keep it centered'; propulsion coils light in sequence ahead on 'pulls it forward'; rubber wheels touch down, on screen "150 km/h (93 mph)"; wide. |
-| Payoff | Above that, it floats 10 centimeters up. In 2015, it hit 603 kilometers an hour, a world record. | 2D chart: gap measured with a ruler, "10 cm (4 in)" on 'floats'; bar chart of train speed records with the 2015 bar amber on '603'. |
+| Setup | Normal trains roll on steel wheels. Japan's SCMaglev lifts off instead. | 2D line art: a steel wheel on a rail with shake lines on 'steel wheels', then the wheel fades and a gap opens on 'lifts off' (amber). |
+| Mechanism | Powerful magnets ride inside the train, and the track walls are lined with coils of wire. As the train speeds past, its magnets make current flow in those coils, so the coils become magnets too. They push the train up and keep it centered. Below 150 kilometers an hour, that current is too weak, so it rolls on rubber wheels. | Blender cutaway front view: wide; close on a magnet block in the bogie on 'magnets' (amber); coils in the wall on 'coils of wire'; current arrows run round a figure-8 coil as the train passes on 'current flow'; push arrows up and inwards on 'push the train up and keep it centered'; rubber wheels touch down, on screen "150 km/h (93 mph)"; wide. |
+| Payoff | Above that, it floats 10 centimeters up. In 2015, it hit 603 kilometers an hour. | 2D chart: gap measured with a ruler, "10 cm (4 in)" on 'floats'; bar chart of train speed records with the 2015 bar amber on '603'. |
 | Congrats | Congrats, you just learned how a maglev train floats. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
 
@@ -90,5 +90,6 @@ Checked 2026-11-10.
 - L0 Series: 603 km/h (375 mph) on 21 April 2015, 'current world speed record for all trains'. [Wikipedia, SCMaglev](https://en.wikipedia.org/wiki/SCMaglev)
 - Superconducting magnets on the bogies induce current in 'figure 8' coils along both guideway walls; the induced field lifts the train and pushes it back to centre if it drifts; lift-off at about 150 km/h (93 mph) to 100 mm (4 in); below that it 'runs on rubber wheels'. [Wikipedia, SCMaglev](https://en.wikipedia.org/wiki/SCMaglev)
 - Propulsion: a linear synchronous motor powering a second set of guideway coils. [Wikipedia, SCMaglev](https://en.wikipedia.org/wiki/SCMaglev)
+- Fastest wheeled train: 574.8 km/h (357 mph), TGV V150, 3 April 2007 (for the payoff bar chart; checked 2026-11-11). [Wikipedia, Land speed record for rail vehicles](https://en.wikipedia.org/wiki/Land_speed_record_for_rail_vehicles)
 - Chuo Shinkansen (Tokyo to Nagoya) scheduled to open in 2034 (not in the script). [Wikipedia, SCMaglev](https://en.wikipedia.org/wiki/SCMaglev)
 - Dropped: Shanghai's '431 km/h' (cut to 300 km/h in May 2021) and its '10 mm gap' (no primary source). [Wikipedia, Shanghai maglev](https://en.wikipedia.org/wiki/Shanghai_maglev_train)

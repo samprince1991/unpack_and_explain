@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**50 ideas** (by status: 26 idea, 10 scripted, 6 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**50 ideas** (by status: 25 idea, 9 scripted, 8 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -20,7 +20,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Nobody sees the 1.5 million kilometers of cable your internet runs on. | E | [posted](https://www.instagram.com/reel/DfTq3Z-I1Ml) | TeleGeography Submarine Cable FAQ (2026); International Cable Protection Committee | 2 |
 | Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Nobody tells you Amazon's cloud copies your files into 3 buildings. | Q | [posted](https://www.instagram.com/reel/DfWzUgUIq2n) | AWS Amazon S3 docs (data protection); IEA Energy and AI (2025) | - |
 | Internet | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | In 2012, one extra second broke Reddit for you. | F | idea | The Register, 2 July 2012; Google leap smear docs; CGPM 2026 (Scientific American, Euronews) | 1 |
-| Data & codes | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | A QR code is a tiny grid of yes/no answers. | E | idea | ISO/IEC 18004 overview | - |
+| Data & codes | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Nobody tells you 3 squares tell your camera which way is up. | E | rendered | Denso Wave (qrcode.com); ISO/IEC 18004 | - |
 | AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | [posted](https://www.instagram.com/reel/DfOxCyZoUsn) | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | - |
 | Devices | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Nobody tells you your phone hides a weight on springs. | E | [posted](https://www.instagram.com/reel/DfgmpugIbXy) | STMicroelectronics; capacitive MEMS accelerometer patent US6910379; Android developer docs | 2 |
 
@@ -50,7 +50,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | NASA/JPL Mishap Investigation Board report | - |
 | Space | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Hubble's $1.5B mirror was wrong by 2 microns. | F | idea | NASA 'Hubble's Mirror Flaw'; Allen Report (1990) | - |
 | Machines | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Your elevator cable snaps. You still don't fall. | Q | idea | ASME A17.1 (rope count and safety factors, as adopted in state codes); Otis safety systems; Otis 1854 demonstration | 1 |
-| Machines | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | You don't need wheels to hit 603 kilometers an hour. | E | scripted | Wikipedia, SCMaglev; Guinness World Records | 2 |
+| Machines | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | You don't need wheels to hit 603 kilometers an hour. | E | rendered | Wikipedia, SCMaglev; Guinness World Records | 2 |
 | Ships | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | You've never noticed the bump that saves ships up to 14% fuel. | E | rendered | FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log) | 1 |
 | Ships | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | You don't need strong air to lift an 11-tonne hovercraft. | E | rendered | SR.N6 worked example (Wikipedia, Hovercraft); National Historic Ships UK; SR.N4 specifications | 2 |
 | Cars | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Nobody tells you Tesla's flying car runs on compressed air. | Q | rendered | Tesla Roadster unveil, 15 Oct 2026 (TechCrunch, CNN, Drive Tesla Canada) | 3 |
@@ -100,7 +100,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-11-16 | 3 | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | Aviation & engineering › Structures | F | idea | - | - | - |
 | 2026-11-19 | 3 | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Aviation & engineering › Flight | E | idea | - | - | - |
 | 2026-11-23 | 4 | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
-| 2026-11-24 | 4 | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Everyday tech › Data & codes | E | idea | - | - | - |
+| 2026-11-24 | 4 | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Everyday tech › Data & codes | E | rendered | 81.4 | 123 | 49 |
 | 2026-11-26 | 4 | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Money & payments › Payments | E | idea | - | - | - |
 | 2026-11-27 | 4 | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | Everyday tech › Location & GPS | Q | idea | - | - | - |
 | 2026-12-01 | 5 | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | Money & payments › Markets | E | idea | - | - | - |
@@ -112,7 +112,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-12-11 | 6 | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Aviation & engineering › Cars | Q | rendered | 81.4 | 124 | 50 |
 | 2026-12-14 | 7 | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | Aviation & engineering › Flight | E | scripted | 77.8 | 129 | 52 |
 | 2026-12-15 | 7 | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Aviation & engineering › Cars | E | scripted | 81.4 | 128 | 51 |
-| 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | scripted | 77.8 | 128 | 51 |
+| 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | rendered | 77.8 | 125 | 50 |
 | 2026-12-18 | 7 | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Aviation & engineering › Cars | E | scripted | 78.6 | 127 | 51 |
 | 2026-12-21 | 8 | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Aviation & engineering › Flight | E | scripted | 81.4 | 129 | 52 |
 | 2026-12-22 | 8 | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Aviation & engineering › Cars | E | scripted | 70 | 126 | 50 |

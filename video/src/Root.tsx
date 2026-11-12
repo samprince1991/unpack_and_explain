@@ -14,6 +14,8 @@ import { Post10 } from "./posts/post-10-undersea-cables";
 import { script as post10 } from "./posts/post-10-undersea-cables/script";
 import { Post12 } from "./posts/post-12-cloud-myth";
 import { script as post12 } from "./posts/post-12-cloud-myth/script";
+import { Post14 } from "./posts/post-14-qr-code";
+import { script as post14 } from "./posts/post-14-qr-code/script";
 import { Carousel18 } from "./posts/post-18-gps-steps";
 import { script as carousel18 } from "./posts/post-18-gps-steps/slides";
 import { Carousel19 } from "./posts/post-19-jet-engine-stages";
@@ -28,6 +30,8 @@ import { Post27 } from "./posts/post-27-hovercraft";
 import { script as post27 } from "./posts/post-27-hovercraft/script";
 import { Post28 } from "./posts/post-28-tesla-roadster-myth";
 import { script as post28 } from "./posts/post-28-tesla-roadster-myth/script";
+import { Post31 } from "./posts/post-31-maglev";
+import { script as post31 } from "./posts/post-31-maglev/script";
 import { Post38 } from "./posts/post-38-gold-jewellery";
 import { script as post38 } from "./posts/post-38-gold-jewellery/script";
 import { calculateCoverMetadata, Cover } from "./templates/Cover";
@@ -100,6 +104,16 @@ export const RemotionRoot: React.FC = () => {
           calculateMetadata={calculateReelMetadata}
         />
         <Composition
+          id="Post14-QrCode"
+          component={Post14}
+          durationInFrames={video.fps * 40}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post14, vo: null, audio: null, showGuides: false }}
+          calculateMetadata={calculateReelMetadata}
+        />
+        <Composition
           id="Post20-VibeCoding"
           component={Post20}
           durationInFrames={video.fps * 40}
@@ -147,6 +161,16 @@ export const RemotionRoot: React.FC = () => {
           width={video.width}
           height={video.height}
           defaultProps={{ script: post28, vo: null, audio: null, showGuides: false }}
+          calculateMetadata={calculateReelMetadata}
+        />
+        <Composition
+          id="Post31-Maglev"
+          component={Post31}
+          durationInFrames={video.fps * 40}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post31, vo: null, audio: null, showGuides: false }}
           calculateMetadata={calculateReelMetadata}
         />
         <Composition
@@ -202,6 +226,16 @@ export const RemotionRoot: React.FC = () => {
           calculateMetadata={calculateCoverMetadata}
         />
         <Composition
+          id="Cover14-QrCode"
+          component={Cover}
+          durationInFrames={1}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post14, blender3d: null, showGuides: false }}
+          calculateMetadata={calculateCoverMetadata}
+        />
+        <Composition
           id="Cover21-PhoneAccelerometer"
           component={Cover}
           durationInFrames={1}
@@ -239,6 +273,16 @@ export const RemotionRoot: React.FC = () => {
           width={video.width}
           height={video.height}
           defaultProps={{ script: post28, blender3d: null, showGuides: false }}
+          calculateMetadata={calculateCoverMetadata}
+        />
+        <Composition
+          id="Cover31-Maglev"
+          component={Cover}
+          durationInFrames={1}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post31, blender3d: null, showGuides: false }}
           calculateMetadata={calculateCoverMetadata}
         />
         <Composition

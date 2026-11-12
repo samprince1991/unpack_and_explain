@@ -1,0 +1,923 @@
+{
+  "postId": "post-14-qr-code",
+  "estimated": false,
+  "sections": [
+    {
+      "id": "question",
+      "text": "Do you know how QR codes still scan with 30% missing?",
+      "file": "posts/post-14-qr-code/vo/question.mp3",
+      "durationMs": 3530,
+      "captions": [
+        {
+          "text": "Do",
+          "startMs": 0,
+          "endMs": 139,
+          "timestampMs": 70,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 174,
+          "endMs": 244,
+          "timestampMs": 209,
+          "confidence": null
+        },
+        {
+          "text": " know",
+          "startMs": 290,
+          "endMs": 418,
+          "timestampMs": 354,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 464,
+          "endMs": 557,
+          "timestampMs": 511,
+          "confidence": null
+        },
+        {
+          "text": " QR",
+          "startMs": 615,
+          "endMs": 975,
+          "timestampMs": 795,
+          "confidence": null
+        },
+        {
+          "text": " codes",
+          "startMs": 1068,
+          "endMs": 1312,
+          "timestampMs": 1190,
+          "confidence": null
+        },
+        {
+          "text": " still",
+          "startMs": 1335,
+          "endMs": 1567,
+          "timestampMs": 1451,
+          "confidence": null
+        },
+        {
+          "text": " scan",
+          "startMs": 1614,
+          "endMs": 1846,
+          "timestampMs": 1730,
+          "confidence": null
+        },
+        {
+          "text": " with",
+          "startMs": 1892,
+          "endMs": 2009,
+          "timestampMs": 1951,
+          "confidence": null
+        },
+        {
+          "text": " 30%",
+          "startMs": 2067,
+          "endMs": 2624,
+          "timestampMs": 2346,
+          "confidence": null
+        },
+        {
+          "text": " missing?",
+          "startMs": 2728,
+          "endMs": 3530,
+          "timestampMs": 3175,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "text": "Nobody tells you 3 squares tell your camera which way is up.",
+      "file": "posts/post-14-qr-code/vo/hook.mp3",
+      "durationMs": 3994,
+      "captions": [
+        {
+          "text": "Nobody",
+          "startMs": 0,
+          "endMs": 348,
+          "timestampMs": 174,
+          "confidence": null
+        },
+        {
+          "text": " tells",
+          "startMs": 395,
+          "endMs": 615,
+          "timestampMs": 505,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 662,
+          "endMs": 743,
+          "timestampMs": 703,
+          "confidence": null
+        },
+        {
+          "text": " 3",
+          "startMs": 836,
+          "endMs": 1022,
+          "timestampMs": 929,
+          "confidence": null
+        },
+        {
+          "text": " squares",
+          "startMs": 1080,
+          "endMs": 1463,
+          "timestampMs": 1272,
+          "confidence": null
+        },
+        {
+          "text": " tell",
+          "startMs": 1509,
+          "endMs": 1649,
+          "timestampMs": 1579,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 1695,
+          "endMs": 1788,
+          "timestampMs": 1742,
+          "confidence": null
+        },
+        {
+          "text": " camera",
+          "startMs": 1823,
+          "endMs": 2218,
+          "timestampMs": 2021,
+          "confidence": null
+        },
+        {
+          "text": " which",
+          "startMs": 2310,
+          "endMs": 2543,
+          "timestampMs": 2427,
+          "confidence": null
+        },
+        {
+          "text": " way",
+          "startMs": 2589,
+          "endMs": 2752,
+          "timestampMs": 2670,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 2798,
+          "endMs": 2879,
+          "timestampMs": 2839,
+          "confidence": null
+        },
+        {
+          "text": " up.",
+          "startMs": 2961,
+          "endMs": 3994,
+          "timestampMs": 3478,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "text": "A QR code is a grid of squares, each a yes or no. But your camera sees it tilted and scratched.",
+      "file": "posts/post-14-qr-code/vo/setup.mp3",
+      "durationMs": 6590,
+      "captions": [
+        {
+          "text": "A",
+          "startMs": 0,
+          "endMs": 139,
+          "timestampMs": 70,
+          "confidence": null
+        },
+        {
+          "text": " QR",
+          "startMs": 232,
+          "endMs": 580,
+          "timestampMs": 406,
+          "confidence": null
+        },
+        {
+          "text": " code",
+          "startMs": 685,
+          "endMs": 952,
+          "timestampMs": 819,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 998,
+          "endMs": 1080,
+          "timestampMs": 1039,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1126,
+          "endMs": 1149,
+          "timestampMs": 1138,
+          "confidence": null
+        },
+        {
+          "text": " grid",
+          "startMs": 1207,
+          "endMs": 1393,
+          "timestampMs": 1300,
+          "confidence": null
+        },
+        {
+          "text": " of",
+          "startMs": 1428,
+          "endMs": 1486,
+          "timestampMs": 1457,
+          "confidence": null
+        },
+        {
+          "text": " squares,",
+          "startMs": 1533,
+          "endMs": 2101,
+          "timestampMs": 1817,
+          "confidence": null
+        },
+        {
+          "text": " each",
+          "startMs": 2287,
+          "endMs": 2461,
+          "timestampMs": 2374,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 2496,
+          "endMs": 2531,
+          "timestampMs": 2514,
+          "confidence": null
+        },
+        {
+          "text": " yes",
+          "startMs": 2589,
+          "endMs": 2786,
+          "timestampMs": 2688,
+          "confidence": null
+        },
+        {
+          "text": " or",
+          "startMs": 2868,
+          "endMs": 2949,
+          "timestampMs": 2909,
+          "confidence": null
+        },
+        {
+          "text": " no.",
+          "startMs": 3030,
+          "endMs": 3413,
+          "timestampMs": 3222,
+          "confidence": null
+        },
+        {
+          "text": " But",
+          "startMs": 3889,
+          "endMs": 4052,
+          "timestampMs": 3970,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 4087,
+          "endMs": 4191,
+          "timestampMs": 4139,
+          "confidence": null
+        },
+        {
+          "text": " camera",
+          "startMs": 4249,
+          "endMs": 4598,
+          "timestampMs": 4424,
+          "confidence": null
+        },
+        {
+          "text": " sees",
+          "startMs": 4656,
+          "endMs": 4853,
+          "timestampMs": 4755,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 4899,
+          "endMs": 4981,
+          "timestampMs": 4940,
+          "confidence": null
+        },
+        {
+          "text": " tilted",
+          "startMs": 5016,
+          "endMs": 5399,
+          "timestampMs": 5208,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 5433,
+          "endMs": 5503,
+          "timestampMs": 5468,
+          "confidence": null
+        },
+        {
+          "text": " scratched.",
+          "startMs": 5561,
+          "endMs": 6590,
+          "timestampMs": 6124,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "mechanism",
+      "text": "So your camera finds the three corner squares first, and turns the code upright. Then each small square is one bit: black is one, white is zero. Every eight bits spell one letter. But backup bits are mixed in, so missing squares can be worked out.",
+      "file": "posts/post-14-qr-code/vo/mechanism.mp3",
+      "durationMs": 17461,
+      "captions": [
+        {
+          "text": "So",
+          "startMs": 0,
+          "endMs": 209,
+          "timestampMs": 105,
+          "confidence": null
+        },
+        {
+          "text": " your",
+          "startMs": 290,
+          "endMs": 418,
+          "timestampMs": 354,
+          "confidence": null
+        },
+        {
+          "text": " camera",
+          "startMs": 464,
+          "endMs": 743,
+          "timestampMs": 604,
+          "confidence": null
+        },
+        {
+          "text": " finds",
+          "startMs": 789,
+          "endMs": 1068,
+          "timestampMs": 929,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 1115,
+          "endMs": 1184,
+          "timestampMs": 1150,
+          "confidence": null
+        },
+        {
+          "text": " three",
+          "startMs": 1219,
+          "endMs": 1428,
+          "timestampMs": 1324,
+          "confidence": null
+        },
+        {
+          "text": " corner",
+          "startMs": 1474,
+          "endMs": 1707,
+          "timestampMs": 1591,
+          "confidence": null
+        },
+        {
+          "text": " squares",
+          "startMs": 1753,
+          "endMs": 2067,
+          "timestampMs": 1910,
+          "confidence": null
+        },
+        {
+          "text": " first,",
+          "startMs": 2159,
+          "endMs": 2694,
+          "timestampMs": 2427,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 2926,
+          "endMs": 3088,
+          "timestampMs": 3007,
+          "confidence": null
+        },
+        {
+          "text": " turns",
+          "startMs": 3146,
+          "endMs": 3390,
+          "timestampMs": 3268,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 3437,
+          "endMs": 3506,
+          "timestampMs": 3472,
+          "confidence": null
+        },
+        {
+          "text": " code",
+          "startMs": 3541,
+          "endMs": 3750,
+          "timestampMs": 3646,
+          "confidence": null
+        },
+        {
+          "text": " upright.",
+          "startMs": 3773,
+          "endMs": 4307,
+          "timestampMs": 4040,
+          "confidence": null
+        },
+        {
+          "text": " Then",
+          "startMs": 4865,
+          "endMs": 5155,
+          "timestampMs": 5010,
+          "confidence": null
+        },
+        {
+          "text": " each",
+          "startMs": 5248,
+          "endMs": 5468,
+          "timestampMs": 5358,
+          "confidence": null
+        },
+        {
+          "text": " small",
+          "startMs": 5561,
+          "endMs": 5886,
+          "timestampMs": 5724,
+          "confidence": null
+        },
+        {
+          "text": " square",
+          "startMs": 5933,
+          "endMs": 6211,
+          "timestampMs": 6072,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 6246,
+          "endMs": 6316,
+          "timestampMs": 6281,
+          "confidence": null
+        },
+        {
+          "text": " one",
+          "startMs": 6409,
+          "endMs": 6583,
+          "timestampMs": 6496,
+          "confidence": null
+        },
+        {
+          "text": " bit:",
+          "startMs": 6618,
+          "endMs": 6978,
+          "timestampMs": 6798,
+          "confidence": null
+        },
+        {
+          "text": " black",
+          "startMs": 7245,
+          "endMs": 7558,
+          "timestampMs": 7402,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 7651,
+          "endMs": 7790,
+          "timestampMs": 7720,
+          "confidence": null
+        },
+        {
+          "text": " one,",
+          "startMs": 7883,
+          "endMs": 8290,
+          "timestampMs": 8086,
+          "confidence": null
+        },
+        {
+          "text": " white",
+          "startMs": 8638,
+          "endMs": 8928,
+          "timestampMs": 8783,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 8975,
+          "endMs": 9091,
+          "timestampMs": 9033,
+          "confidence": null
+        },
+        {
+          "text": " zero.",
+          "startMs": 9149,
+          "endMs": 9718,
+          "timestampMs": 9433,
+          "confidence": null
+        },
+        {
+          "text": " Every",
+          "startMs": 10379,
+          "endMs": 10693,
+          "timestampMs": 10536,
+          "confidence": null
+        },
+        {
+          "text": " eight",
+          "startMs": 10739,
+          "endMs": 10925,
+          "timestampMs": 10832,
+          "confidence": null
+        },
+        {
+          "text": " bits",
+          "startMs": 10971,
+          "endMs": 11262,
+          "timestampMs": 11117,
+          "confidence": null
+        },
+        {
+          "text": " spell",
+          "startMs": 11355,
+          "endMs": 11680,
+          "timestampMs": 11518,
+          "confidence": null
+        },
+        {
+          "text": " one",
+          "startMs": 11784,
+          "endMs": 11970,
+          "timestampMs": 11877,
+          "confidence": null
+        },
+        {
+          "text": " letter.",
+          "startMs": 12005,
+          "endMs": 12469,
+          "timestampMs": 12237,
+          "confidence": null
+        },
+        {
+          "text": " But",
+          "startMs": 13131,
+          "endMs": 13328,
+          "timestampMs": 13230,
+          "confidence": null
+        },
+        {
+          "text": " backup",
+          "startMs": 13409,
+          "endMs": 13792,
+          "timestampMs": 13601,
+          "confidence": null
+        },
+        {
+          "text": " bits",
+          "startMs": 13850,
+          "endMs": 14059,
+          "timestampMs": 13955,
+          "confidence": null
+        },
+        {
+          "text": " are",
+          "startMs": 14094,
+          "endMs": 14187,
+          "timestampMs": 14141,
+          "confidence": null
+        },
+        {
+          "text": " mixed",
+          "startMs": 14222,
+          "endMs": 14454,
+          "timestampMs": 14338,
+          "confidence": null
+        },
+        {
+          "text": " in,",
+          "startMs": 14512,
+          "endMs": 14861,
+          "timestampMs": 14687,
+          "confidence": null
+        },
+        {
+          "text": " so",
+          "startMs": 15046,
+          "endMs": 15232,
+          "timestampMs": 15139,
+          "confidence": null
+        },
+        {
+          "text": " missing",
+          "startMs": 15337,
+          "endMs": 15627,
+          "timestampMs": 15482,
+          "confidence": null
+        },
+        {
+          "text": " squares",
+          "startMs": 15685,
+          "endMs": 16033,
+          "timestampMs": 15859,
+          "confidence": null
+        },
+        {
+          "text": " can",
+          "startMs": 16080,
+          "endMs": 16184,
+          "timestampMs": 16132,
+          "confidence": null
+        },
+        {
+          "text": " be",
+          "startMs": 16230,
+          "endMs": 16312,
+          "timestampMs": 16271,
+          "confidence": null
+        },
+        {
+          "text": " worked",
+          "startMs": 16358,
+          "endMs": 16614,
+          "timestampMs": 16486,
+          "confidence": null
+        },
+        {
+          "text": " out.",
+          "startMs": 16672,
+          "endMs": 17461,
+          "timestampMs": 17066,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "text": "With the strongest backup, up to 30% can be missing, and it still scans.",
+      "file": "posts/post-14-qr-code/vo/payoff.mp3",
+      "durationMs": 5062,
+      "captions": [
+        {
+          "text": "With",
+          "startMs": 0,
+          "endMs": 174,
+          "timestampMs": 87,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 197,
+          "endMs": 267,
+          "timestampMs": 232,
+          "confidence": null
+        },
+        {
+          "text": " strongest",
+          "startMs": 313,
+          "endMs": 720,
+          "timestampMs": 517,
+          "confidence": null
+        },
+        {
+          "text": " backup,",
+          "startMs": 766,
+          "endMs": 1324,
+          "timestampMs": 1045,
+          "confidence": null
+        },
+        {
+          "text": " up",
+          "startMs": 1451,
+          "endMs": 1579,
+          "timestampMs": 1515,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 1625,
+          "endMs": 1683,
+          "timestampMs": 1654,
+          "confidence": null
+        },
+        {
+          "text": " 30%",
+          "startMs": 1776,
+          "endMs": 2426,
+          "timestampMs": 2101,
+          "confidence": null
+        },
+        {
+          "text": " can",
+          "startMs": 2531,
+          "endMs": 2624,
+          "timestampMs": 2578,
+          "confidence": null
+        },
+        {
+          "text": " be",
+          "startMs": 2670,
+          "endMs": 2740,
+          "timestampMs": 2705,
+          "confidence": null
+        },
+        {
+          "text": " missing,",
+          "startMs": 2786,
+          "endMs": 3262,
+          "timestampMs": 3024,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 3495,
+          "endMs": 3634,
+          "timestampMs": 3565,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 3692,
+          "endMs": 3762,
+          "timestampMs": 3727,
+          "confidence": null
+        },
+        {
+          "text": " still",
+          "startMs": 3808,
+          "endMs": 4029,
+          "timestampMs": 3919,
+          "confidence": null
+        },
+        {
+          "text": " scans.",
+          "startMs": 4075,
+          "endMs": 5062,
+          "timestampMs": 4569,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "congrats",
+      "text": "Congrats, you just learned how a QR code stores data.",
+      "file": "posts/post-14-qr-code/vo/congrats.mp3",
+      "durationMs": 4080,
+      "captions": [
+        {
+          "text": "Congrats,",
+          "startMs": 0,
+          "endMs": 778,
+          "timestampMs": 389,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 906,
+          "endMs": 1010,
+          "timestampMs": 958,
+          "confidence": null
+        },
+        {
+          "text": " just",
+          "startMs": 1091,
+          "endMs": 1254,
+          "timestampMs": 1172,
+          "confidence": null
+        },
+        {
+          "text": " learned",
+          "startMs": 1289,
+          "endMs": 1498,
+          "timestampMs": 1394,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1521,
+          "endMs": 1614,
+          "timestampMs": 1568,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1672,
+          "endMs": 1695,
+          "timestampMs": 1684,
+          "confidence": null
+        },
+        {
+          "text": " QR",
+          "startMs": 1788,
+          "endMs": 2194,
+          "timestampMs": 1991,
+          "confidence": null
+        },
+        {
+          "text": " code",
+          "startMs": 2299,
+          "endMs": 2554,
+          "timestampMs": 2427,
+          "confidence": null
+        },
+        {
+          "text": " stores",
+          "startMs": 2589,
+          "endMs": 2879,
+          "timestampMs": 2734,
+          "confidence": null
+        },
+        {
+          "text": " data.",
+          "startMs": 2937,
+          "endMs": 4080,
+          "timestampMs": 3558,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "text": "Follow Unpack and Explain for how things actually work.",
+      "file": "posts/post-14-qr-code/vo/cta.mp3",
+      "durationMs": 3344,
+      "captions": [
+        {
+          "text": "Follow",
+          "startMs": 0,
+          "endMs": 337,
+          "timestampMs": 169,
+          "confidence": null
+        },
+        {
+          "text": " Unpack",
+          "startMs": 430,
+          "endMs": 836,
+          "timestampMs": 633,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 882,
+          "endMs": 952,
+          "timestampMs": 917,
+          "confidence": null
+        },
+        {
+          "text": " Explain",
+          "startMs": 998,
+          "endMs": 1416,
+          "timestampMs": 1207,
+          "confidence": null
+        },
+        {
+          "text": " for",
+          "startMs": 1474,
+          "endMs": 1579,
+          "timestampMs": 1527,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1637,
+          "endMs": 1753,
+          "timestampMs": 1695,
+          "confidence": null
+        },
+        {
+          "text": " things",
+          "startMs": 1834,
+          "endMs": 2078,
+          "timestampMs": 1956,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 2171,
+          "endMs": 2612,
+          "timestampMs": 2391,
+          "confidence": null
+        },
+        {
+          "text": " work.",
+          "startMs": 2659,
+          "endMs": 3344,
+          "timestampMs": 3002,
+          "confidence": null
+        }
+      ]
+    }
+  ]
+}

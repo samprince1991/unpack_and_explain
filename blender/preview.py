@@ -36,6 +36,9 @@ def main():
             "keyPart": None,
             "explode": {"axis": "x", "order": [], "spacing": 0},
             "spinAxis": "x",
+            # model:add has just run QC with the catalog entry (its contacts); this stand-in
+            # entry treats every object as a part, so QC here would flag listed contacts.
+            "skipQc": True,
         }
         job = {"postId": "preview", "fps": 30, "model": model}
         clip = {"id": "preview", "frames": 1, "width": 1080, "height": 870, "hash": "",
