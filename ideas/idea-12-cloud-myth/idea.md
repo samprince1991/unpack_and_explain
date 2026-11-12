@@ -12,12 +12,14 @@ link: "https://www.instagram.com/reel/DfWzUgUIq2n"
 hook_formula: 3
 hook_score: 83.0
 question_score: 62.2
+fit: low
+fit_why: "abstract: data centers and copies (posted: 141)"
 hook: "Nobody tells you Amazon's cloud copies your files into 3 buildings."
 source: "AWS Amazon S3 docs (data protection); IEA Energy and AI (2025)"
 verify: []
-metrics:  # fill in after posting
-  views: 140  # as of 2026-11-09 (insights export)
-  reach: 126
+metrics:
+  views: 141  # as of 2026-11-11 (insights export)
+  reach: 127
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length

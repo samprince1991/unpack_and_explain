@@ -8,6 +8,8 @@ subcategory: "Space"
 week: 4
 date: 2026-11-23
 status: idea
+fit: low
+fit_why: "spacecraft, but the story is a unit conversion"
 hook: "A $125M spacecraft was lost over a unit mix-up."
 source: "NASA/JPL Mishap Investigation Board report"
 verify: []

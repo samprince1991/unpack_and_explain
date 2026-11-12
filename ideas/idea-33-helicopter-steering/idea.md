@@ -12,6 +12,8 @@ status: scripted
 hook_formula: 3
 hook_score: 81.4
 question_score: 62.2
+fit: high
+fit_why: "helicopter in the sky, recognisable at frame 0"
 hook: "Nobody tells you 2 plates do all of a helicopter's steering."
 source: "FAA Helicopter Flying Handbook (FAA-H-8083-21B), ch. 3"
 verify:

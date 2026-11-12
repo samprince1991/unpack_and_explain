@@ -10,13 +10,15 @@ date: 2026-11-06
 status: posted
 link: "https://www.instagram.com/p/DfZfdEok4Sz"
 companion_of: 3
+fit: low
+fit_why: "carousel (posted: 0 views)"
 hook: "4 steps your plane never stops"
 hook_formula: 11
 hook_score: 81.4
 source: "NASA Glenn Research Center, Beginner's Guide to Propulsion"
 verify: []
-metrics:  # fill in after posting
-  views: 0  # as of 2026-11-09 (insights export)
+metrics:
+  views: 0  # as of 2026-11-11 (insights export)
   reach: 0
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s (reels only)

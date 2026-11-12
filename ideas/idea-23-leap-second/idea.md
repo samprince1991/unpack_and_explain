@@ -8,6 +8,8 @@ subcategory: "Internet"
 week: 5
 date: 2026-12-03
 status: idea
+fit: low
+fit_why: "abstract: time and software"
 hook: "In 2012, one extra second broke Reddit for you."
 source: "The Register, 2 July 2012; Google leap smear docs; CGPM 2026 (Scientific American, Euronews)"
 verify:

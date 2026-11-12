@@ -12,6 +12,8 @@ status: scripted
 hook_formula: 3
 hook_score: 78.6
 question_score: 62.2
+fit: medium
+fit_why: "car on a road fits, but the mechanism hides inside the motor"
 hook: "Nobody tells you braking gives an electric car back 32% in the city."
 source: "U.S. DOE / EPA, fueleconomy.gov: Where the energy goes, electric cars"
 verify:

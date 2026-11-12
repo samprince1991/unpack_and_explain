@@ -9,6 +9,8 @@ subcategory: "Jewellery"
 week: 9
 date: 2026-12-31
 status: idea
+fit: low
+fit_why: "small object; Q myth format"
 hook: "Your white gold ring is secretly yellow."
 source: "{{source}}: needs a GIA, assay-office or refiner page"
 verify:

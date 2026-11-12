@@ -6,27 +6,30 @@ format: E
 category: "Aviation & engineering"
 subcategory: "Ships"
 week: 6
-date: 2026-12-08
-status: rendered
+date: 2026-11-09
+status: posted
+link: "https://www.instagram.com/reel/Dfg81Vmo-xP"
 hook_formula: 3
 hook_score: 76.4
 question_score: 62.2
+fit: high
+fit_why: "big ship in the sea world (posted: 1,384, 10.6x)"
 hook: "You've never noticed the bump that saves ships up to 14% fuel."
 source: "FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log)"
 verify:
   - "140 tonnes is the upper end for Maersk's big container-ship bows (Maersk via Ships Monthly); question card says it as a question, keep the source"
 notes: "Bulbous bow makes its own wave just ahead of the bow wave, out of phase, so the two partly cancel and the hull pushes less water. Strong side-view 3D with the two waves."
-metrics:  # fill in after posting
-  views: null
-  reach: null
+metrics:
+  views: 1384  # as of 2026-11-11 (insights export)
+  reach: 1277
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 5
+  comments: 0
+  shares: 0
+  saves: 1
+  follows: 0
 youtube:  # YouTube Short; status/link/metrics above are Instagram
   date: 2026-11-10
   link: null  # paste the Shorts URL

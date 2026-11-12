@@ -8,6 +8,8 @@ subcategory: "Markets"
 week: 5
 date: 2026-12-01
 status: idea
+fit: low
+fit_why: "abstract: an order book"
 hook: "You never see the hidden queue behind every stock price."
 source: "Nasdaq Rule 4757 (Book Processing), via SEC filings"
 verify: []

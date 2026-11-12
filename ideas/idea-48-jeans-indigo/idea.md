@@ -9,6 +9,8 @@ subcategory: "Fabrics"
 week: 11
 date: 2027-01-14
 status: idea
+fit: low
+fit_why: "small object; the mechanism is dye chemistry"
 hook: "Nobody tells you your blue jeans are white inside every thread."
 source: "Wikipedia, Denim; {{source}}: a mill or textile-science source on ring dyeing"
 verify:

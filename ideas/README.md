@@ -4,149 +4,153 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**50 ideas** (by status: 25 idea, 9 scripted, 8 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**50 ideas** (by status: 25 idea, 9 scripted, 4 rendered, 12 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
 ### Everyday tech (11)
 
-| Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
-|---|---|---|---|---|---|---|---|
-| Location & GPS | 2 | [How GPS finds you](idea-02-gps/idea.md) | GPS doesn't track you. Your phone just listens. | E | [posted](https://www.instagram.com/reel/DfE-k9so_ys) | GPS.gov | 3 |
-| Location & GPS | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | No internet. Still a pin. Why? | C | rendered | GPS.gov | 3 |
-| Location & GPS | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | GPS works with no signal at all. | Q | idea | GPS.gov | - |
-| Wireless | 5 | [How WiFi works](idea-05-wifi/idea.md) | WiFi is just radio, and your router is a tiny radio station. | E | idea | IEEE / Wi-Fi Alliance basics | - |
-| Wireless | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | What actually happens if you don't switch it on? | Q | idea | Aviation authority guidance | - |
-| Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Nobody sees the 1.5 million kilometers of cable your internet runs on. | E | [posted](https://www.instagram.com/reel/DfTq3Z-I1Ml) | TeleGeography Submarine Cable FAQ (2026); International Cable Protection Committee | 2 |
-| Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Nobody tells you Amazon's cloud copies your files into 3 buildings. | Q | [posted](https://www.instagram.com/reel/DfWzUgUIq2n) | AWS Amazon S3 docs (data protection); IEA Energy and AI (2025) | - |
-| Internet | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | In 2012, one extra second broke Reddit for you. | F | idea | The Register, 2 July 2012; Google leap smear docs; CGPM 2026 (Scientific American, Euronews) | 1 |
-| Data & codes | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Nobody tells you 3 squares tell your camera which way is up. | E | rendered | Denso Wave (qrcode.com); ISO/IEC 18004 | - |
-| AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | [posted](https://www.instagram.com/reel/DfOxCyZoUsn) | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | - |
-| Devices | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Nobody tells you your phone hides a weight on springs. | E | [posted](https://www.instagram.com/reel/DfgmpugIbXy) | STMicroelectronics; capacitive MEMS accelerometer patent US6910379; Android developer docs | 2 |
+| Sub-category | # | Idea | Hook | Fmt | Status | Fit | Source | To verify |
+|---|---|---|---|---|---|---|---|---|
+| Location & GPS | 2 | [How GPS finds you](idea-02-gps/idea.md) | GPS doesn't track you. Your phone just listens. | E | [posted](https://www.instagram.com/reel/DfE-k9so_ys) | low | GPS.gov | 3 |
+| Location & GPS | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | No internet. Still a pin. Why? | C | rendered | low | GPS.gov | 3 |
+| Location & GPS | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | GPS works with no signal at all. | Q | idea | low | GPS.gov | - |
+| Wireless | 5 | [How WiFi works](idea-05-wifi/idea.md) | WiFi is just radio, and your router is a tiny radio station. | E | idea | low | IEEE / Wi-Fi Alliance basics | - |
+| Wireless | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | What actually happens if you don't switch it on? | Q | idea | low | Aviation authority guidance | - |
+| Internet | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Nobody sees the 1.5 million kilometers of cable your internet runs on. | E | [posted](https://www.instagram.com/reel/DfTq3Z-I1Ml) | medium | TeleGeography Submarine Cable FAQ (2026); International Cable Protection Committee | 2 |
+| Internet | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Nobody tells you Amazon's cloud copies your files into 3 buildings. | Q | [posted](https://www.instagram.com/reel/DfWzUgUIq2n) | low | AWS Amazon S3 docs (data protection); IEA Energy and AI (2025) | - |
+| Internet | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | In 2012, one extra second broke Reddit for you. | F | idea | low | The Register, 2 July 2012; Google leap smear docs; CGPM 2026 (Scientific American, Euronews) | 1 |
+| Data & codes | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Nobody tells you 3 squares tell your camera which way is up. | E | rendered | low | Denso Wave (qrcode.com); ISO/IEC 18004 | - |
+| AI | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | In 2026, you don't need to read one line of code to build an app. | E | [posted](https://www.instagram.com/reel/DfOxCyZoUsn) | low | Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works | - |
+| Devices | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Nobody tells you your phone hides a weight on springs. | E | [posted](https://www.instagram.com/reel/DfgmpugIbXy) | low | STMicroelectronics; capacitive MEMS accelerometer patent US6910379; Android developer docs | 2 |
 
 ### Money & payments (6)
 
-| Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
-|---|---|---|---|---|---|---|---|
-| Payments | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Nobody tells you a card tap moves zero money. | E | [posted](https://www.instagram.com/reel/DfHZUnZIbeZ) | Card network / acquirer docs | 2 |
-| Payments | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Saveable cheat sheet | C | idea | Reuse facts from idea 1 | - |
-| Payments | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Sending $100 abroad can take 3 banks. | E | idea | SWIFT public docs | 1 |
-| Markets | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | A software glitch lost $440M in 45 minutes. | F | idea | SEC order on Knight Capital (2013) | - |
-| Markets | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | You never see the hidden queue behind every stock price. | E | idea | Nasdaq Rule 4757 (Book Processing), via SEC filings | - |
-| Credit | 7 | [How credit scores work](idea-07-credit-score/idea.md) | You don't need a big salary for a high credit score. | E | rendered | myFICO, What's in your credit score; CFPB, What is a credit score | 1 |
+| Sub-category | # | Idea | Hook | Fmt | Status | Fit | Source | To verify |
+|---|---|---|---|---|---|---|---|---|
+| Payments | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Nobody tells you a card tap moves zero money. | E | [posted](https://www.instagram.com/reel/DfHZUnZIbeZ) | low | Card network / acquirer docs | 2 |
+| Payments | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Saveable cheat sheet | C | idea | low | Reuse facts from idea 1 | - |
+| Payments | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Sending $100 abroad can take 3 banks. | E | idea | low | SWIFT public docs | 1 |
+| Markets | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | A software glitch lost $440M in 45 minutes. | F | idea | low | SEC order on Knight Capital (2013) | - |
+| Markets | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | You never see the hidden queue behind every stock price. | E | idea | low | Nasdaq Rule 4757 (Book Processing), via SEC filings | - |
+| Credit | 7 | [How credit scores work](idea-07-credit-score/idea.md) | You don't need a big salary for a high credit score. | E | rendered | low | myFICO, What's in your credit score; CFPB, What is a credit score | 1 |
 
 ### Aviation & engineering (20)
 
-| Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
-|---|---|---|---|---|---|---|---|
-| Flight | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Most people explain lift wrong. | Q | scripted | NASA Glenn 'lift' explainer pages | 1 |
-| Flight | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Autopilot isn't flying the plane. It's following instructions. | E | idea | Aircraft manufacturer / FAA docs | - |
-| Flight | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | You don't need a runway to fly at 200 mph. | E | scripted | Joby Aviation; Wikipedia, Joby Aviation; Motley Fool, 30 Oct 2026 | 2 |
-| Flight | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Nobody tells you 2 plates do all of a helicopter's steering. | E | scripted | FAA Helicopter Flying Handbook (FAA-H-8083-21B), ch. 3 | 1 |
-| Flight | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | If one motor dies, an air taxi falls. Not quite. | Q | scripted | Archer Aviation (via AIN Online, Vertical Mag) | 3 |
-| Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | [posted](https://www.instagram.com/reel/DfPEJpBIkrN) | Canadian investigation report on Air Canada Flight 143 (1983) | - |
-| Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | [posted](https://www.instagram.com/p/DfZfdEok4Sz) | NASA Glenn Research Center, Beginner's Guide to Propulsion | - |
-| Structures | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | A bridge tore itself apart in a light wind. | F | idea | Washington State archives / FHWA | - |
-| Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | NASA/JPL Mishap Investigation Board report | - |
-| Space | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Hubble's $1.5B mirror was wrong by 2 microns. | F | idea | NASA 'Hubble's Mirror Flaw'; Allen Report (1990) | - |
-| Machines | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Your elevator cable snaps. You still don't fall. | Q | idea | ASME A17.1 (rope count and safety factors, as adopted in state codes); Otis safety systems; Otis 1854 demonstration | 1 |
-| Machines | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | You don't need wheels to hit 603 kilometers an hour. | E | rendered | Wikipedia, SCMaglev; Guinness World Records | 2 |
-| Ships | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | You've never noticed the bump that saves ships up to 14% fuel. | E | rendered | FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log) | 1 |
-| Ships | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | You don't need strong air to lift an 11-tonne hovercraft. | E | rendered | SR.N6 worked example (Wikipedia, Hovercraft); National Historic Ships UK; SR.N4 specifications | 2 |
-| Cars | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Nobody tells you Tesla's flying car runs on compressed air. | Q | rendered | Tesla Roadster unveil, 15 Oct 2026 (TechCrunch, CNN, Drive Tesla Canada) | 3 |
-| Cars | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Nobody tells you a fan won an F1 race in 1978. | E | scripted | Wikipedia, Brabham BT46; Motor Sport, 1978 Swedish GP | 2 |
-| Cars | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Nobody tells you braking gives an electric car back 32% in the city. | E | scripted | U.S. DOE / EPA, fueleconomy.gov: Where the energy goes, electric cars | 1 |
-| Cars | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Nobody tells you an F1 car could drive on the ceiling at 210 km/h. | E | scripted | NASA Glenn, lift equation; Planet F1; University of Leicester Physics Special Topics | 2 |
-| Cars | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Nobody tells you a robotaxi uses three kinds of eyes. | E | scripted | Waymo, A suite of sensors (support page); Waymo 6th-gen Driver coverage (Ward's Auto, Automotive World) | 2 |
-| Cars | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Nobody tells you the heater eats an electric car's range. | E | scripted | AAA, Feb 2019 EV temperature study; fueleconomy.gov, cold weather | 2 |
+| Sub-category | # | Idea | Hook | Fmt | Status | Fit | Source | To verify |
+|---|---|---|---|---|---|---|---|---|
+| Flight | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Most people explain lift wrong. | Q | scripted | medium | NASA Glenn 'lift' explainer pages | 1 |
+| Flight | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Autopilot isn't flying the plane. It's following instructions. | E | idea | medium | Aircraft manufacturer / FAA docs | - |
+| Flight | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | You don't need a runway to fly at 200 mph. | E | scripted | high | Joby Aviation; Wikipedia, Joby Aviation; Motley Fool, 30 Oct 2026 | 2 |
+| Flight | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Nobody tells you 2 plates do all of a helicopter's steering. | E | scripted | high | FAA Helicopter Flying Handbook (FAA-H-8083-21B), ch. 3 | 1 |
+| Flight | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | If one motor dies, an air taxi falls. Not quite. | Q | scripted | medium | Archer Aviation (via AIN Online, Vertical Mag) | 3 |
+| Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | [posted](https://www.instagram.com/reel/DfPEJpBIkrN) | medium | Canadian investigation report on Air Canada Flight 143 (1983) | - |
+| Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | [posted](https://www.instagram.com/p/DfZfdEok4Sz) | low | NASA Glenn Research Center, Beginner's Guide to Propulsion | - |
+| Structures | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | A bridge tore itself apart in a light wind. | F | idea | high | Washington State archives / FHWA | - |
+| Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | low | NASA/JPL Mishap Investigation Board report | - |
+| Space | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Hubble's $1.5B mirror was wrong by 2 microns. | F | idea | high | NASA 'Hubble's Mirror Flaw'; Allen Report (1990) | - |
+| Machines | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Your elevator cable snaps. You still don't fall. | Q | idea | medium | ASME A17.1 (rope count and safety factors, as adopted in state codes); Otis safety systems; Otis 1854 demonstration | 1 |
+| Machines | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | You don't need wheels to hit 603 kilometers an hour. | E | rendered | high | Wikipedia, SCMaglev; Guinness World Records | 2 |
+| Ships | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | You've never noticed the bump that saves ships up to 14% fuel. | E | [posted](https://www.instagram.com/reel/Dfg81Vmo-xP) | high | FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log) | 1 |
+| Ships | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | You don't need strong air to lift an 11-tonne hovercraft. | E | [posted](https://www.instagram.com/reel/DfjiHj8Ivbl) | high | SR.N6 worked example (Wikipedia, Hovercraft); National Historic Ships UK; SR.N4 specifications | 2 |
+| Cars | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Nobody tells you Tesla's flying car runs on compressed air. | Q | [posted](https://www.instagram.com/reel/DflMrkJlAGq) | medium | Tesla Roadster unveil, 15 Oct 2026 (TechCrunch, CNN, Drive Tesla Canada) | 3 |
+| Cars | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Nobody tells you a fan won an F1 race in 1978. | E | scripted | high | Wikipedia, Brabham BT46; Motor Sport, 1978 Swedish GP | 2 |
+| Cars | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Nobody tells you braking gives an electric car back 32% in the city. | E | scripted | medium | U.S. DOE / EPA, fueleconomy.gov: Where the energy goes, electric cars | 1 |
+| Cars | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Nobody tells you an F1 car could drive on the ceiling at 210 km/h. | E | scripted | high | NASA Glenn, lift equation; Planet F1; University of Leicester Physics Special Topics | 2 |
+| Cars | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Nobody tells you a robotaxi uses three kinds of eyes. | E | scripted | high | Waymo, A suite of sensors (support page); Waymo 6th-gen Driver coverage (Ward's Auto, Automotive World) | 2 |
+| Cars | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Nobody tells you the heater eats an electric car's range. | E | scripted | medium | AAA, Feb 2019 EV temperature study; fueleconomy.gov, cold weather | 2 |
 
 ### Style & beauty (13)
 
-| Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
-|---|---|---|---|---|---|---|---|
-| Jewellery | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Nobody tells you your gold ring is part copper. | E | rendered | World Gold Council; Bureau of Indian Standards; Ganoksin | - |
-| Jewellery | 39 | [What your gold stamp means](idea-39-gold-karats/idea.md) | 750, 585, 375: read your ring. | C | idea | World Gold Council, assay and fineness | - |
-| Jewellery | 40 | [Myth: white gold is naturally white](idea-40-white-gold-myth/idea.md) | Your white gold ring is secretly yellow. | Q | idea | {{source}}: needs a GIA, assay-office or refiner page | 2 |
-| Jewellery | 41 | [How a lab-grown diamond is made](idea-41-lab-grown-diamond/idea.md) | Nobody tells you a lab-grown diamond starts as a gas. | E | idea | GIA, HPHT and CVD diamond growth processes; GIA Gems & Gemology, Summer 2024 | 2 |
-| Jewellery | 42 | [How a pearl is grown](idea-42-cultured-pearl/idea.md) | Nobody tells you most pearls start as a bead of shell. | E | idea | GIA Gems & Gemology, Winter 2017 (akoya farming, Australia); GIA, Different pearl types explained | 2 |
-| Skin & hair | 43 | [How sunscreen actually works](idea-43-sunscreen/idea.md) | SPF 50 isn't much stronger than SPF 30. | E | idea | American Academy of Dermatology, Sunscreen FAQs; U.S. FDA, sunscreen labeling | 4 |
-| Skin & hair | 50 | [What the SPF number really means](idea-50-spf-cheat-sheet/idea.md) | SPF 30 vs 50: 1% apart. | C | idea | American Academy of Dermatology; U.S. FDA | 2 |
-| Skin & hair | 45 | [Myth: shaved hair grows back thicker](idea-45-shaving-myth/idea.md) | Shaving doesn't make hair grow back thicker. | Q | idea | Mayo Clinic, Does shaving unwanted body hair make it grow back thicker and darker? | 1 |
-| Skin & hair | 46 | [How a hair straightener works](idea-46-hair-straightener/idea.md) | Nobody tells you rain undoes your hair straightener. | E | idea | {{source}}: needs a cosmetic-science source (e.g. Robbins, Chemical and Physical Behavior of Human Hair, or a peer-reviewed review on hair bonds) | 2 |
-| Makeup & nails | 47 | [Why gel nails need a lamp](idea-47-gel-nails/idea.md) | Nobody tells you gel polish never actually dries. | E | idea | Dymax, 'What are oligomers for LED-curable nail gel coatings' (Cosmetics & Toiletries); Nailpro, nail salon product ingredients | 3 |
-| Fragrance | 44 | [Why perfume changes smell over the day](idea-44-perfume-notes/idea.md) | Nobody tells you your perfume is a race between molecules. | E | idea | Cosmetics & Toiletries, 'Top note vs middle and bottom notes' (Poucher evaporation scale) | 2 |
-| Fabrics | 48 | [Why jeans are white on the inside](idea-48-jeans-indigo/idea.md) | Nobody tells you your blue jeans are white inside every thread. | E | idea | Wikipedia, Denim; {{source}}: a mill or textile-science source on ring dyeing | 1 |
-| Fabrics | 49 | [How silk is made](idea-49-silk/idea.md) | Nobody tells you one silk cocoon is a single 900-metre thread. | E | idea | Britannica, Sericulture | 2 |
+| Sub-category | # | Idea | Hook | Fmt | Status | Fit | Source | To verify |
+|---|---|---|---|---|---|---|---|---|
+| Jewellery | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Nobody tells you your gold ring is part copper. | E | [posted](https://www.instagram.com/reel/DfoUZBXDbMt) | medium | World Gold Council; Bureau of Indian Standards; Ganoksin | - |
+| Jewellery | 39 | [What your gold stamp means](idea-39-gold-karats/idea.md) | 750, 585, 375: read your ring. | C | idea | low | World Gold Council, assay and fineness | - |
+| Jewellery | 40 | [Myth: white gold is naturally white](idea-40-white-gold-myth/idea.md) | Your white gold ring is secretly yellow. | Q | idea | low | {{source}}: needs a GIA, assay-office or refiner page | 2 |
+| Jewellery | 41 | [How a lab-grown diamond is made](idea-41-lab-grown-diamond/idea.md) | Nobody tells you a lab-grown diamond starts as a gas. | E | idea | medium | GIA, HPHT and CVD diamond growth processes; GIA Gems & Gemology, Summer 2024 | 2 |
+| Jewellery | 42 | [How a pearl is grown](idea-42-cultured-pearl/idea.md) | Nobody tells you most pearls start as a bead of shell. | E | idea | medium | GIA Gems & Gemology, Winter 2017 (akoya farming, Australia); GIA, Different pearl types explained | 2 |
+| Skin & hair | 43 | [How sunscreen actually works](idea-43-sunscreen/idea.md) | SPF 50 isn't much stronger than SPF 30. | E | idea | low | American Academy of Dermatology, Sunscreen FAQs; U.S. FDA, sunscreen labeling | 4 |
+| Skin & hair | 50 | [What the SPF number really means](idea-50-spf-cheat-sheet/idea.md) | SPF 30 vs 50: 1% apart. | C | idea | low | American Academy of Dermatology; U.S. FDA | 2 |
+| Skin & hair | 45 | [Myth: shaved hair grows back thicker](idea-45-shaving-myth/idea.md) | Shaving doesn't make hair grow back thicker. | Q | idea | low | Mayo Clinic, Does shaving unwanted body hair make it grow back thicker and darker? | 1 |
+| Skin & hair | 46 | [How a hair straightener works](idea-46-hair-straightener/idea.md) | Nobody tells you rain undoes your hair straightener. | E | idea | low | {{source}}: needs a cosmetic-science source (e.g. Robbins, Chemical and Physical Behavior of Human Hair, or a peer-reviewed review on hair bonds) | 2 |
+| Makeup & nails | 47 | [Why gel nails need a lamp](idea-47-gel-nails/idea.md) | Nobody tells you gel polish never actually dries. | E | idea | low | Dymax, 'What are oligomers for LED-curable nail gel coatings' (Cosmetics & Toiletries); Nailpro, nail salon product ingredients | 3 |
+| Fragrance | 44 | [Why perfume changes smell over the day](idea-44-perfume-notes/idea.md) | Nobody tells you your perfume is a race between molecules. | E | idea | low | Cosmetics & Toiletries, 'Top note vs middle and bottom notes' (Poucher evaporation scale) | 2 |
+| Fabrics | 48 | [Why jeans are white on the inside](idea-48-jeans-indigo/idea.md) | Nobody tells you your blue jeans are white inside every thread. | E | idea | low | Wikipedia, Denim; {{source}}: a mill or textile-science source on ring dyeing | 1 |
+| Fabrics | 49 | [How silk is made](idea-49-silk/idea.md) | Nobody tells you one silk cocoon is a single 900-metre thread. | E | idea | medium | Britannica, Sericulture | 2 |
 
 ## Schedule
 
-| Date | Wk | # | Idea | Topic | Fmt | Status | Hook score | Words | Est. s |
-|---|---|---|---|---|---|---|---|---|---|
-| 2026-10-29 | 0 | 2 | [How GPS finds you](idea-02-gps/idea.md) | Everyday tech › Location & GPS | E | [posted](https://www.instagram.com/reel/DfE-k9so_ys) | - | 126 | 50 |
-| 2026-10-30 | 0 | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Money & payments › Payments | E | [posted](https://www.instagram.com/reel/DfHZUnZIbeZ) | 81.4 | 121 | 48 |
-| 2026-11-01 | 1 | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | Everyday tech › AI | E | [posted](https://www.instagram.com/reel/DfOxCyZoUsn) | 70 | 127 | 51 |
-| 2026-11-02 | 1 | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | Aviation & engineering › Engines | F | [posted](https://www.instagram.com/reel/DfPEJpBIkrN) | 57.2 | 127 | 51 |
-| 2026-11-03 | 3 | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Everyday tech › Internet | E | [posted](https://www.instagram.com/reel/DfTq3Z-I1Ml) | 81.6 | 126 | 50 |
-| 2026-11-04 | 1 | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Money & payments › Payments | C | idea | - | - | - |
-| 2026-11-05 | 3 | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Everyday tech › Internet | Q | [posted](https://www.instagram.com/reel/DfWzUgUIq2n) | 83 | 122 | 49 |
-| 2026-11-06 | 1 | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | - | 118 | 47 |
-| 2026-11-06 | 3 | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | Aviation & engineering › Engines | C | [posted](https://www.instagram.com/p/DfZfdEok4Sz) | 81.4 | 9 slides | - |
-| 2026-11-08 | 5 | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Everyday tech › Devices | E | [posted](https://www.instagram.com/reel/DfgmpugIbXy) | 52.2 | 125 | 50 |
-| 2026-11-09 | 2 | 5 | [How WiFi works](idea-05-wifi/idea.md) | Everyday tech › Wireless | E | idea | - | - | - |
-| 2026-11-10 | 2 | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | Money & payments › Markets | F | idea | - | - | - |
-| 2026-11-11 | 2 | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | Everyday tech › Location & GPS | C | rendered | 66.2 | 9 slides | - |
-| 2026-11-12 | 2 | 7 | [How credit scores work](idea-07-credit-score/idea.md) | Money & payments › Credit | E | rendered | 77.8 | 121 | 48 |
-| 2026-11-13 | 2 | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | Everyday tech › Wireless | Q | idea | - | - | - |
-| 2026-11-16 | 3 | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | Aviation & engineering › Structures | F | idea | - | - | - |
-| 2026-11-19 | 3 | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Aviation & engineering › Flight | E | idea | - | - | - |
-| 2026-11-23 | 4 | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
-| 2026-11-24 | 4 | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Everyday tech › Data & codes | E | rendered | 81.4 | 123 | 49 |
-| 2026-11-26 | 4 | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Money & payments › Payments | E | idea | - | - | - |
-| 2026-11-27 | 4 | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | Everyday tech › Location & GPS | Q | idea | - | - | - |
-| 2026-12-01 | 5 | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | Money & payments › Markets | E | idea | - | - | - |
-| 2026-12-03 | 5 | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | Everyday tech › Internet | F | idea | - | - | - |
-| 2026-12-04 | 5 | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Aviation & engineering › Machines | Q | idea | - | - | - |
-| 2026-12-07 | 6 | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Aviation & engineering › Space | F | idea | - | - | - |
-| 2026-12-08 | 6 | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | Aviation & engineering › Ships | E | rendered | 76.4 | 124 | 50 |
-| 2026-12-10 | 6 | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | Aviation & engineering › Ships | E | rendered | 77.8 | 122 | 49 |
-| 2026-12-11 | 6 | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Aviation & engineering › Cars | Q | rendered | 81.4 | 124 | 50 |
-| 2026-12-14 | 7 | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | Aviation & engineering › Flight | E | scripted | 77.8 | 129 | 52 |
-| 2026-12-15 | 7 | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Aviation & engineering › Cars | E | scripted | 81.4 | 128 | 51 |
-| 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | rendered | 77.8 | 125 | 50 |
-| 2026-12-18 | 7 | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Aviation & engineering › Cars | E | scripted | 78.6 | 127 | 51 |
-| 2026-12-21 | 8 | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Aviation & engineering › Flight | E | scripted | 81.4 | 129 | 52 |
-| 2026-12-22 | 8 | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Aviation & engineering › Cars | E | scripted | 70 | 126 | 50 |
-| 2026-12-24 | 8 | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Aviation & engineering › Cars | E | scripted | 81.4 | 125 | 50 |
-| 2026-12-25 | 8 | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | 52.4 | 130 | 52 |
-| 2026-12-28 | 9 | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Aviation & engineering › Cars | E | scripted | 52.2 | 129 | 52 |
-| 2026-12-29 | 9 | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Style & beauty › Jewellery | E | rendered | 52.2 | 125 | 50 |
-| 2026-12-30 | 9 | 39 | [What your gold stamp means](idea-39-gold-karats/idea.md) | Style & beauty › Jewellery | C | idea | - | - | - |
-| 2026-12-31 | 9 | 40 | [Myth: white gold is naturally white](idea-40-white-gold-myth/idea.md) | Style & beauty › Jewellery | Q | idea | - | - | - |
-| 2027-01-01 | 9 | 41 | [How a lab-grown diamond is made](idea-41-lab-grown-diamond/idea.md) | Style & beauty › Jewellery | E | idea | - | - | - |
-| 2027-01-04 | 10 | 42 | [How a pearl is grown](idea-42-cultured-pearl/idea.md) | Style & beauty › Jewellery | E | idea | - | - | - |
-| 2027-01-05 | 10 | 43 | [How sunscreen actually works](idea-43-sunscreen/idea.md) | Style & beauty › Skin & hair | E | idea | - | - | - |
-| 2027-01-06 | 10 | 50 | [What the SPF number really means](idea-50-spf-cheat-sheet/idea.md) | Style & beauty › Skin & hair | C | idea | - | - | - |
-| 2027-01-07 | 10 | 44 | [Why perfume changes smell over the day](idea-44-perfume-notes/idea.md) | Style & beauty › Fragrance | E | idea | - | - | - |
-| 2027-01-08 | 10 | 45 | [Myth: shaved hair grows back thicker](idea-45-shaving-myth/idea.md) | Style & beauty › Skin & hair | Q | idea | - | - | - |
-| 2027-01-11 | 11 | 46 | [How a hair straightener works](idea-46-hair-straightener/idea.md) | Style & beauty › Skin & hair | E | idea | - | - | - |
-| 2027-01-12 | 11 | 47 | [Why gel nails need a lamp](idea-47-gel-nails/idea.md) | Style & beauty › Makeup & nails | E | idea | - | - | - |
-| 2027-01-14 | 11 | 48 | [Why jeans are white on the inside](idea-48-jeans-indigo/idea.md) | Style & beauty › Fabrics | E | idea | - | - | - |
-| 2027-01-15 | 11 | 49 | [How silk is made](idea-49-silk/idea.md) | Style & beauty › Fabrics | E | idea | - | - | - |
+| Date | Wk | # | Idea | Topic | Fmt | Status | Fit | Hook score | Words | Est. s |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-29 | 0 | 2 | [How GPS finds you](idea-02-gps/idea.md) | Everyday tech › Location & GPS | E | [posted](https://www.instagram.com/reel/DfE-k9so_ys) | low | - | 126 | 50 |
+| 2026-10-30 | 0 | 1 | [How a card payment works](idea-01-card-payment/idea.md) | Money & payments › Payments | E | [posted](https://www.instagram.com/reel/DfHZUnZIbeZ) | low | 81.4 | 121 | 48 |
+| 2026-11-01 | 1 | 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | Everyday tech › AI | E | [posted](https://www.instagram.com/reel/DfOxCyZoUsn) | low | 70 | 127 | 51 |
+| 2026-11-02 | 1 | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | Aviation & engineering › Engines | F | [posted](https://www.instagram.com/reel/DfPEJpBIkrN) | medium | 57.2 | 127 | 51 |
+| 2026-11-03 | 3 | 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | Everyday tech › Internet | E | [posted](https://www.instagram.com/reel/DfTq3Z-I1Ml) | medium | 81.6 | 126 | 50 |
+| 2026-11-04 | 1 | 17 | [5 steps of a card payment](idea-17-card-payment-steps/idea.md) | Money & payments › Payments | C | idea | low | - | - | - |
+| 2026-11-05 | 3 | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | Everyday tech › Internet | Q | [posted](https://www.instagram.com/reel/DfWzUgUIq2n) | low | 83 | 122 | 49 |
+| 2026-11-06 | 1 | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | medium | - | 118 | 47 |
+| 2026-11-06 | 3 | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | Aviation & engineering › Engines | C | [posted](https://www.instagram.com/p/DfZfdEok4Sz) | low | 81.4 | 9 slides | - |
+| 2026-11-08 | 5 | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | Everyday tech › Devices | E | [posted](https://www.instagram.com/reel/DfgmpugIbXy) | low | 52.2 | 125 | 50 |
+| 2026-11-09 | 2 | 5 | [How WiFi works](idea-05-wifi/idea.md) | Everyday tech › Wireless | E | idea | low | - | - | - |
+| 2026-11-09 | 6 | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | Aviation & engineering › Ships | E | [posted](https://www.instagram.com/reel/Dfg81Vmo-xP) | high | 76.4 | 124 | 50 |
+| 2026-11-10 | 2 | 6 | [How stock exchanges match orders + Knight Capital](idea-06-knight-capital/idea.md) | Money & payments › Markets | F | idea | low | - | - | - |
+| 2026-11-10 | 6 | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | Aviation & engineering › Ships | E | [posted](https://www.instagram.com/reel/DfjiHj8Ivbl) | high | 77.8 | 122 | 49 |
+| 2026-11-10 | 6 | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Aviation & engineering › Cars | Q | [posted](https://www.instagram.com/reel/DflMrkJlAGq) | medium | 81.4 | 124 | 50 |
+| 2026-11-11 | 2 | 18 | [How GPS works in 4 steps](idea-18-gps-steps/idea.md) | Everyday tech › Location & GPS | C | rendered | low | 66.2 | 9 slides | - |
+| 2026-11-11 | 9 | 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | Style & beauty › Jewellery | E | [posted](https://www.instagram.com/reel/DfoUZBXDbMt) | medium | 52.2 | 125 | 50 |
+| 2026-11-12 | 2 | 7 | [How credit scores work](idea-07-credit-score/idea.md) | Money & payments › Credit | E | rendered | low | 77.8 | 121 | 48 |
+| 2026-11-13 | 2 | 8 | [Why airplane mode exists](idea-08-airplane-mode/idea.md) | Everyday tech › Wireless | Q | idea | low | - | - | - |
+| 2026-11-16 | 3 | 9 | [How bridges carry load + Tacoma Narrows](idea-09-tacoma-narrows/idea.md) | Aviation & engineering › Structures | F | idea | high | - | - | - |
+| 2026-11-19 | 3 | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Aviation & engineering › Flight | E | idea | medium | - | - | - |
+| 2026-11-23 | 4 | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | Aviation & engineering › Space | F | idea | low | - | - | - |
+| 2026-11-24 | 4 | 14 | [How a QR code stores data](idea-14-qr-code/idea.md) | Everyday tech › Data & codes | E | rendered | low | 81.4 | 123 | 49 |
+| 2026-11-26 | 4 | 15 | [How banks move money internationally (SWIFT)](idea-15-swift/idea.md) | Money & payments › Payments | E | idea | low | - | - | - |
+| 2026-11-27 | 4 | 16 | [Myth: 'Your phone needs a signal to use GPS'](idea-16-gps-signal-myth/idea.md) | Everyday tech › Location & GPS | Q | idea | low | - | - | - |
+| 2026-12-01 | 5 | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | Money & payments › Markets | E | idea | low | - | - | - |
+| 2026-12-03 | 5 | 23 | [The leap second that crashed websites](idea-23-leap-second/idea.md) | Everyday tech › Internet | F | idea | low | - | - | - |
+| 2026-12-04 | 5 | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Aviation & engineering › Machines | Q | idea | medium | - | - | - |
+| 2026-12-07 | 6 | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Aviation & engineering › Space | F | idea | high | - | - | - |
+| 2026-12-14 | 7 | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | Aviation & engineering › Flight | E | scripted | high | 77.8 | 129 | 52 |
+| 2026-12-15 | 7 | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Aviation & engineering › Cars | E | scripted | high | 81.4 | 128 | 51 |
+| 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | rendered | high | 77.8 | 125 | 50 |
+| 2026-12-18 | 7 | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Aviation & engineering › Cars | E | scripted | medium | 78.6 | 127 | 51 |
+| 2026-12-21 | 8 | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Aviation & engineering › Flight | E | scripted | high | 81.4 | 129 | 52 |
+| 2026-12-22 | 8 | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Aviation & engineering › Cars | E | scripted | high | 70 | 126 | 50 |
+| 2026-12-24 | 8 | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Aviation & engineering › Cars | E | scripted | high | 81.4 | 125 | 50 |
+| 2026-12-25 | 8 | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | medium | 52.4 | 130 | 52 |
+| 2026-12-28 | 9 | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Aviation & engineering › Cars | E | scripted | medium | 52.2 | 129 | 52 |
+| 2026-12-30 | 9 | 39 | [What your gold stamp means](idea-39-gold-karats/idea.md) | Style & beauty › Jewellery | C | idea | low | - | - | - |
+| 2026-12-31 | 9 | 40 | [Myth: white gold is naturally white](idea-40-white-gold-myth/idea.md) | Style & beauty › Jewellery | Q | idea | low | - | - | - |
+| 2027-01-01 | 9 | 41 | [How a lab-grown diamond is made](idea-41-lab-grown-diamond/idea.md) | Style & beauty › Jewellery | E | idea | medium | - | - | - |
+| 2027-01-04 | 10 | 42 | [How a pearl is grown](idea-42-cultured-pearl/idea.md) | Style & beauty › Jewellery | E | idea | medium | - | - | - |
+| 2027-01-05 | 10 | 43 | [How sunscreen actually works](idea-43-sunscreen/idea.md) | Style & beauty › Skin & hair | E | idea | low | - | - | - |
+| 2027-01-06 | 10 | 50 | [What the SPF number really means](idea-50-spf-cheat-sheet/idea.md) | Style & beauty › Skin & hair | C | idea | low | - | - | - |
+| 2027-01-07 | 10 | 44 | [Why perfume changes smell over the day](idea-44-perfume-notes/idea.md) | Style & beauty › Fragrance | E | idea | low | - | - | - |
+| 2027-01-08 | 10 | 45 | [Myth: shaved hair grows back thicker](idea-45-shaving-myth/idea.md) | Style & beauty › Skin & hair | Q | idea | low | - | - | - |
+| 2027-01-11 | 11 | 46 | [How a hair straightener works](idea-46-hair-straightener/idea.md) | Style & beauty › Skin & hair | E | idea | low | - | - | - |
+| 2027-01-12 | 11 | 47 | [Why gel nails need a lamp](idea-47-gel-nails/idea.md) | Style & beauty › Makeup & nails | E | idea | low | - | - | - |
+| 2027-01-14 | 11 | 48 | [Why jeans are white on the inside](idea-48-jeans-indigo/idea.md) | Style & beauty › Fabrics | E | idea | low | - | - | - |
+| 2027-01-15 | 11 | 49 | [How silk is made](idea-49-silk/idea.md) | Style & beauty › Fabrics | E | idea | medium | - | - | - |
 
-Est. s assumes 2.5 words/s; the real length comes from the voice-over.
+Est. s assumes 2.5 words/s; the real length comes from the voice-over. Fit = how well the idea matches what performed (high: a big, recognisable physical thing in a real place); reasons are in each idea's `fit_why` and in `instagram/audit.md`.
 
 ## Performance
 
-| # | Idea | Post | Views | × median | Reach | Non-follower | Hold 3 s | Watch % | Sends / reach | Share + save | Follows / 1k |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2 | [How GPS finds you](idea-02-gps/idea.md) | [watch](https://www.instagram.com/reel/DfE-k9so_ys) | 131 | 1.1x | 116 | - | - | - | 0.0% | 0.0% | 8.6 |
-| 1 | [How a card payment works](idea-01-card-payment/idea.md) | [watch](https://www.instagram.com/reel/DfHZUnZIbeZ) | 2 | 0.0x | 1 | - | - | - | 0.0% | 0.0% | 0 |
-| 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | [watch](https://www.instagram.com/reel/DfOxCyZoUsn) | 120 | 1.0x | 108 | - | - | - | 0.0% | 0.0% | 0 |
-| 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | [watch](https://www.instagram.com/reel/DfPEJpBIkrN) | 121 | 1.0x | 117 | - | - | - | 0.0% | 0.0% | 0 |
-| 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | [watch](https://www.instagram.com/reel/DfTq3Z-I1Ml) | 122 | 1.0x | 118 | - | - | - | 0.0% | 0.0% | 0 |
-| 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | [watch](https://www.instagram.com/reel/DfWzUgUIq2n) | 140 | 1.2x | 126 | - | - | - | 0.0% | 0.0% | 0 |
-| 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | [watch](https://www.instagram.com/p/DfZfdEok4Sz) | 0 | 0.0x | 0 | - | - | - | - | - | - |
-| 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | [watch](https://www.instagram.com/reel/DfgmpugIbXy) | 126 | 1.0x | 121 | - | - | - | 0.0% | 0.0% | 0 |
+| # | Idea | Fit | Post | Views | × median | Reach | Non-follower | Hold 3 s | Watch % | Sends / reach | Share + save | Follows / 1k |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2 | [How GPS finds you](idea-02-gps/idea.md) | low | [watch](https://www.instagram.com/reel/DfE-k9so_ys) | 132 | 1.1x | 117 | - | - | - | 0.0% | 0.0% | 8.5 |
+| 1 | [How a card payment works](idea-01-card-payment/idea.md) | low | [watch](https://www.instagram.com/reel/DfHZUnZIbeZ) | 3 | 0.0x | 2 | - | - | - | 0.0% | 0.0% | 0 |
+| 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | low | [watch](https://www.instagram.com/reel/DfOxCyZoUsn) | 120 | 1.0x | 108 | - | - | - | 0.0% | 0.0% | 0 |
+| 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | medium | [watch](https://www.instagram.com/reel/DfPEJpBIkrN) | 121 | 1.0x | 117 | - | - | - | 0.0% | 0.0% | 0 |
+| 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | medium | [watch](https://www.instagram.com/reel/DfTq3Z-I1Ml) | 122 | 1.0x | 118 | - | - | - | 0.0% | 0.0% | 0 |
+| 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | low | [watch](https://www.instagram.com/reel/DfWzUgUIq2n) | 141 | 1.1x | 127 | - | - | - | 0.0% | 0.0% | 0 |
+| 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | low | [watch](https://www.instagram.com/p/DfZfdEok4Sz) | 0 | 0.0x | 0 | - | - | - | - | - | - |
+| 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | low | [watch](https://www.instagram.com/reel/DfgmpugIbXy) | 127 | 1.0x | 122 | - | - | - | 0.0% | 0.0% | 0 |
+| 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | high | [watch](https://www.instagram.com/reel/Dfg81Vmo-xP) | 1,384 | 11.1x | 1,277 | - | - | - | 0.0% | 0.1% | 0 |
+| 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | high | [watch](https://www.instagram.com/reel/DfjiHj8Ivbl) | 1,379 | 11.1x | 1,236 | - | - | - | 0.2% | 0.3% | 0.8 |
+| 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | medium | [watch](https://www.instagram.com/reel/DflMrkJlAGq) | 134 | 1.1x | 124 | - | - | - | 0.0% | 0.0% | 0 |
+| 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | medium | [watch](https://www.instagram.com/reel/DfoUZBXDbMt) | 0 | 0.0x | 0 | - | - | - | - | - | - |
 
 Rank by × median and sends / reach, not raw views. High non-follower reach with few follows is a profile problem; low hold at 3 s is a hook problem.
 
@@ -161,13 +165,13 @@ Stayed = YouTube's "viewed vs. swiped away" (the Shorts hook signal, like Hold 3
 
 ## Formats
 
-Posted 8 of 50 ideas (16%).
+Posted 12 of 50 ideas (24%).
 
 | Format | Ideas | Posted | Avg reach | Avg watch % | Avg share + save | Avg follows / 1k |
 |---|---|---|---|---|---|---|
-| E | 30 | 5 | 93 | - | 0.0% | 1.7 |
+| E | 30 | 8 | 373 | - | 0.1% | 1.3 |
 | F | 6 | 1 | 117 | - | 0.0% | 0 |
-| Q | 9 | 1 | 126 | - | 0.0% | 0 |
+| Q | 9 | 2 | 126 | - | 0.0% | 0 |
 | C | 5 | 1 | 0 | - | - | - |
 
 **Best format so far:** by watch time - (needs 3 posted per format); by share + save rate E; by follows per 1k reach E.

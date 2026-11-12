@@ -9,6 +9,8 @@ subcategory: "Fragrance"
 week: 10
 date: 2027-01-07
 status: idea
+fit: low
+fit_why: "abstract: smell molecules"
 hook: "Nobody tells you your perfume is a race between molecules."
 source: "Cosmetics & Toiletries, 'Top note vs middle and bottom notes' (Poucher evaporation scale)"
 verify:

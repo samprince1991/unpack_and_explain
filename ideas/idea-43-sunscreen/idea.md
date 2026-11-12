@@ -9,6 +9,8 @@ subcategory: "Skin & hair"
 week: 10
 date: 2027-01-05
 status: idea
+fit: low
+fit_why: "abstract: molecules on skin"
 hook: "SPF 50 isn't much stronger than SPF 30."
 source: "American Academy of Dermatology, Sunscreen FAQs; U.S. FDA, sunscreen labeling"
 verify:

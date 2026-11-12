@@ -8,6 +8,8 @@ subcategory: "Location & GPS"
 week: 4
 date: 2026-11-27
 status: idea
+fit: low
+fit_why: "abstract: signals; Q format"
 hook: "GPS works with no signal at all."
 source: "GPS.gov"
 verify: []

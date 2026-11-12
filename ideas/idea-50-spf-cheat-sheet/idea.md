@@ -9,6 +9,8 @@ week: 10
 date: 2027-01-06
 status: idea
 companion_of: 43
+fit: low
+fit_why: "carousel"
 hook: "SPF 30 vs 50: 1% apart."
 source: "American Academy of Dermatology; U.S. FDA"
 verify:

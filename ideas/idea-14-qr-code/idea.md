@@ -12,6 +12,8 @@ status: rendered
 hook_formula: 3
 hook_score: 81.4
 question_score: 62.2
+fit: low
+fit_why: "abstract: a pattern of squares"
 hook: "Nobody tells you 3 squares tell your camera which way is up."
 source: "Denso Wave (qrcode.com); ISO/IEC 18004"
 verify: []

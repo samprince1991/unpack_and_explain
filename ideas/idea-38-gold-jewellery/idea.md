@@ -7,26 +7,29 @@ format: E
 category: "Style & beauty"
 subcategory: "Jewellery"
 week: 9
-date: 2026-12-29
-status: rendered
+date: 2026-11-11
+status: posted
+link: "https://www.instagram.com/reel/DfoUZBXDbMt"
 hook_formula: 3
 hook_score: 52.2
 question_score: 65.2
+fit: medium
+fit_why: "small object on a bench world; first test outside vehicles (posted 11/11, no data yet)"
 hook: "Nobody tells you your gold ring is part copper."
 source: "World Gold Council; Bureau of Indian Standards; Ganoksin"
 verify: []
 notes: "Pure gold is too soft for most jewellery, so it's alloyed (22k = 22 parts in 24 = 91.6% gold, hallmarked 22K916 in India; the rest copper and silver), then cast by lost wax: wax ring > plaster (investment) > kiln melts the wax out > molten gold fills the hollow. The stamp (22K916) is the recipe. Switched from 18k to 22k on the user's request (22k is the most common Indian grade). 'Most' gold jewellery, not all: 24k jewellery is common in China and India (WGC)."
-metrics:  # fill in after posting
-  views: null
-  reach: null
+metrics:
+  views: 0  # as of 2026-11-11 (insights export)
+  reach: 0
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 0
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 0
 ---
 
 # Idea 38: How gold jewellery is made

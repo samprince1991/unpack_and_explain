@@ -9,6 +9,8 @@ week: 1
 date: 2026-11-04
 status: idea
 companion_of: 1
+fit: low
+fit_why: "carousel; abstract topic"
 hook: "Saveable cheat sheet"
 source: "Reuse facts from idea 1"
 verify: []

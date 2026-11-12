@@ -7,11 +7,14 @@ format: Q
 category: "Aviation & engineering"
 subcategory: "Cars"
 week: 6
-date: 2026-12-11
-status: rendered
+date: 2026-11-10
+status: posted
+link: "https://www.instagram.com/reel/DflMrkJlAGq"
 hook_formula: 3
 hook_score: 81.4
 question_score: 65.2
+fit: medium
+fit_why: "car on a track world, but Q news myth with a generic model (posted: 134 at 1.5 days)"
 hook: "Nobody tells you Tesla's flying car runs on compressed air."
 source: "Tesla Roadster unveil, 15 Oct 2026 (TechCrunch, CNN, Drive Tesla Canada)"
 verify:
@@ -19,17 +22,17 @@ verify:
   - "The fan 'sucking the car down' is the Performance trim's 'multi-mode suction system' (TechCrunch); confirm the jump car (Thrust/Rocket trim) also has it, or say 'the road version'"
   - "Five cars jumped (Cybercab, Cybertruck, Semi, Model Y, Model 3) per TechCrunch; heights (27 ft) are only in one report, so they are not in the script"
 notes: "MYTH: Tesla built a flying car. FACT: cold-gas thrusters fed by compressed air make it hop; nothing holds it up once they stop. A fan does the opposite (suction downforce). Keep Musk out of VO and caption (brand safety)."
-metrics:  # fill in after posting
-  views: null
-  reach: null
+metrics:
+  views: 134  # as of 2026-11-11 (insights export)
+  reach: 124
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 1
+  comments: 0
+  shares: 0
+  saves: 0
+  follows: 0
 ---
 
 # Idea 28: Myth: Tesla's new Roadster is a flying car

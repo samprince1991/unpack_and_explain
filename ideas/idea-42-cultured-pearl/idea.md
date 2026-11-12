@@ -9,6 +9,8 @@ subcategory: "Jewellery"
 week: 10
 date: 2027-01-04
 status: idea
+fit: medium
+fit_why: "small object, but the oyster sits in the sea world"
 hook: "Nobody tells you most pearls start as a bead of shell."
 source: "GIA Gems & Gemology, Winter 2017 (akoya farming, Australia); GIA, Different pearl types explained"
 verify:

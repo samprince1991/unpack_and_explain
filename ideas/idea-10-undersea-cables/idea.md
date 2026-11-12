@@ -12,13 +12,15 @@ link: "https://www.instagram.com/reel/DfTq3Z-I1Ml"
 hook_formula: 3
 hook_score: 81.6
 question_score: 62.2
+fit: medium
+fit_why: "sea world fits, but a seabed cable isn't recognisable at frame 0 (posted: 122, no world)"
 hook: "Nobody sees the 1.5 million kilometers of cable your internet runs on."
 source: "TeleGeography Submarine Cable FAQ (2026); International Cable Protection Committee"
 verify:
   - "Repeater spacing 50-80 km (engineering sources, not TeleGeography FAQ)"
   - "Lasers flash billions of times a second (modern line rates are tens of gigabaud)"
-metrics:  # fill in after posting
-  views: 122  # as of 2026-11-09 (insights export)
+metrics:
+  views: 122  # as of 2026-11-11 (insights export)
   reach: 118
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

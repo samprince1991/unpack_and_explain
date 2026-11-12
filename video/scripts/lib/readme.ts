@@ -59,11 +59,11 @@ export const renderTopics = (ideas: Idea[], taxonomy: Taxonomy) =>
       const empty = subcategories.filter((sub) => !list.some((i) => i.meta.subcategory === sub));
       const rows = list.map(
         (i) =>
-          `| ${i.meta.subcategory} | ${i.meta.id} | ${title(i)} | ${cell(i.meta.hook)} | ${i.meta.format} | ${status(i)} | ${cell(i.meta.source)} | ${toVerify(i)} |`,
+          `| ${i.meta.subcategory} | ${i.meta.id} | ${title(i)} | ${cell(i.meta.hook)} | ${i.meta.format} | ${status(i)} | ${i.meta.fit ?? "-"} | ${cell(i.meta.source)} | ${toVerify(i)} |`,
       );
       const table = rows.length
-        ? `| Sub-category | # | Idea | Hook | Fmt | Status | Source | To verify |
-|---|---|---|---|---|---|---|---|
+        ? `| Sub-category | # | Idea | Hook | Fmt | Status | Fit | Source | To verify |
+|---|---|---|---|---|---|---|---|---|
 ${rows.join("\n")}`
         : "_No ideas yet._";
       return `### ${category} (${list.length})
@@ -86,13 +86,13 @@ const schedule = (ideas: Idea[], wordsPerSecond: number) => {
     .sort(byDate)
     .map(
       (i) =>
-        `| ${i.meta.date} | ${i.meta.week} | ${i.meta.id} | ${title(i)} | ${i.meta.category} › ${i.meta.subcategory} | ${i.meta.format} | ${status(i)} | ${i.meta.hook_score ?? "-"} | ${size(i, wordsPerSecond)} |`,
+        `| ${i.meta.date} | ${i.meta.week} | ${i.meta.id} | ${title(i)} | ${i.meta.category} › ${i.meta.subcategory} | ${i.meta.format} | ${status(i)} | ${i.meta.fit ?? "-"} | ${i.meta.hook_score ?? "-"} | ${size(i, wordsPerSecond)} |`,
     );
-  return `| Date | Wk | # | Idea | Topic | Fmt | Status | Hook score | Words | Est. s |
-|---|---|---|---|---|---|---|---|---|---|
+  return `| Date | Wk | # | Idea | Topic | Fmt | Status | Fit | Hook score | Words | Est. s |
+|---|---|---|---|---|---|---|---|---|---|---|
 ${rows.join("\n")}
 
-Est. s assumes ${wordsPerSecond} words/s; the real length comes from the voice-over.`;
+Est. s assumes ${wordsPerSecond} words/s; the real length comes from the voice-over. Fit = how well the idea matches what performed (high: a big, recognisable physical thing in a real place); reasons are in each idea's \`fit_why\` and in \`instagram/audit.md\`.`;
 };
 
 const performance = (ideas: Idea[]) => {
@@ -106,10 +106,10 @@ const performance = (ideas: Idea[]) => {
     const m = i.meta.metrics;
     const r = rates(m);
     const multiple = m.views != null && median ? `${(m.views / median).toFixed(1)}x` : "-";
-    return `| ${i.meta.id} | ${title(i)} | ${i.meta.link ? `[watch](${i.meta.link})` : "-"} | ${num(m.views)} | ${multiple} | ${num(m.reach)} | ${share(m.nonfollower_pct)} | ${share(m.hold_3s)} | ${share(m.watch_pct)} | ${pct(r?.sendsPerReach)} | ${pct(r?.shareSave)} | ${num(r?.followsPer1k, 1)} |`;
+    return `| ${i.meta.id} | ${title(i)} | ${i.meta.fit ?? "-"} | ${i.meta.link ? `[watch](${i.meta.link})` : "-"} | ${num(m.views)} | ${multiple} | ${num(m.reach)} | ${share(m.nonfollower_pct)} | ${share(m.hold_3s)} | ${share(m.watch_pct)} | ${pct(r?.sendsPerReach)} | ${pct(r?.shareSave)} | ${num(r?.followsPer1k, 1)} |`;
   });
-  return `| # | Idea | Post | Views | × median | Reach | Non-follower | Hold 3 s | Watch % | Sends / reach | Share + save | Follows / 1k |
-|---|---|---|---|---|---|---|---|---|---|---|---|
+  return `| # | Idea | Fit | Post | Views | × median | Reach | Non-follower | Hold 3 s | Watch % | Sends / reach | Share + save | Follows / 1k |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
 ${rows.join("\n")}
 
 Rank by × median and sends / reach, not raw views. High non-follower reach with few follows is a profile problem; low hold at 3 s is a hook problem.`;

@@ -12,6 +12,8 @@ status: rendered
 hook_formula: 20
 hook_score: 77.8
 question_score: 62.2
+fit: high
+fit_why: "big train in the rail world"
 hook: "You don't need wheels to hit 603 kilometers an hour."
 source: "Wikipedia, SCMaglev; Guinness World Records"
 verify:

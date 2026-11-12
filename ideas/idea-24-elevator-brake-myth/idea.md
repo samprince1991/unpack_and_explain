@@ -8,6 +8,8 @@ subcategory: "Machines"
 week: 5
 date: 2026-12-04
 status: idea
+fit: medium
+fit_why: "recognisable machine, but indoors in a shaft; Q format"
 hook: "Your elevator cable snaps. You still don't fall."
 source: "ASME A17.1 (rope count and safety factors, as adopted in state codes); Otis safety systems; Otis 1854 demonstration"
 verify:

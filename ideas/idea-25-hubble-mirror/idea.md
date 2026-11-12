@@ -8,6 +8,8 @@ subcategory: "Space"
 week: 6
 date: 2026-12-07
 status: idea
+fit: high
+fit_why: "big recognisable object in a space world"
 hook: "Hubble's $1.5B mirror was wrong by 2 microns."
 source: "NASA 'Hubble's Mirror Flaw'; Allen Report (1990)"
 verify: []

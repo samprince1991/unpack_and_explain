@@ -12,6 +12,8 @@ status: scripted
 hook_formula: 3
 hook_score: 81.4
 question_score: 62.2
+fit: high
+fit_why: "car on a city street with visible sensors"
 hook: "Nobody tells you a robotaxi uses three kinds of eyes."
 source: "Waymo, A suite of sensors (support page); Waymo 6th-gen Driver coverage (Ward's Auto, Automotive World)"
 verify:

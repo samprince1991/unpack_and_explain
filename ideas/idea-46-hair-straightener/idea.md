@@ -9,6 +9,8 @@ subcategory: "Skin & hair"
 week: 11
 date: 2027-01-11
 status: idea
+fit: low
+fit_why: "small handheld device, no real place"
 hook: "Nobody tells you rain undoes your hair straightener."
 source: "{{source}}: needs a cosmetic-science source (e.g. Robbins, Chemical and Physical Behavior of Human Hair, or a peer-reviewed review on hair bonds)"
 verify:

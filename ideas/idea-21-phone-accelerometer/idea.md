@@ -12,15 +12,17 @@ link: "https://www.instagram.com/reel/DfgmpugIbXy"
 hook_formula: 3
 hook_score: 52.2
 question_score: 62.2
+fit: low
+fit_why: "tiny chip, no real place (posted: 127)"
 hook: "Nobody tells you your phone hides a weight on springs."
 source: "STMicroelectronics; capacitive MEMS accelerometer patent US6910379; Android developer docs"
 verify:
   - "Exact proof-mass size in a specific phone sensor (no public spec found; say 'smaller than 1 mm (0.04 in)', not a precise figure)"
   - "'2-millimeter chip' is spoken without 'about': the source says the package is about 2 x 2 x 1 mm, and ST's figure is not specific to one phone"
 notes: "MEMS accelerometer: a silicon proof mass on springs between comb fingers; tilt or shake moves it, the capacitance change becomes a number. Great exploded-view 3D (chip > die > comb)."
-metrics:  # fill in after posting
-  views: 126  # as of 2026-11-09 (insights export)
-  reach: 121
+metrics:
+  views: 127  # as of 2026-11-11 (insights export)
+  reach: 122
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length

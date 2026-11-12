@@ -9,6 +9,8 @@ subcategory: "Flight"
 week: 1
 date: 2026-11-06
 status: scripted
+fit: medium
+fit_why: "plane wing in the sky world fits, but Q myth format (28 stalled)"
 hook: "Most people explain lift wrong."
 source: "NASA Glenn 'lift' explainer pages"
 verify:

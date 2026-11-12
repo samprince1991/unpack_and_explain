@@ -8,6 +8,8 @@ subcategory: "Markets"
 week: 2
 date: 2026-11-10
 status: idea
+fit: low
+fit_why: "abstract: software and order matching"
 hook: "A software glitch lost $440M in 45 minutes."
 source: "SEC order on Knight Capital (2013)"
 verify: []

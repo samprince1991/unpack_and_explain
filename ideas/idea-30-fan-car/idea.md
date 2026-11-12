@@ -12,6 +12,8 @@ status: scripted
 hook_formula: 3
 hook_score: 81.4
 question_score: 60.9
+fit: high
+fit_why: "race car on a track; needs a recognisable model"
 hook: "Nobody tells you a fan won an F1 race in 1978."
 source: "Wikipedia, Brabham BT46; Motor Sport, 1978 Swedish GP"
 verify:

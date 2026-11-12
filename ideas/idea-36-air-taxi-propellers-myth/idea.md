@@ -12,6 +12,8 @@ status: scripted
 hook_formula: 22
 hook_score: 52.4
 question_score: 62.2
+fit: medium
+fit_why: "vehicle in the sky fits, but Q myth format"
 hook: "If one motor dies, an air taxi falls. Not quite."
 source: "Archer Aviation (via AIN Online, Vertical Mag)"
 verify:

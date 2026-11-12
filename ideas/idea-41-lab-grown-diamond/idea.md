@@ -9,6 +9,8 @@ subcategory: "Jewellery"
 week: 9
 date: 2027-01-01
 status: idea
+fit: medium
+fit_why: "small object, but the reactor process is visual"
 hook: "Nobody tells you a lab-grown diamond starts as a gas."
 source: "GIA, HPHT and CVD diamond growth processes; GIA Gems & Gemology, Summer 2024"
 verify:

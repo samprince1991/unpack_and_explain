@@ -24,6 +24,7 @@ subcategory: "Location & GPS"
 week: 1
 date: 2026-11-03
 status: scripted
+fit: medium
 hook: "GPS doesn't track you."
 hook_formula: 3
 hook_score: 81

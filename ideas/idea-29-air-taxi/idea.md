@@ -12,6 +12,8 @@ status: scripted
 hook_formula: 20
 hook_score: 77.8
 question_score: 62.2
+fit: high
+fit_why: "vehicle flying over a city"
 hook: "You don't need a runway to fly at 200 mph."
 source: "Joby Aviation; Wikipedia, Joby Aviation; Motley Fool, 30 Oct 2026"
 verify:

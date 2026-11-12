@@ -8,6 +8,8 @@ subcategory: "Flight"
 week: 3
 date: 2026-11-19
 status: idea
+fit: medium
+fit_why: "plane in the sky fits, but the mechanism is software and sensors"
 hook: "Autopilot isn't flying the plane. It's following instructions."
 source: "Aircraft manufacturer / FAA docs"
 verify: []

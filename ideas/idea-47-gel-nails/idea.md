@@ -9,6 +9,8 @@ subcategory: "Makeup & nails"
 week: 11
 date: 2027-01-12
 status: idea
+fit: low
+fit_why: "small object; the mechanism is chemistry"
 hook: "Nobody tells you gel polish never actually dries."
 source: "Dymax, 'What are oligomers for LED-curable nail gel coatings' (Cosmetics & Toiletries); Nailpro, nail salon product ingredients"
 verify:

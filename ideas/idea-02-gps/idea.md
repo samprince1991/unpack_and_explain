@@ -9,15 +9,17 @@ week: 0
 date: 2026-10-29
 status: posted
 link: "https://www.instagram.com/reel/DfE-k9so_ys"
+fit: low
+fit_why: "abstract: signals from space, no real place (posted: 132)"
 hook: "GPS doesn't track you. Your phone just listens."
 source: "GPS.gov"
 verify:
   - "Satellite count (about 30 operational)"
   - "Altitude"
   - "Relativity drift figure (commonly cited ~10 km / 6 mi per day)"
-metrics:  # fill in after posting
-  views: 131  # as of 2026-11-09 (insights export)
-  reach: 116
+metrics:
+  views: 132  # as of 2026-11-11 (insights export)
+  reach: 117
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length

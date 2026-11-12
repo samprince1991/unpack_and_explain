@@ -9,6 +9,8 @@ subcategory: "Fabrics"
 week: 11
 date: 2027-01-15
 status: idea
+fit: medium
+fit_why: "small, but silkworms and cocoons give a real place"
 hook: "Nobody tells you one silk cocoon is a single 900-metre thread."
 source: "Britannica, Sericulture"
 verify:

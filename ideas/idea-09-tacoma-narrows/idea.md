@@ -8,6 +8,8 @@ subcategory: "Structures"
 week: 3
 date: 2026-11-16
 status: idea
+fit: high
+fit_why: "huge recognisable structure in a real place, famous failure"
 hook: "A bridge tore itself apart in a light wind."
 source: "Washington State archives / FHWA"
 verify: []

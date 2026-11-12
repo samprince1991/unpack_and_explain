@@ -9,6 +9,8 @@ week: 2
 date: 2026-11-11
 status: rendered
 companion_of: 2
+fit: low
+fit_why: "carousel; abstract topic"
 hook: "No internet. Still a pin. Why?"
 hook_formula: 13
 hook_score: 66.2

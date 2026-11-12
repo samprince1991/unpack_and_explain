@@ -12,6 +12,8 @@ status: scripted
 hook_formula: 3
 hook_score: 52.2
 question_score: 65.8
+fit: medium
+fit_why: "car fits, but the cause is battery chemistry"
 hook: "Nobody tells you the heater eats an electric car's range."
 source: "AAA, Feb 2019 EV temperature study; fueleconomy.gov, cold weather"
 verify:

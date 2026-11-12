@@ -9,6 +9,8 @@ subcategory: "Skin & hair"
 week: 10
 date: 2027-01-08
 status: idea
+fit: low
+fit_why: "abstract; Q myth format"
 hook: "Shaving doesn't make hair grow back thicker."
 source: "Mayo Clinic, Does shaving unwanted body hair make it grow back thicker and darker?"
 verify:

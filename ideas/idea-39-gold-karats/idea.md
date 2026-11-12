@@ -9,6 +9,8 @@ week: 9
 date: 2026-12-30
 status: idea
 companion_of: 38
+fit: low
+fit_why: "carousel"
 hook: "750, 585, 375: read your ring."
 source: "World Gold Council, assay and fineness"
 verify: []

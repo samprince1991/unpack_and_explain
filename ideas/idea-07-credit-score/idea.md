@@ -11,6 +11,8 @@ status: rendered
 hook_formula: 20
 hook_score: 77.8
 question_score: 51.8
+fit: low
+fit_why: "abstract: numbers on a report"
 hook: "You don't need a big salary for a high credit score."
 source: "myFICO, What's in your credit score; CFPB, What is a credit score"
 verify:

@@ -8,6 +8,8 @@ subcategory: "Wireless"
 week: 2
 date: 2026-11-13
 status: idea
+fit: low
+fit_why: "abstract: signals; Q format"
 hook: "What actually happens if you don't switch it on?"
 source: "Aviation authority guidance"
 verify: []

@@ -47,6 +47,8 @@ export const MIN_HOOK_SCORE = 50;
 export { SLIDE_RANGE, SLIDE_WORDS };
 
 export type Status = (typeof STATUSES)[number];
+export const FITS = ["high", "medium", "low"] as const;
+export type Fit = (typeof FITS)[number];
 export type IdeaFormat = (typeof FORMATS)[number];
 export type Metrics = Record<(typeof METRIC_KEYS)[number], number | null>;
 
@@ -64,6 +66,9 @@ export type IdeaMeta = {
   status: Status;
   link?: string; // the live post URL, once posted
   hook: string;
+  // How well the idea matches what performed (instagram/audit.md): high = big recognisable physical thing in a real place.
+  fit?: Fit;
+  fit_why?: string; // one line: why that rating
   hook_formula?: number; // id from the ig-reel skill's hooks.json
   hook_score?: number; // hookscore.py score of the hook line
   question_score?: number; // hookscore.py score of the question card
@@ -225,6 +230,11 @@ export const validateIdea = (idea: Idea, taxonomy: Taxonomy): Problems => {
     if (typeof meta[key] !== "string" || !meta[key].trim()) {
       errors.push(`${key} is required`);
     }
+  }
+  if (meta.fit === undefined) {
+    warnings.push("no fit yet (high / medium / low, see instagram/audit.md)");
+  } else if (!FITS.includes(meta.fit)) {
+    errors.push(`fit must be one of ${FITS.join(", ")}`);
   }
   if (!Number.isInteger(meta.id) || meta.id < 1) {
     errors.push(`id must be a whole number, got ${meta.id}`);

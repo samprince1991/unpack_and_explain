@@ -7,28 +7,31 @@ format: E
 category: "Aviation & engineering"
 subcategory: "Ships"
 week: 6
-date: 2026-12-10
-status: rendered
+date: 2026-11-10
+status: posted
+link: "https://www.instagram.com/reel/DfjiHj8Ivbl"
 hook_formula: 20
 hook_score: 77.8
 question_score: 62.2
+fit: high
+fit_why: "hovercraft on the coast world (posted: 1,379, 10.6x)"
 hook: "You don't need strong air to lift an 11-tonne hovercraft."
 source: "SR.N6 worked example (Wikipedia, Hovercraft); National Historic Ships UK; SR.N4 specifications"
 verify:
   - "765 Pa (about 0.75% above atmospheric) for the 11-tonne SR.N6 is a rounded worked example on Wikipedia (W = 107 kN, A = 140 m2). Find a primary source (Hovercraft Museum, Saunders-Roe / BHC data) or keep 'Wikipedia' in the source line"
   - "'Up to 60 cars' is the SR.N4 Mk3 figure on Wikipedia; National Historic Ships lists The Princess Anne at up to 55 cars and 427 passengers. Say 'up to 60' only for the Mk3 class, or switch both lines to 'over 50 cars'"
 notes: "Lift = cushion pressure x area. The air under the craft is under 1% above normal pressure, but it pushes on the whole underside at once, so it adds up to the full weight. The skirt traps the air; the fan only replaces what leaks out under it. Fits the sea world (hovercraft on water, needs a model with a waterline part)."
-metrics:  # fill in after posting
-  views: null
-  reach: null
+metrics:
+  views: 1379  # as of 2026-11-11 (insights export)
+  reach: 1236
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 12
+  comments: 0
+  shares: 3
+  saves: 1
+  follows: 1
 youtube:  # YouTube Short; status/link/metrics above are Instagram
   date: 2026-11-10
   link: null  # paste the Shorts URL

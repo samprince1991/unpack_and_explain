@@ -12,6 +12,8 @@ status: scripted
 hook_formula: 3
 hook_score: 70.0
 question_score: 62.2
+fit: high
+fit_why: "F1 car in a tunnel, recognisable at frame 0"
 hook: "Nobody tells you an F1 car could drive on the ceiling at 210 km/h."
 source: "NASA Glenn, lift equation; Planet F1; University of Leicester Physics Special Topics"
 verify:

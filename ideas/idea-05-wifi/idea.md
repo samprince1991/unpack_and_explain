@@ -8,6 +8,8 @@ subcategory: "Wireless"
 week: 2
 date: 2026-11-09
 status: idea
+fit: low
+fit_why: "abstract: radio waves, no object to recognise"
 hook: "WiFi is just radio, and your router is a tiny radio station."
 source: "IEEE / Wi-Fi Alliance basics"
 verify: []

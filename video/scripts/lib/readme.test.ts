@@ -19,9 +19,9 @@ describe("renderTopics", () => {
     const out = renderTopics([money, idea()], TAXONOMY);
     expect(out.indexOf("### Everyday tech (1)")).toBeLessThan(out.indexOf("### Money & payments (1)"));
     expect(out).toContain(
-      "| Location & GPS | 2 | [How GPS finds you](idea-02-gps/idea.md) | GPS doesn't track you. | E | scripted | GPS.gov | - |",
+      "| Location & GPS | 2 | [How GPS finds you](idea-02-gps/idea.md) | GPS doesn't track you. | E | scripted | medium | GPS.gov | - |",
     );
-    expect(out).toContain("| Payments | 1 | [How GPS finds you](idea-01-card/idea.md) | GPS doesn't track you. | E | idea | GPS.gov | 2 |");
+    expect(out).toContain("| Payments | 1 | [How GPS finds you](idea-01-card/idea.md) | GPS doesn't track you. | E | idea | medium | GPS.gov | 2 |");
     expect(out).toContain("No ideas yet: Wireless.");
   });
 
@@ -40,10 +40,10 @@ describe("renderIndex", () => {
       "**4 ideas** (by status: 1 idea, 2 scripted, 1 posted) · next up: #1 [How GPS finds you](idea-01-card/idea.md) (Mon 2 Nov)",
     );
     expect(out).toContain(
-      "| 2026-11-03 | 1 | 2 | [How GPS finds you](idea-02-gps/idea.md) | Everyday tech › Location & GPS | E | scripted | 81 | 124 | 50 |",
+      "| 2026-11-03 | 1 | 2 | [How GPS finds you](idea-02-gps/idea.md) | Everyday tech › Location & GPS | E | scripted | medium | 81 | 124 | 50 |",
     );
     expect(out).toContain(
-      "| 2026-11-04 | 1 | 18 | [How GPS finds you](idea-18-gps-steps/idea.md) | Everyday tech › Location & GPS | C | scripted | - | 6 slides | - |",
+      "| 2026-11-04 | 1 | 18 | [How GPS finds you](idea-18-gps-steps/idea.md) | Everyday tech › Location & GPS | C | scripted | medium | - | 6 slides | - |",
     );
     expect(out).toContain("| [posted](https://www.instagram.com/reel/x) |");
     expect(out).toContain("| [watch](https://www.instagram.com/reel/x) | 2,000 | 1.0x | 1,000 | 60% | 70% | 40% | 2.0% | 4.0% | 5 |");

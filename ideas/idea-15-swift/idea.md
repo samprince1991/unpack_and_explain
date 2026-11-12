@@ -8,6 +8,8 @@ subcategory: "Payments"
 week: 4
 date: 2026-11-26
 status: idea
+fit: low
+fit_why: "abstract: messages between banks"
 hook: "Sending $100 abroad can take 3 banks."
 source: "SWIFT public docs"
 verify:
