@@ -405,15 +405,15 @@ class Clip:
                 obj.hide_render = False
                 obj.keyframe_insert("hide_render", frame=frame)
 
-    def _slide(self, part, offset, frame):
+    def _slide(self, part, offset, frame, frames=SHIFT_FRAMES):
         pivot = self.parts[part]["pivot"]
         pivot.location = self.center(part)
         pivot.keyframe_insert("location", frame=frame)
         self.shifts[part] = offset
         pivot.location = self.center(part)
-        pivot.keyframe_insert("location", frame=frame + SHIFT_FRAMES)
+        pivot.keyframe_insert("location", frame=frame + frames)  # frames 0 overwrites: instant
 
-    def shift(self, part, by, frame):
+    def shift(self, part, by, frame, frames=SHIFT_FRAMES):
         """Slides a part to `by` (offset from its rest place, 0 = back home). The model's flex
         parts keep one end fixed and stretch so the other end stays on the moving part. A
         catalog `groups` name moves all its parts together (a whole car hopping)."""
@@ -421,9 +421,9 @@ class Clip:
         group = self.model.get("groups", {}).get(part)
         if group:
             for member in group:
-                self._slide(member, by.copy(), frame)
+                self._slide(member, by.copy(), frame, frames)
             return
-        self._slide(part, by, frame)
+        self._slide(part, by, frame, frames)
         flex = self.model.get("flex")
         if not flex:
             return
@@ -437,10 +437,10 @@ class Clip:
             sign = 1 if anchor == "min" else -1
             scale[axis] = (length + sign * by[axis]) / length
             pivot.scale = scale
-            pivot.keyframe_insert("scale", index=axis, frame=frame + SHIFT_FRAMES)
+            pivot.keyframe_insert("scale", index=axis, frame=frame + frames)
             half = Vector()
             half[axis] = by[axis] / 2  # the fixed end stays put, so the middle moves half as far
-            self._slide(name, half, frame)
+            self._slide(name, half, frame, frames)
 
     def vanish(self, part, frame):
         """An appearOnly part scales back out and hides (air jets switching off)."""
@@ -547,7 +547,7 @@ class Clip:
         elif kind == "spin":
             self.spin(beat["part"], f)
         elif kind == "shift":
-            self.shift(beat["part"], beat["by"], f)
+            self.shift(beat["part"], beat["by"], f, beat.get("frames", SHIFT_FRAMES))
         elif kind == "appear":
             self.appear(beat["part"], f)
         elif kind == "vanish":
@@ -607,7 +607,7 @@ def build_clip(scene, job, clip, tokens, preview, repo_root):
     look.setup_render(scene, clip["width"], clip["height"], job["fps"], clip["frames"], preview)
     look.setup_world(scene, tokens)
     meshes, radius = import_model(job["model"], repo_root)
-    if not job["model"].get("selftest"):
+    if not job["model"].get("selftest") and not job["model"].get("skipQc"):
         # Geometry QC before any frame renders: broken / faceted lines, unlined contacts.
         errors, warnings = qc.check(meshes, job["model"])
         qc.report(errors, warnings, job["model"]["id"])

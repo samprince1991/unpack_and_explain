@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**50 ideas** (by status: 25 idea, 10 scripted, 7 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**50 ideas** (by status: 25 idea, 9 scripted, 8 rendered, 8 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -50,7 +50,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Space | 13 | [Unit conversions + Mars Climate Orbiter](idea-13-mars-orbiter/idea.md) | A $125M spacecraft was lost over a unit mix-up. | F | idea | NASA/JPL Mishap Investigation Board report | - |
 | Space | 25 | [Hubble's mirror flaw and the fix in space](idea-25-hubble-mirror/idea.md) | Hubble's $1.5B mirror was wrong by 2 microns. | F | idea | NASA 'Hubble's Mirror Flaw'; Allen Report (1990) | - |
 | Machines | 24 | [Myth: a snapped elevator cable makes you fall](idea-24-elevator-brake-myth/idea.md) | Your elevator cable snaps. You still don't fall. | Q | idea | ASME A17.1 (rope count and safety factors, as adopted in state codes); Otis safety systems; Otis 1854 demonstration | 1 |
-| Machines | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | You don't need wheels to hit 603 kilometers an hour. | E | scripted | Wikipedia, SCMaglev; Guinness World Records | 2 |
+| Machines | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | You don't need wheels to hit 603 kilometers an hour. | E | rendered | Wikipedia, SCMaglev; Guinness World Records | 2 |
 | Ships | 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | You've never noticed the bump that saves ships up to 14% fuel. | E | rendered | FAO bulbous bow study; Force Technology; Wallenius Wilhelmsen; Clipper Group (Marine Log) | 1 |
 | Ships | 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | You don't need strong air to lift an 11-tonne hovercraft. | E | rendered | SR.N6 worked example (Wikipedia, Hovercraft); National Historic Ships UK; SR.N4 specifications | 2 |
 | Cars | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Nobody tells you Tesla's flying car runs on compressed air. | Q | rendered | Tesla Roadster unveil, 15 Oct 2026 (TechCrunch, CNN, Drive Tesla Canada) | 3 |
@@ -112,7 +112,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-12-11 | 6 | 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | Aviation & engineering › Cars | Q | rendered | 81.4 | 124 | 50 |
 | 2026-12-14 | 7 | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | Aviation & engineering › Flight | E | scripted | 77.8 | 129 | 52 |
 | 2026-12-15 | 7 | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Aviation & engineering › Cars | E | scripted | 81.4 | 128 | 51 |
-| 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | scripted | 77.8 | 128 | 51 |
+| 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | rendered | 77.8 | 125 | 50 |
 | 2026-12-18 | 7 | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Aviation & engineering › Cars | E | scripted | 78.6 | 127 | 51 |
 | 2026-12-21 | 8 | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Aviation & engineering › Flight | E | scripted | 81.4 | 129 | 52 |
 | 2026-12-22 | 8 | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Aviation & engineering › Cars | E | scripted | 70 | 126 | 50 |

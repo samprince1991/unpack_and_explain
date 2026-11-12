@@ -46,6 +46,7 @@ Faceless explainer reels ("How things actually work") built with Remotion. Prima
 | `npm run assets` | Regenerates `public/brand/avatar.svg` + `stacked.svg` from `logo/` |
 | `npm run tts -- post-NN-slug [--only=congrats]` | Writes VO + `vo.json` (needs `ELEVENLABS_API_KEY` in `video/.env`). Every take sounds different, so use `--only` when fixing one line. Without VO the reel uses estimated timing; a stale `vo.json` throws until TTS is re-run |
 | `npm run vo:clean -- post-NN-slug` | Trims stitching bleed off existing VO. `tts` already does this; safe to run twice |
+| `npm run vo:tighten -- post-NN-slug` | Shortens pauses between words over 450 ms to 400 ms (cuts only inside silence) and shifts the captions. For a reel just over 52 s; re-run `npm run blender` after it |
 | `npm run sfx -- post-NN-slug [--only=name] [--force]` | Generates the post's topic sounds; keeps any whose prompt, length and model still match |
 | `npm run brand-audio` | Generates missing shared sounds. `--music` for the bed: ask the user first (`docs/audio.md`) |
 | `npm run blender -- post-NN-slug` | Renders the post's 3D clips, skipping up-to-date ones. Needs Blender 5.3 (`BLENDER_PATH` in `video/.env`). Flags: `--preview` (25% size, never replaces a full render), `--only=cover,opener,hook,mechanism`, `--force`, `--workers=N` (default 3) |

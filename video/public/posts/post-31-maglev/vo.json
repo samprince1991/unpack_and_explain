@@ -1,0 +1,937 @@
+{
+  "postId": "post-31-maglev",
+  "estimated": false,
+  "sections": [
+    {
+      "id": "question",
+      "text": "Do you know how a train actually floats 10 cm up?",
+      "file": "posts/post-31-maglev/vo/question.mp3",
+      "durationMs": 3251,
+      "captions": [
+        {
+          "text": "Do",
+          "startMs": 0,
+          "endMs": 174,
+          "timestampMs": 87,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 232,
+          "endMs": 313,
+          "timestampMs": 273,
+          "confidence": null
+        },
+        {
+          "text": " know",
+          "startMs": 372,
+          "endMs": 511,
+          "timestampMs": 442,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 569,
+          "endMs": 673,
+          "timestampMs": 621,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 731,
+          "endMs": 766,
+          "timestampMs": 749,
+          "confidence": null
+        },
+        {
+          "text": " train",
+          "startMs": 824,
+          "endMs": 1080,
+          "timestampMs": 952,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 1161,
+          "endMs": 1521,
+          "timestampMs": 1341,
+          "confidence": null
+        },
+        {
+          "text": " floats",
+          "startMs": 1567,
+          "endMs": 1823,
+          "timestampMs": 1695,
+          "confidence": null
+        },
+        {
+          "text": " 10",
+          "startMs": 1904,
+          "endMs": 2438,
+          "timestampMs": 2171,
+          "confidence": null
+        },
+        {
+          "text": " cm",
+          "startMs": 2461,
+          "endMs": 2601,
+          "timestampMs": 2531,
+          "confidence": null
+        },
+        {
+          "text": " up?",
+          "startMs": 2659,
+          "endMs": 3251,
+          "timestampMs": 2955,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "text": "You don't need wheels to hit 603 kilometers an hour.",
+      "file": "posts/post-31-maglev/vo/hook.mp3",
+      "durationMs": 3580,
+      "captions": [
+        {
+          "text": "You",
+          "startMs": 0,
+          "endMs": 116,
+          "timestampMs": 58,
+          "confidence": null
+        },
+        {
+          "text": " don't",
+          "startMs": 163,
+          "endMs": 302,
+          "timestampMs": 232,
+          "confidence": null
+        },
+        {
+          "text": " need",
+          "startMs": 325,
+          "endMs": 464,
+          "timestampMs": 395,
+          "confidence": null
+        },
+        {
+          "text": " wheels",
+          "startMs": 511,
+          "endMs": 813,
+          "timestampMs": 662,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 859,
+          "endMs": 906,
+          "timestampMs": 883,
+          "confidence": null
+        },
+        {
+          "text": " hit",
+          "startMs": 964,
+          "endMs": 1103,
+          "timestampMs": 1034,
+          "confidence": null
+        },
+        {
+          "text": " 603",
+          "startMs": 1196,
+          "endMs": 1962,
+          "timestampMs": 1579,
+          "confidence": null
+        },
+        {
+          "text": " kilometers",
+          "startMs": 2043,
+          "endMs": 2519,
+          "timestampMs": 2281,
+          "confidence": null
+        },
+        {
+          "text": " an",
+          "startMs": 2543,
+          "endMs": 2601,
+          "timestampMs": 2572,
+          "confidence": null
+        },
+        {
+          "text": " hour.",
+          "startMs": 2647,
+          "endMs": 3580,
+          "timestampMs": 3158,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "text": "Normal trains roll on steel wheels. Japan's SCMaglev lifts off instead.",
+      "file": "posts/post-31-maglev/vo/setup.mp3",
+      "durationMs": 6223,
+      "captions": [
+        {
+          "text": "Normal",
+          "startMs": 0,
+          "endMs": 395,
+          "timestampMs": 198,
+          "confidence": null
+        },
+        {
+          "text": " trains",
+          "startMs": 441,
+          "endMs": 755,
+          "timestampMs": 598,
+          "confidence": null
+        },
+        {
+          "text": " roll",
+          "startMs": 859,
+          "endMs": 1115,
+          "timestampMs": 987,
+          "confidence": null
+        },
+        {
+          "text": " on",
+          "startMs": 1196,
+          "endMs": 1277,
+          "timestampMs": 1237,
+          "confidence": null
+        },
+        {
+          "text": " steel",
+          "startMs": 1358,
+          "endMs": 1649,
+          "timestampMs": 1504,
+          "confidence": null
+        },
+        {
+          "text": " wheels.",
+          "startMs": 1707,
+          "endMs": 2334,
+          "timestampMs": 2021,
+          "confidence": null
+        },
+        {
+          "text": " Japan's",
+          "startMs": 2752,
+          "endMs": 3239,
+          "timestampMs": 2996,
+          "confidence": null
+        },
+        {
+          "text": " SCMaglev",
+          "startMs": 3367,
+          "endMs": 4226,
+          "timestampMs": 3797,
+          "confidence": null
+        },
+        {
+          "text": " lifts",
+          "startMs": 4319,
+          "endMs": 4551,
+          "timestampMs": 4435,
+          "confidence": null
+        },
+        {
+          "text": " off",
+          "startMs": 4609,
+          "endMs": 4748,
+          "timestampMs": 4679,
+          "confidence": null
+        },
+        {
+          "text": " instead.",
+          "startMs": 4807,
+          "endMs": 6223,
+          "timestampMs": 5515,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "mechanism",
+      "text": "Powerful magnets ride inside the train, and the track walls are lined with coils of wire. As the train speeds past, its magnets make current flow in those coils, so the coils become magnets too. They push the train up and keep it centered. Below 150 kilometers an hour, that current is too weak, so it rolls on rubber wheels.",
+      "file": "posts/post-31-maglev/vo/mechanism.mp3",
+      "durationMs": 22074,
+      "captions": [
+        {
+          "text": "Powerful",
+          "startMs": 0,
+          "endMs": 511,
+          "timestampMs": 256,
+          "confidence": null
+        },
+        {
+          "text": " magnets",
+          "startMs": 592,
+          "endMs": 1033,
+          "timestampMs": 813,
+          "confidence": null
+        },
+        {
+          "text": " ride",
+          "startMs": 1161,
+          "endMs": 1440,
+          "timestampMs": 1301,
+          "confidence": null
+        },
+        {
+          "text": " inside",
+          "startMs": 1474,
+          "endMs": 1858,
+          "timestampMs": 1666,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 1892,
+          "endMs": 1962,
+          "timestampMs": 1927,
+          "confidence": null
+        },
+        {
+          "text": " train,",
+          "startMs": 1997,
+          "endMs": 2461,
+          "timestampMs": 2229,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 2728,
+          "endMs": 2868,
+          "timestampMs": 2798,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 2914,
+          "endMs": 2984,
+          "timestampMs": 2949,
+          "confidence": null
+        },
+        {
+          "text": " track",
+          "startMs": 3030,
+          "endMs": 3320,
+          "timestampMs": 3175,
+          "confidence": null
+        },
+        {
+          "text": " walls",
+          "startMs": 3402,
+          "endMs": 3680,
+          "timestampMs": 3541,
+          "confidence": null
+        },
+        {
+          "text": " are",
+          "startMs": 3727,
+          "endMs": 3843,
+          "timestampMs": 3785,
+          "confidence": null
+        },
+        {
+          "text": " lined",
+          "startMs": 3924,
+          "endMs": 4261,
+          "timestampMs": 4093,
+          "confidence": null
+        },
+        {
+          "text": " with",
+          "startMs": 4284,
+          "endMs": 4400,
+          "timestampMs": 4342,
+          "confidence": null
+        },
+        {
+          "text": " coils",
+          "startMs": 4458,
+          "endMs": 4841,
+          "timestampMs": 4650,
+          "confidence": null
+        },
+        {
+          "text": " of",
+          "startMs": 4888,
+          "endMs": 4946,
+          "timestampMs": 4917,
+          "confidence": null
+        },
+        {
+          "text": " wire.",
+          "startMs": 5039,
+          "endMs": 5642,
+          "timestampMs": 5341,
+          "confidence": null
+        },
+        {
+          "text": " As",
+          "startMs": 6035,
+          "endMs": 6221,
+          "timestampMs": 6618,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 6279,
+          "endMs": 6348,
+          "timestampMs": 6804,
+          "confidence": null
+        },
+        {
+          "text": " train",
+          "startMs": 6383,
+          "endMs": 6604,
+          "timestampMs": 6984,
+          "confidence": null
+        },
+        {
+          "text": " speeds",
+          "startMs": 6685,
+          "endMs": 6998,
+          "timestampMs": 7332,
+          "confidence": null
+        },
+        {
+          "text": " past,",
+          "startMs": 7056,
+          "endMs": 7637,
+          "timestampMs": 7837,
+          "confidence": null
+        },
+        {
+          "text": " its",
+          "startMs": 7869,
+          "endMs": 8043,
+          "timestampMs": 8446,
+          "confidence": null
+        },
+        {
+          "text": " magnets",
+          "startMs": 8101,
+          "endMs": 8519,
+          "timestampMs": 8800,
+          "confidence": null
+        },
+        {
+          "text": " make",
+          "startMs": 8566,
+          "endMs": 8728,
+          "timestampMs": 9137,
+          "confidence": null
+        },
+        {
+          "text": " current",
+          "startMs": 8775,
+          "endMs": 9100,
+          "timestampMs": 9428,
+          "confidence": null
+        },
+        {
+          "text": " flow",
+          "startMs": 9158,
+          "endMs": 9413,
+          "timestampMs": 9776,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 9460,
+          "endMs": 9506,
+          "timestampMs": 9973,
+          "confidence": null
+        },
+        {
+          "text": " those",
+          "startMs": 9541,
+          "endMs": 9704,
+          "timestampMs": 10113,
+          "confidence": null
+        },
+        {
+          "text": " coils,",
+          "startMs": 9738,
+          "endMs": 10296,
+          "timestampMs": 10507,
+          "confidence": null
+        },
+        {
+          "text": " so",
+          "startMs": 10481,
+          "endMs": 10598,
+          "timestampMs": 11029,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 10656,
+          "endMs": 10725,
+          "timestampMs": 11181,
+          "confidence": null
+        },
+        {
+          "text": " coils",
+          "startMs": 10772,
+          "endMs": 11097,
+          "timestampMs": 11425,
+          "confidence": null
+        },
+        {
+          "text": " become",
+          "startMs": 11143,
+          "endMs": 11457,
+          "timestampMs": 11790,
+          "confidence": null
+        },
+        {
+          "text": " magnets",
+          "startMs": 11515,
+          "endMs": 11991,
+          "timestampMs": 12243,
+          "confidence": null
+        },
+        {
+          "text": " too.",
+          "startMs": 12037,
+          "endMs": 12525,
+          "timestampMs": 12771,
+          "confidence": null
+        },
+        {
+          "text": " They",
+          "startMs": 12920,
+          "endMs": 13082,
+          "timestampMs": 13851,
+          "confidence": null
+        },
+        {
+          "text": " push",
+          "startMs": 13140,
+          "endMs": 13338,
+          "timestampMs": 14089,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 13384,
+          "endMs": 13454,
+          "timestampMs": 14269,
+          "confidence": null
+        },
+        {
+          "text": " train",
+          "startMs": 13488,
+          "endMs": 13721,
+          "timestampMs": 14455,
+          "confidence": null
+        },
+        {
+          "text": " up",
+          "startMs": 13802,
+          "endMs": 13941,
+          "timestampMs": 14721,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 13988,
+          "endMs": 14057,
+          "timestampMs": 14872,
+          "confidence": null
+        },
+        {
+          "text": " keep",
+          "startMs": 14115,
+          "endMs": 14301,
+          "timestampMs": 15058,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 14348,
+          "endMs": 14417,
+          "timestampMs": 15233,
+          "confidence": null
+        },
+        {
+          "text": " centered.",
+          "startMs": 14475,
+          "endMs": 15044,
+          "timestampMs": 15610,
+          "confidence": null
+        },
+        {
+          "text": " Below",
+          "startMs": 15492,
+          "endMs": 15817,
+          "timestampMs": 16615,
+          "confidence": null
+        },
+        {
+          "text": " 150",
+          "startMs": 15909,
+          "endMs": 16757,
+          "timestampMs": 17293,
+          "confidence": null
+        },
+        {
+          "text": " kilometers",
+          "startMs": 16815,
+          "endMs": 17291,
+          "timestampMs": 18013,
+          "confidence": null
+        },
+        {
+          "text": " an",
+          "startMs": 17326,
+          "endMs": 17384,
+          "timestampMs": 18315,
+          "confidence": null
+        },
+        {
+          "text": " hour,",
+          "startMs": 17430,
+          "endMs": 17883,
+          "timestampMs": 18617,
+          "confidence": null
+        },
+        {
+          "text": " that",
+          "startMs": 18069,
+          "endMs": 18278,
+          "timestampMs": 19133,
+          "confidence": null
+        },
+        {
+          "text": " current",
+          "startMs": 18336,
+          "endMs": 18615,
+          "timestampMs": 19435,
+          "confidence": null
+        },
+        {
+          "text": " is",
+          "startMs": 18661,
+          "endMs": 18731,
+          "timestampMs": 19656,
+          "confidence": null
+        },
+        {
+          "text": " too",
+          "startMs": 18789,
+          "endMs": 18951,
+          "timestampMs": 19830,
+          "confidence": null
+        },
+        {
+          "text": " weak,",
+          "startMs": 19033,
+          "endMs": 19485,
+          "timestampMs": 20219,
+          "confidence": null
+        },
+        {
+          "text": " so",
+          "startMs": 19718,
+          "endMs": 19880,
+          "timestampMs": 20759,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 19961,
+          "endMs": 20031,
+          "timestampMs": 20956,
+          "confidence": null
+        },
+        {
+          "text": " rolls",
+          "startMs": 20077,
+          "endMs": 20379,
+          "timestampMs": 21188,
+          "confidence": null
+        },
+        {
+          "text": " on",
+          "startMs": 20472,
+          "endMs": 20600,
+          "timestampMs": 21496,
+          "confidence": null
+        },
+        {
+          "text": " rubber",
+          "startMs": 20681,
+          "endMs": 20890,
+          "timestampMs": 21746,
+          "confidence": null
+        },
+        {
+          "text": " wheels.",
+          "startMs": 20937,
+          "endMs": 22074,
+          "timestampMs": 22466,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "text": "Above that, it floats 10 centimeters up. In 2015, it hit 603 kilometers an hour.",
+      "file": "posts/post-31-maglev/vo/payoff.mp3",
+      "durationMs": 8139,
+      "captions": [
+        {
+          "text": "Above",
+          "startMs": 0,
+          "endMs": 395,
+          "timestampMs": 198,
+          "confidence": null
+        },
+        {
+          "text": " that,",
+          "startMs": 430,
+          "endMs": 801,
+          "timestampMs": 616,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 1068,
+          "endMs": 1207,
+          "timestampMs": 1138,
+          "confidence": null
+        },
+        {
+          "text": " floats",
+          "startMs": 1265,
+          "endMs": 1556,
+          "timestampMs": 1410,
+          "confidence": null
+        },
+        {
+          "text": " 10",
+          "startMs": 1637,
+          "endMs": 1916,
+          "timestampMs": 1777,
+          "confidence": null
+        },
+        {
+          "text": " centimeters",
+          "startMs": 1962,
+          "endMs": 2450,
+          "timestampMs": 2206,
+          "confidence": null
+        },
+        {
+          "text": " up.",
+          "startMs": 2531,
+          "endMs": 2891,
+          "timestampMs": 2711,
+          "confidence": null
+        },
+        {
+          "text": " In",
+          "startMs": 3286,
+          "endMs": 3425,
+          "timestampMs": 3716,
+          "confidence": null
+        },
+        {
+          "text": " 2015,",
+          "startMs": 3506,
+          "endMs": 4586,
+          "timestampMs": 4406,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 4632,
+          "endMs": 4725,
+          "timestampMs": 5039,
+          "confidence": null
+        },
+        {
+          "text": " hit",
+          "startMs": 4783,
+          "endMs": 4969,
+          "timestampMs": 5236,
+          "confidence": null
+        },
+        {
+          "text": " 603",
+          "startMs": 5097,
+          "endMs": 6142,
+          "timestampMs": 5980,
+          "confidence": null
+        },
+        {
+          "text": " kilometers",
+          "startMs": 6246,
+          "endMs": 6792,
+          "timestampMs": 6879,
+          "confidence": null
+        },
+        {
+          "text": " an",
+          "startMs": 6827,
+          "endMs": 6885,
+          "timestampMs": 7216,
+          "confidence": null
+        },
+        {
+          "text": " hour.",
+          "startMs": 6919,
+          "endMs": 8139,
+          "timestampMs": 7889,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "congrats",
+      "text": "Congrats, you just learned how a maglev train floats.",
+      "file": "posts/post-31-maglev/vo/congrats.mp3",
+      "durationMs": 3630,
+      "captions": [
+        {
+          "text": "Congrats,",
+          "startMs": 0,
+          "endMs": 743,
+          "timestampMs": 372,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 824,
+          "endMs": 929,
+          "timestampMs": 877,
+          "confidence": null
+        },
+        {
+          "text": " just",
+          "startMs": 1033,
+          "endMs": 1242,
+          "timestampMs": 1138,
+          "confidence": null
+        },
+        {
+          "text": " learned",
+          "startMs": 1289,
+          "endMs": 1521,
+          "timestampMs": 1405,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1544,
+          "endMs": 1649,
+          "timestampMs": 1597,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1707,
+          "endMs": 1730,
+          "timestampMs": 1719,
+          "confidence": null
+        },
+        {
+          "text": " maglev",
+          "startMs": 1834,
+          "endMs": 2334,
+          "timestampMs": 2084,
+          "confidence": null
+        },
+        {
+          "text": " train",
+          "startMs": 2392,
+          "endMs": 2624,
+          "timestampMs": 2508,
+          "confidence": null
+        },
+        {
+          "text": " floats.",
+          "startMs": 2670,
+          "endMs": 3630,
+          "timestampMs": 3216,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "text": "Follow Unpack and Explain for how things actually work.",
+      "file": "posts/post-31-maglev/vo/cta.mp3",
+      "durationMs": 3390,
+      "captions": [
+        {
+          "text": "Follow",
+          "startMs": 0,
+          "endMs": 337,
+          "timestampMs": 169,
+          "confidence": null
+        },
+        {
+          "text": " Unpack",
+          "startMs": 430,
+          "endMs": 859,
+          "timestampMs": 645,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 917,
+          "endMs": 987,
+          "timestampMs": 952,
+          "confidence": null
+        },
+        {
+          "text": " Explain",
+          "startMs": 1033,
+          "endMs": 1451,
+          "timestampMs": 1242,
+          "confidence": null
+        },
+        {
+          "text": " for",
+          "startMs": 1509,
+          "endMs": 1602,
+          "timestampMs": 1555,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1649,
+          "endMs": 1765,
+          "timestampMs": 1707,
+          "confidence": null
+        },
+        {
+          "text": " things",
+          "startMs": 1858,
+          "endMs": 2101,
+          "timestampMs": 1980,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 2194,
+          "endMs": 2659,
+          "timestampMs": 2427,
+          "confidence": null
+        },
+        {
+          "text": " work.",
+          "startMs": 2705,
+          "endMs": 3390,
+          "timestampMs": 3048,
+          "confidence": null
+        }
+      ]
+    }
+  ]
+}

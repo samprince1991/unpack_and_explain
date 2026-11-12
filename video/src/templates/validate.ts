@@ -170,6 +170,12 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       if (beat.by && beat.do !== "shift") {
         errors.push(`${where}: "by" only applies to shift`);
       }
+      if (beat.frames !== undefined && beat.do !== "shift") {
+        errors.push(`${where}: "frames" only applies to shift`);
+      }
+      if (beat.frames !== undefined && (!Number.isInteger(beat.frames) || beat.frames < 0)) {
+        errors.push(`${where}: "frames" must be a whole number of frames, 0 or more`);
+      }
       if ((beat.do === "appear" || beat.do === "vanish") && beat.part && !appearOnly.includes(beat.part)) {
         errors.push(`${where}: part "${beat.part}" is not in the model's appearOnly list`);
       }

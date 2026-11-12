@@ -75,6 +75,7 @@
     "qa:audio": "tsx scripts/qa-audio.ts",
     "master": "tsx scripts/master.ts",
     "vo:clean": "tsx scripts/clean-vo.ts",
+    "vo:tighten": "tsx scripts/tighten-vo.ts",
     "tracker": "tsx scripts/tracker.ts",
     "ig": "tsx scripts/ig.ts",
     "blender": "tsx --env-file-if-exists=.env scripts/blender.ts",

@@ -187,6 +187,9 @@ export type Beat = {
   // shift: offset from the part's rest place (a catalog `groups` name moves its parts together), in model units (the model's longest side is
   // 2). [0, 0, 0] sends it home.
   by?: readonly [number, number, number];
+  // shift: how many frames the slide takes (default 14). 0 is instant: a part that starts
+  // somewhere else (a train placed off-screen at frame 0, then shifted home at speed).
+  frames?: number;
   // label: 2D text (a number or unit, never words the VO already says).
   label?: string;
   // shot / focus / wide: camera change. On focus, omit zoom: the close-up is sized
@@ -195,7 +198,7 @@ export type Beat = {
 };
 
 // Opaque full-frame environments (docs/blender.md).
-export const WORLDS = ["sea", "coast", "track", "bench", "cafe"] as const;
+export const WORLDS = ["sea", "coast", "track", "bench", "cafe", "rail"] as const;
 export const COAST_PLACEMENTS = ["sea", "shore", "land"] as const;
 export type CoastPlacement = (typeof COAST_PLACEMENTS)[number];
 export type WorldId = (typeof WORLDS)[number];

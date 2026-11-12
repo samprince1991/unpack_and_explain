@@ -333,6 +333,41 @@ export const models = {
     hardEdges: ["stand", "card", "finders", "data", "bit", "byte", "patch"],
     useFor: "QR codes, barcodes, anything printed as a grid of bits (idea 14; cafe world)",
   },
+  "maglev": {
+    title: "Generic long-nose maglev car in a short U-shaped guideway (near wall separate, for the cutaway): body shell, window band, two bogies with side magnets (the front +Y one is the key), figure-8 coils on both walls, current and push arrows, rubber wheels",
+    file: "models/maglev.glb",
+    source: "Procedural, blender/models/maglev.py",
+    license: "own",
+    parts: {
+      body: ["body"],
+      windows: ["windows"],
+      trim: ["trim"],
+      bogie: ["bogie"],
+      magnet: ["magnet"],
+      magnets: ["magnets"],
+      guideway: ["guideway"],
+      wall: ["wall", "nearcoils"],
+      coil: ["coil"],
+      coils: ["coils"],
+      current: ["current"],
+      push: ["push"],
+      wheels: ["wheels"],
+    },
+    keyPart: "magnet",
+    // Nothing spreads out (spacing 0). The shell, its window band and the near wall are `away`
+    // parts: "explode" drops them, a cutaway that shows the bogies, magnets and far-wall coils.
+    explode: { axis: "z", order: ["bogie", "magnet", "magnets"], spacing: 0, away: ["body", "windows", "trim", "wall"] },
+    spinAxis: "x",
+    // The push arrows overlap the shell only where the cutaway has removed it: they appear
+    // after "explode", so the two never show together.
+    contacts: [["push", "body"]],
+    // Current round the key coil, the push it gives, and the wheels it runs on below lift-off.
+    appearOnly: ["current", "push", "wheels"],
+    // The whole car: a `shift` on "train" moves it (streaking in, speeding past a coil, settling
+    // onto its wheels). The push arrows ride with it.
+    groups: { train: ["body", "windows", "trim", "bogie", "magnet", "magnets", "wheels", "push"] },
+    useFor: "Maglev trains, magnetic levitation, induced current, linear motors (idea 31; rail world)",
+  },
 } as const satisfies Record<string, ModelEntry>;
 
 export type ModelId = keyof typeof models;

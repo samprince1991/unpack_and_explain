@@ -1,0 +1,23 @@
+{
+  "postId": "post-31-maglev",
+  "sounds": {
+    "whoosh": {
+      "prompt": "fast smooth high-speed train passing by, airy rushing whoosh, no wheels, no horn, short",
+      "seconds": 1.4,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-31-maglev/sfx/whoosh.mp3"
+    },
+    "hum": {
+      "prompt": "soft electric hum rising gently, clean magnetic buzz, short, no crackle",
+      "seconds": 1.2,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-31-maglev/sfx/hum.mp3"
+    },
+    "touchdown": {
+      "prompt": "soft rubber tyres touching down on concrete, gentle short bump, no squeal",
+      "seconds": 0.8,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-31-maglev/sfx/touchdown.mp3"
+    }
+  }
+}
