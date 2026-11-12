@@ -169,6 +169,9 @@ export const BEAT_ACTIONS = [
   "appear",
   // An `appearOnly` part scales back out (air jets switching off).
   "vanish",
+  // A part (or each part of a group) turns to `by` degrees about x, y, z from rest; parts
+  // attached to it (catalog `attach`) turn with it. A swashplate tilting, blades changing pitch.
+  "tilt",
 ] as const;
 export type BeatAction = (typeof BEAT_ACTIONS)[number];
 
@@ -178,7 +181,8 @@ export type Beat = {
   // Fraction of the section used if the cue word isn't found in the VO timing.
   fallback: number;
   do: BeatAction;
-  // focus / spin / flow (from) / label / shift / appear / vanish: a catalog part (shift: or a group).
+  // focus / spin / flow (from) / label / shift / tilt / appear / vanish: a catalog part
+  // (shift / tilt: or a group).
   part?: string;
   // flow: destination part.
   to?: string;
@@ -187,7 +191,8 @@ export type Beat = {
   // shift: offset from the part's rest place (a catalog `groups` name moves its parts together), in model units (the model's longest side is
   // 2). [0, 0, 0] sends it home.
   by?: readonly [number, number, number];
-  // shift: how many frames the slide takes (default 14). 0 is instant: a part that starts
+  // tilt: degrees about x, y, z from the part's rest pose. [0, 0, 0] turns it back.
+  // shift / tilt: how many frames the move takes (default 14). 0 is instant: a part that starts
   // somewhere else (a train placed off-screen at frame 0, then shifted home at speed).
   frames?: number;
   // label: 2D text (a number or unit, never words the VO already says).
@@ -215,8 +220,9 @@ export type BlenderPlan = {
   // Word of the cover title colored amber. Defaults to hookHighlight.
   coverHighlight?: string;
   cover: Shot;
-  // Frame-0 backdrop behind the question card (whole question section).
-  opener: Shot;
+  // Frame-0 backdrop behind the question card (whole question section). Optional beats
+  // (cued on the question line), e.g. a rotor already spinning at frame 0.
+  opener: Shot & { beats?: Beat[] };
   hook: Shot & { beats?: Beat[] };
   mechanism: Shot & { beats: Beat[] };
 };

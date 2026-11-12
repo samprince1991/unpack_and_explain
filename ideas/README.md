@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**50 ideas** (by status: 25 idea, 9 scripted, 4 rendered, 12 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**50 ideas** (by status: 25 idea, 8 scripted, 5 rendered, 12 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -42,7 +42,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Flight | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Most people explain lift wrong. | Q | scripted | medium | NASA Glenn 'lift' explainer pages | 1 |
 | Flight | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Autopilot isn't flying the plane. It's following instructions. | E | idea | medium | Aircraft manufacturer / FAA docs | - |
 | Flight | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | You don't need a runway to fly at 200 mph. | E | scripted | high | Joby Aviation; Wikipedia, Joby Aviation; Motley Fool, 30 Oct 2026 | 2 |
-| Flight | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Nobody tells you 2 plates do all of a helicopter's steering. | E | scripted | high | FAA Helicopter Flying Handbook (FAA-H-8083-21B), ch. 3 | 1 |
+| Flight | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Nobody tells you 2 plates do almost all of a helicopter's steering. | E | rendered | high | FAA Helicopter Flying Handbook (FAA-H-8083-21B), ch. 2-4 | - |
 | Flight | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | If one motor dies, an air taxi falls. Not quite. | Q | scripted | medium | Archer Aviation (via AIN Online, Vertical Mag) | 3 |
 | Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | [posted](https://www.instagram.com/reel/DfPEJpBIkrN) | medium | Canadian investigation report on Air Canada Flight 143 (1983) | - |
 | Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | [posted](https://www.instagram.com/p/DfZfdEok4Sz) | low | NASA Glenn Research Center, Beginner's Guide to Propulsion | - |
@@ -115,7 +115,7 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-12-15 | 7 | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Aviation & engineering › Cars | E | scripted | high | 81.4 | 128 | 51 |
 | 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | rendered | high | 77.8 | 125 | 50 |
 | 2026-12-18 | 7 | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Aviation & engineering › Cars | E | scripted | medium | 78.6 | 127 | 51 |
-| 2026-12-21 | 8 | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Aviation & engineering › Flight | E | scripted | high | 81.4 | 129 | 52 |
+| 2026-12-21 | 8 | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Aviation & engineering › Flight | E | rendered | high | 80 | 130 | 52 |
 | 2026-12-22 | 8 | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Aviation & engineering › Cars | E | scripted | high | 70 | 126 | 50 |
 | 2026-12-24 | 8 | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Aviation & engineering › Cars | E | scripted | high | 81.4 | 125 | 50 |
 | 2026-12-25 | 8 | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | medium | 52.4 | 130 | 52 |

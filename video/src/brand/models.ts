@@ -38,6 +38,13 @@ export type ModelEntry = {
   // Named sets of parts a `shift` beat moves together (a whole car hopping). Beats name the
   // group as their `part`.
   groups?: Readonly<Record<string, readonly string[]>>;
+  // Child part -> parent part: the child rides on the parent's pivot, so it follows the
+  // parent's shifts and tilts (blades on a hub, a swashplate's upper plate on its lower one).
+  attach?: Readonly<Record<string, string>>;
+  // Per-part spin axis, overriding `spinAxis` (a tail rotor spinning sideways).
+  spinAxes?: Readonly<Record<string, "x" | "y" | "z">>;
+  // Coast world: how far above the ground the model rests, in model units (a hovering helicopter).
+  hover?: number;
   useFor: string;
 };
 
@@ -240,6 +247,69 @@ export const models = {
     appearOnly: ["cushion", "pushgrid", "leaks"],
     hardEdges: ["fan", "rudders"],
     useFor: "Hovercraft, air cushions, lift from pressure x area, amphibious craft (idea 27; coast world)",
+  },
+  helicopter: {
+    title: "Generic two-seat light helicopter at real scale (7.7 m rotor): lofted cabin with bubble canopy, door frames and roof fairing, tapered boom, airfoil fins and stabilizer, tail gearbox and rotor, skids on splayed cross tubes, mast, two-plate swashplate with control rods and pitch links, teetering hub, twisted airfoil blades, lift arrow and a rear arc",
+    file: "models/helicopter.glb",
+    source: "Procedural, blender/models/helicopter.py",
+    license: "own",
+    parts: {
+      mast: ["mast"],
+      body: ["body"],
+      canopy: ["canopy"],
+      boom: ["boom"],
+      fin: ["fin"],
+      skids: ["skids"],
+      rods: ["rods"],
+      swashLower: ["swashLower"],
+      swashUpper: ["swashUpper"],
+      links: ["links"],
+      hub: ["hub"],
+      bladeA: ["bladeA"],
+      bladeB: ["bladeB"],
+      tailRotor: ["tailRotor"],
+      lift: ["lift"],
+      arc: ["arc"],
+    },
+    keyPart: "hub",
+    // Nothing spreads out (spacing 0): the helicopter moves with `shift` and `tilt` beats.
+    explode: { axis: "z", order: ["body"], spacing: 0 },
+    // The mast is the root: the `helicopter` group (just the mast) shifts or tilts the whole
+    // thing. The upper plate rides on the lower plate (rises and tilts with it while it spins),
+    // the blades and pitch links on the hub (they spin with it; blades tilt about X for pitch).
+    // The arc rides on the lower plate, so it tilts with the rotor on forward cyclic.
+    attach: {
+      body: "mast",
+      canopy: "mast",
+      boom: "mast",
+      fin: "mast",
+      skids: "mast",
+      rods: "mast",
+      tailRotor: "mast",
+      swashLower: "mast",
+      hub: "mast",
+      lift: "mast",
+      swashUpper: "swashLower",
+      links: "hub",
+      arc: "swashLower",
+      bladeA: "hub",
+      bladeB: "hub",
+    },
+    // Both blades: the amber key when the pitch changes.
+    // Both swashplate plates: the amber key in the hook.
+    groups: { blades: ["bladeA", "bladeB"], plates: ["swashLower", "swashUpper"], helicopter: ["mast"] },
+    // A shift of the lower plate stretches the pitch links (their tops fixed under the pitch
+    // horns) and the control rods (their feet fixed on the fairing).
+    // (A group shift, like `helicopter`, moves everything without stretching them.)
+    flex: { axis: "z", parts: { links: "max", rods: "min" } },
+    // The hub and the upper plate spin about the mast (Z); the tail rotor spins sideways.
+    spinAxis: "z",
+    spinAxes: { tailRotor: "y" },
+    appearOnly: ["lift", "arc"],
+    hardEdges: ["fin"],
+    // Coast world: hovers about 1.5 m off the grass (the 8.58 m from blade tip to tail skid is 2 units).
+    hover: (1.5 * 2) / 8.58,
+    useFor: "Helicopters, rotors, swashplates, cyclic and collective, torque (idea 33; coast world, land)",
   },
   coupe: {
     title: "Generic low two-seat sports coupe with cold-gas thrusters: body shell, glass, lights, skirts, rear wing, spoked wheels, seats, air tanks and pipes, ten nozzles, air jets and a push arrow",

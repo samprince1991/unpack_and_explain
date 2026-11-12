@@ -30,6 +30,7 @@ CLOSE_MAX = 3.5
 PUSH = 1.1  # slow push-in over every clip (lens), so the camera never sits still
 FSTOP = 5.6  # at zoom 1; scaled with zoom so close-ups keep the same light depth of field
 SHIFT_FRAMES = 14  # a `shift` beat: a part slides, flex parts (springs) stretch with it
+TILT_FRAMES = 14  # a `tilt` beat: a part turns to `by` degrees
 AWAY = 0.6  # how far "away" parts (e.g. a casing) drop while they shrink out of view
 LENS = 50
 SENSOR = 36
@@ -150,7 +151,27 @@ def group_parts(meshes, model, tokens):
         hi = Vector((max(c[i] for c in corners) for i in range(3)))
         size = (hi - lo).length / 2  # half the box diagonal: sizes the close-up
         parts[part] = {"pivot": pivot, "coll": coll, "mat": mat, "base": center.copy(), "size": size, "extent": hi - lo, "objects": objs}
+    attach_parts(parts, model)
     return parts
+
+
+def attach_parts(parts, model):
+    """Catalog `attach` (child part -> parent part): the child's pivot rides on the parent's,
+    so it follows the parent's shifts and tilts (a swashplate's spinning upper plate on its
+    lower plate, blades on a hub). Every pivot turns in ZYX order: a spin about its own
+    (possibly tilted) axis first, then the tilt."""
+    for info in parts.values():
+        info["pivot"].rotation_mode = "ZYX"
+        info["parent"] = None
+    for child, parent in model.get("attach", {}).items():
+        if child not in parts or parent not in parts:
+            raise SystemExit(f"Model {model['id']}: attach {child} -> {parent} names a missing part")
+        pivot = parts[child]["pivot"]
+        pivot.parent = parts[parent]["pivot"]
+        pivot.matrix_parent_inverse = Matrix.Identity(4)
+        pivot.location = parts[child]["base"] - parts[parent]["base"]
+        parts[child]["parent"] = parent
+    bpy.context.view_layer.update()
 
 
 # ---------- camera ----------
@@ -236,6 +257,7 @@ class Clip:
         self.cuts = []  # frames where the camera or the key part changes (labels end there)
         self.spins = []  # {"part", "start", "end"}; keyed in finish() once ends are known
         self.shifts = {}  # part -> offset from `shift` beats, on top of the explode offset
+        self.tilts = {}  # part -> rotation (radians, xyz) from `tilt` beats
         start = clip["start"]
         self.cam = {
             "yaw": start["yaw"],
@@ -249,6 +271,18 @@ class Clip:
     # explode offsets
     def _offset(self, part, exploded):
         return self._explode_offset(part, exploded) + self.shifts.get(part, Vector())
+
+    def _members(self, name):
+        """A catalog `groups` name stands for its parts; a part for itself."""
+        return list(self.model.get("groups", {}).get(name, [name]))
+
+    def _loc(self, part, exploded=None):
+        """The pivot's keyed location: world space, or relative to the parent's rest place for
+        an attached part (the parent's own moves come through the hierarchy)."""
+        exploded = self.exploded if exploded is None else exploded
+        loc = self.parts[part]["base"] + self._offset(part, exploded)
+        parent = self.parts[part].get("parent")
+        return loc - self.parts[parent]["base"] if parent else loc
 
     def _explode_offset(self, part, exploded):
         order = self.model["explode"]["order"]
@@ -269,7 +303,7 @@ class Clip:
     def close_zoom(self, part):
         """Zoom where the part fills CLOSE_FILL of the frame, within CLOSE_MIN-CLOSE_MAX x wide."""
         wide = self.wide_zoom()
-        fit = CLOSE_FILL * self.radius / max(self.parts[part]["size"], 1e-6)
+        fit = CLOSE_FILL * self.radius / max(self._size(part), 1e-6)
         return min(max(fit, CLOSE_MIN * wide), CLOSE_MAX * wide)
 
     def close_up(self, part, shot):
@@ -288,8 +322,25 @@ class Clip:
         return 2 / (2 + spread)
 
     def center(self, part, exploded=None):
+        """World-space center (shifts of the parts it's attached to included; tilts ignored).
+        A group's center is the mean of its parts'."""
         exploded = self.exploded if exploded is None else exploded
-        return self.parts[part]["base"] + self._offset(part, exploded)
+        members = self._members(part)
+        if members != [part]:
+            return sum((self.center(m, exploded) for m in members), Vector()) / len(members)
+        at = self.parts[part]["base"] + self._offset(part, exploded)
+        parent = self.parts[part].get("parent")
+        while parent:
+            at += self._offset(parent, exploded)
+            parent = self.parts[parent].get("parent")
+        return at
+
+    def _size(self, part):
+        members = self._members(part)
+        if members == [part]:
+            return self.parts[part]["size"]
+        mid = self.center(part)
+        return max((self.center(m) - mid).length + self.parts[m]["size"] for m in members)
 
     def set_explode(self, exploded, frame, glide=True):
         away = self.model["explode"].get("away", [])
@@ -316,14 +367,18 @@ class Clip:
                         obj.hide_render = exploded
                         obj.keyframe_insert("hide_render", frame=frame + (GLIDE if exploded and glide else 0))
             if glide:
-                pivot.location = self.center(part)
+                pivot.location = self._loc(part)
                 pivot.keyframe_insert("location", frame=frame)
-            pivot.location = info["base"] + self._offset(part, exploded)
+            pivot.location = self._loc(part, exploded)
             pivot.keyframe_insert("location", frame=frame + (GLIDE if glide else 0))
         self.exploded = exploded
 
     # amber hand-off
     def _paint(self, part, on, frame):
+        for member in self._members(part):
+            self._paint_part(member, on, frame)
+
+    def _paint_part(self, part, on, frame):
         style = self.styles[part]
         role = "amber" if on else ("soft" if part == "rest" else "stroke")
         style.color = self._srgb(role)
@@ -340,12 +395,16 @@ class Clip:
         return color_srgb(self.tokens["colors"][role])
 
     def set_amber(self, part, frame, fade=True):
+        """Hands the amber from the current key to `part` (a part or a group: a part in both
+        stays amber)."""
         if part == self.amber:
             return
-        for p in {self.amber, part} - {None}:
+        old = set(self._members(self.amber)) if self.amber else set()
+        new = set(self._members(part)) if part else set()
+        for p in old ^ new:
             if fade:
-                self._paint(p, p == self.amber, frame)
-            self._paint(p, p == part, frame + (AMBER_FADE if fade else 0))
+                self._paint_part(p, p in old, frame)
+            self._paint_part(p, p in new, frame + (AMBER_FADE if fade else 0))
         self.amber = part
 
     def move_camera(self, change, frame, glide=GLIDE):
@@ -407,10 +466,10 @@ class Clip:
 
     def _slide(self, part, offset, frame, frames=SHIFT_FRAMES):
         pivot = self.parts[part]["pivot"]
-        pivot.location = self.center(part)
+        pivot.location = self._loc(part)
         pivot.keyframe_insert("location", frame=frame)
         self.shifts[part] = offset
-        pivot.location = self.center(part)
+        pivot.location = self._loc(part)
         pivot.keyframe_insert("location", frame=frame + frames)  # frames 0 overwrites: instant
 
     def shift(self, part, by, frame, frames=SHIFT_FRAMES):
@@ -442,6 +501,30 @@ class Clip:
             half[axis] = by[axis] / 2  # the fixed end stays put, so the middle moves half as far
             self._slide(name, half, frame, frames)
 
+    def tilt(self, part, by, frame, frames=TILT_FRAMES):
+        """Turns a part (each part of a group, about its own pivot) to `by` degrees about x, y, z
+        from its rest pose ([0, 0, 0] turns it back). Attached parts turn with it. Never on a
+        part's spin axis while it spins (the spin keys that channel)."""
+        new = Vector([math.radians(d) for d in by])
+        for member in self._members(part):
+            pivot = self.parts[member]["pivot"]
+            old = self.tilts.get(member, Vector())
+            for i in range(3):
+                if old[i] == 0 and new[i] == 0:
+                    continue
+                rot = list(pivot.rotation_euler)
+                rot[i] = old[i]
+                pivot.rotation_euler = rot
+                pivot.keyframe_insert("rotation_euler", index=i, frame=frame)
+                rot[i] = new[i]
+                pivot.rotation_euler = rot
+                pivot.keyframe_insert("rotation_euler", index=i, frame=frame + frames)
+            self.tilts[member] = new.copy()
+
+    def spin_axis(self, part):
+        """Catalog `spinAxes` overrides the model's `spinAxis` per part (a tail rotor)."""
+        return "xyz".index(self.model.get("spinAxes", {}).get(part, self.model["spinAxis"]))
+
     def vanish(self, part, frame):
         """An appearOnly part scales back out and hides (air jets switching off)."""
         pivot = self.parts[part]["pivot"]
@@ -464,10 +547,12 @@ class Clip:
 
     def finish(self):
         """Spin keys: constant speed from start, then a coast-down if stopped."""
-        axis = "xyz".index(self.model["spinAxis"])
         rate = 2 * math.pi * SPIN_TURNS_PER_S / self.scene.render.fps  # radians per frame
         for spin in self.spins:
             pivot = self.parts[spin["part"]]["pivot"]
+            axis = self.spin_axis(spin["part"])
+            if self.tilts.get(spin["part"], Vector())[axis]:
+                raise SystemExit(f"tilt and spin both turn {spin['part']} about {'xyz'[axis]}")
             start, end = spin["start"], spin["end"] or self.frames
             base = pivot.rotation_euler[axis]
             rot = list(pivot.rotation_euler)
@@ -548,6 +633,8 @@ class Clip:
             self.spin(beat["part"], f)
         elif kind == "shift":
             self.shift(beat["part"], beat["by"], f, beat.get("frames", SHIFT_FRAMES))
+        elif kind == "tilt":
+            self.tilt(beat["part"], beat["by"], f, beat.get("frames", TILT_FRAMES))
         elif kind == "appear":
             self.appear(beat["part"], f)
         elif kind == "vanish":
@@ -622,7 +709,9 @@ def build_clip(scene, job, clip, tokens, preview, repo_root):
         import importlib
 
         world = importlib.import_module(f"world.{job['world']}")
-        c.sea = world.build_clip_world(scene, tokens, parts, c.rig.cam, clip, job["fps"])
+        # The catalog's `hover` (a helicopter off the ground) rides along with the clip.
+        world_clip = dict(clip, hover=job["model"].get("hover", 0.0))
+        c.sea = world.build_clip_world(scene, tokens, parts, c.rig.cam, world_clip, job["fps"])
     c.start()
     for beat in clip["beats"]:
         c.apply(beat)

@@ -44,6 +44,7 @@ Why the pipeline is built the way it is, and what was tried or rejected. The rul
   | 4 | 1.35 | 1.3x | 4.6 GB |
 
   A frame rendered alone was pixel-identical to the same frame rendered in sequence, which is what makes splitting into chunks safe.
+- **Parts can tilt and ride on each other (`tilt`, catalog `attach`, `spinAxes`; 2026-11-12, idea 33).** A helicopter steers by tilting its swashplate and rotor and pitching its blades while they spin, which `shift` and one shared spin axis couldn't show. The alternative, swapping pre-tilted copies with `appear` / `vanish`, makes parts pop instead of move, which is weak in a reel about how parts move. Pivots of attached parts are parented, and every pivot turns spin-first (ZYX), so a part spins about its own tilted axis. All fields are optional, so existing posts are unaffected. Simplification: the model tilts the rotor head, where the real disc tilts by blade flapping; on screen it reads the same.
 - **Stale rules differ by cause.** A changed plan, VO timing or GLB blocks a final render, because the picture would be wrong. Shared Blender code only triggers a re-render on the next `npm run blender`, because most code changes don't alter the look. A real look change needs a `BLENDER_LOOK_VERSION` bump.
 - **Known limits:**
   - The clip hash includes the whole catalog entry, so editing a model's description text also marks its renders stale. Narrowing it would mark every post stale once, so it's left until a full re-render is happening anyway.

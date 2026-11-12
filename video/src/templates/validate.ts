@@ -140,22 +140,26 @@ const validateBlender = (script: PostScript, errors: string[]) => {
     if (shot.coast !== undefined && plan.world !== "coast") {
       errors.push(`${where}: coast only applies to the coast world`);
     }
-    checkPart(where, shot.keyPart);
+    // A group can be the amber key (both blades of a rotor).
+    if (shot.keyPart === undefined || !(shot.keyPart in groups)) {
+      checkPart(where, shot.keyPart);
+    }
     checkPart(where, shot.aim);
     if (shot.zoom !== undefined && shot.zoom <= 0) {
       errors.push(`${where}: zoom must be > 0`);
     }
   };
-  const checkBeats = (section: "hook" | "mechanism", beats: Beat[] = []) =>
+  const checkBeats = (section: "opener" | "hook" | "mechanism", beats: Beat[] = []) =>
     beats.forEach((beat, i) => {
       const where = `blender.${section}.beats[${i}]`;
+      const spoken = section === "opener" ? "question" : section; // the opener plays under the question
       if (!(BEAT_ACTIONS as readonly string[]).includes(beat.do)) {
         errors.push(`${where}: unknown action "${beat.do}"`);
       }
-      if (!spokenIn(script, section, beat.cue)) {
-        errors.push(`${where}: cue "${beat.cue}" is not spoken in the ${section} section`);
+      if (!spokenIn(script, spoken, beat.cue)) {
+        errors.push(`${where}: cue "${beat.cue}" is not spoken in the ${spoken} section`);
       }
-      if (["focus", "spin", "flow", "label", "shift", "appear", "vanish"].includes(beat.do) && !beat.part) {
+      if (["focus", "spin", "flow", "label", "shift", "tilt", "appear", "vanish"].includes(beat.do) && !beat.part) {
         errors.push(`${where}: "${beat.do}" needs a part`);
       }
       if (beat.follow !== undefined && beat.do !== "flow") {
@@ -164,14 +168,14 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       if (beat.do === "flow" && !beat.to) {
         errors.push(`${where}: "flow" needs a destination part (to)`);
       }
-      if (beat.do === "shift" && !beat.by) {
-        errors.push(`${where}: "shift" needs an offset (by)`);
+      if ((beat.do === "shift" || beat.do === "tilt") && !beat.by) {
+        errors.push(`${where}: "${beat.do}" needs ${beat.do === "shift" ? "an offset" : "angles"} (by)`);
       }
-      if (beat.by && beat.do !== "shift") {
-        errors.push(`${where}: "by" only applies to shift`);
+      if (beat.by && beat.do !== "shift" && beat.do !== "tilt") {
+        errors.push(`${where}: "by" only applies to shift and tilt`);
       }
-      if (beat.frames !== undefined && beat.do !== "shift") {
-        errors.push(`${where}: "frames" only applies to shift`);
+      if (beat.frames !== undefined && beat.do !== "shift" && beat.do !== "tilt") {
+        errors.push(`${where}: "frames" only applies to shift and tilt`);
       }
       if (beat.frames !== undefined && (!Number.isInteger(beat.frames) || beat.frames < 0)) {
         errors.push(`${where}: "frames" must be a whole number of frames, 0 or more`);
@@ -182,12 +186,12 @@ const validateBlender = (script: PostScript, errors: string[]) => {
       if (beat.do === "label" && !beat.label?.trim()) {
         errors.push(`${where}: "label" needs label text`);
       }
-      if (beat.label && spokenIn(script, section, beat.label) && !/\d/.test(beat.label)) {
+      if (beat.label && spokenIn(script, spoken, beat.label) && !/\d/.test(beat.label)) {
         errors.push(`${where}: label "${beat.label}" repeats the voice-over`);
       }
       if (beat.part !== undefined && beat.part in groups) {
-        if (beat.do !== "shift") {
-          errors.push(`${where}: group "${beat.part}" only applies to shift`);
+        if (beat.do !== "shift" && beat.do !== "tilt") {
+          errors.push(`${where}: group "${beat.part}" only applies to shift, tilt and keyPart`);
         }
       } else {
         checkPart(where, beat.part);
@@ -199,6 +203,7 @@ const validateBlender = (script: PostScript, errors: string[]) => {
   checkShot("blender.opener", plan.opener);
   checkShot("blender.hook", plan.hook);
   checkShot("blender.mechanism", plan.mechanism);
+  checkBeats("opener", plan.opener.beats);
   checkBeats("hook", plan.hook.beats);
   checkBeats("mechanism", plan.mechanism.beats);
   if (plan.mechanism.beats.length === 0) {

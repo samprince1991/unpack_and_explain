@@ -469,13 +469,15 @@ def _spray(level, center, half, coll, tokens):
     return mat
 
 
-def build_coast(scene, tokens, parts, placement="sea", show_model=True):
-    """Builds the world around the model. Returns the world state (`c.sea` in build.py)."""
+def build_coast(scene, tokens, parts, placement="sea", show_model=True, hover=0.0):
+    """Builds the world around the model. Returns the world state (`c.sea` in build.py).
+    `hover` (the catalog's, model units) lifts the model that far off the surface: a
+    helicopter hovering."""
     shore = SHORE[placement]
     lowest = _lowest(parts)
     center, half = _footprint(parts)
     over_water = shore > center.x + half.x * 0.5
-    ground = lowest - HOVER
+    ground = lowest - HOVER - hover
     # The model rests at the surface: on water that's the water level; on land the ground
     # under it, so the water sits lower by the terrain height there.
     level = ground if over_water else ground - height(-shore, 0.0)
@@ -561,7 +563,7 @@ def build_clip_world(scene, tokens, parts, camera_object, clip, fps):
     start = clip["start"]
     backdrop = clip["id"] == "backdrop"
     placement = "shore" if backdrop else start.get("coast", "sea")
-    world = build_coast(scene, tokens, parts, placement, show_model=not backdrop)
+    world = build_coast(scene, tokens, parts, placement, show_model=not backdrop, hover=clip.get("hover", 0.0))
     if clip["frames"] > 1:
         _animate(world, clip["frames"], fps)
 

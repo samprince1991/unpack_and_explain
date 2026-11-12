@@ -15,7 +15,7 @@ Dark navy shaded surfaces, soft key + rim light (neutral white), Freestyle lines
 
 ## The plan (`blender` in `script.ts`)
 
-- `model`, `cover` and `opener` shots, and `hook` and `mechanism` shots with `beats`.
+- `model`, `cover` and `opener` shots, and `hook` and `mechanism` shots with `beats`. The `opener` may take `beats` too, cued on the question line (a rotor already spinning at frame 0: cue the question's first word, fallback 0).
 - Shot fields: `yaw`, `pitch`, `zoom`, `keyPart`, `exploded`, `roll` (the picture tilts on screen; positive is clockwise), `aim` (a part that wide shots center on). A clip's start can also set `drift` (orbit in degrees per second, default 4; lower it for flat models, which the default turns edge-on).
 - Beats: `{ cue, fallback, do, part?, to?, label?, shot?, follow?, by?, frames? }`. Cues resolve with the same maths as `useCue`.
 - `coverText` is at most 4 words and defaults to `hookText`.
@@ -34,6 +34,14 @@ Dark navy shaded surfaces, soft key + rim light (neutral white), Freestyle lines
 | `shift` | A part slides to `by`; the catalog's `flex` parts (springs) stretch to stay attached. A catalog `groups` name (e.g. the coupe's `car`) moves all its parts together: a whole car hopping. `frames` sets the slide length (default 14); `frames: 0` is instant, for a part that starts somewhere else (a train placed off-screen, then shifted home at speed) |
 | `appear` | A catalog `appearOnly` part scales in |
 | `vanish` | An `appearOnly` part scales back out (air jets switching off) |
+| `tilt` | A part (or each part of a group, about its own pivot) turns to `by` = [x, y, z] degrees from rest over `frames` (default 14); [0, 0, 0] turns it back. Parts attached to it turn with it. Never on the axis a part spins about |
+
+Catalog fields for moving parts (`src/brand/models.ts`):
+
+- `attach` (child part -> parent part): the child's pivot rides on the parent's, so it follows the parent's shifts and tilts. Every pivot turns spin-first (ZYX order), so a spinning part attached to a tilted one spins about the tilted axis: the helicopter's upper swashplate on its lower plate, blades on the hub.
+- `groups` may also be a shot's `keyPart` (both blades amber) and a `tilt` target, as well as a `shift` target.
+- `spinAxes` overrides `spinAxis` per part (a tail rotor spinning sideways).
+- `hover` (model units): the coast world rests the model that far off the ground.
 
 ## Camera rhythm
 
@@ -65,6 +73,7 @@ Six worlds so far:
 | `rail` | A raised guideway at dusk: the model's own stretch of track (`guideway`, `wall`, coil parts) repeated end to end along x on concrete piers, over low grassland with hills in haze. 50 mm lens. The repeats have no lines and only the nearest 3 each way carry coils (Freestyle maps every vertex, so dense repeats slowed stills from seconds to minutes) | Maglev and other track-guided vehicles (idea 31) |
 
 - **Coast placements** (clip start field `coast`): `sea` (on the water, the beach far ahead; default), `shore` (on the water right at the beach), `land` (on the grass, the road and lamps behind it, the sea far back). The backdrop clip always shows the shore.
+- **Hovering:** a catalog `hover` lifts the model off the surface (the helicopter, idea 33, hovers 1.5 m over the grass on `land`).
 - **Hovercraft effects:** a model with a `skirt` part presses a shallow dip into the water and gets a ring of spray around the skirt, when it's over water.
 - The coast world draws no lines and fades into opaque haze with distance (never to transparent, which dithers into noise).
 - **Track:** the model sits on the tarmac; nothing in the world moves with it, so a `shift` on a whole-car group lifts it off the ground and back. Both worlds use a 30 mm lens (wider than the 50 mm the automatic close-up maths assumes), so set `zoom` by hand on close-ups of small parts.

@@ -1,0 +1,972 @@
+{
+  "postId": "post-33-helicopter-steering",
+  "estimated": false,
+  "sections": [
+    {
+      "id": "question",
+      "text": "Do you know how 1 rotor actually steers a helicopter?",
+      "file": "posts/post-33-helicopter-steering/vo/question.mp3",
+      "durationMs": 3530,
+      "captions": [
+        {
+          "text": "Do",
+          "startMs": 0,
+          "endMs": 163,
+          "timestampMs": 82,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 244,
+          "endMs": 325,
+          "timestampMs": 285,
+          "confidence": null
+        },
+        {
+          "text": " know",
+          "startMs": 372,
+          "endMs": 511,
+          "timestampMs": 442,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 569,
+          "endMs": 697,
+          "timestampMs": 633,
+          "confidence": null
+        },
+        {
+          "text": " 1",
+          "startMs": 789,
+          "endMs": 975,
+          "timestampMs": 882,
+          "confidence": null
+        },
+        {
+          "text": " rotor",
+          "startMs": 1080,
+          "endMs": 1358,
+          "timestampMs": 1219,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 1440,
+          "endMs": 1834,
+          "timestampMs": 1637,
+          "confidence": null
+        },
+        {
+          "text": " steers",
+          "startMs": 1892,
+          "endMs": 2206,
+          "timestampMs": 2049,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 2241,
+          "endMs": 2264,
+          "timestampMs": 2253,
+          "confidence": null
+        },
+        {
+          "text": " helicopter?",
+          "startMs": 2310,
+          "endMs": 3530,
+          "timestampMs": 2966,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "text": "Nobody tells you 2 plates do almost all of a helicopter's steering.",
+      "file": "posts/post-33-helicopter-steering/vo/hook.mp3",
+      "durationMs": 4226,
+      "captions": [
+        {
+          "text": "Nobody",
+          "startMs": 0,
+          "endMs": 383,
+          "timestampMs": 192,
+          "confidence": null
+        },
+        {
+          "text": " tells",
+          "startMs": 430,
+          "endMs": 639,
+          "timestampMs": 535,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 673,
+          "endMs": 755,
+          "timestampMs": 714,
+          "confidence": null
+        },
+        {
+          "text": " 2",
+          "startMs": 836,
+          "endMs": 1022,
+          "timestampMs": 929,
+          "confidence": null
+        },
+        {
+          "text": " plates",
+          "startMs": 1103,
+          "endMs": 1405,
+          "timestampMs": 1254,
+          "confidence": null
+        },
+        {
+          "text": " do",
+          "startMs": 1451,
+          "endMs": 1544,
+          "timestampMs": 1498,
+          "confidence": null
+        },
+        {
+          "text": " almost",
+          "startMs": 1625,
+          "endMs": 1962,
+          "timestampMs": 1793,
+          "confidence": null
+        },
+        {
+          "text": " all",
+          "startMs": 2055,
+          "endMs": 2276,
+          "timestampMs": 2165,
+          "confidence": null
+        },
+        {
+          "text": " of",
+          "startMs": 2322,
+          "endMs": 2368,
+          "timestampMs": 2345,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 2415,
+          "endMs": 2438,
+          "timestampMs": 2427,
+          "confidence": null
+        },
+        {
+          "text": " helicopter's",
+          "startMs": 2496,
+          "endMs": 3123,
+          "timestampMs": 2810,
+          "confidence": null
+        },
+        {
+          "text": " steering.",
+          "startMs": 3146,
+          "endMs": 4226,
+          "timestampMs": 3686,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "text": "A helicopter has no wing flaps to steer with. Its one main rotor has to do everything.",
+      "file": "posts/post-33-helicopter-steering/vo/setup.mp3",
+      "durationMs": 6500,
+      "captions": [
+        {
+          "text": "A",
+          "startMs": 0,
+          "endMs": 93,
+          "timestampMs": 47,
+          "confidence": null
+        },
+        {
+          "text": " helicopter",
+          "startMs": 186,
+          "endMs": 766,
+          "timestampMs": 476,
+          "confidence": null
+        },
+        {
+          "text": " has",
+          "startMs": 824,
+          "endMs": 998,
+          "timestampMs": 911,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 1103,
+          "endMs": 1312,
+          "timestampMs": 1208,
+          "confidence": null
+        },
+        {
+          "text": " wing",
+          "startMs": 1405,
+          "endMs": 1625,
+          "timestampMs": 1515,
+          "confidence": null
+        },
+        {
+          "text": " flaps",
+          "startMs": 1683,
+          "endMs": 2032,
+          "timestampMs": 1858,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 2067,
+          "endMs": 2136,
+          "timestampMs": 2102,
+          "confidence": null
+        },
+        {
+          "text": " steer",
+          "startMs": 2194,
+          "endMs": 2415,
+          "timestampMs": 2305,
+          "confidence": null
+        },
+        {
+          "text": " with.",
+          "startMs": 2473,
+          "endMs": 2798,
+          "timestampMs": 2636,
+          "confidence": null
+        },
+        {
+          "text": " Its",
+          "startMs": 3355,
+          "endMs": 3553,
+          "timestampMs": 3454,
+          "confidence": null
+        },
+        {
+          "text": " one",
+          "startMs": 3634,
+          "endMs": 3855,
+          "timestampMs": 3745,
+          "confidence": null
+        },
+        {
+          "text": " main",
+          "startMs": 3889,
+          "endMs": 4063,
+          "timestampMs": 3976,
+          "confidence": null
+        },
+        {
+          "text": " rotor",
+          "startMs": 4145,
+          "endMs": 4412,
+          "timestampMs": 4278,
+          "confidence": null
+        },
+        {
+          "text": " has",
+          "startMs": 4493,
+          "endMs": 4656,
+          "timestampMs": 4575,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 4714,
+          "endMs": 4772,
+          "timestampMs": 4743,
+          "confidence": null
+        },
+        {
+          "text": " do",
+          "startMs": 4853,
+          "endMs": 5027,
+          "timestampMs": 4940,
+          "confidence": null
+        },
+        {
+          "text": " everything.",
+          "startMs": 5190,
+          "endMs": 6500,
+          "timestampMs": 5892,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "mechanism",
+      "text": "Under the rotor sits the swashplate: one plate stays still, one spins. Pull the collective lever, and the whole plate rises. Every blade bites harder, so it climbs. Push the cyclic stick, and the plate tilts. Each blade bites harder on one side, the rotor tilts, and the helicopter goes that way.",
+      "file": "posts/post-33-helicopter-steering/vo/mechanism.mp3",
+      "durationMs": 21270,
+      "captions": [
+        {
+          "text": "Under",
+          "startMs": 0,
+          "endMs": 244,
+          "timestampMs": 122,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 290,
+          "endMs": 360,
+          "timestampMs": 325,
+          "confidence": null
+        },
+        {
+          "text": " rotor",
+          "startMs": 406,
+          "endMs": 650,
+          "timestampMs": 528,
+          "confidence": null
+        },
+        {
+          "text": " sits",
+          "startMs": 708,
+          "endMs": 929,
+          "timestampMs": 819,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 964,
+          "endMs": 1033,
+          "timestampMs": 999,
+          "confidence": null
+        },
+        {
+          "text": " swashplate:",
+          "startMs": 1080,
+          "endMs": 1974,
+          "timestampMs": 1527,
+          "confidence": null
+        },
+        {
+          "text": " one",
+          "startMs": 2241,
+          "endMs": 2450,
+          "timestampMs": 2346,
+          "confidence": null
+        },
+        {
+          "text": " plate",
+          "startMs": 2485,
+          "endMs": 2752,
+          "timestampMs": 2619,
+          "confidence": null
+        },
+        {
+          "text": " stays",
+          "startMs": 2775,
+          "endMs": 3053,
+          "timestampMs": 2914,
+          "confidence": null
+        },
+        {
+          "text": " still,",
+          "startMs": 3088,
+          "endMs": 3669,
+          "timestampMs": 3379,
+          "confidence": null
+        },
+        {
+          "text": " one",
+          "startMs": 3936,
+          "endMs": 4203,
+          "timestampMs": 4069,
+          "confidence": null
+        },
+        {
+          "text": " spins.",
+          "startMs": 4249,
+          "endMs": 5004,
+          "timestampMs": 4627,
+          "confidence": null
+        },
+        {
+          "text": " Pull",
+          "startMs": 5666,
+          "endMs": 5933,
+          "timestampMs": 5800,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 5991,
+          "endMs": 6060,
+          "timestampMs": 6025,
+          "confidence": null
+        },
+        {
+          "text": " collective",
+          "startMs": 6095,
+          "endMs": 6513,
+          "timestampMs": 6304,
+          "confidence": null
+        },
+        {
+          "text": " lever,",
+          "startMs": 6548,
+          "endMs": 6838,
+          "timestampMs": 6693,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 6861,
+          "endMs": 6943,
+          "timestampMs": 6902,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 6989,
+          "endMs": 7059,
+          "timestampMs": 7024,
+          "confidence": null
+        },
+        {
+          "text": " whole",
+          "startMs": 7105,
+          "endMs": 7326,
+          "timestampMs": 7216,
+          "confidence": null
+        },
+        {
+          "text": " plate",
+          "startMs": 7361,
+          "endMs": 7616,
+          "timestampMs": 7489,
+          "confidence": null
+        },
+        {
+          "text": " rises.",
+          "startMs": 7663,
+          "endMs": 8452,
+          "timestampMs": 8058,
+          "confidence": null
+        },
+        {
+          "text": " Every",
+          "startMs": 9009,
+          "endMs": 9276,
+          "timestampMs": 9143,
+          "confidence": null
+        },
+        {
+          "text": " blade",
+          "startMs": 9323,
+          "endMs": 9601,
+          "timestampMs": 9462,
+          "confidence": null
+        },
+        {
+          "text": " bites",
+          "startMs": 9636,
+          "endMs": 9892,
+          "timestampMs": 9764,
+          "confidence": null
+        },
+        {
+          "text": " harder,",
+          "startMs": 9938,
+          "endMs": 10263,
+          "timestampMs": 10101,
+          "confidence": null
+        },
+        {
+          "text": " so",
+          "startMs": 10286,
+          "endMs": 10379,
+          "timestampMs": 10333,
+          "confidence": null
+        },
+        {
+          "text": " it",
+          "startMs": 10472,
+          "endMs": 10542,
+          "timestampMs": 10507,
+          "confidence": null
+        },
+        {
+          "text": " climbs.",
+          "startMs": 10577,
+          "endMs": 11262,
+          "timestampMs": 10920,
+          "confidence": null
+        },
+        {
+          "text": " Push",
+          "startMs": 11923,
+          "endMs": 12202,
+          "timestampMs": 12063,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 12249,
+          "endMs": 12318,
+          "timestampMs": 12284,
+          "confidence": null
+        },
+        {
+          "text": " cyclic",
+          "startMs": 12365,
+          "endMs": 12794,
+          "timestampMs": 12580,
+          "confidence": null
+        },
+        {
+          "text": " stick,",
+          "startMs": 12852,
+          "endMs": 13305,
+          "timestampMs": 13079,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 13409,
+          "endMs": 13537,
+          "timestampMs": 13473,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 13572,
+          "endMs": 13641,
+          "timestampMs": 13607,
+          "confidence": null
+        },
+        {
+          "text": " plate",
+          "startMs": 13688,
+          "endMs": 13943,
+          "timestampMs": 13816,
+          "confidence": null
+        },
+        {
+          "text": " tilts.",
+          "startMs": 13978,
+          "endMs": 14651,
+          "timestampMs": 14314,
+          "confidence": null
+        },
+        {
+          "text": " Each",
+          "startMs": 15406,
+          "endMs": 15627,
+          "timestampMs": 15517,
+          "confidence": null
+        },
+        {
+          "text": " blade",
+          "startMs": 15673,
+          "endMs": 15963,
+          "timestampMs": 15818,
+          "confidence": null
+        },
+        {
+          "text": " bites",
+          "startMs": 15998,
+          "endMs": 16265,
+          "timestampMs": 16131,
+          "confidence": null
+        },
+        {
+          "text": " harder",
+          "startMs": 16347,
+          "endMs": 16648,
+          "timestampMs": 16498,
+          "confidence": null
+        },
+        {
+          "text": " on",
+          "startMs": 16706,
+          "endMs": 16788,
+          "timestampMs": 16747,
+          "confidence": null
+        },
+        {
+          "text": " one",
+          "startMs": 16881,
+          "endMs": 17055,
+          "timestampMs": 16968,
+          "confidence": null
+        },
+        {
+          "text": " side,",
+          "startMs": 17101,
+          "endMs": 17589,
+          "timestampMs": 17345,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 17891,
+          "endMs": 17995,
+          "timestampMs": 17943,
+          "confidence": null
+        },
+        {
+          "text": " rotor",
+          "startMs": 18053,
+          "endMs": 18320,
+          "timestampMs": 18187,
+          "confidence": null
+        },
+        {
+          "text": " tilts,",
+          "startMs": 18378,
+          "endMs": 18947,
+          "timestampMs": 18663,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 19086,
+          "endMs": 19226,
+          "timestampMs": 19156,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 19272,
+          "endMs": 19342,
+          "timestampMs": 19307,
+          "confidence": null
+        },
+        {
+          "text": " helicopter",
+          "startMs": 19377,
+          "endMs": 19934,
+          "timestampMs": 19656,
+          "confidence": null
+        },
+        {
+          "text": " goes",
+          "startMs": 19992,
+          "endMs": 20178,
+          "timestampMs": 20085,
+          "confidence": null
+        },
+        {
+          "text": " that",
+          "startMs": 20224,
+          "endMs": 20375,
+          "timestampMs": 20300,
+          "confidence": null
+        },
+        {
+          "text": " way.",
+          "startMs": 20433,
+          "endMs": 21270,
+          "timestampMs": 20898,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "text": "But spinning the rotor twists the body the other way. So a small tail rotor pushes sideways to hold the nose straight.",
+      "file": "posts/post-33-helicopter-steering/vo/payoff.mp3",
+      "durationMs": 7709,
+      "captions": [
+        {
+          "text": "But",
+          "startMs": 0,
+          "endMs": 209,
+          "timestampMs": 105,
+          "confidence": null
+        },
+        {
+          "text": " spinning",
+          "startMs": 267,
+          "endMs": 639,
+          "timestampMs": 453,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 673,
+          "endMs": 743,
+          "timestampMs": 708,
+          "confidence": null
+        },
+        {
+          "text": " rotor",
+          "startMs": 789,
+          "endMs": 1057,
+          "timestampMs": 923,
+          "confidence": null
+        },
+        {
+          "text": " twists",
+          "startMs": 1115,
+          "endMs": 1416,
+          "timestampMs": 1265,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 1451,
+          "endMs": 1521,
+          "timestampMs": 1486,
+          "confidence": null
+        },
+        {
+          "text": " body",
+          "startMs": 1567,
+          "endMs": 1823,
+          "timestampMs": 1695,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 1881,
+          "endMs": 1950,
+          "timestampMs": 1916,
+          "confidence": null
+        },
+        {
+          "text": " other",
+          "startMs": 2009,
+          "endMs": 2194,
+          "timestampMs": 2101,
+          "confidence": null
+        },
+        {
+          "text": " way.",
+          "startMs": 2252,
+          "endMs": 2670,
+          "timestampMs": 2461,
+          "confidence": null
+        },
+        {
+          "text": " So",
+          "startMs": 2937,
+          "endMs": 3100,
+          "timestampMs": 3019,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 3181,
+          "endMs": 3216,
+          "timestampMs": 3199,
+          "confidence": null
+        },
+        {
+          "text": " small",
+          "startMs": 3297,
+          "endMs": 3646,
+          "timestampMs": 3472,
+          "confidence": null
+        },
+        {
+          "text": " tail",
+          "startMs": 3727,
+          "endMs": 3924,
+          "timestampMs": 3826,
+          "confidence": null
+        },
+        {
+          "text": " rotor",
+          "startMs": 3982,
+          "endMs": 4203,
+          "timestampMs": 4093,
+          "confidence": null
+        },
+        {
+          "text": " pushes",
+          "startMs": 4261,
+          "endMs": 4574,
+          "timestampMs": 4418,
+          "confidence": null
+        },
+        {
+          "text": " sideways",
+          "startMs": 4621,
+          "endMs": 5132,
+          "timestampMs": 4877,
+          "confidence": null
+        },
+        {
+          "text": " to",
+          "startMs": 5178,
+          "endMs": 5236,
+          "timestampMs": 5207,
+          "confidence": null
+        },
+        {
+          "text": " hold",
+          "startMs": 5294,
+          "endMs": 5468,
+          "timestampMs": 5381,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 5503,
+          "endMs": 5573,
+          "timestampMs": 5538,
+          "confidence": null
+        },
+        {
+          "text": " nose",
+          "startMs": 5631,
+          "endMs": 5875,
+          "timestampMs": 5753,
+          "confidence": null
+        },
+        {
+          "text": " straight.",
+          "startMs": 5909,
+          "endMs": 7709,
+          "timestampMs": 6809,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "congrats",
+      "text": "Congrats, you just learned how a helicopter steers.",
+      "file": "posts/post-33-helicopter-steering/vo/congrats.mp3",
+      "durationMs": 3300,
+      "captions": [
+        {
+          "text": "Congrats,",
+          "startMs": 0,
+          "endMs": 848,
+          "timestampMs": 424,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 1196,
+          "endMs": 1289,
+          "timestampMs": 1243,
+          "confidence": null
+        },
+        {
+          "text": " just",
+          "startMs": 1370,
+          "endMs": 1509,
+          "timestampMs": 1440,
+          "confidence": null
+        },
+        {
+          "text": " learned",
+          "startMs": 1544,
+          "endMs": 1753,
+          "timestampMs": 1648,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1788,
+          "endMs": 1869,
+          "timestampMs": 1829,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1916,
+          "endMs": 1939,
+          "timestampMs": 1928,
+          "confidence": null
+        },
+        {
+          "text": " helicopter",
+          "startMs": 1985,
+          "endMs": 2496,
+          "timestampMs": 2241,
+          "confidence": null
+        },
+        {
+          "text": " steers.",
+          "startMs": 2554,
+          "endMs": 3300,
+          "timestampMs": 2972,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "text": "Follow Unpack and Explain for how things actually work.",
+      "file": "posts/post-33-helicopter-steering/vo/cta.mp3",
+      "durationMs": 3669,
+      "captions": [
+        {
+          "text": "Follow",
+          "startMs": 0,
+          "endMs": 337,
+          "timestampMs": 169,
+          "confidence": null
+        },
+        {
+          "text": " Unpack",
+          "startMs": 441,
+          "endMs": 917,
+          "timestampMs": 679,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 1010,
+          "endMs": 1196,
+          "timestampMs": 1103,
+          "confidence": null
+        },
+        {
+          "text": " Explain",
+          "startMs": 1277,
+          "endMs": 1695,
+          "timestampMs": 1486,
+          "confidence": null
+        },
+        {
+          "text": " for",
+          "startMs": 1776,
+          "endMs": 1881,
+          "timestampMs": 1829,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1939,
+          "endMs": 2055,
+          "timestampMs": 1997,
+          "confidence": null
+        },
+        {
+          "text": " things",
+          "startMs": 2136,
+          "endMs": 2403,
+          "timestampMs": 2270,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 2496,
+          "endMs": 2972,
+          "timestampMs": 2734,
+          "confidence": null
+        },
+        {
+          "text": " work.",
+          "startMs": 3007,
+          "endMs": 3669,
+          "timestampMs": 3338,
+          "confidence": null
+        }
+      ]
+    }
+  ]
+}

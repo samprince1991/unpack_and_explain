@@ -183,7 +183,7 @@ export const buildBlenderJob = (script: PostScript, vo: VoManifest, fps: number)
       start: shotOf(plan.cover),
       beats: [],
     }),
-    reelClip("opener", "question", plan.opener),
+    reelClip("opener", "question", plan.opener, plan.opener.beats),
     reelClip("hook", "hook", plan.hook, plan.hook.beats),
     reelClip("mechanism", "mechanism", plan.mechanism, plan.mechanism.beats),
   ];

@@ -98,7 +98,21 @@ describe("part groups", () => {
     expect(validateScript(coupe([{ ...beat, do: "shift", part: "car", by: [0, 0, 0.3] }])).errors).toEqual([]);
   });
 
-  it("only lets shift use a group", () => {
-    expect(validateScript(coupe([{ ...beat, do: "focus", part: "car" }])).errors[0]).toMatch(/group "car" only applies to shift/);
+  it("only lets shift, tilt and keyPart use a group", () => {
+    expect(validateScript(coupe([{ ...beat, do: "focus", part: "car" }])).errors[0]).toMatch(/group "car" only applies to shift, tilt and keyPart/);
+  });
+
+  it("lets a tilt turn a catalog group and a shot key a group amber", () => {
+    expect(
+      validateScript(coupe([{ ...beat, do: "tilt", part: "car", by: [0, 5, 0], frames: 10, shot: { keyPart: "car" } }])).errors,
+    ).toEqual([]);
+  });
+
+  it("needs angles on a tilt", () => {
+    expect(validateScript(coupe([{ ...beat, do: "tilt", part: "car" }])).errors[0]).toMatch(/"tilt" needs angles \(by\)/);
+  });
+
+  it("keeps by and frames to shift and tilt", () => {
+    expect(validateScript(coupe([{ ...beat, do: "spin", part: "wheels", by: [0, 0, 1] }])).errors[0]).toMatch(/"by" only applies to shift and tilt/);
   });
 });

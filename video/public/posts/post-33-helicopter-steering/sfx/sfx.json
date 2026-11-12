@@ -1,0 +1,23 @@
+{
+  "postId": "post-33-helicopter-steering",
+  "sounds": {
+    "rotor": {
+      "prompt": "distant helicopter rotor blades thumping steadily overhead, soft, no engine whine",
+      "seconds": 2.5,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-33-helicopter-steering/sfx/rotor.mp3"
+    },
+    "slide": {
+      "prompt": "short smooth metal sliding click, well-oiled mechanism moving, soft",
+      "seconds": 0.7,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-33-helicopter-steering/sfx/slide.mp3"
+    },
+    "turn": {
+      "prompt": "soft airy whoosh turning round, gentle rotation swish, short",
+      "seconds": 1,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-33-helicopter-steering/sfx/turn.mp3"
+    }
+  }
+}
