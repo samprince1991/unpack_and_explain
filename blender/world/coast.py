@@ -1,5 +1,5 @@
 """The `coast` world: sea, a beach, dunes, grassland with a road, fence, lamps and power lines,
-and hills on the horizon, under the sea world's sky and low warm sun. One scene, three
+and hills on the horizon, under the sea world's daylight sky and afternoon sun. One scene, three
 placements of the model (clip start field `coast`):
 
 - sea:   the model on the water, the beach and land ahead in the distance (default)
@@ -11,10 +11,12 @@ with a `skirt` part is a hovercraft: over water its cushion presses a shallow di
 surface and a ring of spray rises around the skirt.
 
 The world is shaded but carries no Freestyle lines; lines stay on the model's parts, so
-`qc.py` still checks only the model. Colors: the muted `env.*` tokens only. Everything is
+`qc.py` still checks only the model. Colors: the `env.*` tokens (daylight sky), plus a CC0
+photo texture on the grass, graded in the shader. Everything is
 deterministic (no random), so a re-render draws the same picture."""
 
 import math
+import os
 import sys
 
 import bpy
@@ -55,6 +57,12 @@ SPAN = 46.0  # half length of the road, fence and lines along y
 DIP = 0.035  # how far the cushion presses the water down (exaggerated to read on screen)
 SPRAY_H, SPRAY_FLARE = 0.2, 0.28
 SPRAY_DRIFT = 0.03
+
+# Grass: a photo texture tiled every GRASS_TILE units (under a third of the 2-unit model),
+# its hue nudged from brown toward green and its saturation lifted a little.
+GRASS_TEX = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "textures", "leafy_grass")
+GRASS_TILE = 0.6
+GRASS_HUE, GRASS_SAT = 0.54, 1.15
 
 
 def _smooth(e0, e1, x):
@@ -112,7 +120,7 @@ def _grid(name, xs, ys, z_of):
 def _fog_shader(tree, tokens):
     """Opaque fog: unlit horizon color. Fading to transparent instead dithers into noise."""
     fog = tree.nodes.new("ShaderNodeEmission")
-    fog.inputs["Color"].default_value = color(tokens["colors"]["env"]["horizon"])
+    fog.inputs["Color"].default_value = color(tokens["colors"]["env"]["horizonDay"])
     fog.inputs["Strength"].default_value = 1.0
     return fog
 
@@ -191,6 +199,177 @@ def _terrain_material(tokens):
     tree.links.new(attr.outputs["Color"], tint.inputs[0])
     tree.links.new(shade.outputs["Result"], tint.inputs["Scale"])
     tree.links.new(tint.outputs["Vector"], bsdf.inputs["Base Color"])
+    _grass_texture(tree, bsdf, coord, tint, patches, near)
+    _fade(mat, tokens)
+    return mat
+
+
+def _grass_image(tree, folder, kind, vector, non_color):
+    name = os.path.basename(folder.rstrip("/\\"))
+    node = tree.nodes.new("ShaderNodeTexImage")
+    node.image = bpy.data.images.load(os.path.join(folder, f"{name}_{kind}_2k.jpg"), check_existing=True)
+    if non_color:
+        node.image.colorspace_settings.name = "Non-Color"
+    tree.links.new(vector, node.inputs["Vector"])
+    return node
+
+
+def _grass_texture(tree, bsdf, coord, tint, patches, near):
+    """A photo texture on the grass (CC0, `textures/README.md`), graded greener.
+
+    Applied where the `grass` attribute is 1 (coast only; rail and track have no attribute,
+    so they keep their vertex colors)."""
+    folder, tile = GRASS_TEX, GRASS_TILE
+    # Two scales, mixed by the large patches, so the tiling doesn't repeat visibly.
+    scales = []
+    for s in (1.0 / tile, 0.27 / tile):
+        m = tree.nodes.new("ShaderNodeVectorMath")
+        m.operation = "SCALE"
+        m.inputs["Scale"].default_value = s
+        tree.links.new(coord.outputs["Object"], m.inputs[0])
+        scales.append(m.outputs["Vector"])
+
+    def sampled(kind, non_color):
+        a = _grass_image(tree, folder, kind, scales[0], non_color)
+        b = _grass_image(tree, folder, kind, scales[1], non_color)
+        mix = tree.nodes.new("ShaderNodeMix")
+        mix.data_type = "RGBA"
+        tree.links.new(patches.outputs["Fac"], mix.inputs["Factor"])
+        tree.links.new(a.outputs["Color"], mix.inputs["A"])
+        tree.links.new(b.outputs["Color"], mix.inputs["B"])
+        return mix.outputs["Result"]
+
+    grade = tree.nodes.new("ShaderNodeHueSaturation")
+    grade.inputs["Hue"].default_value = GRASS_HUE
+    grade.inputs["Saturation"].default_value = GRASS_SAT
+    tree.links.new(sampled("diff", False), grade.inputs["Color"])
+
+    mask = tree.nodes.new("ShaderNodeAttribute")
+    mask.attribute_name = "grass"
+    base = tree.nodes.new("ShaderNodeMix")
+    base.data_type = "RGBA"
+    tree.links.new(mask.outputs["Fac"], base.inputs["Factor"])
+    tree.links.new(tint.outputs["Vector"], base.inputs["A"])
+    tree.links.new(grade.outputs["Color"], base.inputs["B"])
+    tree.links.new(base.outputs["Result"], bsdf.inputs["Base Color"])
+
+    rough = tree.nodes.new("ShaderNodeMix")
+    rough.data_type = "FLOAT"
+    rough.inputs["A"].default_value = 0.92
+    tree.links.new(mask.outputs["Fac"], rough.inputs["Factor"])
+    tree.links.new(sampled("rough", True), rough.inputs["B"])
+    tree.links.new(rough.outputs["Result"], bsdf.inputs["Roughness"])
+
+    # Normal map under the existing fine bump, fading with distance like the bump does.
+    normal = tree.nodes.new("ShaderNodeNormalMap")
+    tree.links.new(sampled("nor_gl", True), normal.inputs["Color"])
+    strength = tree.nodes.new("ShaderNodeMath")
+    strength.operation = "MULTIPLY"
+    tree.links.new(near.outputs["Result"], strength.inputs[0])
+    tree.links.new(mask.outputs["Fac"], strength.inputs[1])
+    scale = tree.nodes.new("ShaderNodeMath")
+    scale.operation = "MULTIPLY"
+    scale.inputs[1].default_value = 3.0
+    tree.links.new(strength.outputs["Value"], scale.inputs[0])
+    tree.links.new(scale.outputs["Value"], normal.inputs["Strength"])
+    bump = next(n for n in tree.nodes if n.type == "BUMP")
+    tree.links.new(normal.outputs["Normal"], bump.inputs["Normal"])
+
+
+# Grass blades: hair curves near the model, on top of the textured ground. Freestyle reads only
+# meshes, so the blades add no lines and no view-map cost.
+BLADES_NEAR, BLADES_FAR = 4.0, 14.0  # full inside NEAR; thinner and shorter out to none at FAR
+BLADES_DENSITY = 2400  # blades per square unit at full density
+BLADE_H = (0.025, 0.06)  # blade height range, units
+BLADE_R = 0.003  # blade half width at the root, units
+BLADE_POINTS = 4
+
+
+def _grass_blades(center, z_of, weight_of, coll, tokens, name="grass"):
+    """Hair-curve blades around `center` (x, y). z_of(x, y) is the ground height; weight_of(x, y)
+    is 0..1, how much grass grows there (0 on sand and roads): blades shrink toward 0."""
+    import numpy as np
+
+    rng = np.random.RandomState(7)  # fixed seed: the same blades every render
+    cx, cy = center
+    side = 2 * BLADES_FAR
+    n = int(BLADES_DENSITY * side * side)
+    x = cx + (rng.random_sample(n) - 0.5) * side
+    y = cy + (rng.random_sample(n) - 0.5) * side
+    r = np.hypot(x - cx, y - cy)
+    falloff = np.clip((BLADES_FAR - r) / (BLADES_FAR - BLADES_NEAR), 0.0, 1.0)
+    keep = rng.random_sample(n) < 0.25 + 0.75 * falloff
+    keep &= falloff > 0
+    x, y, falloff = x[keep], y[keep], falloff[keep]
+    roots, size = [], []
+    for xi, yi, fi in zip(x.tolist(), y.tolist(), falloff.tolist()):
+        edge = weight_of(xi, yi)
+        if edge <= 0.05:
+            continue  # only on the grass, never on the sand or the road
+        roots.append((xi, yi, z_of(xi, yi)))
+        size.append(fi ** 0.7 * edge)  # blades shrink into the textured ground: no hard edges
+    m = len(roots)
+    if m == 0:
+        return None
+    roots = np.array(roots)
+    h = (BLADE_H[0] + (BLADE_H[1] - BLADE_H[0]) * rng.random_sample(m)) * np.array(size)
+    lean_a = rng.random_sample(m) * 2 * math.pi
+    lean = 0.15 + 0.35 * rng.random_sample(m)  # tip offset as a fraction of the height
+    t = np.linspace(0.0, 1.0, BLADE_POINTS)
+    pts = np.empty((m, BLADE_POINTS, 3))
+    pts[:, :, 0] = roots[:, None, 0] + (np.cos(lean_a) * lean * h)[:, None] * t[None, :] ** 2
+    pts[:, :, 1] = roots[:, None, 1] + (np.sin(lean_a) * lean * h)[:, None] * t[None, :] ** 2
+    pts[:, :, 2] = roots[:, None, 2] - 0.004 + h[:, None] * t[None, :]
+    radius = np.tile(BLADE_R * (1.0 - 0.85 * t), m)
+
+    curves = bpy.data.hair_curves.new(name)
+    curves.add_curves([BLADE_POINTS] * m)
+    curves.attributes["position"].data.foreach_set("vector", pts.reshape(-1).tolist())
+    rad = curves.attributes.get("radius") or curves.attributes.new("radius", "FLOAT", "POINT")
+    rad.data.foreach_set("value", radius.tolist())
+    obj = bpy.data.objects.new(name, curves)
+    coll.objects.link(obj)
+    obj.data.materials.append(_blade_material(tokens))
+    return obj
+
+
+def _blade_material(tokens):
+    """The ground texture sampled at each blade's position, darker at the root, lighter at the tip."""
+    mat = bpy.data.materials.new("coast-grass")
+    mat.use_nodes = True
+    tree = mat.node_tree
+    bsdf = sea_world._principled(mat)
+    bsdf.inputs["Roughness"].default_value = 0.7
+    coord = tree.nodes.new("ShaderNodeTexCoord")
+    scale = tree.nodes.new("ShaderNodeVectorMath")
+    scale.operation = "SCALE"
+    scale.inputs["Scale"].default_value = 1.0 / GRASS_TILE
+    tree.links.new(coord.outputs["Object"], scale.inputs[0])
+    image = _grass_image(tree, GRASS_TEX, "diff", scale.outputs["Vector"], False)
+    grade = tree.nodes.new("ShaderNodeHueSaturation")
+    grade.inputs["Hue"].default_value = GRASS_HUE + 0.03  # blades a touch greener than the ground
+    grade.inputs["Saturation"].default_value = GRASS_SAT
+    tree.links.new(image.outputs["Color"], grade.inputs["Color"])
+    info = tree.nodes.new("ShaderNodeHairInfo")
+    shade = tree.nodes.new("ShaderNodeMapRange")
+    shade.inputs["To Min"].default_value = 0.9
+    shade.inputs["To Max"].default_value = 1.35
+    tree.links.new(info.outputs["Intercept"], shade.inputs["Value"])
+    tint = tree.nodes.new("ShaderNodeVectorMath")
+    tint.operation = "SCALE"
+    tree.links.new(grade.outputs["Color"], tint.inputs[0])
+    tree.links.new(shade.outputs["Result"], tint.inputs["Scale"])
+    tree.links.new(tint.outputs["Vector"], bsdf.inputs["Base Color"])
+    # Thin blades let light through: part translucent, so backlit blades aren't black. Not
+    # emission: the amber glow is built from the Emission pass, so it would bloom the frame.
+    output = next(n for n in tree.nodes if n.type == "OUTPUT_MATERIAL")
+    through = tree.nodes.new("ShaderNodeBsdfTranslucent")
+    tree.links.new(tint.outputs["Vector"], through.inputs["Color"])
+    blend = tree.nodes.new("ShaderNodeMixShader")
+    blend.inputs[0].default_value = 0.4
+    tree.links.new(bsdf.outputs[0], blend.inputs[1])
+    tree.links.new(through.outputs[0], blend.inputs[2])
+    tree.links.new(blend.outputs[0], output.inputs["Surface"])
     _fade(mat, tokens)
     return mat
 
@@ -201,9 +380,10 @@ def _mix(a, b, t):
 
 def _paint_ground(obj, level, shore, tokens):
     env = tokens["colors"]["env"]
-    sand, land, foam = color(env["sand"]), color(env["land"]), color(env["horizon"])
+    sand, land, foam = color(env["sand"]), color(env["land"]), color(env["horizonDay"])
     wet = _mix(sand, color(env["seaShallow"]), 0.55)
     layer = obj.data.color_attributes.new("ground", "FLOAT_COLOR", "POINT")
+    grass_mask = obj.data.attributes.new("grass", "FLOAT", "POINT")
     for i, v in enumerate(obj.data.vertices):
         x, y, z = v.co
         u = x - shore - shore_offset(y)
@@ -214,6 +394,7 @@ def _paint_ground(obj, level, shore, tokens):
         c = _mix(c, foam, 0.55 * (1 - _smooth(0.0, 0.018, abs(h - 0.006))))  # the foam line
         c = _mix(c, land, 0.25 * _smooth(HILL0, HILL1, u))  # darker far hills
         layer.data[i].color = c
+        grass_mask.data[i].value = grass * _smooth(0.0, 0.05, h)
 
 
 def _link(obj, coll, mat):
@@ -307,7 +488,7 @@ def _fence_and_lamps(level, shore, coll, tokens):
     glow = _plain("coast-lamphead", "light", tokens, fade=True)
     bsdf = sea_world._principled(glow)
     bsdf.inputs["Emission Color"].default_value = color(tokens["colors"]["env"]["light"])
-    bsdf.inputs["Emission Strength"].default_value = 2.5
+    bsdf.inputs["Emission Strength"].default_value = 0.0  # daylight: the lamps are off
     _link(_merge("coast-lampheads", heads), coll, glow)
 
 
@@ -426,9 +607,9 @@ def _spray(level, center, half, coll, tokens):
     out = tree.nodes.new("ShaderNodeOutputMaterial")
     # Mostly self-lit: spray catches the light all round, it never sits in the hull's shadow.
     lit = tree.nodes.new("ShaderNodeBsdfDiffuse")
-    lit.inputs["Color"].default_value = color(tokens["colors"]["env"]["horizon"])
+    lit.inputs["Color"].default_value = color(tokens["colors"]["env"]["horizonDay"])
     glow = tree.nodes.new("ShaderNodeEmission")
-    glow.inputs["Color"].default_value = color(tokens["colors"]["env"]["horizon"])
+    glow.inputs["Color"].default_value = color(tokens["colors"]["env"]["horizonDay"])
     glow.inputs["Strength"].default_value = 0.9
     mist = tree.nodes.new("ShaderNodeAddShader")
     tree.links.new(lit.outputs[0], mist.inputs[0])
@@ -495,6 +676,12 @@ def build_coast(scene, tokens, parts, placement="sea", show_model=True, hover=0.
     terrain = _grid("coast-terrain", xs, ys, lambda x, y: _ground_z(level, shore, x, y))
     _paint_ground(terrain, level, shore, tokens)
     _link(terrain, coll, _terrain_material(tokens))
+    if not over_water and show_model:
+        def weight(x, y):
+            u = x - shore - shore_offset(y)
+            return _smooth(DUNE1 + 1.0, DUNE1 + 3.5, u) * _smooth(ROAD_W / 2, ROAD_W / 2 + 0.4, abs(u - ROAD_U))
+
+        _grass_blades((center[0], center[1]), lambda x, y: _ground_z(level, shore, x, y), weight, coll, tokens, "coast-grass")
     water, water_mat = _water(scene, level, shore, center, half, over_water and show_model, coll, tokens)
     _road(level, shore, coll, tokens)
     _fence_and_lamps(level, shore, coll, tokens)

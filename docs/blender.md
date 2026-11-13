@@ -57,9 +57,9 @@ Wide, close-ups on the part that matters, then wide again.
 
 ## Worlds (required)
 
-Every new reel renders inside a world (decided 2026-11-10, see `docs/design-decisions.md`). `validateScript` fails a plan with no `world`; only posts built before then set `worldOptOut` with a reason. When no existing world fits the topic, build a new one in `blender/world/` before the post's 3D (muted `env.*` tones, one amber key) and add its id to `WORLDS` in `src/templates/types.ts`.
+Every new reel renders inside a world (decided 2026-11-10, see `docs/design-decisions.md`). `validateScript` fails a plan with no `world`; only posts built before then set `worldOptOut` with a reason. When no existing world fits the topic, build a new one in `blender/world/` before the post's 3D (`env.*` tokens, outdoor worlds in daylight, one amber key) and add its id to `WORLDS` in `src/templates/types.ts`.
 
-`world: "sea"` in the plan renders every clip opaque and full-frame inside that world, and adds a `backdrop` clip that plays dimmed behind the 2D setup and payoff. Code: `blender/world/`. Colors: the muted `env.*` tokens.
+`world: "sea"` in the plan renders every clip opaque and full-frame inside that world, and adds a `backdrop` clip that plays dimmed behind the 2D setup and payoff. Code: `blender/world/`. Colors: the `env.*` tokens; outdoor worlds (sea, coast, track, rail) use the daylight ones (`skyDay`, `horizonDay`, `sunDay`, and blue `surface` / `seaShallow` / `seaDeep` water), indoor worlds (bench, cafe) the dark ones.
 
 Six worlds so far:
 
@@ -67,19 +67,20 @@ Six worlds so far:
 |---|---|---|
 | `sea` | Open sea cut in section along a ship's hull, so the part below the waterline shows. Needs a model with a `waterline` part (`validateScript` checks it) | Ships, hulls, anything that sits in the water |
 | `coast` | Sea, beach, dunes, grassland with a road, fence, lamps and power lines, hills fading into haze. Any model | Anything that sits on water or land: hovercraft, vehicles, bridges, outdoor machines |
-| `track` | A test track at dusk: a straight of tarmac along the model's forward axis with edge lines, a low barrier and light towers on the far (+y) side, a launch ramp ahead, low sheds, grassland and hills in haze. Any model | Cars and other ground vehicles: jumps, launches, braking, grip (ideas 28, 30, 34) |
+| `track` | A test track in afternoon light: a straight of tarmac along the model's forward axis with edge lines, a low barrier and light towers on the far (+y) side, a launch ramp ahead, low sheds, grassland and hills in haze. Any model | Cars and other ground vehicles: jumps, launches, braking, grip (ideas 28, 30, 34) |
 | `bench` | A jeweller's workbench at night: a wide wooden bench top, a dim back wall with a pegboard of hanging tools and a shelf of jars, and a desk lamp at the far left throwing a warm pool of light on the model. 50 mm lens, so automatic close-ups size themselves. Any model | Jewellery, small crafted objects, anything made by hand on a table (idea 38) |
 | `cafe` | A cafe table at night: a round wooden table top, a coffee cup on its saucer to the left, a dim back wall with a long dark window and a bench seat, and a pendant lamp above throwing a warm pool of light on the model. 50 mm lens. Any model | Everyday objects you meet at a table: QR codes, phones, cards, receipts, cups (idea 14) |
-| `rail` | A raised guideway at dusk: the model's own stretch of track (`guideway`, `wall`, coil parts) repeated end to end along x on concrete piers, over low grassland with hills in haze. 50 mm lens. The repeats have no lines and only the nearest 3 each way carry coils (Freestyle maps every vertex, so dense repeats slowed stills from seconds to minutes) | Maglev and other track-guided vehicles (idea 31) |
+| `rail` | A raised guideway in afternoon light: the model's own stretch of track (`guideway`, `wall`, coil parts) repeated end to end along x on concrete piers, over low grassland with hills in haze. 50 mm lens. The repeats have no lines and only the nearest 3 each way carry coils (Freestyle maps every vertex, so dense repeats slowed stills from seconds to minutes) | Maglev and other track-guided vehicles (idea 31) |
 
 - **Coast placements** (clip start field `coast`): `sea` (on the water, the beach far ahead; default), `shore` (on the water right at the beach), `land` (on the grass, the road and lamps behind it, the sea far back). The backdrop clip always shows the shore.
 - **Hovering:** a catalog `hover` lifts the model off the surface (the helicopter, idea 33, hovers 1.5 m over the grass on `land`).
 - **Hovercraft effects:** a model with a `skirt` part presses a shallow dip into the water and gets a ring of spray around the skirt, when it's over water.
 - The coast world draws no lines and fades into opaque haze with distance (never to transparent, which dithers into noise).
+- **Daylight and grass (coast, track, rail; 2026-11-13):** a blue afternoon sky with a high sun, so the model casts a shadow on the ground; lamps are off. Grass is a CC0 Poly Haven photo texture (`blender/textures/`, see its README), tiled every 0.6 units in two scales and graded greener in the shader, plus hair-curve blades within 14 units of the model (`coast._grass_blades`) that shrink to nothing at the patch edge, the sand and the road. Freestyle reads only meshes, so the blades add no lines or view-map cost (a hook still went from 8 to about 10 s). Blades are part translucent, never emissive: the amber glow is built from the Emission pass, and emissive blades bloomed the whole frame and turned the model green. Only CC0 or own textures go in `blender/textures/`; the model and diagrams keep token colors.
 - **Track:** the model sits on the tarmac; nothing in the world moves with it, so a `shift` on a whole-car group lifts it off the ground and back. Both worlds use a 30 mm lens (wider than the 50 mm the automatic close-up maths assumes), so set `zoom` by hand on close-ups of small parts.
 - Extra shot fields: `frameY` (screen height of the focus, 0 top to 1 bottom, default 0.42, above the captions) and, on a clip's start, `sea` (`calm` or `bowWave`, sea world) or `coast` (`sea`, `shore` or `land`, coast world).
 - Freestyle lines stay on the model's parts, so `qc.py` still checks only the model.
-- `BLENDER_WORLD_VERSION` marks renders stale when `blender/world/*.py` changes the picture.
+- `BLENDER_WORLD_VERSIONS` (one number per world, `blenderJob.ts`) marks renders stale when `blender/world/*.py` changes that world's picture.
 
 ## Where it shows
 

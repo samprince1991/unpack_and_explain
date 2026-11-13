@@ -16,8 +16,17 @@ import type {
 
 // Bump when blender/*.py changes the look, so every render is marked stale.
 export const BLENDER_LOOK_VERSION = 2;
-// Bump when blender/world/*.py changes, so renders using a world are marked stale.
-export const BLENDER_WORLD_VERSION = 1;
+// Bump a world's number when blender/world/*.py changes its picture, so only renders using
+// that world are marked stale. 2: daylight sky, grass texture and blades (2026-11-13); the
+// sea world shares the sky, so it moved too. Bench and cafe are unchanged.
+export const BLENDER_WORLD_VERSIONS: Record<WorldId, number> = {
+  sea: 2,
+  coast: 2,
+  track: 2,
+  rail: 2,
+  bench: 1,
+  cafe: 1,
+};
 // Bump when the cover's Blender pass changes (cover rim lights, subject layer), so only
 // cover clips go stale.
 export const BLENDER_COVER_VERSION = 1;
@@ -155,7 +164,7 @@ export const buildBlenderJob = (script: PostScript, vo: VoManifest, fps: number)
         model,
         fps,
         lookVersion: BLENDER_LOOK_VERSION,
-        world: plan.world ? `${plan.world}-${BLENDER_WORLD_VERSION}` : undefined,
+        world: plan.world ? `${plan.world}-${BLENDER_WORLD_VERSIONS[plan.world]}` : undefined,
         coverVersion: c.id === "cover" ? BLENDER_COVER_VERSION : undefined,
       }),
     ),

@@ -1,7 +1,7 @@
-"""The `rail` world: a raised guideway at dusk. The model's own stretch of track (its
+"""The `rail` world: a raised guideway in afternoon light. The model's own stretch of track (its
 `guideway`, `wall` and coil parts) repeats end to end along +x (the model's forward axis) in
 both directions, on concrete piers above low grassland, with hills fading into haze, under
-the sea world's sky and low warm sun.
+the sea world's daylight sky and afternoon sun.
 
 The repeats copy the model's track meshes, so the guideway's profile always matches the
 model's. They are shaded in the same fill color as the model but carry no Freestyle lines:
@@ -10,7 +10,7 @@ checks only the model. When the cutaway drops the near wall, only the model's st
 the repeats keep their walls, like a drawn cutaway.
 
 Built for the maglev (idea 31). A model without a `guideway` part gets the piers, ground and
-hills only. Colors: `diagram.fill` for the track repeats, the muted `env.*` tokens for the rest.
+hills only. Colors: `diagram.fill` for the track repeats, the daylight `env.*` tokens and the coast grass for the rest.
 Deterministic (no random)."""
 
 import sys
@@ -62,8 +62,10 @@ def _paint(obj, base, tokens):
     env = tokens["colors"]["env"]
     land, sand = color(env["land"]), color(env["sand"])
     layer = obj.data.color_attributes.new("ground", "FLOAT_COLOR", "POINT")
+    grass = obj.data.attributes.new("grass", "FLOAT", "POINT")
     for i, v in enumerate(obj.data.vertices):
         x, y, _ = v.co
+        grass.data[i].value = 1.0
         c = coast._mix(land, sand, 0.18 * (0.5 + 0.5 * coast._wobble(0.3 * x, 0.25 * y)))  # dry patches
         c = coast._mix(c, land, 0.3 * _smooth(HILL0, HILL1, abs(y)))  # darker far hills
         layer.data[i].color = c
@@ -166,6 +168,8 @@ def build_rail(scene, tokens, parts, backdrop):
     land = coast._grid("rail-ground", xs, ys, lambda x, y: ground + height(x, y))
     _paint(land, ground, tokens)
     coast._link(land, coll, coast._terrain_material(tokens))
+    if not backdrop:
+        coast._grass_blades((0.0, 0.0), lambda x, y: ground + height(x, y), lambda x, y: 1.0, coll, tokens, "rail-grass")
     if span:
         # The backdrop hides the model, so the track runs through its stretch too.
         _repeat_track(parts, span, coll, _track_material(tokens), include_home=backdrop)

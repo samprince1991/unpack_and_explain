@@ -1,4 +1,4 @@
-"""The `sea` world: sky, a low warm sun, and a sea cut in section along the ship's side,
+"""The `sea` world: a daylight sky, a high afternoon sun, and a sea cut in section along the ship's side,
 so one picture shows the surface above the cut edge and the hull and bulb below it, with no
 transparent water to render. The wave shapes are sampled from the model's own wave tubes
 and stored as shape keys, which add linearly: the surface is the literal sum of the waves.
@@ -31,7 +31,8 @@ TUBE_SIDES, TUBE_THIN = 16, 0.4  # the wave tubes thin down until their outlines
 # Travelling swell: amplitude, x and y wave numbers, phase, radians per second.
 SWELLS = [(0.010, 2.1, 1.3, 0.0, 0.9), (0.007, 3.7, -2.3, 1.0, 1.3), (0.004, 7.1, 4.9, 2.0, 2.0)]
 BUMP_DRIFT = 0.012  # ripple texture drift per frame
-SUN_DIR = (0.2, 0.95, 0.13)  # toward the sun: low, ahead of the camera, off the bow
+SUN_DIR = (0.3, 0.6, 0.75)  # toward the sun: high afternoon, ahead of the camera and off to one side
+SUN_ENERGY = 3.5
 
 
 def _principled(mat):
@@ -194,9 +195,9 @@ def _sky(scene, tokens):
     stops = [
         (-0.85, env["seaDeep"]),
         (-0.08, env["seaShallow"]),
-        (0.0, env["horizon"]),
-        (0.05, env["horizon"]),
-        (0.6, env["skyTop"]),
+        (0.0, env["horizonDay"]),
+        (0.05, env["horizonDay"]),
+        (0.6, env["skyDay"]),
     ]
     elements = ramp.color_ramp.elements
     while len(elements) < len(stops):
@@ -224,7 +225,7 @@ def _sky(scene, tokens):
     only_sky = tree.nodes.new("ShaderNodeMath")
     only_sky.operation = "MULTIPLY"
     clouds = tree.nodes.new("ShaderNodeMixRGB")
-    clouds.inputs["Color2"].default_value = color(env["horizon"])
+    clouds.inputs["Color2"].default_value = color(env["horizonDay"])
     tree.links.new(coord.outputs["Generated"], stretch.inputs["Vector"])
     tree.links.new(stretch.outputs["Vector"], noise.inputs["Vector"])
     tree.links.new(noise.outputs["Fac"], shape.inputs["Value"])
@@ -250,7 +251,7 @@ def _sky(scene, tokens):
     scale.inputs[1].default_value = 0.42
     glow = tree.nodes.new("ShaderNodeMixRGB")
     glow.blend_type = "SCREEN"
-    glow.inputs["Color2"].default_value = color(env["light"])
+    glow.inputs["Color2"].default_value = color(env["sunDay"])
     tree.links.new(coord.outputs["Generated"], dot.inputs[0])
     tree.links.new(dot.outputs["Value"], clamp.inputs[0])
     tree.links.new(clamp.outputs[0], power.inputs[0])
@@ -264,9 +265,9 @@ def _sky(scene, tokens):
 
 def _sun(tokens):
     data = bpy.data.lights.new("sun", "SUN")
-    data.energy = 1.4
+    data.energy = SUN_ENERGY
     data.angle = math.radians(4)
-    data.color = color_srgb(tokens["colors"]["env"]["light"])
+    data.color = color_srgb(tokens["colors"]["env"]["sunDay"])
     data.specular_factor = 0.06  # a soft glint road: the amber stays the brightest thing
     obj = bpy.data.objects.new("sun", data)
     # Low, ahead of the camera and off the bow side: a glint road on the water and a rim on the hull.

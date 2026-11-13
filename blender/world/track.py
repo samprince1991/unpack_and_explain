@@ -1,14 +1,15 @@
-"""The `track` world: a test track at dusk. A long straight of tarmac runs along +x (the
+"""The `track` world: a test track in afternoon light. A long straight of tarmac runs along +x (the
 model's forward axis) with painted edge lines, a low concrete barrier along the far side and a row
 of light towers behind it, a launch ramp up ahead, a few low sheds off to the side, then
-grassland and hills fading into haze, under the sea world's sky and low warm sun.
+grassland and hills fading into haze, under the sea world's daylight sky and afternoon sun.
 
 The model sits on the tarmac: its lowest point is the ground. Nothing here moves with it, so
 a car that hops (a `shift` beat on its whole group) leaves the ground and comes back down
 onto the same spot.
 
 Like the coast world it is shaded but carries no Freestyle lines, so `qc.py` still checks
-only the model. Colors: the muted `env.*` tokens only. Deterministic (no random)."""
+only the model. Colors: the daylight `env.*` tokens plus the graded grass texture and blades
+(`coast._grass_texture`, `coast._grass_blades`). Deterministic (no random)."""
 
 import sys
 
@@ -55,13 +56,20 @@ def height(x, y):
     return h
 
 
+def _grass(a):
+    """How much grass grows at distance a from the track's center line (none on the shoulder)."""
+    return _smooth(TRACK_HALF + SHOULDER - 0.2, TRACK_HALF + SHOULDER + 0.6, a)
+
+
 def _paint(obj, level, tokens):
     env = tokens["colors"]["env"]
     road, sand, land = color(env["road"]), color(env["sand"]), color(env["land"])
     layer = obj.data.color_attributes.new("ground", "FLOAT_COLOR", "POINT")
+    grass = obj.data.attributes.new("grass", "FLOAT", "POINT")
     for i, v in enumerate(obj.data.vertices):
         x, y, _ = v.co
         a = abs(y)
+        grass.data[i].value = _grass(a)
         c = coast._mix(road, sand, _smooth(TRACK_HALF - 0.05, TRACK_HALF + 0.1, a))
         c = coast._mix(c, land, _smooth(TRACK_HALF + SHOULDER - 0.2, TRACK_HALF + SHOULDER + 0.6, a))
         c = coast._mix(c, land, 0.25 * _smooth(HILL0, HILL1, a))  # darker far hills
@@ -108,7 +116,7 @@ def _towers(level, coll, tokens):
     glow = coast._plain("track-lamps", "light", tokens)
     bsdf = sea_world._principled(glow)
     bsdf.inputs["Emission Color"].default_value = color(tokens["colors"]["env"]["light"])
-    bsdf.inputs["Emission Strength"].default_value = 2.5
+    bsdf.inputs["Emission Strength"].default_value = 0.0  # daylight: the lamps are off
     coast._link(coast._merge("track-lamps", heads), coll, glow)
 
 
@@ -162,6 +170,7 @@ def build_track(scene, tokens, parts):
     ground = coast._grid("track-ground", xs, ys, lambda x, y: level + height(x, y))
     _paint(ground, level, tokens)
     coast._link(ground, coll, coast._terrain_material(tokens))
+    coast._grass_blades((0.0, 0.0), lambda x, y: level + height(x, y), lambda x, y: _grass(abs(y)), coll, tokens, "track-grass")
     _lines(level, coll, tokens)
     _barrier(level, coll, tokens)
     _towers(level, coll, tokens)

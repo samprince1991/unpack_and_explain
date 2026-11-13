@@ -19,10 +19,16 @@ export const colors = {
   env: {
     skyTop: "#111c30",
     horizon: "#6b7a8c",
-    surface: "#223a52",
-    seaShallow: "#1b3650",
-    seaDeep: "#081320",
+    // Sea (sea and coast worlds): daylight water. Blue, never teal (teal is brand only).
+    surface: "#2b5d86",
+    seaShallow: "#1e5a85",
+    seaDeep: "#0a2340",
     light: "#f6d7a3",
+    // Outdoor daylight (sea, coast, track, rail): sky top, horizon haze and the sun.
+    // Indoor worlds (bench, cafe) keep the dark skyTop / horizon / light above.
+    skyDay: "#24508f",
+    horizonDay: "#8aa6c4",
+    sunDay: "#fff3dc",
     // Coast world: beach, grassland, roads and the posts, poles and lamps on them.
     sand: "#4d4838",
     land: "#1f2c25",
