@@ -30,6 +30,8 @@ import {
   type BlenderArgs,
 } from "./lib/blenderPlan";
 import { runPool, startBlender } from "./lib/blenderPool";
+import { ensureTextures, httpIo, lockText, readLock, texturesForWorld } from "./lib/textures";
+import { textures } from "../src/brand/textures";
 
 const VIDEO = resolve(__dirname, "..");
 const REPO = resolve(VIDEO, "..");
@@ -38,6 +40,8 @@ const PUBLIC = join(VIDEO, "public");
 const RENDER_SCRIPT = join(BLENDER_DIR, "render.py");
 const WORLD_DIR = join(BLENDER_DIR, "world");
 const CODE_FILES = ["build.py", "look.py", "common.py", "qc.py", "render.py", "tokens.json"];
+const TEXTURE_DIR = join(BLENDER_DIR, "textures");
+const TEXTURE_LOCK = join(TEXTURE_DIR, "textures.lock.json");
 
 const requiredVersion = () => readFileSync(join(BLENDER_DIR, "VERSION"), "utf8").trim();
 
@@ -79,7 +83,22 @@ const loadVoFile = (script: PostScript): VoManifest => {
   return vo;
 };
 
-const computeCodeHash = (modelId: string) => {
+// The world's photo textures (src/brand/textures.ts): downloaded if missing, checked against
+// the lock, and their paths handed to Blender in blender/textures.json.
+const prepareTextures = async (world: string | undefined) => {
+  const ids = texturesForWorld(textures, world);
+  const { paths } = await ensureTextures({ catalog: textures, ids, dir: TEXTURE_DIR, lockPath: TEXTURE_LOCK, io: httpIo });
+  const forward = Object.fromEntries(
+    Object.entries(paths).map(([id, maps]) => [
+      id,
+      Object.fromEntries(Object.entries(maps).map(([m, p]) => [m, p.split("\\").join("/")])),
+    ]),
+  );
+  writeFileSync(join(BLENDER_DIR, "textures.json"), JSON.stringify(forward, null, 2));
+  return ids;
+};
+
+const computeCodeHash = (modelId: string, textureIds: string[]) => {
   const read = (path: string) => ({ path, text: readFileSync(join(BLENDER_DIR, path), "latin1") });
   const world = readdirSync(WORLD_DIR)
     .filter((f) => f.endsWith(".py"))
@@ -89,7 +108,12 @@ const computeCodeHash = (modelId: string) => {
   if (hasBlend) {
     console.warn(`[blender] ${blend} is tracked here, but final renders can't verify it`);
   }
-  return hashSources([...CODE_FILES, ...world, ...(hasBlend ? [blend] : [])].map(read));
+  const sources = [...CODE_FILES, ...world, ...(hasBlend ? [blend] : [])].map(read);
+  // Only worlds that load textures hash the lock, so other posts' renders stay current.
+  if (textureIds.length > 0) {
+    sources.push({ path: "textures.lock", text: lockText(readLock(TEXTURE_LOCK), textureIds) });
+  }
+  return hashSources(sources);
 };
 
 // docs/blender.md "Cover": the subject should fill most of the 4:5 feed crop.
@@ -243,6 +267,7 @@ const main = async () => {
   const jobPath = join(outDir, "job.json");
   writeFileSync(jobPath, JSON.stringify(job, null, 2));
 
+  const textureIds = await prepareTextures(job.world);
   const clips = job.clips.filter((c) => !args.only || args.only.includes(c.id));
   const started = Date.now();
   if (args.frames) {
@@ -252,7 +277,7 @@ const main = async () => {
   }
 
   const modelHash = hashBytes(readFileSync(join(PUBLIC, job.model.file)));
-  const codeHash = computeCodeHash(job.model.id);
+  const codeHash = computeCodeHash(job.model.id, textureIds);
   const manifestPath = join(outDir, "manifest.json");
   const manifest = readManifest(manifestPath, job.postId);
   let rendered = 0;

@@ -29,6 +29,24 @@ def load_tokens():
     return load_json(TOKENS_PATH)
 
 
+TEXTURES_PATH = os.path.join(HERE, "textures.json")
+
+
+def texture(texture_id):
+    """Map name -> file path for a photo texture (video/src/brand/textures.ts). `npm run blender`
+    downloads the textures the post's world lists and writes blender/textures.json."""
+    paths = load_json(TEXTURES_PATH) if os.path.exists(TEXTURES_PATH) else {}
+    if texture_id not in paths:
+        raise SystemExit(
+            f"texture {texture_id!r} not prepared: list this world in its `worlds` in "
+            "video/src/brand/textures.ts and run through `npm run blender`"
+        )
+    for path in paths[texture_id].values():
+        if not os.path.exists(path):
+            raise SystemExit(f"texture file missing: {path} (run `npm run textures`)")
+    return paths[texture_id]
+
+
 def srgb_to_linear(c):
     return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
 

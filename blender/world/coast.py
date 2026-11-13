@@ -16,7 +16,6 @@ photo texture on the grass, graded in the shader. Everything is
 deterministic (no random), so a re-render draws the same picture."""
 
 import math
-import os
 import sys
 
 import bpy
@@ -24,7 +23,7 @@ from mathutils import Vector
 
 from build import interpolation
 
-from common import color
+from common import color, texture
 from world import sea as sea_world
 
 LENS = 30
@@ -60,7 +59,7 @@ SPRAY_DRIFT = 0.03
 
 # Grass: a photo texture tiled every GRASS_TILE units (under a third of the 2-unit model),
 # its hue nudged from brown toward green and its saturation lifted a little.
-GRASS_TEX = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "textures", "leafy_grass")
+GRASS_TEX = "leafy_grass"  # video/src/brand/textures.ts
 GRASS_TILE = 0.6
 GRASS_HUE, GRASS_SAT = 0.54, 1.15
 
@@ -204,10 +203,9 @@ def _terrain_material(tokens):
     return mat
 
 
-def _grass_image(tree, folder, kind, vector, non_color):
-    name = os.path.basename(folder.rstrip("/\\"))
+def _grass_image(tree, texture_id, kind, vector, non_color):
     node = tree.nodes.new("ShaderNodeTexImage")
-    node.image = bpy.data.images.load(os.path.join(folder, f"{name}_{kind}_2k.jpg"), check_existing=True)
+    node.image = bpy.data.images.load(texture(texture_id)[kind], check_existing=True)
     if non_color:
         node.image.colorspace_settings.name = "Non-Color"
     tree.links.new(vector, node.inputs["Vector"])
@@ -215,11 +213,11 @@ def _grass_image(tree, folder, kind, vector, non_color):
 
 
 def _grass_texture(tree, bsdf, coord, tint, patches, near):
-    """A photo texture on the grass (CC0, `textures/README.md`), graded greener.
+    """A photo texture on the grass (CC0, video/src/brand/textures.ts), graded greener.
 
     Applied where the `grass` attribute is 1 (coast only; rail and track have no attribute,
     so they keep their vertex colors)."""
-    folder, tile = GRASS_TEX, GRASS_TILE
+    tile = GRASS_TILE
     # Two scales, mixed by the large patches, so the tiling doesn't repeat visibly.
     scales = []
     for s in (1.0 / tile, 0.27 / tile):
@@ -230,8 +228,8 @@ def _grass_texture(tree, bsdf, coord, tint, patches, near):
         scales.append(m.outputs["Vector"])
 
     def sampled(kind, non_color):
-        a = _grass_image(tree, folder, kind, scales[0], non_color)
-        b = _grass_image(tree, folder, kind, scales[1], non_color)
+        a = _grass_image(tree, GRASS_TEX, kind, scales[0], non_color)
+        b = _grass_image(tree, GRASS_TEX, kind, scales[1], non_color)
         mix = tree.nodes.new("ShaderNodeMix")
         mix.data_type = "RGBA"
         tree.links.new(patches.outputs["Fac"], mix.inputs["Factor"])

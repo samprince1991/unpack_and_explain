@@ -76,11 +76,21 @@ Six worlds so far:
 - **Hovering:** a catalog `hover` lifts the model off the surface (the helicopter, idea 33, hovers 1.5 m over the grass on `land`).
 - **Hovercraft effects:** a model with a `skirt` part presses a shallow dip into the water and gets a ring of spray around the skirt, when it's over water.
 - The coast world draws no lines and fades into opaque haze with distance (never to transparent, which dithers into noise).
-- **Daylight and grass (coast, track, rail; 2026-11-13):** a blue afternoon sky with a high sun, so the model casts a shadow on the ground; lamps are off. Grass is a CC0 Poly Haven photo texture (`blender/textures/`, see its README), tiled every 0.6 units in two scales and graded greener in the shader, plus hair-curve blades within 14 units of the model (`coast._grass_blades`) that shrink to nothing at the patch edge, the sand and the road. Freestyle reads only meshes, so the blades add no lines or view-map cost (a hook still went from 8 to about 10 s). Blades are part translucent, never emissive: the amber glow is built from the Emission pass, and emissive blades bloomed the whole frame and turned the model green. Only CC0 or own textures go in `blender/textures/`; the model and diagrams keep token colors.
+- **Daylight and grass (coast, track, rail; 2026-11-13):** a blue afternoon sky with a high sun, so the model casts a shadow on the ground; lamps are off. Grass is a CC0 Poly Haven photo texture (see "Textures" below), tiled every 0.6 units in two scales and graded greener in the shader, plus hair-curve blades within 14 units of the model (`coast._grass_blades`) that shrink to nothing at the patch edge, the sand and the road. Freestyle reads only meshes, so the blades add no lines or view-map cost (a hook still went from 8 to about 10 s). Blades are part translucent, never emissive: the amber glow is built from the Emission pass, and emissive blades bloomed the whole frame and turned the model green. The model and diagrams keep token colors.
 - **Track:** the model sits on the tarmac; nothing in the world moves with it, so a `shift` on a whole-car group lifts it off the ground and back. Both worlds use a 30 mm lens (wider than the 50 mm the automatic close-up maths assumes), so set `zoom` by hand on close-ups of small parts.
 - Extra shot fields: `frameY` (screen height of the focus, 0 top to 1 bottom, default 0.42, above the captions) and, on a clip's start, `sea` (`calm` or `bowWave`, sea world) or `coast` (`sea`, `shore` or `land`, coast world).
 - Freestyle lines stay on the model's parts, so `qc.py` still checks only the model.
 - `BLENDER_WORLD_VERSIONS` (one number per world, `blenderJob.ts`) marks renders stale when `blender/world/*.py` changes that world's picture.
+
+### Textures
+
+Photo textures come from a catalog, like models: `video/src/brand/textures.ts`. Each entry names a Poly Haven asset (all CC0, no caption credit), its resolution, its maps (`diff`, `nor_gl`, `rough`) and the `worlds` whose code loads it.
+
+- **Fetched on demand.** `npm run blender` downloads the textures its post's world lists into `blender/textures/<id>/` (gitignored), checks them against `blender/textures/textures.lock.json` (tracked md5s), and writes their paths to `blender/textures.json` (generated). `npm run textures` does the same for the whole catalog.
+- **To add a texture:** add a catalog entry with its `worlds`, load it in the world's Python with `common.texture("<id>")["diff"]` (a map name to path dict; it stops with a clear message if the world isn't listed), then run `npm run blender`. The first run pins the md5s in the lock; commit the lock.
+- **Upstream changes fail loudly.** If Poly Haven replaces a file, the md5 no longer matches the lock and the fetch stops. Check the new file, then `npm run textures -- --update` re-pins it.
+- **Stale renders:** a world that loads textures hashes their lock entries into the clip code hash, so a changed texture re-renders those clips; posts in other worlds are unaffected.
+- Only CC0 or own textures. Color maps are graded in the shader (`coast._grass_texture`) and never replace token colors on the model or diagrams.
 
 ## Where it shows
 

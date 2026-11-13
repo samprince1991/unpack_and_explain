@@ -4,3 +4,5 @@ blender/tokens.json
 blender/raw/
 __pycache__/
 .superpowers/
+blender/textures.json
+blender/textures/*/

@@ -20,7 +20,7 @@ Faceless explainer reels ("How things actually work") built with Remotion. Prima
 - `ideas/`: **the content tracker**. One `ideas/idea-NN-slug/idea.md` per idea: YAML front matter (id, date, format, topic, category, subcategory, status, link, hook, hook_formula, hook_score, question_score, companion_of, source, verify, metrics, youtube) + for reels a `## Spine` table (Part | Job), a `## Script` table (Section | Voice-over | Visual) and a `## Cold read` (About / Asks / Answer), or a `## Slides` table for carousels; then `## Caption`. `NN` = idea ID. Once built, an idea becomes a post: its code, VO and render folders use the matching `post-NN-slug` name. `category` / `subcategory` must come from `ideas/categories.yml` (add new sub-categories there first). `ideas/README.md` is **generated**: never edit it by hand.
 - `logo/`: master logo files. **Never edit.** `npm run assets` copies what the video needs.
 - `instagram/`: state for the instagram-agent skills (`voice.md`, `swipe.md`, `profile.md`, `engage.md`). Skills read and write here, **not** `~/.claude/instagram/`.
-- `blender/`: headless Blender scripts, procedural models in `blender/models/`, worlds in `blender/world/`. Colors only from the generated `blender/tokens.json`; never write color values here (the brand guard scans it).
+- `blender/`: headless Blender scripts, procedural models in `blender/models/`, worlds in `blender/world/`, photo textures in `blender/textures/` (fetched from the `src/brand/textures.ts` catalog, pinned by `textures.lock.json`). Colors only from the generated `blender/tokens.json`; never write color values here (the brand guard scans it).
 - `docs/`: the reference docs above.
 - `video/`: the Remotion project. **Run all npm/npx commands from here.**
   - `src/brand/`: tokens, fonts, motion, layout (safe zones), voice, audio, models. No React here.
@@ -54,6 +54,7 @@ Faceless explainer reels ("How things actually work") built with Remotion. Prima
 | `npm run blender -- --selftest` / `kit-blender` | Checks the install / renders the Kit sample |
 | `npm run model:add -- <raw.glb> --id <id>` | Cleans a model, writes `public/models/<id>.glb`, adds a TODO stub to `models.ts`, renders previews to `out/models/<id>/`. `npm test` fails until the stub is filled in |
 | `npm run model:qc [-- <id>]` | Geometry QC (`docs/blender.md`). Also runs inside `model:add` and before every clip |
+| `npm run textures [-- --update]` | Downloads and md5-checks the photo textures in `src/brand/textures.ts` (CC0, Poly Haven) into `blender/textures/`. `npm run blender` does this for its world's textures on its own; `--update` re-pins a file that changed upstream |
 | `npm run cover -- post-NN-slug` | 3D cover to `out/post-NN-slug/post-NN-slug-cover.png` (upload with "Edit cover"), plus the profile-grid preview `out/qa/cover-grid.png`. Cover rules: `docs/blender.md` "Cover" |
 | `npm run qa:audio -- post-NN-slug` | Renders voice, SFX and mix stems to `out/qa/`. Must print "No stray blips" and, with a sound plan, "SFX levels OK" (every cue at least 8 dB under the voice). Then listen to `out/qa/mix.wav` across every section boundary and cue |
 | `npm run master -- out/post-NN-slug/post-NN-slug.mp4` | Two-pass loudnorm to -14 LUFS / -1 dBTP, video untouched. Writes `.master.mp4` next to the input |
