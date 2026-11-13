@@ -19,6 +19,7 @@ const withBeats = (extra: Beat[], aim?: string): PostScript => ({
   blender: {
     model: "mems-accelerometer",
     worldOptOut: "unit test base",
+    coverText: "Things hide this",
     cover: shot,
     opener: shot,
     hook: shot,

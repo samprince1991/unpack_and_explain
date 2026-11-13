@@ -704,6 +704,8 @@ def build_clip(scene, job, clip, tokens, preview, repo_root):
     look.setup_lights(radius)
     look.setup_glow(scene)
     c = Clip(scene, job, clip, tokens, parts, radius)
+    if clip["id"] == "cover":
+        look.setup_cover_lights(c.rig.rig, c.rig.focus, radius)
     if job.get("world"):
         # Before c.start(): the sea reads the wave parts where they rest, and start() moves them.
         import importlib

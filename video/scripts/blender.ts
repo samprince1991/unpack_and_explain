@@ -10,6 +10,7 @@
 // writer. A clip reaches its folder only once every frame has rendered.
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
+import { coverCrop } from "../src/brand/layout";
 import { colors, video } from "../src/brand/tokens";
 import { voice } from "../src/brand/voice";
 import { LINE } from "../src/components/three/materials";
@@ -91,6 +92,25 @@ const computeCodeHash = (modelId: string) => {
   return hashSources([...CODE_FILES, ...world, ...(hasBlend ? [blend] : [])].map(read));
 };
 
+// docs/blender.md "Cover": the subject should fill most of the 4:5 feed crop.
+const COVER_MIN_FILL = 0.5;
+const warnCoverFraming = (box: [number, number, number, number] | null) => {
+  if (!box) {
+    console.warn("[blender] cover: model not in frame");
+    return;
+  }
+  const crop = coverCrop(video.width, video.height);
+  const height = ((box[3] - box[1]) * video.height) / crop.height;
+  const width = box[2] - box[0]; // the 4:5 crop is full width
+  const fill = Math.max(height, width);
+  console.log(`[blender] cover: model fills ${Math.round(fill * 100)}% of the 4:5 crop`);
+  if (fill < COVER_MIN_FILL) {
+    console.warn(
+      `[blender] cover: model fills under ${COVER_MIN_FILL * 100}% of the 4:5 crop: raise cover.zoom (docs/blender.md "Cover")`,
+    );
+  }
+};
+
 const readManifest = (path: string, postId: string): BlenderManifest =>
   existsSync(path)
     ? { postId, clips: (JSON.parse(readFileSync(path, "utf8")) as BlenderManifest).clips }
@@ -149,6 +169,8 @@ const renderClip = async (exe: string, jobPath: string, clip: JobClip, outDir: s
     const meta = JSON.parse(readFileSync(metaPath, "utf8")) as {
       labels: BlenderLabelTrack[];
       blenderVersion: string;
+      subjectBox?: [number, number, number, number] | null;
+      subject?: boolean;
     };
     const clipDir = join(outDir, clip.id);
     rmSync(clipDir, { recursive: true, force: true, maxRetries: 5 });
@@ -260,7 +282,11 @@ const main = async () => {
       preview: args.preview,
       blenderVersion: meta.blenderVersion,
       labels: meta.labels,
+      ...(clip.id === "cover" ? { subjectBox: meta.subjectBox ?? null, subject: meta.subject ?? false } : {}),
     };
+    if (clip.id === "cover") {
+      warnCoverFraming(meta.subjectBox ?? null);
+    }
     writeFileSync(manifestPath, JSON.stringify(manifest, null, 2)); // keep progress if a later clip fails
     rendered++;
   }

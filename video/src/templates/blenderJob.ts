@@ -18,6 +18,9 @@ import type {
 export const BLENDER_LOOK_VERSION = 2;
 // Bump when blender/world/*.py changes, so renders using a world are marked stale.
 export const BLENDER_WORLD_VERSION = 1;
+// Bump when the cover's Blender pass changes (cover rim lights, subject layer), so only
+// cover clips go stale.
+export const BLENDER_COVER_VERSION = 1;
 
 export type JobBeat = Omit<Beat, "cue" | "fallback"> & { frame: number };
 
@@ -153,6 +156,7 @@ export const buildBlenderJob = (script: PostScript, vo: VoManifest, fps: number)
         fps,
         lookVersion: BLENDER_LOOK_VERSION,
         world: plan.world ? `${plan.world}-${BLENDER_WORLD_VERSION}` : undefined,
+        coverVersion: c.id === "cover" ? BLENDER_COVER_VERSION : undefined,
       }),
     ),
   });
@@ -213,3 +217,5 @@ export const blenderDir = (postId: string) => `posts/${postId}/3d`;
 export const blenderManifestPath = (postId: string) => `${blenderDir(postId)}/manifest.json`;
 export const blenderFramePath = (postId: string, clip: BlenderClipId, frame: number) =>
   `${blenderDir(postId)}/${clip}/${String(frame).padStart(4, "0")}.png`;
+// The cover's model-only layer (rendered with a world; see blender/render.py).
+export const blenderSubjectPath = (postId: string) => `${blenderDir(postId)}/cover/subject/0000.png`;

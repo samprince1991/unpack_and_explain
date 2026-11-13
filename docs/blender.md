@@ -85,9 +85,22 @@ Six worlds so far:
 
 - The Reel template puts the opener clip behind the question card automatically (dimmed, with a scrim).
 - Hook and mechanism scenes draw `<BlenderClip clip="hook" />` / `<BlenderClip clip="mechanism" />` + `<BlenderLabels clip="mechanism" />`. A test fails if a Blender post's `MechanismScene.tsx` doesn't draw the clip.
-- The cover is a `CoverNN-Slug` still (`templates/Cover.tsx`; register it in `Root.tsx` with `calculateCoverMetadata`), laid out for both crops (4:5 feed, 3:4 grid).
+- The cover is a `CoverNN-Slug` still (`templates/Cover.tsx`; register it in `Root.tsx` with `calculateCoverMetadata`), laid out for both crops (4:5 feed, 3:4 grid). Rules below.
 - 2D sections get depth from `components/motion/Parallax`, `LightSweep` and `DustField`.
 - Preview in Studio: **Kit-Blender** and **Kit-BlenderCover**.
+
+## Cover
+
+The cover is the only thing a viewer sees on the profile grid, at about 360 px wide. Every cover follows these rules (adopted 2026-11-13, `design-decisions.md`):
+
+- **Hero framing.** Close, low three-quarter (`pitch` about 0-6), the model filling most of the 4:5 crop and allowed to run off one edge on purpose. `npm run blender` prints how much of the crop it fills and warns under 50%. Frame out props and the rest of the world; the model is the cover.
+- **Title behind the model.** With a world, the cover clip renders a second, model-only pass (`cover/subject/0000.png`; the world is a holdout, so the ground still hides what's behind it). `Cover.tsx` layers: world (dimmed, softened) > light pool behind the model > vignette > title > model. Set `cover.frameY` so the top of the model (a rotor, a roof) just overlaps the bottom of the title. Touch only the base of the letters: an overlap through the middle of a word makes it unreadable at grid size.
+- **Rim lights.** The cover clip adds two strong rim lights behind the model (`look.setup_cover_lights`, they follow the camera), so its silhouette has a bright edge against the dark world.
+- **Cover text names the subject.** `coverText` (at most 4 words) includes the `topic` (plurals count) and makes a claim or a tension: "Helicopters steer with 2 plates", not "2 plates steer". `validateScript` enforces this from post 39. The title is up to `typeScale.cover` (150 px), shrunk only so the longest word fits the column.
+- **One amber.** If the key part is already amber on the model and dominates the cover (a gold ring), drop `coverHighlight` so the title stays white.
+- **Avatar** small (60 px, full opacity) in the bottom-left corner of the 4:5 crop.
+- **Grid check.** `npm run cover` keeps the previous cover as `-cover.prev.png` and writes `out/qa/cover-grid.png`: the new cover, the previous version, then the other posts' covers, at profile-grid size. Judge the cover there: subject recognisable, title readable.
+- `BLENDER_COVER_VERSION` (`blenderJob.ts`) marks only the cover clips stale when the cover pass changes. Covers rendered before the subject layer keep the old flat layout until re-rendered.
 
 ## Stale renders
 

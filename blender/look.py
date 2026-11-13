@@ -65,6 +65,23 @@ def setup_lights(radius):
     _light("fill", "AREA", 60 * r * r, (3.5 * r, -2.5 * r, -1 * r), (math.radians(100), 0, math.radians(50)), 4 * r)
 
 
+COVER_RIM = 900  # x radius^2 W: the cover's two rim lights, much brighter than the clip rim
+
+
+def setup_cover_lights(rig, focus, radius):
+    """Cover only: two strong rim lights behind the model on either side, riding on the
+    camera rig so they stay behind it whatever the yaw / pitch. They cut a bright edge
+    round the silhouette, which separates the subject from a dark backdrop."""
+    r = max(radius, 0.5)
+    for name, x in (("cover-rim-left", -1.8), ("cover-rim-right", 1.8)):
+        light = _light(name, "AREA", COVER_RIM * r * r, (x * r, 2.4 * r, 1.4 * r), (0, 0, 0), 1.2 * r)
+        light.parent = rig  # rig space: the camera sits at -y looking +y, so +y is behind the model
+        track = light.constraints.new("TRACK_TO")
+        track.target = focus
+        track.track_axis = "TRACK_NEGATIVE_Z"
+        track.up_axis = "UP_Y"
+
+
 def part_material(name, tokens):
     """Per-part surface so the amber emission can be keyed per part."""
     mat = bpy.data.materials.new(f"surface-{name}")

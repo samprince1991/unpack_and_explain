@@ -19,6 +19,20 @@ import {
 } from "./types";
 
 export const COVER_MAX_WORDS = 4;
+// From this post on, the cover text must name the subject (docs/blender.md "Cover"):
+// on the profile grid the cover is all a viewer sees. Earlier covers are already posted.
+export const COVER_NAMES_TOPIC_FROM = 39;
+const TOPIC_FILLER = new Set(["a", "an", "the", "your", "how", "of"]);
+
+// True when the cover text has a word of the topic in it (plurals count: "helicopters").
+export const coverNamesTopic = (coverText: string, topic: string) => {
+  const words = coverText.toLowerCase().split(/[^a-z0-9']+/).filter(Boolean);
+  return topic
+    .toLowerCase()
+    .split(/[^a-z0-9']+/)
+    .filter((w) => w && !TOPIC_FILLER.has(w))
+    .some((t) => words.some((w) => w === t || w === `${t}s` || w === `${t}es` || w === `${t}'s`));
+};
 
 const spokenWords = (script: PostScript, section: SectionId) =>
   (script.sections.find((s) => s.id === section)?.voiceover ?? "")
@@ -212,6 +226,9 @@ const validateBlender = (script: PostScript, errors: string[]) => {
   const coverText = plan.coverText ?? script.hookText;
   if (countWords(coverText) > COVER_MAX_WORDS) {
     errors.push(`cover text "${coverText}" must be at most ${COVER_MAX_WORDS} words (set blender.coverText)`);
+  }
+  if (script.postNumber >= COVER_NAMES_TOPIC_FROM && !coverNamesTopic(coverText, script.topic)) {
+    errors.push(`cover text "${coverText}" must name the topic "${script.topic}" (set blender.coverText)`);
   }
 };
 

@@ -63,6 +63,8 @@ Why the pipeline is built the way it is, and what was tried or rejected. The rul
 - **Rail, a raised guideway (2026-11-11).** Built for the maglev (idea 31). The world repeats the model's own track parts instead of drawing its own guideway, so the profile always matches and the cutaway (near wall dropped) opens only the model's stretch. The coil repeats stop 3 stretches out: Freestyle builds its view map from every vertex in the scene, and 60 dense repeats made one still take over a minute.
 - **Worlds are required on every new reel (2026-11-10).** The user asked for it after the sea-world pilot (post 26). They cost much more render time (about 2.5 s a frame against 0.4-0.5 s), and each new topic usually needs a new world, so budget for that. Posts built before the rule keep `worldOptOut`. Note: when this was decided, post 26 was not posted yet, so there was no metric comparison behind it. Compare its `hold_3s` and `watch_pct` with the earlier reels once it has them.
 
+- **Hero covers with a subject layer (2026-11-13).** The old covers put a small model far down the frame under the title: on the profile grid they read as empty floor plus a phrase that didn't name the subject. Now the cover gets a close hero shot, rim lights, a dimmed world, the title behind a model-only layer, and text that names the topic, judged on a grid preview (`docs/blender.md` "Cover"). The topic rule starts at post 39 because earlier covers are already posted.
+
 ## Charts
 
 - **D3 for maths only.** Its selections mutate the DOM and its timers run on the wall clock, which flickers in renders and breaks Studio edits. A test bans those modules.

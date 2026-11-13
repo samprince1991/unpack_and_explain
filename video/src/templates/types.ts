@@ -252,6 +252,11 @@ export type BlenderManifestClip = {
   preview: boolean;
   blenderVersion: string;
   labels: BlenderLabelTrack[];
+  // Cover only: the model's screen box (0-1, top-left origin: x0, y0, x1, y1) and, in a
+  // world, a second model-only layer (cover/subject/0000.png) that Cover.tsx puts in front
+  // of the title.
+  subjectBox?: [number, number, number, number] | null;
+  subject?: boolean;
 };
 
 // Written by scripts/blender.ts next to the PNG sequences; one entry per rendered clip.

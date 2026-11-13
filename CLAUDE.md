@@ -54,7 +54,7 @@ Faceless explainer reels ("How things actually work") built with Remotion. Prima
 | `npm run blender -- --selftest` / `kit-blender` | Checks the install / renders the Kit sample |
 | `npm run model:add -- <raw.glb> --id <id>` | Cleans a model, writes `public/models/<id>.glb`, adds a TODO stub to `models.ts`, renders previews to `out/models/<id>/`. `npm test` fails until the stub is filled in |
 | `npm run model:qc [-- <id>]` | Geometry QC (`docs/blender.md`). Also runs inside `model:add` and before every clip |
-| `npm run cover -- post-NN-slug` | 3D cover to `out/post-NN-slug/post-NN-slug-cover.png` (upload with "Edit cover") |
+| `npm run cover -- post-NN-slug` | 3D cover to `out/post-NN-slug/post-NN-slug-cover.png` (upload with "Edit cover"), plus the profile-grid preview `out/qa/cover-grid.png`. Cover rules: `docs/blender.md` "Cover" |
 | `npm run qa:audio -- post-NN-slug` | Renders voice, SFX and mix stems to `out/qa/`. Must print "No stray blips" and, with a sound plan, "SFX levels OK" (every cue at least 8 dB under the voice). Then listen to `out/qa/mix.wav` across every section boundary and cue |
 | `npm run master -- out/post-NN-slug/post-NN-slug.mp4` | Two-pass loudnorm to -14 LUFS / -1 dBTP, video untouched. Writes `.master.mp4` next to the input |
 
@@ -207,7 +207,7 @@ The pipeline is in `docs/instagram-pipeline.md`. **Where a skill disagrees with 
 
 - [ ] Look comes from the rotation (or a pinned slot with a reason); scene styles differ from the last 3 posts
 - [ ] Mechanism goes wide > close-ups > wide, the key part centered and big in each close-up; one amber part per beat in every clip; nothing clipped; labels inside `layout.regions`
-- [ ] Rendered inside a world (no `worldOptOut` on new posts); question readable over the 3D backdrop at frame 0; cover readable in the 4:5 and 3:4 crops; CC-BY model credit in the caption; `npm run blender` up to date
+- [ ] Rendered inside a world (no `worldOptOut` on new posts); question readable over the 3D backdrop at frame 0; cover follows `docs/blender.md` "Cover" (hero framing, model in front of the title, text names the topic) and reads at grid size in `out/qa/cover-grid.png`; CC-BY model credit in the caption; `npm run blender` up to date
 - [ ] 3D edges: `npm run model:qc` passes, and full-size frames (not the 25% contact sheet) cropped 2-3x at every junction show single clean lines: no broken or dashed lines, no faceted curves, no outline that stops inside another part
 - [ ] One subject: the topic is named on the question card and opens the setup; no unrelated objects; every scene shows the subject; the question card is answered (spine Answer row)
 - [ ] Congrats line before the CTA; total length 35-52 s

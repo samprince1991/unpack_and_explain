@@ -20,7 +20,7 @@ import {
   loadBlenderManifest,
   loadModelHash,
 } from "./blender";
-import { blenderAreas, buildBlenderJob, isBlenderPlan } from "./blenderJob";
+import { blenderAreas, blenderSubjectPath, buildBlenderJob, isBlenderPlan } from "./blenderJob";
 import type { BlenderManifest, PostScript } from "./types";
 import { loadVo } from "./vo";
 
@@ -31,10 +31,23 @@ export type CoverProps = {
 };
 
 // Title + model must sit inside both crops: the 4:5 feed crop is the tighter one.
-const TITLE_TOP = coverCrop(video.width, video.height).y + 70;
+const TITLE_TOP = coverCrop(video.width, video.height).y + 60;
+// Poppins SemiBold: average glyph width as a share of the font size (sizes the longest word).
+const GLYPH_EM = 0.6;
+// The world behind the model: darker and softer, so the model and the title carry the cover.
+const BACKDROP_FILTER = "brightness(0.5) saturate(0.85) blur(3px)";
 
-// Upload as the reel's custom cover ("Edit cover"): the Blender hero still, the cover
-// title with one amber word and the avatar mark. Render: npm run cover -- post-NN-slug.
+// Largest size up to typeScale.cover at which the longest word fits the column.
+export const coverFontSize = (text: string) => {
+  const longest = Math.max(...text.split(/\s+/).map((w) => w.length), 1);
+  return Math.floor(Math.min(typeScale.cover, layout.column.width / (longest * GLYPH_EM)));
+};
+
+// Upload as the reel's custom cover ("Edit cover"), docs/blender.md "Cover". Layers, back to
+// front: the world (dimmed, softened), a light pool behind the model, a vignette, the title,
+// then the model alone (the subject layer), so it stands in front of the words. Covers
+// rendered before the subject layer existed keep the old flat layout.
+// Render: npm run cover -- post-NN-slug.
 export const Cover: React.FC<CoverProps> = ({
   script,
   blender3d,
@@ -48,6 +61,18 @@ export const Cover: React.FC<CoverProps> = ({
   const highlight = plan.coverHighlight ?? script.hookHighlight ?? "";
   const feed = coverCrop(video.width, video.height);
   const grid = gridCrop();
+  const cover = blender3d?.clips.cover;
+  const box = cover?.subjectBox ?? null;
+  // A world cover has its own model-only pass; without a world the clip is the model alone.
+  const subjectLayer = cover?.subject ? "pass" : box && !plan.world ? "clip" : null;
+  const area = blenderAreas(script).cover;
+  const pool = box
+    ? {
+        x: area.x + ((box[0] + box[2]) / 2) * area.width,
+        y: area.y + ((box[1] + box[3]) / 2) * area.height,
+      }
+    : null;
+  const fontSize = coverFontSize(text);
 
   return (
     <BlenderContext.Provider
@@ -59,7 +84,31 @@ export const Cover: React.FC<CoverProps> = ({
     >
       <AbsoluteFill>
         <Background />
-        <BlenderClip clip="cover" frame={0} />
+        {subjectLayer === "clip" ? null : (
+          <BlenderClip
+            clip="cover"
+            frame={0}
+            style={subjectLayer ? { filter: BACKDROP_FILTER, scale: "1.03" } : undefined}
+          />
+        )}
+        {pool ? (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: `radial-gradient(circle at ${pool.x}px ${pool.y}px, ${withAlpha(colors.diagram.stroke, 0.16)} 0px, ${withAlpha(colors.diagram.stroke, 0)} 520px)`,
+            }}
+          />
+        ) : null}
+        {subjectLayer ? (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: `radial-gradient(ellipse 75% 60% at 50% 48%, ${withAlpha(colors.bg.base, 0)} 40%, ${withAlpha(colors.bg.base, 0.85)} 100%)`,
+            }}
+          />
+        ) : null}
         <div
           style={{
             position: "absolute",
@@ -81,23 +130,38 @@ export const Cover: React.FC<CoverProps> = ({
             textAlign: "center",
             fontFamily: fonts.heading,
             fontWeight: weights.heading,
-            fontSize: typeScale.display,
-            lineHeight: 1.05,
+            fontSize: subjectLayer ? fontSize : typeScale.display,
+            lineHeight: 1.0,
             color: colors.text.primary,
             textWrap: "balance",
+            textShadow: subjectLayer
+              ? `0 6px 36px ${withAlpha(colors.bg.base, 0.9)}, 0 0 80px ${withAlpha(colors.text.primary, 0.12)}`
+              : undefined,
           }}
         >
           <HighlightedText text={text} highlight={highlight} />
         </Interactive.Div>
+        {subjectLayer === "pass" ? (
+          <Img
+            src={staticFile(blenderSubjectPath(script.id))}
+            style={{ position: "absolute", left: area.x, top: area.y, width: area.width, height: area.height }}
+          />
+        ) : null}
+        {subjectLayer === "clip" ? <BlenderClip clip="cover" frame={0} /> : null}
         <Img
           src={staticFile("brand/avatar.svg")}
-          style={{
-            position: "absolute",
-            left: video.width / 2 - 40,
-            top: feed.y + feed.height - 140,
-            width: 80,
-            opacity: 0.5,
-          }}
+          style={
+            subjectLayer
+              ? // Small, in the corner of the 4:5 crop: out of the way of the model.
+                { position: "absolute", left: layout.column.x, top: feed.y + feed.height - 100, width: 60 }
+              : {
+                  position: "absolute",
+                  left: video.width / 2 - 40,
+                  top: feed.y + feed.height - 140,
+                  width: 80,
+                  opacity: 0.5,
+                }
+          }
         />
         {showGuides
           ? [

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { brand } from "../brand/tokens";
 import type { PostScript } from "./types";
-import { validateScript } from "./validate";
+import { COVER_NAMES_TOPIC_FROM, coverNamesTopic, validateScript } from "./validate";
 
 const words = (n: number) => Array.from({ length: n }, () => "word").join(" ");
 
@@ -175,6 +175,7 @@ describe("validateScript: blender plan", () => {
   const plan = {
     model: "jet-engine" as const,
     worldOptOut: "unit test base" as string | undefined,
+    coverText: "Things hide this",
     cover: { yaw: 30, pitch: 15, zoom: 1 },
     opener: { yaw: 20, pitch: 10, zoom: 1 },
     hook: { yaw: 20, pitch: 10, zoom: 1, beats: [{ cue: "engines", fallback: 0.5, do: "reveal" as const }] },
@@ -269,6 +270,20 @@ describe("validateScript: blender plan", () => {
   it("caps the cover text", () => {
     const long = { ...plan, coverText: "one two three four five" };
     expect(validateScript(withPlan(long)).errors[0]).toMatch(/at most 4 words/);
+  });
+
+  it("makes new covers name the topic", () => {
+    const vague = { ...plan, coverText: "2 plates steer" };
+    expect(validateScript(withPlan(vague)).errors[0]).toMatch(/must name the topic "Thing"/);
+    const old = { ...withPlan(vague), postNumber: COVER_NAMES_TOPIC_FROM - 1 } as PostScript;
+    expect(validateScript(old).errors).toEqual([]);
+  });
+
+  it("matches the topic in the cover text", () => {
+    expect(coverNamesTopic("Helicopters steer with 2 plates", "helicopter")).toBe(true);
+    expect(coverNamesTopic("Hovercraft float on air", "a hovercraft")).toBe(true);
+    expect(coverNamesTopic("Your gold is part copper", "gold jewellery")).toBe(true);
+    expect(coverNamesTopic("It's part copper", "gold jewellery")).toBe(false);
   });
 
   describe("camera rhythm (close-up, then wide)", () => {

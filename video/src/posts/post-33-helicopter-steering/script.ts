@@ -18,9 +18,11 @@ export const script: PostScript = {
     // plate and the rotor forward (the rear rises) and nose-down on the whole helicopter.
     model: "helicopter",
     world: "coast",
-    coverText: "2 plates steer",
-    coverHighlight: "2 plates",
-    cover: { yaw: 35, pitch: 14, zoom: 2.4, keyPart: "plates", drift: 0.5, frameY: 0.55, coast: "land" },
+    coverText: "How helicopters really steer",
+    coverHighlight: "steer",
+    // Hero cover (docs/blender.md "Cover"): close, low three-quarter, high in the frame so the
+    // rotor head rises into the title.
+    cover: { yaw: 35, pitch: 4, zoom: 4, keyPart: "plates", drift: 0.5, frameY: 0.41, coast: "land" },
     // Behind the question card: three-quarter front, the hub amber, low in the frame, the
     // main and tail rotors already turning at frame 0.
     opener: {
