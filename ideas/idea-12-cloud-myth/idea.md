@@ -18,7 +18,7 @@ hook: "Nobody tells you Amazon's cloud copies your files into 3 buildings."
 source: "AWS Amazon S3 docs (data protection); IEA Energy and AI (2025)"
 verify: []
 metrics:
-  views: 141  # as of 2026-11-11 (insights export)
+  views: 141  # as of 2026-11-13 (insights export)
   reach: 127
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

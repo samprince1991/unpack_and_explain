@@ -23,7 +23,7 @@ verify:
   - "Five cars jumped (Cybercab, Cybertruck, Semi, Model Y, Model 3) per TechCrunch; heights (27 ft) are only in one report, so they are not in the script"
 notes: "MYTH: Tesla built a flying car. FACT: cold-gas thrusters fed by compressed air make it hop; nothing holds it up once they stop. A fan does the opposite (suction downforce). Keep Musk out of VO and caption (brand safety)."
 metrics:
-  views: 134  # as of 2026-11-11 (insights export)
+  views: 134  # as of 2026-11-13 (insights export)
   reach: 124
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

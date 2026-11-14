@@ -203,7 +203,7 @@ export type Beat = {
 };
 
 // Opaque full-frame environments (docs/blender.md).
-export const WORLDS = ["sea", "coast", "track", "bench", "cafe", "rail"] as const;
+export const WORLDS = ["sea", "coast", "track", "bench", "cafe", "rail", "snow"] as const;
 export const COAST_PLACEMENTS = ["sea", "shore", "land"] as const;
 export type CoastPlacement = (typeof COAST_PLACEMENTS)[number];
 export type WorldId = (typeof WORLDS)[number];

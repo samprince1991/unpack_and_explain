@@ -34,6 +34,8 @@ import { Post31 } from "./posts/post-31-maglev";
 import { script as post31 } from "./posts/post-31-maglev/script";
 import { Post33 } from "./posts/post-33-helicopter-steering";
 import { script as post33 } from "./posts/post-33-helicopter-steering/script";
+import { Post37 } from "./posts/post-37-ev-cold-range";
+import { script as post37 } from "./posts/post-37-ev-cold-range/script";
 import { Post38 } from "./posts/post-38-gold-jewellery";
 import { script as post38 } from "./posts/post-38-gold-jewellery/script";
 import { calculateCoverMetadata, Cover } from "./templates/Cover";
@@ -186,6 +188,16 @@ export const RemotionRoot: React.FC = () => {
           calculateMetadata={calculateReelMetadata}
         />
         <Composition
+          id="Post37-EvColdRange"
+          component={Post37}
+          durationInFrames={video.fps * 40}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post37, vo: null, audio: null, showGuides: false }}
+          calculateMetadata={calculateReelMetadata}
+        />
+        <Composition
           id="Post38-GoldJewellery"
           component={Post38}
           durationInFrames={video.fps * 40}
@@ -305,6 +317,16 @@ export const RemotionRoot: React.FC = () => {
           width={video.width}
           height={video.height}
           defaultProps={{ script: post33, blender3d: null, showGuides: false }}
+          calculateMetadata={calculateCoverMetadata}
+        />
+        <Composition
+          id="Cover37-EvColdRange"
+          component={Cover}
+          durationInFrames={1}
+          fps={video.fps}
+          width={video.width}
+          height={video.height}
+          defaultProps={{ script: post37, blender3d: null, showGuides: false }}
           calculateMetadata={calculateCoverMetadata}
         />
         <Composition

@@ -8,13 +8,13 @@ category: "Aviation & engineering"
 subcategory: "Cars"
 week: 9
 date: 2026-12-28
-status: scripted
+status: rendered
 hook_formula: 3
 hook_score: 52.2
-question_score: 65.8
+question_score: 59.4
 fit: medium
 fit_why: "car fits, but the cause is battery chemistry"
-hook: "Nobody tells you the heater eats an electric car's range."
+hook: "Nobody tells you the heater eats the range."
 source: "AAA, Feb 2019 EV temperature study; fueleconomy.gov, cold weather"
 verify:
   - "'Warming the cabin is basically free' in a gas car: the engine's waste heat is used (fueleconomy.gov says gas engines lose 64-75% of energy as losses), but a gas car's range also drops in the cold. Fine as phrased; don't claim gas cars lose nothing"
@@ -39,9 +39,9 @@ metrics:  # fill in after posting
 
 | Part | Job |
 |---|---|
-| Question | why electric cars lose 41% in winter |
+| Question | why electric cars lose 41% of their range in winter |
 | Hook | the heater eats the range |
-| Setup | it has no free heat: a gas engine's waste heat warms the cabin, an electric motor barely warms up |
+| Setup | it has no free heat: a gas car's engine heat warms you, an electric motor makes very little heat |
 | Mechanism | so the heat comes from the battery that drives the wheels, and a cold battery works worse too |
 | Payoff | AAA: range dropped 41% at -7 °C with the heater on; warm it up while plugged in |
 | Answer | Mechanism: the heater runs on the drive battery, and cold batteries work worse |
@@ -50,22 +50,23 @@ metrics:  # fill in after posting
 
 | Section | Voice-over | Visual |
 |---|---|---|
-| Question | Do you know why electric cars actually lose 41% in winter? | Question card over the Blender opener: a generic electric hatchback (procedural) in a snowy car park at night, the battery glowing amber in an X-ray view. |
-| Hook | Nobody tells you the heater eats an electric car's range. | Blender hook: X-ray through the dashboard to the heater; a line from the battery to the heater glows amber on 'heater'. |
-| Setup | An electric car gets no free heat. A gas engine's waste heat warms the cabin. An electric motor barely warms up. | 2D: an electric car outline; on 'free heat' a thermometer icon at the cabin reads low; on 'gas engine' a faint inset engine with heat waves appears and fades; on 'motor' the car's motor turns amber with no heat waves. Parallax + dust. |
-| Mechanism | So the heat has to come from the battery, the same battery that drives the wheels. On a freezing day, that heater can take a huge share of the charge. And the battery itself also works worse when it's cold. | Blender cutaway: wide; close on the battery on 'battery' (amber); two lines out, one to the wheels and one to the heater, the heater line thickens on 'huge share'; frost forms on the battery pack and its glow dims on 'works worse when it's cold'; wide. |
-| Payoff | AAA tested five electric cars at minus 7 Celsius with the heater on. Range dropped 41%. Their tip: warm it up while it's still plugged in. | 2D chart: a range bar shrinks from 100 to 59 (amber) on '59', on screen "-7 °C (20 °F)" and "100 mi → 59 mi (161 → 95 km)"; a plug icon on 'plugged in'. |
+| Question | Do you know why electric cars lose 41% of their range in winter? | Question card over the Blender opener: a generic electric hatchback (procedural) in a snowy car park at night; on 'electric' the shell drops away (X-ray: wheels, steering wheel, battery, drive unit, heater) and the battery glows amber. |
+| Hook | Nobody tells you the heater eats the range. | Blender hook: X-ray (shell, seats and dashboard gone); an amber dot runs from the battery up the heat cable to the heater, which turns amber on 'heater'. |
+| Setup | An electric car has no free heat. A gas car warms you with heat from its engine. An electric motor makes very little heat. | 2D: the electric car side on (traced from the 3D model) under a cabin temperature dial that reads low on 'no free heat'; on 'gas' the dial clears and a callout circle shows a gas engine with big heat waves; on 'motor' the callout swaps to the car's electric motor (amber, a leader line to it in the car) with one small faint wisp. Parallax + dust. |
+| Mechanism | So the heater runs on the battery, the same one that drives the wheels. On a freezing day, the heater can use a big part of the charge. And a cold battery works worse too. | Blender cutaway: wide; close on the battery on 'battery' (amber); the amber dot to the drive unit on 'drives'; up the heat cable to the heater on 'freezing'; the heat cable thickens on 'big part'; back on the battery on 'cold', frost forms on 'worse' and its glow dies on 'too'; wide. |
+| Payoff | AAA tested five electric cars at minus 7 Celsius, with the heater on. They lost 41% of their range. Tip: warm the car while it's still plugged in. | 2D: a range bar (amber) with "-7 °C (20 °F)" over it on 'minus'; on 'lost' it shrinks to 59% and "100 mi → 59 mi (161 → 95 km)" appears; below, the same car on the ground; a charging post stands up beside it on 'Tip' and its cable runs to the car's charge flap on 'plugged' (plug amber, bar neutral). |
 | Congrats | Congrats, you just learned why electric cars lose range in the cold. | Congrats card: teal check + chime (template). |
 | CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
 
 ## Cold read
 
 About: electric cars in the cold
-Asks: why electric cars lose 41% in winter
+Asks: why electric cars lose 41% of their range in winter
 Answer: the cabin heater runs off the battery that drives the wheels, and the battery works worse in the cold; AAA measured a 41% drop
 
 ## Notes
 
+- 2026-11-13 rewrite (user: simpler wording; 'lose 41% of what?'): question "Do you know why electric cars lose 41% of their range in winter?" 59.4 ("...lose 41% range in winter?" 62.2 but ungrammatical); hook "Nobody tells you the heater eats the range." 52.2.
 - Hooks scored: #3 "Nobody tells you the heater eats an electric car's range." 52.2 OK (picked: the question card already carries the 41%); #20 "You don't need snow to cut your electric car's range by 41%." 81.4 but repeats the 41% from the question card; #23 "Turn on the heater, and an electric car loses 41% of its range." 37.6.
 - Question cards scored: "Do you know why EVs actually lose 41% in winter?" 65.8 (picked); "Do you know why electric cars hate the cold?" 45.0.
 - Hook title: "The heater eats range", highlight "heater".

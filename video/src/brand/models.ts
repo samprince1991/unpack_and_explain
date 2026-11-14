@@ -438,6 +438,45 @@ export const models = {
     groups: { train: ["body", "windows", "trim", "bogie", "magnet", "magnets", "wheels", "push"] },
     useFor: "Maglev trains, magnetic levitation, induced current, linear motors (idea 31; rail world)",
   },
+  "ev-hatchback": {
+    title: "Generic compact five-door electric hatchback (4.2 m, real-class proportions), built to be cut away: body shell with shut lines, glass, lights, arch trims and plates, door mirrors, dashboard and seats, a flat battery pack of twelve modules in the floor, a rear drive unit (motor, gearbox, inverter, half shafts), an HVAC heater behind the dash, the cables from the pack to the inverter and to the heater, a heat-surge sleeve and frost crystals",
+    file: "models/ev-hatchback.glb",
+    source: "Procedural, blender/models/ev_hatchback.py",
+    license: "own",
+    parts: {
+      body: ["body"],
+      glass: ["glass"],
+      lights: ["lights"],
+      trim: ["trim"],
+      mirrors: ["mirrors"],
+      interior: ["interior"],
+      steering: ["steering"],
+      battery: ["battery"],
+      motor: ["motor"],
+      heater: ["heater"],
+      drive: ["drive"],
+      heat: ["heat"],
+      heatsurge: ["heatsurge"],
+      frost: ["frost"],
+      wheels: ["wheels"],
+    },
+    keyPart: "battery",
+    // Nothing spreads out (spacing 0). The shell and everything on it are `away` parts:
+    // "explode" drops them out of view, an X-ray that shows the battery, motor, heater and
+    // the two cables; "collapse" brings them back.
+    // The seats, headrests, dashboard and screen go too (user, 2026-11-13: keep only what the
+    // reel talks about, so the X-ray is easy to read): wheels, steering wheel, battery, drive
+    // unit, heater and the two cables stay.
+    explode: { axis: "z", order: ["battery", "steering", "motor", "heater"], spacing: 0, away: ["body", "glass", "lights", "trim", "mirrors", "interior"] },
+    spinAxis: "y",
+    // The heater's cable thickening (a sleeve that scales in over it) and frost on the pack.
+    appearOnly: ["heatsurge", "frost"],
+    // The half shafts pass through the wheel-house walls to reach the wheels (seen only
+    // from under the car); the sleeve scales in around the heat cable, never touching it.
+    contacts: [["motor", "body"]],
+    groups: { car: ["body", "glass", "lights", "trim", "mirrors", "interior", "steering", "battery", "motor", "heater", "drive", "heat", "heatsurge", "frost", "wheels"] },
+    useFor: "Electric cars: batteries, range, heating, motors (idea 37)",
+  },
 } as const satisfies Record<string, ModelEntry>;
 
 export type ModelId = keyof typeof models;

@@ -20,15 +20,15 @@ source: "World Gold Council; Bureau of Indian Standards; Ganoksin"
 verify: []
 notes: "Pure gold is too soft for most jewellery, so it's alloyed (22k = 22 parts in 24 = 91.6% gold, hallmarked 22K916 in India; the rest copper and silver), then cast by lost wax: wax ring > plaster (investment) > kiln melts the wax out > molten gold fills the hollow. The stamp (22K916) is the recipe. Switched from 18k to 22k on the user's request (22k is the most common Indian grade). 'Most' gold jewellery, not all: 24k jewellery is common in China and India (WGC)."
 metrics:
-  views: 0  # as of 2026-11-11 (insights export)
-  reach: 0
+  views: 207  # as of 2026-11-13 (insights export)
+  reach: 195
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: 0
+  likes: 1
   comments: 0
   shares: 0
-  saves: 0
+  saves: 1
   follows: 0
 ---
 

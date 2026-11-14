@@ -18,7 +18,7 @@ verify:
   - "Altitude"
   - "Relativity drift figure (commonly cited ~10 km / 6 mi per day)"
 metrics:
-  views: 132  # as of 2026-11-11 (insights export)
+  views: 132  # as of 2026-11-13 (insights export)
   reach: 117
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

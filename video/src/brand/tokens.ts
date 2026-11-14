@@ -29,6 +29,15 @@ export const colors = {
     skyDay: "#24508f",
     horizonDay: "#8aa6c4",
     sunDay: "#fff3dc",
+    // Snow world (a night world): the night haze, cool white LED lamp light (never warm: warm
+    // light sits too close to amber), snow (a mid grey-blue, darker than the white line art
+    // so outlines still read on it), ploughed slush and the falling flakes. Its sky top is
+    // the dark skyTop above.
+    horizonNight: "#25344a",
+    lamp: "#dce6ff",
+    snow: "#8b9cb1",
+    slush: "#4a5464",
+    flake: "#dfe7f0",
     // Coast world: beach, grassland, roads and the posts, poles and lamps on them.
     sand: "#4d4838",
     land: "#1f2c25",

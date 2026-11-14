@@ -18,7 +18,7 @@ hook: "In 2026, you don't need to read one line of code to build an app."
 source: "Andrej Karpathy on X (Feb 2025); Anthropic, How Claude Code works"
 verify: []
 metrics:
-  views: 120  # as of 2026-11-11 (insights export)
+  views: 120  # as of 2026-11-13 (insights export)
   reach: 108
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

@@ -22,7 +22,7 @@ verify:
   - "'Up to 60 cars' is the SR.N4 Mk3 figure on Wikipedia; National Historic Ships lists The Princess Anne at up to 55 cars and 427 passengers. Say 'up to 60' only for the Mk3 class, or switch both lines to 'over 50 cars'"
 notes: "Lift = cushion pressure x area. The air under the craft is under 1% above normal pressure, but it pushes on the whole underside at once, so it adds up to the full weight. The skirt traps the air; the fan only replaces what leaks out under it. Fits the sea world (hovercraft on water, needs a model with a waterline part)."
 metrics:
-  views: 1379  # as of 2026-11-11 (insights export)
+  views: 1379  # as of 2026-11-13 (insights export)
   reach: 1236
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

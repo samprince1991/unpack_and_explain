@@ -1,0 +1,23 @@
+{
+  "postId": "post-37-ev-cold-range",
+  "sounds": {
+    "blower": {
+      "prompt": "car cabin heater fan blower spinning up, soft steady air whoosh, short, no engine",
+      "seconds": 1.4,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-37-ev-cold-range/sfx/blower.mp3"
+    },
+    "frost": {
+      "prompt": "fine ice crystals forming, delicate crisp crackle of frost, short, soft",
+      "seconds": 1.2,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-37-ev-cold-range/sfx/frost.mp3"
+    },
+    "plug": {
+      "prompt": "electric car charging plug clicking into socket, single solid click, short",
+      "seconds": 0.6,
+      "model": "eleven_text_to_sound_v2",
+      "file": "posts/post-37-ev-cold-range/sfx/plug.mp3"
+    }
+  }
+}

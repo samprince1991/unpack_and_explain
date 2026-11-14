@@ -98,14 +98,14 @@ All colors come from `video/src/brand/tokens.ts`. **Never write a hex value anyw
 | teal.100 / 300 / 600 / 700 | #99f6e4 / #5eead4 / #0d9488 / #0f766e | Reserved for brand elements (shading and glows of teal items) |
 | coral | #FF5A5F | Only failure segments, MYTH, "wrong" marks |
 | text.primary / secondary / muted | #f8fafc / #cbd5e1 / #94a3b8 | Main text / tagline, secondary / sources |
-| env.* | see `tokens.ts` | Blender worlds only: daylight sky for outdoor worlds (`skyDay`, `horizonDay`, `sunDay`), dark tones for indoor ones. Grass also uses a graded CC0 photo texture (`blender/textures/`) |
+| env.* | see `tokens.ts` | Blender worlds only: daylight sky for outdoor worlds (`skyDay`, `horizonDay`, `sunDay`), dark tones for indoor and night ones (night lamps are cool white `lamp`, never warm). Grass also uses a graded CC0 photo texture (`blender/textures/`) |
 
 **Color roles:**
 - Diagrams are **neutral line art**. Never draw scene objects in teal.
 - **Amber = one key element per beat.** If two things are amber, one of them shouldn't be.
 - **Teal = brand moments only**, so it stays rare and recognizable.
 - Icons in `src/components/icons/` are neutral by default; only `PinIcon` and the clock's minute hand are amber, because they *are* the key marker.
-- Theme is **dark** for every card, 2D section and text background. Outdoor Blender worlds are in daylight (2026-11-13), still with one amber key.
+- Theme is **dark** for every card, 2D section and text background. Outdoor Blender worlds are in daylight (2026-11-13), still with one amber key. Exception: a night world when the topic happens at night (the `snow` car park, 2026-11-13), lit by cool white lamps with the model in a lamp's pool of light.
 - Tagline: **"How things actually work"**. Spoken CTA: "Follow Unpack and Explain for how things actually work."
 - Logo: Avatar mark for sting + watermark, Stacked-Dark for the CTA card. Never recolor, stretch, crop or add effects to the logo.
 

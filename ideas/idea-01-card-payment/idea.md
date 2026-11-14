@@ -20,7 +20,7 @@ verify:
   - "Settlement timing (varies by country and card network); cite the source on screen"
   - "Up to five companies in the chain (terminal provider/processor, shop's bank, card network, your bank)"
 metrics:
-  views: 3  # as of 2026-11-11 (insights export)
+  views: 3  # as of 2026-11-13 (insights export)
   reach: 2
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

@@ -1,0 +1,965 @@
+{
+  "postId": "post-37-ev-cold-range",
+  "estimated": false,
+  "sections": [
+    {
+      "id": "question",
+      "text": "Do you know why electric cars lose 41% of their range in winter?",
+      "file": "posts/post-37-ev-cold-range/vo/question.mp3",
+      "durationMs": 4505,
+      "captions": [
+        {
+          "text": "Do",
+          "startMs": 0,
+          "endMs": 139,
+          "timestampMs": 70,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 163,
+          "endMs": 232,
+          "timestampMs": 198,
+          "confidence": null
+        },
+        {
+          "text": " know",
+          "startMs": 267,
+          "endMs": 395,
+          "timestampMs": 331,
+          "confidence": null
+        },
+        {
+          "text": " why",
+          "startMs": 441,
+          "endMs": 557,
+          "timestampMs": 499,
+          "confidence": null
+        },
+        {
+          "text": " electric",
+          "startMs": 639,
+          "endMs": 952,
+          "timestampMs": 796,
+          "confidence": null
+        },
+        {
+          "text": " cars",
+          "startMs": 987,
+          "endMs": 1231,
+          "timestampMs": 1109,
+          "confidence": null
+        },
+        {
+          "text": " lose",
+          "startMs": 1289,
+          "endMs": 1498,
+          "timestampMs": 1394,
+          "confidence": null
+        },
+        {
+          "text": " 41%",
+          "startMs": 1556,
+          "endMs": 2473,
+          "timestampMs": 2015,
+          "confidence": null
+        },
+        {
+          "text": " of",
+          "startMs": 2577,
+          "endMs": 2624,
+          "timestampMs": 2601,
+          "confidence": null
+        },
+        {
+          "text": " their",
+          "startMs": 2659,
+          "endMs": 2786,
+          "timestampMs": 2723,
+          "confidence": null
+        },
+        {
+          "text": " range",
+          "startMs": 2844,
+          "endMs": 3077,
+          "timestampMs": 2960,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 3100,
+          "endMs": 3158,
+          "timestampMs": 3129,
+          "confidence": null
+        },
+        {
+          "text": " winter?",
+          "startMs": 3239,
+          "endMs": 4505,
+          "timestampMs": 3872,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "text": "Nobody tells you the heater eats the range.",
+      "file": "posts/post-37-ev-cold-range/vo/hook.mp3",
+      "durationMs": 2833,
+      "captions": [
+        {
+          "text": "Nobody",
+          "startMs": 0,
+          "endMs": 372,
+          "timestampMs": 186,
+          "confidence": null
+        },
+        {
+          "text": " tells",
+          "startMs": 418,
+          "endMs": 639,
+          "timestampMs": 529,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 673,
+          "endMs": 755,
+          "timestampMs": 714,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 801,
+          "endMs": 871,
+          "timestampMs": 836,
+          "confidence": null
+        },
+        {
+          "text": " heater",
+          "startMs": 929,
+          "endMs": 1184,
+          "timestampMs": 1057,
+          "confidence": null
+        },
+        {
+          "text": " eats",
+          "startMs": 1242,
+          "endMs": 1440,
+          "timestampMs": 1341,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 1486,
+          "endMs": 1556,
+          "timestampMs": 1521,
+          "confidence": null
+        },
+        {
+          "text": " range.",
+          "startMs": 1614,
+          "endMs": 2833,
+          "timestampMs": 2224,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "text": "An electric car has no free heat. A gas car warms you with heat from its engine. An electric motor makes very little heat.",
+      "file": "posts/post-37-ev-cold-range/vo/setup.mp3",
+      "durationMs": 7848,
+      "captions": [
+        {
+          "text": "An",
+          "startMs": 0,
+          "endMs": 163,
+          "timestampMs": 82,
+          "confidence": null
+        },
+        {
+          "text": " electric",
+          "startMs": 209,
+          "endMs": 546,
+          "timestampMs": 378,
+          "confidence": null
+        },
+        {
+          "text": " car",
+          "startMs": 604,
+          "endMs": 789,
+          "timestampMs": 697,
+          "confidence": null
+        },
+        {
+          "text": " has",
+          "startMs": 848,
+          "endMs": 987,
+          "timestampMs": 918,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 1115,
+          "endMs": 1277,
+          "timestampMs": 1196,
+          "confidence": null
+        },
+        {
+          "text": " free",
+          "startMs": 1370,
+          "endMs": 1567,
+          "timestampMs": 1469,
+          "confidence": null
+        },
+        {
+          "text": " heat.",
+          "startMs": 1602,
+          "endMs": 1997,
+          "timestampMs": 1800,
+          "confidence": null
+        },
+        {
+          "text": " A",
+          "startMs": 2345,
+          "endMs": 2438,
+          "timestampMs": 2392,
+          "confidence": null
+        },
+        {
+          "text": " gas",
+          "startMs": 2531,
+          "endMs": 2798,
+          "timestampMs": 2665,
+          "confidence": null
+        },
+        {
+          "text": " car",
+          "startMs": 2879,
+          "endMs": 3088,
+          "timestampMs": 2984,
+          "confidence": null
+        },
+        {
+          "text": " warms",
+          "startMs": 3181,
+          "endMs": 3529,
+          "timestampMs": 3355,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 3576,
+          "endMs": 3646,
+          "timestampMs": 3611,
+          "confidence": null
+        },
+        {
+          "text": " with",
+          "startMs": 3692,
+          "endMs": 3808,
+          "timestampMs": 3750,
+          "confidence": null
+        },
+        {
+          "text": " heat",
+          "startMs": 3866,
+          "endMs": 4040,
+          "timestampMs": 3953,
+          "confidence": null
+        },
+        {
+          "text": " from",
+          "startMs": 4087,
+          "endMs": 4203,
+          "timestampMs": 4145,
+          "confidence": null
+        },
+        {
+          "text": " its",
+          "startMs": 4249,
+          "endMs": 4354,
+          "timestampMs": 4302,
+          "confidence": null
+        },
+        {
+          "text": " engine.",
+          "startMs": 4412,
+          "endMs": 4934,
+          "timestampMs": 4673,
+          "confidence": null
+        },
+        {
+          "text": " An",
+          "startMs": 5492,
+          "endMs": 5631,
+          "timestampMs": 5562,
+          "confidence": null
+        },
+        {
+          "text": " electric",
+          "startMs": 5677,
+          "endMs": 6002,
+          "timestampMs": 5839,
+          "confidence": null
+        },
+        {
+          "text": " motor",
+          "startMs": 6060,
+          "endMs": 6293,
+          "timestampMs": 6177,
+          "confidence": null
+        },
+        {
+          "text": " makes",
+          "startMs": 6351,
+          "endMs": 6548,
+          "timestampMs": 6450,
+          "confidence": null
+        },
+        {
+          "text": " very",
+          "startMs": 6676,
+          "endMs": 6943,
+          "timestampMs": 6810,
+          "confidence": null
+        },
+        {
+          "text": " little",
+          "startMs": 6989,
+          "endMs": 7198,
+          "timestampMs": 7094,
+          "confidence": null
+        },
+        {
+          "text": " heat.",
+          "startMs": 7233,
+          "endMs": 7848,
+          "timestampMs": 7541,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "mechanism",
+      "text": "So the heater runs on the battery, the same one that drives the wheels. On a freezing day, the heater can use a big part of the charge. And a cold battery works worse too.",
+      "file": "posts/post-37-ev-cold-range/vo/mechanism.mp3",
+      "durationMs": 10263,
+      "captions": [
+        {
+          "text": "So",
+          "startMs": 0,
+          "endMs": 197,
+          "timestampMs": 99,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 255,
+          "endMs": 325,
+          "timestampMs": 290,
+          "confidence": null
+        },
+        {
+          "text": " heater",
+          "startMs": 406,
+          "endMs": 650,
+          "timestampMs": 528,
+          "confidence": null
+        },
+        {
+          "text": " runs",
+          "startMs": 697,
+          "endMs": 894,
+          "timestampMs": 796,
+          "confidence": null
+        },
+        {
+          "text": " on",
+          "startMs": 929,
+          "endMs": 987,
+          "timestampMs": 958,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 1022,
+          "endMs": 1091,
+          "timestampMs": 1057,
+          "confidence": null
+        },
+        {
+          "text": " battery,",
+          "startMs": 1126,
+          "endMs": 1509,
+          "timestampMs": 1318,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 1533,
+          "endMs": 1602,
+          "timestampMs": 1568,
+          "confidence": null
+        },
+        {
+          "text": " same",
+          "startMs": 1649,
+          "endMs": 1881,
+          "timestampMs": 1765,
+          "confidence": null
+        },
+        {
+          "text": " one",
+          "startMs": 1927,
+          "endMs": 2055,
+          "timestampMs": 1991,
+          "confidence": null
+        },
+        {
+          "text": " that",
+          "startMs": 2078,
+          "endMs": 2183,
+          "timestampMs": 2130,
+          "confidence": null
+        },
+        {
+          "text": " drives",
+          "startMs": 2218,
+          "endMs": 2508,
+          "timestampMs": 2363,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 2554,
+          "endMs": 2624,
+          "timestampMs": 2589,
+          "confidence": null
+        },
+        {
+          "text": " wheels.",
+          "startMs": 2670,
+          "endMs": 3262,
+          "timestampMs": 2966,
+          "confidence": null
+        },
+        {
+          "text": " On",
+          "startMs": 3820,
+          "endMs": 3959,
+          "timestampMs": 3890,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 3994,
+          "endMs": 4017,
+          "timestampMs": 4006,
+          "confidence": null
+        },
+        {
+          "text": " freezing",
+          "startMs": 4098,
+          "endMs": 4540,
+          "timestampMs": 4319,
+          "confidence": null
+        },
+        {
+          "text": " day,",
+          "startMs": 4621,
+          "endMs": 4841,
+          "timestampMs": 4731,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 4865,
+          "endMs": 4934,
+          "timestampMs": 4900,
+          "confidence": null
+        },
+        {
+          "text": " heater",
+          "startMs": 5016,
+          "endMs": 5259,
+          "timestampMs": 5138,
+          "confidence": null
+        },
+        {
+          "text": " can",
+          "startMs": 5317,
+          "endMs": 5410,
+          "timestampMs": 5364,
+          "confidence": null
+        },
+        {
+          "text": " use",
+          "startMs": 5468,
+          "endMs": 5608,
+          "timestampMs": 5538,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 5642,
+          "endMs": 5666,
+          "timestampMs": 5654,
+          "confidence": null
+        },
+        {
+          "text": " big",
+          "startMs": 5793,
+          "endMs": 6014,
+          "timestampMs": 5904,
+          "confidence": null
+        },
+        {
+          "text": " part",
+          "startMs": 6095,
+          "endMs": 6281,
+          "timestampMs": 6188,
+          "confidence": null
+        },
+        {
+          "text": " of",
+          "startMs": 6316,
+          "endMs": 6362,
+          "timestampMs": 6339,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 6397,
+          "endMs": 6467,
+          "timestampMs": 6432,
+          "confidence": null
+        },
+        {
+          "text": " charge.",
+          "startMs": 6502,
+          "endMs": 7070,
+          "timestampMs": 6786,
+          "confidence": null
+        },
+        {
+          "text": " And",
+          "startMs": 7419,
+          "endMs": 7570,
+          "timestampMs": 7495,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 7616,
+          "endMs": 7651,
+          "timestampMs": 7634,
+          "confidence": null
+        },
+        {
+          "text": " cold",
+          "startMs": 7732,
+          "endMs": 8011,
+          "timestampMs": 7871,
+          "confidence": null
+        },
+        {
+          "text": " battery",
+          "startMs": 8069,
+          "endMs": 8371,
+          "timestampMs": 8220,
+          "confidence": null
+        },
+        {
+          "text": " works",
+          "startMs": 8429,
+          "endMs": 8696,
+          "timestampMs": 8563,
+          "confidence": null
+        },
+        {
+          "text": " worse",
+          "startMs": 8742,
+          "endMs": 9009,
+          "timestampMs": 8876,
+          "confidence": null
+        },
+        {
+          "text": " too.",
+          "startMs": 9044,
+          "endMs": 10263,
+          "timestampMs": 9654,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "text": "AAA tested five electric cars at minus 7 Celsius, with the heater on. They lost 41% of their range. Tip: warm the car while it's still plugged in.",
+      "file": "posts/post-37-ev-cold-range/vo/payoff.mp3",
+      "durationMs": 11842,
+      "captions": [
+        {
+          "text": "AAA",
+          "startMs": 0,
+          "endMs": 615,
+          "timestampMs": 308,
+          "confidence": null
+        },
+        {
+          "text": " tested",
+          "startMs": 673,
+          "endMs": 1010,
+          "timestampMs": 842,
+          "confidence": null
+        },
+        {
+          "text": " five",
+          "startMs": 1103,
+          "endMs": 1451,
+          "timestampMs": 1277,
+          "confidence": null
+        },
+        {
+          "text": " electric",
+          "startMs": 1498,
+          "endMs": 1858,
+          "timestampMs": 1678,
+          "confidence": null
+        },
+        {
+          "text": " cars",
+          "startMs": 1892,
+          "endMs": 2136,
+          "timestampMs": 2014,
+          "confidence": null
+        },
+        {
+          "text": " at",
+          "startMs": 2171,
+          "endMs": 2241,
+          "timestampMs": 2206,
+          "confidence": null
+        },
+        {
+          "text": " minus",
+          "startMs": 2334,
+          "endMs": 2670,
+          "timestampMs": 2502,
+          "confidence": null
+        },
+        {
+          "text": " 7",
+          "startMs": 2752,
+          "endMs": 2984,
+          "timestampMs": 2868,
+          "confidence": null
+        },
+        {
+          "text": " Celsius,",
+          "startMs": 3065,
+          "endMs": 3808,
+          "timestampMs": 3436,
+          "confidence": null
+        },
+        {
+          "text": " with",
+          "startMs": 3936,
+          "endMs": 4110,
+          "timestampMs": 4023,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 4145,
+          "endMs": 4214,
+          "timestampMs": 4180,
+          "confidence": null
+        },
+        {
+          "text": " heater",
+          "startMs": 4272,
+          "endMs": 4540,
+          "timestampMs": 4406,
+          "confidence": null
+        },
+        {
+          "text": " on.",
+          "startMs": 4621,
+          "endMs": 4934,
+          "timestampMs": 4778,
+          "confidence": null
+        },
+        {
+          "text": " They",
+          "startMs": 5352,
+          "endMs": 5515,
+          "timestampMs": 5434,
+          "confidence": null
+        },
+        {
+          "text": " lost",
+          "startMs": 5573,
+          "endMs": 5828,
+          "timestampMs": 5701,
+          "confidence": null
+        },
+        {
+          "text": " 41%",
+          "startMs": 5956,
+          "endMs": 6885,
+          "timestampMs": 6421,
+          "confidence": null
+        },
+        {
+          "text": " of",
+          "startMs": 6989,
+          "endMs": 7047,
+          "timestampMs": 7018,
+          "confidence": null
+        },
+        {
+          "text": " their",
+          "startMs": 7082,
+          "endMs": 7233,
+          "timestampMs": 7158,
+          "confidence": null
+        },
+        {
+          "text": " range.",
+          "startMs": 7279,
+          "endMs": 7837,
+          "timestampMs": 7558,
+          "confidence": null
+        },
+        {
+          "text": " Tip:",
+          "startMs": 8394,
+          "endMs": 8986,
+          "timestampMs": 8690,
+          "confidence": null
+        },
+        {
+          "text": " warm",
+          "startMs": 9404,
+          "endMs": 9683,
+          "timestampMs": 9544,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 9729,
+          "endMs": 9799,
+          "timestampMs": 9764,
+          "confidence": null
+        },
+        {
+          "text": " car",
+          "startMs": 9834,
+          "endMs": 10066,
+          "timestampMs": 9950,
+          "confidence": null
+        },
+        {
+          "text": " while",
+          "startMs": 10124,
+          "endMs": 10298,
+          "timestampMs": 10211,
+          "confidence": null
+        },
+        {
+          "text": " it's",
+          "startMs": 10321,
+          "endMs": 10437,
+          "timestampMs": 10379,
+          "confidence": null
+        },
+        {
+          "text": " still",
+          "startMs": 10472,
+          "endMs": 10681,
+          "timestampMs": 10577,
+          "confidence": null
+        },
+        {
+          "text": " plugged",
+          "startMs": 10728,
+          "endMs": 11006,
+          "timestampMs": 10867,
+          "confidence": null
+        },
+        {
+          "text": " in.",
+          "startMs": 11064,
+          "endMs": 11842,
+          "timestampMs": 11453,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "congrats",
+      "text": "Congrats, you just learned why electric cars lose range in the cold.",
+      "file": "posts/post-37-ev-cold-range/vo/congrats.mp3",
+      "durationMs": 4090,
+      "captions": [
+        {
+          "text": "Congrats,",
+          "startMs": 0,
+          "endMs": 476,
+          "timestampMs": 238,
+          "confidence": null
+        },
+        {
+          "text": " you",
+          "startMs": 499,
+          "endMs": 580,
+          "timestampMs": 540,
+          "confidence": null
+        },
+        {
+          "text": " just",
+          "startMs": 662,
+          "endMs": 801,
+          "timestampMs": 732,
+          "confidence": null
+        },
+        {
+          "text": " learned",
+          "startMs": 836,
+          "endMs": 1045,
+          "timestampMs": 940,
+          "confidence": null
+        },
+        {
+          "text": " why",
+          "startMs": 1080,
+          "endMs": 1277,
+          "timestampMs": 1179,
+          "confidence": null
+        },
+        {
+          "text": " electric",
+          "startMs": 1382,
+          "endMs": 1800,
+          "timestampMs": 1591,
+          "confidence": null
+        },
+        {
+          "text": " cars",
+          "startMs": 1846,
+          "endMs": 2113,
+          "timestampMs": 1980,
+          "confidence": null
+        },
+        {
+          "text": " lose",
+          "startMs": 2194,
+          "endMs": 2415,
+          "timestampMs": 2305,
+          "confidence": null
+        },
+        {
+          "text": " range",
+          "startMs": 2473,
+          "endMs": 2682,
+          "timestampMs": 2577,
+          "confidence": null
+        },
+        {
+          "text": " in",
+          "startMs": 2717,
+          "endMs": 2763,
+          "timestampMs": 2740,
+          "confidence": null
+        },
+        {
+          "text": " the",
+          "startMs": 2798,
+          "endMs": 2868,
+          "timestampMs": 2833,
+          "confidence": null
+        },
+        {
+          "text": " cold.",
+          "startMs": 2902,
+          "endMs": 4090,
+          "timestampMs": 3541,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "text": "Follow Unpack and Explain for how things actually work.",
+      "file": "posts/post-37-ev-cold-range/vo/cta.mp3",
+      "durationMs": 3576,
+      "captions": [
+        {
+          "text": "Follow",
+          "startMs": 0,
+          "endMs": 348,
+          "timestampMs": 174,
+          "confidence": null
+        },
+        {
+          "text": " Unpack",
+          "startMs": 476,
+          "endMs": 975,
+          "timestampMs": 726,
+          "confidence": null
+        },
+        {
+          "text": " and",
+          "startMs": 1033,
+          "endMs": 1115,
+          "timestampMs": 1074,
+          "confidence": null
+        },
+        {
+          "text": " Explain",
+          "startMs": 1161,
+          "endMs": 1591,
+          "timestampMs": 1376,
+          "confidence": null
+        },
+        {
+          "text": " for",
+          "startMs": 1649,
+          "endMs": 1741,
+          "timestampMs": 1695,
+          "confidence": null
+        },
+        {
+          "text": " how",
+          "startMs": 1788,
+          "endMs": 1904,
+          "timestampMs": 1846,
+          "confidence": null
+        },
+        {
+          "text": " things",
+          "startMs": 1997,
+          "endMs": 2252,
+          "timestampMs": 2125,
+          "confidence": null
+        },
+        {
+          "text": " actually",
+          "startMs": 2357,
+          "endMs": 2844,
+          "timestampMs": 2601,
+          "confidence": null
+        },
+        {
+          "text": " work.",
+          "startMs": 2891,
+          "endMs": 3576,
+          "timestampMs": 3234,
+          "confidence": null
+        }
+      ]
+    }
+  ]
+}

@@ -8,7 +8,8 @@ category: "Aviation & engineering"
 subcategory: "Flight"
 week: 8
 date: 2026-12-21
-status: rendered
+status: posted
+link: https://www.instagram.com/reel/Dfrb9JAIEn_/
 hook_formula: 3
 hook_score: 80.0
 question_score: 62.2
@@ -19,16 +20,16 @@ source: "FAA Helicopter Flying Handbook (FAA-H-8083-21B), ch. 2-4"
 verify: []
 notes: "Swashplate: non-rotating lower plate moved by the controls, rotating upper plate linked to each blade. Collective = all blades' pitch together (up/down). Cyclic = pitch varies once per turn, tilting the rotor disc (direction). Torque reaction countered by the tail rotor; pedals change its pitch."
 metrics:  # fill in after posting
-  views: null
-  reach: null
+  views: 1589  # as of 2026-11-13 (insights export)
+  reach: 1449
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length
-  likes: null
-  comments: null
-  shares: null
-  saves: null
-  follows: null
+  likes: 23
+  comments: 0
+  shares: 0
+  saves: 7
+  follows: 1
 ---
 
 # Idea 33: How a helicopter steers

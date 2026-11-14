@@ -4,7 +4,7 @@
 
 Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the topics before adding an idea so we build on a theme instead of repeating one.
 
-**50 ideas** (by status: 25 idea, 8 scripted, 5 rendered, 12 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
+**75 ideas** (by status: 50 idea, 7 scripted, 5 rendered, 13 posted) · next up: #17 [5 steps of a card payment](idea-17-card-payment-steps/idea.md) (Wed 4 Nov)
 
 ## Topics
 
@@ -35,14 +35,14 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Markets | 22 | [How a stock price actually gets set](idea-22-order-book/idea.md) | You never see the hidden queue behind every stock price. | E | idea | low | Nasdaq Rule 4757 (Book Processing), via SEC filings | - |
 | Credit | 7 | [How credit scores work](idea-07-credit-score/idea.md) | You don't need a big salary for a high credit score. | E | rendered | low | myFICO, What's in your credit score; CFPB, What is a credit score | 1 |
 
-### Aviation & engineering (20)
+### Aviation & engineering (23)
 
 | Sub-category | # | Idea | Hook | Fmt | Status | Fit | Source | To verify |
 |---|---|---|---|---|---|---|---|---|
 | Flight | 4 | [Myth: planes fly because air pushes up from below](idea-04-lift-myth/idea.md) | Most people explain lift wrong. | Q | scripted | medium | NASA Glenn 'lift' explainer pages | 1 |
 | Flight | 11 | [How a plane's autopilot works](idea-11-autopilot/idea.md) | Autopilot isn't flying the plane. It's following instructions. | E | idea | medium | Aircraft manufacturer / FAA docs | - |
 | Flight | 29 | [How an electric air taxi flies](idea-29-air-taxi/idea.md) | You don't need a runway to fly at 200 mph. | E | scripted | high | Joby Aviation; Wikipedia, Joby Aviation; Motley Fool, 30 Oct 2026 | 2 |
-| Flight | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Nobody tells you 2 plates do almost all of a helicopter's steering. | E | rendered | high | FAA Helicopter Flying Handbook (FAA-H-8083-21B), ch. 2-4 | - |
+| Flight | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Nobody tells you 2 plates do almost all of a helicopter's steering. | E | [posted](https://www.instagram.com/reel/Dfrb9JAIEn_/) | high | FAA Helicopter Flying Handbook (FAA-H-8083-21B), ch. 2-4 | - |
 | Flight | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | If one motor dies, an air taxi falls. Not quite. | Q | scripted | medium | Archer Aviation (via AIN Online, Vertical Mag) | 3 |
 | Engines | 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | A passenger jet ran out of fuel at 41,000 ft. Both engines died. | F | [posted](https://www.instagram.com/reel/DfPEJpBIkrN) | medium | Canadian investigation report on Air Canada Flight 143 (1983) | - |
 | Engines | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | 4 steps your plane never stops | C | [posted](https://www.instagram.com/p/DfZfdEok4Sz) | low | NASA Glenn Research Center, Beginner's Guide to Propulsion | - |
@@ -58,7 +58,10 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Cars | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Nobody tells you braking gives an electric car back 32% in the city. | E | scripted | medium | U.S. DOE / EPA, fueleconomy.gov: Where the energy goes, electric cars | 1 |
 | Cars | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Nobody tells you an F1 car could drive on the ceiling at 210 km/h. | E | scripted | high | NASA Glenn, lift equation; Planet F1; University of Leicester Physics Special Topics | 2 |
 | Cars | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Nobody tells you a robotaxi uses three kinds of eyes. | E | scripted | high | Waymo, A suite of sensors (support page); Waymo 6th-gen Driver coverage (Ward's Auto, Automotive World) | 2 |
-| Cars | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Nobody tells you the heater eats an electric car's range. | E | scripted | medium | AAA, Feb 2019 EV temperature study; fueleconomy.gov, cold weather | 2 |
+| Cars | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Nobody tells you the heater eats the range. | E | rendered | medium | AAA, Feb 2019 EV temperature study; fueleconomy.gov, cold weather | 2 |
+| Cars | 73 | [How a diesel engine fires without a spark](idea-73-diesel-ignition/idea.md) | Nobody tells you a diesel engine has no spark plugs. | E | idea | high | U.S. Department of Energy, Alternative Fuels Data Center (diesel vehicles); {{source}}: an engine textbook for compression ratios | 3 |
+| Cars | 74 | [How a hybrid car charges itself](idea-74-hybrid-self-charging/idea.md) | Nobody tells you a hybrid never needs a plug. | E | idea | high | U.S. DOE / EPA, fueleconomy.gov (How hybrids work) | 3 |
+| Cars | 75 | [How a plug-in hybrid picks electric or petrol](idea-75-phev-modes/idea.md) | Nobody tells you a plug-in hybrid is two cars in one. | E | idea | high | U.S. DOE / EPA, fueleconomy.gov (plug-in hybrids) | 3 |
 
 ### Style & beauty (13)
 
@@ -77,6 +80,38 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | Fragrance | 44 | [Why perfume changes smell over the day](idea-44-perfume-notes/idea.md) | Nobody tells you your perfume is a race between molecules. | E | idea | low | Cosmetics & Toiletries, 'Top note vs middle and bottom notes' (Poucher evaporation scale) | 2 |
 | Fabrics | 48 | [Why jeans are white on the inside](idea-48-jeans-indigo/idea.md) | Nobody tells you your blue jeans are white inside every thread. | E | idea | low | Wikipedia, Denim; {{source}}: a mill or textile-science source on ring dyeing | 1 |
 | Fabrics | 49 | [How silk is made](idea-49-silk/idea.md) | Nobody tells you one silk cocoon is a single 900-metre thread. | E | idea | medium | Britannica, Sericulture | 2 |
+
+### Games & gadgets (13)
+
+| Sub-category | # | Idea | Hook | Fmt | Status | Fit | Source | To verify |
+|---|---|---|---|---|---|---|---|---|
+| Consoles | 52 | [How a PS5 trigger pushes back](idea-52-adaptive-triggers/idea.md) | Nobody tells you your PS5 trigger has a motor inside. | E | idea | low | Sony Interactive Entertainment, DualSense product page; {{source}}: a teardown (e.g. iFixit DualSense teardown) | 2 |
+| Consoles | 55 | [Myth: blowing into a game cartridge fixes it](idea-55-cartridge-blowing-myth/idea.md) | Blowing into a cartridge never fixed it. | Q | idea | low | {{source}}: Nintendo's own warning (manual or Nintendo Power) and a hardware source on connector oxidation | 2 |
+| Consoles | 57 | [How a controller rumbles](idea-57-controller-rumble/idea.md) | Nobody tells you your controller shakes because of a lopsided weight. | E | idea | low | {{source}}: motor maker docs on eccentric rotating mass (ERM) and linear actuators (e.g. Precision Microdrives) | 2 |
+| Consoles | 61 | [Why PS5 loading screens almost vanished](idea-61-ps5-ssd/idea.md) | Nobody tells you PS5 loading got fast because of one chip. | E | idea | low | Mark Cerny, The Road to PS5 (Sony, March 2020) | 2 |
+| PC gaming | 54 | [How a gaming mouse sees your desk](idea-54-gaming-mouse-sensor/idea.md) | Nobody tells you your mouse is a tiny camera. | E | idea | low | {{source}}: sensor maker datasheet (e.g. PixArt) or a patent for optical mouse navigation | 2 |
+| PC gaming | 56 | [How a graphics card draws one frame](idea-56-gpu-frame/idea.md) | Nobody tells you your graphics card paints pixels in parallel. | E | idea | low | {{source}}: GPU maker docs (e.g. NVIDIA or AMD developer guides on the graphics pipeline) | 2 |
+| PC gaming | 58 | [How online games hide lag](idea-58-lag-compensation/idea.md) | Nobody tells you your game guesses where everyone is. | E | idea | low | Valve Developer Community, Source Multiplayer Networking | 1 |
+| PC gaming | 60 | [What 30, 60 and 120 fps really mean](idea-60-fps-cheat-sheet/idea.md) | 30, 60, 120 fps: same game, different time. | C | idea | low | {{source}}: display maker or GPU maker explainer on frame time | 2 |
+| PC gaming | 62 | [How ray tracing lights a game](idea-62-ray-tracing/idea.md) | Nobody tells you ray tracing runs light backwards. | E | idea | low | {{source}}: NVIDIA developer docs on ray tracing, or Pharr et al., Physically Based Rendering | 2 |
+| Drones | 51 | [How a drone steers with no moving wings](idea-51-quadcopter-steering/idea.md) | Nobody tells you a drone steers by slowing one propeller. | E | idea | high | {{source}}: needs a flight-dynamics source (e.g. a university quadrotor dynamics paper or textbook) | 1 |
+| Drones | 53 | [How hundreds of drones draw pictures in the sky](idea-53-drone-light-show/idea.md) | Nobody tells you a drone show has no pilots. | E | idea | high | {{source}}: show operator docs (e.g. Intel Drone Light Shows, Verge Aero, Sky Elements) | 3 |
+| Drones | 59 | [How a drone hovers in one spot](idea-59-drone-hover/idea.md) | Nobody tells you a hovering drone is watching the ground. | E | idea | high | {{source}}: drone maker docs on positioning (e.g. DJI vision positioning / flight controller docs) | 2 |
+| Drones | 63 | [How a drone moves in 4 moves](idea-63-drone-steering-steps/idea.md) | 4 moves. Zero moving wings. | C | idea | low | Same source as idea 51 | 1 |
+
+### Extreme places (9)
+
+| Sub-category | # | Idea | Hook | Fmt | Status | Fit | Source | To verify |
+|---|---|---|---|---|---|---|---|---|
+| Ice & snow | 64 | [How an igloo keeps you warm](idea-64-igloo-warmth/idea.md) | Nobody tells you an igloo is warm because of snow. | E | idea | high | {{source}}: needs an Arctic or building-physics source (e.g. The Canadian Encyclopedia, Inuit heritage body, or a snow-insulation paper) | 3 |
+| Ice & snow | 67 | [Myth: igloos are made of ice](idea-67-igloo-ice-myth/idea.md) | Igloos aren't made of ice. | Q | idea | medium | Same source as idea 64 | 2 |
+| Ice & snow | 71 | [Why most of an iceberg hides underwater](idea-71-iceberg-float/idea.md) | Nobody tells you you only ever see a tenth of an iceberg. | E | idea | high | NOAA (National Ocean Service, iceberg facts); {{source}}: ice and seawater density figures | 2 |
+| Volcanoes & earth | 65 | [How a volcano erupts](idea-65-volcano-eruption/idea.md) | Nobody tells you a volcano erupts like a shaken soda. | E | idea | high | USGS Volcano Hazards Program | 2 |
+| Volcanoes & earth | 69 | [How scientists know a volcano will erupt](idea-69-eruption-warning/idea.md) | Nobody tells you volcanoes swell before they erupt. | E | idea | high | USGS Volcano Hazards Program (monitoring pages) | 2 |
+| Volcanoes & earth | 72 | [How a geyser erupts on schedule](idea-72-geyser/idea.md) | Nobody tells you a geyser is a pressure cooker underground. | E | idea | high | U.S. National Park Service, Yellowstone (Old Faithful and geyser pages) | 3 |
+| Deep sea | 66 | [How a submarine dives and surfaces](idea-66-submarine-dive/idea.md) | Nobody tells you a submarine sinks on purpose. | E | idea | high | {{source}}: a non-military source (e.g. Britannica, or a research or tourist submarine operator) | 2 |
+| Deep sea | 68 | [How a submarine dives in 4 steps](idea-68-submarine-dive-steps/idea.md) | 4 steps. One sinks on purpose. | C | idea | low | Same source as idea 66 | 1 |
+| Deep sea | 70 | [How a deep-sea submersible survives the crush](idea-70-alvin-pressure/idea.md) | Nobody tells you deep-sea pilots sit inside a metal ball. | E | idea | high | Woods Hole Oceanographic Institution, Human Occupied Vehicle Alvin | 3 |
 
 ## Schedule
 
@@ -115,11 +150,11 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2026-12-15 | 7 | 30 | [The fan car that won its only race](idea-30-fan-car/idea.md) | Aviation & engineering › Cars | E | scripted | high | 81.4 | 128 | 51 |
 | 2026-12-17 | 7 | 31 | [How a maglev train floats](idea-31-maglev/idea.md) | Aviation & engineering › Machines | E | rendered | high | 77.8 | 125 | 50 |
 | 2026-12-18 | 7 | 32 | [How braking charges an electric car](idea-32-regen-braking/idea.md) | Aviation & engineering › Cars | E | scripted | medium | 78.6 | 127 | 51 |
-| 2026-12-21 | 8 | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Aviation & engineering › Flight | E | rendered | high | 80 | 130 | 52 |
+| 2026-12-21 | 8 | 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | Aviation & engineering › Flight | E | [posted](https://www.instagram.com/reel/Dfrb9JAIEn_/) | high | 80 | 130 | 52 |
 | 2026-12-22 | 8 | 34 | [Could an F1 car drive upside down](idea-34-f1-upside-down/idea.md) | Aviation & engineering › Cars | E | scripted | high | 70 | 126 | 50 |
 | 2026-12-24 | 8 | 35 | [How a robotaxi sees](idea-35-robotaxi-sensors/idea.md) | Aviation & engineering › Cars | E | scripted | high | 81.4 | 125 | 50 |
 | 2026-12-25 | 8 | 36 | [Myth: if one motor dies, an air taxi falls](idea-36-air-taxi-propellers-myth/idea.md) | Aviation & engineering › Flight | Q | scripted | medium | 52.4 | 130 | 52 |
-| 2026-12-28 | 9 | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Aviation & engineering › Cars | E | scripted | medium | 52.2 | 129 | 52 |
+| 2026-12-28 | 9 | 37 | [Why electric cars lose range in the cold](idea-37-ev-cold-range/idea.md) | Aviation & engineering › Cars | E | rendered | medium | 52.2 | 129 | 52 |
 | 2026-12-30 | 9 | 39 | [What your gold stamp means](idea-39-gold-karats/idea.md) | Style & beauty › Jewellery | C | idea | low | - | - | - |
 | 2026-12-31 | 9 | 40 | [Myth: white gold is naturally white](idea-40-white-gold-myth/idea.md) | Style & beauty › Jewellery | Q | idea | low | - | - | - |
 | 2027-01-01 | 9 | 41 | [How a lab-grown diamond is made](idea-41-lab-grown-diamond/idea.md) | Style & beauty › Jewellery | E | idea | medium | - | - | - |
@@ -132,6 +167,31 @@ Every reel and carousel idea for Unpack & Explain, grouped by topic. Check the t
 | 2027-01-12 | 11 | 47 | [Why gel nails need a lamp](idea-47-gel-nails/idea.md) | Style & beauty › Makeup & nails | E | idea | low | - | - | - |
 | 2027-01-14 | 11 | 48 | [Why jeans are white on the inside](idea-48-jeans-indigo/idea.md) | Style & beauty › Fabrics | E | idea | low | - | - | - |
 | 2027-01-15 | 11 | 49 | [How silk is made](idea-49-silk/idea.md) | Style & beauty › Fabrics | E | idea | medium | - | - | - |
+| 2027-01-18 | 12 | 51 | [How a drone steers with no moving wings](idea-51-quadcopter-steering/idea.md) | Games & gadgets › Drones | E | idea | high | - | - | - |
+| 2027-01-19 | 12 | 52 | [How a PS5 trigger pushes back](idea-52-adaptive-triggers/idea.md) | Games & gadgets › Consoles | E | idea | low | - | - | - |
+| 2027-01-20 | 12 | 53 | [How hundreds of drones draw pictures in the sky](idea-53-drone-light-show/idea.md) | Games & gadgets › Drones | E | idea | high | - | - | - |
+| 2027-01-21 | 12 | 54 | [How a gaming mouse sees your desk](idea-54-gaming-mouse-sensor/idea.md) | Games & gadgets › PC gaming | E | idea | low | - | - | - |
+| 2027-01-22 | 12 | 55 | [Myth: blowing into a game cartridge fixes it](idea-55-cartridge-blowing-myth/idea.md) | Games & gadgets › Consoles | Q | idea | low | - | - | - |
+| 2027-01-25 | 13 | 56 | [How a graphics card draws one frame](idea-56-gpu-frame/idea.md) | Games & gadgets › PC gaming | E | idea | low | - | - | - |
+| 2027-01-26 | 13 | 57 | [How a controller rumbles](idea-57-controller-rumble/idea.md) | Games & gadgets › Consoles | E | idea | low | - | - | - |
+| 2027-01-27 | 13 | 58 | [How online games hide lag](idea-58-lag-compensation/idea.md) | Games & gadgets › PC gaming | E | idea | low | - | - | - |
+| 2027-01-28 | 13 | 59 | [How a drone hovers in one spot](idea-59-drone-hover/idea.md) | Games & gadgets › Drones | E | idea | high | - | - | - |
+| 2027-01-29 | 13 | 60 | [What 30, 60 and 120 fps really mean](idea-60-fps-cheat-sheet/idea.md) | Games & gadgets › PC gaming | C | idea | low | - | - | - |
+| 2027-02-01 | 14 | 61 | [Why PS5 loading screens almost vanished](idea-61-ps5-ssd/idea.md) | Games & gadgets › Consoles | E | idea | low | - | - | - |
+| 2027-02-02 | 14 | 62 | [How ray tracing lights a game](idea-62-ray-tracing/idea.md) | Games & gadgets › PC gaming | E | idea | low | - | - | - |
+| 2027-02-03 | 14 | 63 | [How a drone moves in 4 moves](idea-63-drone-steering-steps/idea.md) | Games & gadgets › Drones | C | idea | low | - | - | - |
+| 2027-02-04 | 14 | 64 | [How an igloo keeps you warm](idea-64-igloo-warmth/idea.md) | Extreme places › Ice & snow | E | idea | high | - | - | - |
+| 2027-02-05 | 14 | 65 | [How a volcano erupts](idea-65-volcano-eruption/idea.md) | Extreme places › Volcanoes & earth | E | idea | high | - | - | - |
+| 2027-02-08 | 15 | 66 | [How a submarine dives and surfaces](idea-66-submarine-dive/idea.md) | Extreme places › Deep sea | E | idea | high | - | - | - |
+| 2027-02-09 | 15 | 67 | [Myth: igloos are made of ice](idea-67-igloo-ice-myth/idea.md) | Extreme places › Ice & snow | Q | idea | medium | - | - | - |
+| 2027-02-10 | 15 | 68 | [How a submarine dives in 4 steps](idea-68-submarine-dive-steps/idea.md) | Extreme places › Deep sea | C | idea | low | - | - | - |
+| 2027-02-11 | 15 | 69 | [How scientists know a volcano will erupt](idea-69-eruption-warning/idea.md) | Extreme places › Volcanoes & earth | E | idea | high | - | - | - |
+| 2027-02-12 | 15 | 70 | [How a deep-sea submersible survives the crush](idea-70-alvin-pressure/idea.md) | Extreme places › Deep sea | E | idea | high | - | - | - |
+| 2027-02-15 | 16 | 71 | [Why most of an iceberg hides underwater](idea-71-iceberg-float/idea.md) | Extreme places › Ice & snow | E | idea | high | - | - | - |
+| 2027-02-16 | 16 | 72 | [How a geyser erupts on schedule](idea-72-geyser/idea.md) | Extreme places › Volcanoes & earth | E | idea | high | - | - | - |
+| 2027-02-18 | 16 | 73 | [How a diesel engine fires without a spark](idea-73-diesel-ignition/idea.md) | Aviation & engineering › Cars | E | idea | high | - | - | - |
+| 2027-02-22 | 17 | 74 | [How a hybrid car charges itself](idea-74-hybrid-self-charging/idea.md) | Aviation & engineering › Cars | E | idea | high | - | - | - |
+| 2027-02-23 | 17 | 75 | [How a plug-in hybrid picks electric or petrol](idea-75-phev-modes/idea.md) | Aviation & engineering › Cars | E | idea | high | - | - | - |
 
 Est. s assumes 2.5 words/s; the real length comes from the voice-over. Fit = how well the idea matches what performed (high: a big, recognisable physical thing in a real place); reasons are in each idea's `fit_why` and in `instagram/audit.md`.
 
@@ -139,18 +199,19 @@ Est. s assumes 2.5 words/s; the real length comes from the voice-over. Fit = how
 
 | # | Idea | Fit | Post | Views | × median | Reach | Non-follower | Hold 3 s | Watch % | Sends / reach | Share + save | Follows / 1k |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2 | [How GPS finds you](idea-02-gps/idea.md) | low | [watch](https://www.instagram.com/reel/DfE-k9so_ys) | 132 | 1.1x | 117 | - | - | - | 0.0% | 0.0% | 8.5 |
+| 2 | [How GPS finds you](idea-02-gps/idea.md) | low | [watch](https://www.instagram.com/reel/DfE-k9so_ys) | 132 | 1.0x | 117 | - | - | - | 0.0% | 0.0% | 8.5 |
 | 1 | [How a card payment works](idea-01-card-payment/idea.md) | low | [watch](https://www.instagram.com/reel/DfHZUnZIbeZ) | 3 | 0.0x | 2 | - | - | - | 0.0% | 0.0% | 0 |
-| 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | low | [watch](https://www.instagram.com/reel/DfOxCyZoUsn) | 120 | 1.0x | 108 | - | - | - | 0.0% | 0.0% | 0 |
-| 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | medium | [watch](https://www.instagram.com/reel/DfPEJpBIkrN) | 121 | 1.0x | 117 | - | - | - | 0.0% | 0.0% | 0 |
-| 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | medium | [watch](https://www.instagram.com/reel/DfTq3Z-I1Ml) | 122 | 1.0x | 118 | - | - | - | 0.0% | 0.0% | 0 |
+| 20 | [How vibe coding actually works in 2026](idea-20-vibe-coding/idea.md) | low | [watch](https://www.instagram.com/reel/DfOxCyZoUsn) | 120 | 0.9x | 108 | - | - | - | 0.0% | 0.0% | 0 |
+| 3 | [How a jet engine works + Gimli Glider](idea-03-jet-engine/idea.md) | medium | [watch](https://www.instagram.com/reel/DfPEJpBIkrN) | 121 | 0.9x | 117 | - | - | - | 0.0% | 0.0% | 0 |
+| 10 | [How undersea cables carry the internet](idea-10-undersea-cables/idea.md) | medium | [watch](https://www.instagram.com/reel/DfTq3Z-I1Ml) | 122 | 0.9x | 118 | - | - | - | 0.0% | 0.0% | 0 |
 | 12 | [Myth: 'Cloud storage is in the sky'](idea-12-cloud-myth/idea.md) | low | [watch](https://www.instagram.com/reel/DfWzUgUIq2n) | 141 | 1.1x | 127 | - | - | - | 0.0% | 0.0% | 0 |
 | 19 | [Jet engine in 4 stages](idea-19-jet-engine-stages/idea.md) | low | [watch](https://www.instagram.com/p/DfZfdEok4Sz) | 0 | 0.0x | 0 | - | - | - | - | - | - |
 | 21 | [How your phone knows which way is up](idea-21-phone-accelerometer/idea.md) | low | [watch](https://www.instagram.com/reel/DfgmpugIbXy) | 127 | 1.0x | 122 | - | - | - | 0.0% | 0.0% | 0 |
-| 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | high | [watch](https://www.instagram.com/reel/Dfg81Vmo-xP) | 1,384 | 11.1x | 1,277 | - | - | - | 0.0% | 0.1% | 0 |
-| 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | high | [watch](https://www.instagram.com/reel/DfjiHj8Ivbl) | 1,379 | 11.1x | 1,236 | - | - | - | 0.2% | 0.3% | 0.8 |
-| 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | medium | [watch](https://www.instagram.com/reel/DflMrkJlAGq) | 134 | 1.1x | 124 | - | - | - | 0.0% | 0.0% | 0 |
-| 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | medium | [watch](https://www.instagram.com/reel/DfoUZBXDbMt) | 0 | 0.0x | 0 | - | - | - | - | - | - |
+| 26 | [Why big ships have a bump on their nose](idea-26-bulbous-bow/idea.md) | high | [watch](https://www.instagram.com/reel/Dfg81Vmo-xP) | 1,385 | 10.5x | 1,279 | - | - | - | 0.0% | 0.1% | 0 |
+| 27 | [How a hovercraft floats on air](idea-27-hovercraft/idea.md) | high | [watch](https://www.instagram.com/reel/DfjiHj8Ivbl) | 1,379 | 10.4x | 1,236 | - | - | - | 0.2% | 0.3% | 0.8 |
+| 28 | [Myth: Tesla's new Roadster is a flying car](idea-28-tesla-roadster-myth/idea.md) | medium | [watch](https://www.instagram.com/reel/DflMrkJlAGq) | 134 | 1.0x | 124 | - | - | - | 0.0% | 0.0% | 0 |
+| 38 | [How gold jewellery is made](idea-38-gold-jewellery/idea.md) | medium | [watch](https://www.instagram.com/reel/DfoUZBXDbMt) | 207 | 1.6x | 195 | - | - | - | 0.0% | 0.5% | 0 |
+| 33 | [How a helicopter steers](idea-33-helicopter-steering/idea.md) | high | [watch](https://www.instagram.com/reel/Dfrb9JAIEn_/) | 1,589 | 12.0x | 1,449 | - | - | - | 0.0% | 0.5% | 0.7 |
 
 Rank by × median and sends / reach, not raw views. High non-follower reach with few follows is a profile problem; low hold at 3 s is a hook problem.
 
@@ -165,14 +226,14 @@ Stayed = YouTube's "viewed vs. swiped away" (the Shorts hook signal, like Hold 3
 
 ## Formats
 
-Posted 12 of 50 ideas (24%).
+Posted 13 of 75 ideas (17%).
 
 | Format | Ideas | Posted | Avg reach | Avg watch % | Avg share + save | Avg follows / 1k |
 |---|---|---|---|---|---|---|
-| E | 30 | 8 | 373 | - | 0.1% | 1.3 |
+| E | 50 | 9 | 514 | - | 0.2% | 1.1 |
 | F | 6 | 1 | 117 | - | 0.0% | 0 |
-| Q | 9 | 2 | 126 | - | 0.0% | 0 |
-| C | 5 | 1 | 0 | - | - | - |
+| Q | 11 | 2 | 126 | - | 0.0% | 0 |
+| C | 8 | 1 | 0 | - | - | - |
 
 **Best format so far:** by watch time - (needs 3 posted per format); by share + save rate E; by follows per 1k reach E.
 

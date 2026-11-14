@@ -26,6 +26,7 @@ export const BLENDER_WORLD_VERSIONS: Record<WorldId, number> = {
   rail: 2,
   bench: 1,
   cafe: 1,
+  snow: 1,
 };
 // Bump when the cover's Blender pass changes (cover rim lights, subject layer), so only
 // cover clips go stale.

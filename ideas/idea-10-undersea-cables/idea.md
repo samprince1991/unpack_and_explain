@@ -20,7 +20,7 @@ verify:
   - "Repeater spacing 50-80 km (engineering sources, not TeleGeography FAQ)"
   - "Lasers flash billions of times a second (modern line rates are tens of gigabaud)"
 metrics:
-  views: 122  # as of 2026-11-11 (insights export)
+  views: 122  # as of 2026-11-13 (insights export)
   reach: 118
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

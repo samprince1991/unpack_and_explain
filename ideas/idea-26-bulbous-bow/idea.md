@@ -20,8 +20,8 @@ verify:
   - "140 tonnes is the upper end for Maersk's big container-ship bows (Maersk via Ships Monthly); question card says it as a question, keep the source"
 notes: "Bulbous bow makes its own wave just ahead of the bow wave, out of phase, so the two partly cancel and the hull pushes less water. Strong side-view 3D with the two waves."
 metrics:
-  views: 1384  # as of 2026-11-11 (insights export)
-  reach: 1277
+  views: 1385  # as of 2026-11-13 (insights export)
+  reach: 1279
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s
   watch_pct: null  # average watch time, % of video length

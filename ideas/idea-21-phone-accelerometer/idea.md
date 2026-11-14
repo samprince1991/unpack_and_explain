@@ -21,7 +21,7 @@ verify:
   - "'2-millimeter chip' is spoken without 'about': the source says the package is about 2 x 2 x 1 mm, and ST's figure is not specific to one phone"
 notes: "MEMS accelerometer: a silicon proof mass on springs between comb fingers; tilt or shake moves it, the capacitance change becomes a number. Great exploded-view 3D (chip > die > comb)."
 metrics:
-  views: 127  # as of 2026-11-11 (insights export)
+  views: 127  # as of 2026-11-13 (insights export)
   reach: 122
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s

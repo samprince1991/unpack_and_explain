@@ -18,7 +18,7 @@ hook_score: 81.4
 source: "NASA Glenn Research Center, Beginner's Guide to Propulsion"
 verify: []
 metrics:
-  views: 0  # as of 2026-11-11 (insights export)
+  views: 0  # as of 2026-11-13 (insights export)
   reach: 0
   nonfollower_pct: null  # % of reach from non-followers
   hold_3s: null  # % of viewers still watching at 3 s (reels only)
