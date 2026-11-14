@@ -56,7 +56,7 @@ metrics:  # fill in after posting
 | Mechanism | It has six electric propellers. For takeoff, they point up, like a drone, and lift it straight off the pad. Then the propellers tilt forward. Now the wing carries the weight, and the propellers just push it along, like a plane. To land, they tilt back up. | Blender: wide on the aircraft; close on one prop pointing up on 'six electric propellers' (amber), lift arrows down; wide as it climbs; close on a wing nacelle as it tilts forward on 'tilt forward' (amber); lift arrow moves to the wing on 'wing carries the weight'; wide cruise; props tilt back up on 'land'. |
 | Payoff | It carries a pilot and four passengers, up to 150 miles on one charge. Joby is aiming to fly its first passengers in Dubai. | 2D map style: a pad-to-pad line draws on '150 miles' with "240 km" on screen; seat icons 1+4 on 'pilot and four passengers' (pilot seat amber); a pin on Dubai on 'Dubai'. |
 | Congrats | Congrats, you just learned how an air taxi flies. | Congrats card: teal check + chime (template). |
-| CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+| CTA | Follow for how things actually work. | Logo + tagline card. |
 
 ## Cold read
 

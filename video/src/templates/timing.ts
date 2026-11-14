@@ -3,7 +3,7 @@ import type { SectionId, VoSection } from "./types";
 
 // Breathing room after each section's last word.
 export const TAIL_PAD_FRAMES = 6;
-export const CTA_MIN_SECONDS = 3;
+export const CTA_MIN_SECONDS = 2;
 export const SOURCE_LEAD_SECONDS = 3;
 
 export const countWords = (text: string): number =>

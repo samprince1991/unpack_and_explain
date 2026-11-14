@@ -56,7 +56,7 @@ metrics:  # fill in after posting
 | Mechanism | Lidar fires laser pulses and times the bounce, building a 3D map up to 300 meters away. Cameras read what lidar can't, like a stop sign or the color of a traffic light. Radar uses radio waves, so it still works in fog, and it measures how fast things are moving. Software blends all three into one picture. | Blender + 2D overlay: wide on the car at a junction; laser pulse lines out and back on 'laser pulses' (amber), a point-cloud of the street fades in on '3D map', on screen "300 m (984 ft)"; camera view frame with a stop sign and traffic light on 'cameras' (light amber); fog rolls in and radar arcs go through it on 'fog', a speed arrow on a moving car on 'how fast'; three layers merge into one picture on 'blends'. |
 | Payoff | The newest version uses 13 cameras, 4 lidars and 6 radars. That's 42% fewer sensors than the last one. | 2D chart: icon rows 13 / 4 / 6 counting up; a before/after bar on '42% fewer', the 'after' bar amber. |
 | Congrats | Congrats, you just learned how a robotaxi sees. | Congrats card: teal check + chime (template). |
-| CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+| CTA | Follow for how things actually work. | Logo + tagline card. |
 
 ## Cold read
 

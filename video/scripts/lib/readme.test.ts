@@ -40,7 +40,7 @@ describe("renderIndex", () => {
       "**4 ideas** (by status: 1 idea, 2 scripted, 1 posted) · next up: #1 [How GPS finds you](idea-01-card/idea.md) (Mon 2 Nov)",
     );
     expect(out).toContain(
-      "| 2026-11-03 | 1 | 2 | [How GPS finds you](idea-02-gps/idea.md) | Everyday tech › Location & GPS | E | scripted | medium | 81 | 124 | 50 |",
+      "| 2026-11-03 | 1 | 2 | [How GPS finds you](idea-02-gps/idea.md) | Everyday tech › Location & GPS | E | scripted | medium | 81 | 121 | 48 |",
     );
     expect(out).toContain(
       "| 2026-11-04 | 1 | 18 | [How GPS finds you](idea-18-gps-steps/idea.md) | Everyday tech › Location & GPS | C | scripted | medium | - | 6 slides | - |",

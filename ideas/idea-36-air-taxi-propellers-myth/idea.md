@@ -56,8 +56,8 @@ metrics:  # fill in after posting
 | Setup | MYTH: an air taxi is a giant drone. Stop one of a drone's four propellers, and the rest can't keep it level. | 2D line art: a quadcopter top view; one rotor stops (coral) on 'one stops' and the drone tips; MYTH stamp (coral) on 'giant drone'. |
 | Mechanism | Archer's Midnight spreads the job across twelve propellers, each with its own electric motor. Six tilt forward to fly like a plane. Six only lift during takeoff and landing. Because they're spread evenly around the aircraft, if one fails, the others share its load and keep it level. | Blender top view: wide with all 12 props; six front props light on 'six tilt forward' and tilt; six rear props light on 'only lift' (diagram soft); one prop stops on 'if one fails'; arrows from its neighbours grow on 'share its load' (amber); the aircraft holds level; wide. |
 | Payoff | FACT: the batteries are split the same way, into six packs. Archer says no single failure can bring it down. | 2D: FACT stamp (teal) on 'FACT'; six battery blocks in pairs under the wings on 'six packs', one dims and the others stay lit; on screen "Archer: no single point of failure". |
-| Congrats | Congrats, you just learned why air taxis have so many propellers. | Congrats card: teal check + chime (template). |
-| CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+| Congrats | Congrats, you just learned why air taxis need many propellers. | Congrats card: teal check + chime (template). |
+| CTA | Follow for how things actually work. | Logo + tagline card. |
 
 ## Cold read
 

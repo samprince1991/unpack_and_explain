@@ -50,8 +50,8 @@ metrics:  # fill in after posting
 | Setup | That's only part of the story. | Stamp slides away. |
 | Mechanism | A wing is tilted and curved, so it bends the air flowing past it downward. Air above the wing speeds up and its pressure drops. Lower pressure on top, higher pressure below, and the wing is pushed up. Push air down, and the air pushes you up. | Streamlines flow around the wing and bend downward; pressure colors (blue on top, orange below); arrow labeled LIFT. |
 | Payoff | And no, the air over the top isn't racing to catch up with the air below. It actually gets to the back first. | Two dots race across the wing; the top dot wins. |
-| Congrats | Congrats, you just learned how a wing really makes lift. | Congrats card: teal check + chime (template). |
-| CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+| Congrats | Congrats, you just learned how a wing makes lift. | Congrats card: teal check + chime (template). |
+| CTA | Follow for how things actually work. | Logo + tagline card. |
 
 ## Cold read
 

@@ -106,7 +106,7 @@ All colors come from `video/src/brand/tokens.ts`. **Never write a hex value anyw
 - **Teal = brand moments only**, so it stays rare and recognizable.
 - Icons in `src/components/icons/` are neutral by default; only `PinIcon` and the clock's minute hand are amber, because they *are* the key marker.
 - Theme is **dark** for every card, 2D section and text background. Outdoor Blender worlds are in daylight (2026-11-13), still with one amber key. Exception: a night world when the topic happens at night (the `snow` car park, 2026-11-13), lit by cool white lamps with the model in a lamp's pool of light.
-- Tagline: **"How things actually work"**. Spoken CTA: "Follow Unpack and Explain for how things actually work."
+- Tagline: **"How things actually work"**. Spoken CTA: "Follow for how things actually work." (reels built before 2026-11-14 keep `brand.legacyCtaLine`, "Follow Unpack and Explain for how things actually work.")
 - Logo: Avatar mark for sting + watermark, Stacked-Dark for the CTA card. Never recolor, stretch, crop or add effects to the logo.
 
 ## Typography
@@ -130,8 +130,8 @@ Load fonts only through `src/brand/fonts.ts` (`@remotion/google-fonts`). Sentenc
 |---|---|---|
 | **Question** | Template (`QuestionCard`) | Ask the viewer about the topic, ending in "?". E.g. "Do you know how GPS actually finds you?" |
 | Hook, Setup, Mechanism, Payoff | Post scenes | As written in the script |
-| **Congrats** | Template (`CongratsCard`, teal check + chime) | Starts with "Congrats," (comma, **not** "!"). E.g. "Congrats, you just learned how GPS finds you." |
-| **CTA** | Template (`CtaCard`) | Exactly `brand.ctaLine`: "Follow Unpack and Explain for how things actually work." |
+| **Congrats** | Template (`CongratsCard`, teal check + chime) | Starts with "Congrats," (comma, **not** "!"), 9 words or fewer. E.g. "Congrats, you just learned how GPS finds you." |
+| **CTA** | Template (`CtaCard`) | Exactly `brand.ctaLine`: "Follow for how things actually work." The card shows the name and handle, so the voice doesn't repeat them |
 
 `script.ts` sets `topic` (e.g. "GPS"), colored amber on the question and congrats cards. Captions are hidden over the template cards because the cards already show the words.
 
@@ -141,7 +141,7 @@ Load fonts only through `src/brand/fonts.ts` (`@remotion/google-fonts`). Sentenc
 4. **Hook:** Blender too. **Setup and payoff** stay 2D, with scene styles and charts.
 5. **World:** every new reel renders inside a Blender world (`world` in the `blender` plan), with its dimmed backdrop behind the 2D sections. If no world fits the topic, build one first (`docs/blender.md`). Only posts built before 2026-11-10 use `worldOptOut`.
 6. **Before / on CTA:** `SourceTag` ("Source: ...") visible for the last 3 s.
-7. **CTA card (3-4 s):** Stacked-Dark logo, tagline, handle (`brand.handle` = `@unpack_and_explain`).
+7. **CTA card (2-3 s):** Stacked-Dark logo, tagline, handle (`brand.handle` = `@unpack_and_explain`).
 
 ### One subject, easy to follow
 

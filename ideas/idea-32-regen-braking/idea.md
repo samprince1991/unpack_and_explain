@@ -54,8 +54,8 @@ metrics:  # fill in after posting
 | Setup | With normal braking, the brakes squeeze the wheels and turn your speed into heat. That energy is gone. | 2D line art: a brake pad clamps a disc on 'squeeze', heat waves rise on 'heat' (amber), then fade on 'gone'. |
 | Mechanism | An electric motor works both ways. Feed it power, and it spins the wheels. Let the wheels spin it, and it becomes a generator. So when you lift off the pedal, the wheels push current back into the battery, and that drag is what slows you down. | Blender cutaway: wide; close on the motor on 'electric motor' (amber); arrows battery to wheel on 'spins the wheels'; arrows reverse wheel to battery on 'generator'; pedal lifts on 'lift off the pedal'; battery level ticks up on 'back into the battery'; car slows, speed lines shorten on 'slows you down'; wide. |
 | Payoff | In city traffic, the U.S. Department of Energy estimates that adds back about 32%. On the highway, it's about 6%. | 2D chart: two bars, city 32% (amber) and highway 6%, on screen "32%" and "6%"; small 'stop-go' squiggle above city, a straight line above highway. |
-| Congrats | Congrats, you just learned how braking charges an electric car. | Congrats card: teal check + chime (template). |
-| CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+| Congrats | Congrats, you just learned how braking charges a car. | Congrats card: teal check + chime (template). |
+| CTA | Follow for how things actually work. | Logo + tagline card. |
 
 ## Cold read
 

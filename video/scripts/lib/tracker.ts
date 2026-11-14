@@ -5,6 +5,9 @@ import { SECTION_ORDER, type SectionId } from "../../src/templates/types";
 import { SLIDE_RANGE, SLIDE_WORDS, WORD_RANGE } from "../../src/templates/validate";
 import { mentionsTopic, opensOnTopic } from "./subject";
 
+// "Congrats, you just learned how a maglev train floats." The outro sits after the payoff, so keep it short.
+const CONGRATS_MAX_WORDS = 9;
+
 // The content tracker: one ideas/idea-NN-slug/idea.md per idea (YAML front matter +
 // script). `npm run tracker` validates them and writes ideas/README.md. Once an idea is
 // built it becomes a post: its code, VO and renders use post-NN-slug (see postFolder).
@@ -322,8 +325,16 @@ export const validateIdea = (idea: Idea, taxonomy: Taxonomy): Problems => {
     if (!vo("congrats").startsWith("Congrats,")) {
       errors.push('Congrats must start with "Congrats," (comma, not "!")');
     }
-    if (vo("cta") !== brand.ctaLine) {
+    const built = ["rendered", "posted"].includes(meta.status);
+    // Rendered and posted reels keep the legacy CTA they were voiced with.
+    if (vo("cta") !== brand.ctaLine && !(built && vo("cta") === brand.legacyCtaLine)) {
       errors.push(`CTA must be exactly "${brand.ctaLine}"`);
+    }
+    const congratsWords = countWords(vo("congrats"));
+    if (!built && congratsWords > CONGRATS_MAX_WORDS) {
+      warnings.push(
+        `Congrats is ${congratsWords} words, over ${CONGRATS_MAX_WORDS}: keep the outro short ("Congrats, you just learned how X works.")`,
+      );
     }
     if (idea.sections.some((s) => s.voiceover.includes("!"))) {
       errors.push('Voice-over must not use "!" (the voice over-stresses the word before it)');

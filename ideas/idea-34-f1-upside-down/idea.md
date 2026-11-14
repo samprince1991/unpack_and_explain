@@ -56,7 +56,7 @@ metrics:  # fill in after posting
 | Mechanism | Air rushes faster under them, the pressure drops, and the car is pressed into the track. The floor sucks it down too. Double the speed, and that push gets four times stronger. Fast enough, and it beats the car's own weight. | Blender: wide; close on the rear wing on 'wings' with airflow lines, faster lines underneath; pressure gauge drops on 'pressure there drops'; arrows press down on 'pressed into the track'; close on the floor on 'floor' (amber), arrows under it; 2D chart overlay on 'Double the speed': a curve with 1x at v and 4x at 2v; weight arrow and downforce arrow, downforce grows past it on 'bigger than the car's own weight'. |
 | Payoff | So on a ceiling, the air could hold it up. The catch is getting up there at full speed. Nobody has ever tried. | Blender: the car on the tunnel ceiling, downforce arrow up (amber) on 'hold it up'; a question mark on the ramp up to the ceiling on 'catch'. |
 | Congrats | Congrats, you just learned how downforce works. | Congrats card: teal check + chime (template). |
-| CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+| CTA | Follow for how things actually work. | Logo + tagline card. |
 
 ## Cold read
 

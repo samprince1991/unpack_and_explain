@@ -16,6 +16,6 @@ describe("withAlpha", () => {
 describe("brand", () => {
   it("uses the canonical tagline and CTA line", () => {
     expect(brand.tagline).toBe("How things actually work");
-    expect(brand.ctaLine).toBe("Follow Unpack and Explain for how things actually work.");
+    expect(brand.ctaLine).toBe("Follow for how things actually work.");
   });
 });

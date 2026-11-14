@@ -57,7 +57,9 @@ export const withAlpha = (hex: string, alpha: number): string => {
 export const brand = {
   name: "Unpack & Explain",
   tagline: "How things actually work",
-  ctaLine: "Follow Unpack and Explain for how things actually work.",
+  ctaLine: "Follow for how things actually work.",
+  // Spoken CTA on reels scripted before 2026-11-14. Still valid for those posts; new reels use ctaLine.
+  legacyCtaLine: "Follow Unpack and Explain for how things actually work.",
   handle: "@unpack_and_explain",
 } as const;
 

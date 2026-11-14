@@ -55,8 +55,8 @@ metrics:  # fill in after posting
 | Setup | The fan car chased downforce: air pushing a race car into the track. | 2D: the fan car in side view on a curve of track; on 'downforce' it leans into the curve; on 'pushing' air arrows press it down into the track (amber arrows). Parallax + dust. |
 | Mechanism | Brabham bolted an engine-driven fan to the back. Officially, it was for cooling. But it also sucked air from under the car, and sliding skirts sealed the sides. Lower pressure underneath, so the air above pressed the car down. The faster the engine spun, the harder it pulled. | Blender cutaway side view: wide; close on the fan on 'big fan' with a belt line to the engine; small radiator glows on 'cooling'; air arrows drawn out from under the floor on 'sucked air out'; skirts touch the ground on 'skirts' (amber); pressure gauge drops on 'lower pressure'; arrows press down on the body on 'pressed the car down'; fan speeds up on 'faster'; wide again. |
 | Payoff | Niki Lauda won the Swedish Grand Prix by over half a minute. Rivals protested, Brabham withdrew it, and fan cars were banned. | 2D chart: two bars on 'over half a minute' (winner amber), "+34 s" on screen; a protest stamp-style label on 'protested'; the fan icon crossed out (coral) on 'banned'. |
-| Congrats | Congrats, you just learned how the fan car stuck to the track. | Congrats card: teal check + chime (template). |
-| CTA | Follow Unpack and Explain for how things actually work. | Logo + tagline card. |
+| Congrats | Congrats, you just learned how the fan car stuck. | Congrats card: teal check + chime (template). |
+| CTA | Follow for how things actually work. | Logo + tagline card. |
 
 ## Cold read
 

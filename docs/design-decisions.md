@@ -90,6 +90,7 @@ Why the pipeline is built the way it is, and what was tried or rejected. The rul
 
 - **Fixed topic list in `ideas/categories.yml`,** so new ideas build on a theme instead of repeating one.
 - **Reel anatomy stays,** even though `/ig-reel` advises against intros. The question card must score 50+ instead (it first scored 45 WEAK).
+- **Shorter outro (2026-11-14).** Congrats + CTA took about 7 s (13-17% of each reel), all after the payoff, where viewers leave and the loop waits. The spoken CTA dropped the channel name ("Follow for how things actually work."), because the CTA card already shows the logo and handle, and congrats lines are capped at 9 words. Built reels keep `brand.legacyCtaLine`, so they are not re-voiced. `CTA_MIN_SECONDS` dropped from 3 to 2, so the card ends with the shorter line instead of holding a silent second. Built reels are unchanged: their legacy CTA runs over 3 s anyway.
 - **Skill state lives in the repo,** so it travels with the project.
 - **Claude never posts, likes, follows, comments or messages.** Every skill ends with copy-ready text the user posts by hand.
 - **BURSTINESS findings are advisory,** because the detector penalizes short, even explainer sentences.

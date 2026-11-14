@@ -40,16 +40,16 @@ describe("computeTimeline", () => {
     const { sections, totalFrames } = computeTimeline(
       [
         { id: "hook", durationMs: 1000 },
-        { id: "cta", durationMs: 2000 },
+        { id: "cta", durationMs: 1000 },
       ],
       30,
       12,
     );
     // hook: 30 audio + 6 pad + 12 transition overlap
     expect(sections[0]).toEqual({ id: "hook", from: 0, durationInFrames: 48 });
-    // cta: max(60 + 6, 90 minimum), starts where the transition begins
-    expect(sections[1]).toEqual({ id: "cta", from: 36, durationInFrames: 90 });
-    expect(totalFrames).toBe(126);
+    // cta: max(30 + 6, 60 minimum), starts where the transition begins
+    expect(sections[1]).toEqual({ id: "cta", from: 36, durationInFrames: 60 });
+    expect(totalFrames).toBe(96);
   });
 
   it("matches TransitionSeries total = sum - transitions", () => {

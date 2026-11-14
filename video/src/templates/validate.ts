@@ -289,7 +289,8 @@ export const validateScript = (script: PostScript) => {
     errors.push('congrats voiceover must start with "Congrats"');
   }
   const cta = script.sections.find((s) => s.id === "cta");
-  if (cta && cta.voiceover !== brand.ctaLine) {
+  // Reels built before 2026-11-14 keep the longer legacy line (already voiced and posted).
+  if (cta && cta.voiceover !== brand.ctaLine && cta.voiceover !== brand.legacyCtaLine) {
     errors.push(`CTA voiceover must be exactly "${brand.ctaLine}"`);
   }
 

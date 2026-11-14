@@ -79,7 +79,7 @@ describe("validateIdea", () => {
   it("warns about word count, missing link and missing reach", () => {
     const p = idea(FRONT.replace("scripted", "posted"), SCRIPT.replace(words(50), words(5)));
     expect(validateIdea(p, TAXONOMY).warnings).toEqual([
-      "79 spoken words, outside the 100-130 target",
+      "76 spoken words, outside the 100-130 target",
       "posted but link is empty",
       "posted but metrics.reach is empty",
     ]);
